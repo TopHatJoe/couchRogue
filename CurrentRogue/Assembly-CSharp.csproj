@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\AStar\DebugTile.cs" />
      <Compile Include="Assets\Scripts\AStar\Node.cs" />
      <Compile Include="Assets\Scripts\AStar\NodeInfo.cs" />
+     <Compile Include="Assets\Scripts\AStar\SelectionCanvasScr.cs" />
      <Compile Include="Assets\Scripts\Buttons.cs" />
      <Compile Include="Assets\Scripts\CamSwitch.cs" />
      <Compile Include="Assets\Scripts\CasheScript.cs" />

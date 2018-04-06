@@ -6,6 +6,10 @@ using UnityEngine;
 public class CrewScript : MonoBehaviour, IPlacable
 {
 	[SerializeField]
+	private bool CouchMode;
+	private Rigidbody2D rb;
+
+	[SerializeField]
 	private bool DoDoorThing;
 
 	private float speed = 1024;
@@ -112,13 +116,20 @@ public class CrewScript : MonoBehaviour, IPlacable
 			player.SetCrewIndex ();
 
 			transform.GetChild (0).GetComponent <CrewSelect> ().AddToHash (IsLocalCrew);
+
+			if (CouchMode) {
+				rb = gameObject.GetComponent <Rigidbody2D> ();
+			}
 		}
 	}
 
 	void Update () {
-		if (Input.GetButton ("J00-V")) {
-			Debug.Log ("axis");
-
+		if (CouchMode) {
+			if (Input.GetButton ("J00-V")) {
+				//Debug.Log ("axis");
+				Vector3 _vect = new Vector3 (Input.GetAxis ("J00-V"), 0);
+				rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
+			}
 		}
 	}
 
