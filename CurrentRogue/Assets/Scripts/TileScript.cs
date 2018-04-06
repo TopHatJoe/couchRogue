@@ -767,8 +767,21 @@ public class TileScript : MonoBehaviour
 			if (Manned && !Debugging) {
 				ColorTile (fullColor);
 			} else {
+				
+				//this is new
+				if (CasheScript.Instance.CouchMode) {
+					//CC -> couch coop
+					_objStr = _objStr + "CC";
+
+					Debug.Log ("oi");
+				}
+
+				//this is not
+
 				//PlaceCrew ();
 				PlaceObj (_objStr);
+
+				//modal issue 00; fix? -> add postfix depending on mode.
 			}
 		} 
 

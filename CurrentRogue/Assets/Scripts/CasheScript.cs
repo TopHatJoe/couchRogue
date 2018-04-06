@@ -14,7 +14,7 @@ public class CasheScript : Singleton<CasheScript>
 	public bool AutoPlace { get { return autoPlaceShip; } }
 
 	private bool couchMode;
-	public bool Mode { get { return couchMode; } }
+	public bool CouchMode { get { return couchMode; } }
 
 	public int CasheCount { get; private set; }
 

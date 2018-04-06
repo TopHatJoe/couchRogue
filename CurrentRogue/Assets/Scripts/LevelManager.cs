@@ -204,6 +204,8 @@ public class LevelManager : Singleton<LevelManager>
 
 		//CREW
 		objDict.Add ("1_Crew", crewArray [0]);
+		//couch crew
+		objDict.Add ("1_CrewCC", crewArray [1]);
 
 		//DANGERS
 		objDict.Add ("1_Fire", dangerArray [0]);
