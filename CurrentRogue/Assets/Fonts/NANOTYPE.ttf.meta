@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 85becac9b25634fc2b452d016a228f07
+timeCreated: 1492519352
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: NANOTYPE
+  fontNames:
+  - NANOTYPE
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
