@@ -78,13 +78,13 @@ public class CrewSelect : MonoBehaviour, ISelectHandler, IPointerClickHandler, I
 
 	public void MovementOrders (Point _destination)
 	{
-		crewScript.GiveMovementOrders (_destination);
+		crewScript.UndoChanges (); //GiveMovementOrders (_destination);
 	}
 
 	private void OnDestroy ()
 	{
 		RemoveFromHash ();
-		crewScript.ResetDestination ();
+		crewScript.UndoChanges (); //ResetDestination ();
 	}
 
 	private void RemoveFromHash ()

@@ -13,6 +13,8 @@ public class CasheScript : Singleton<CasheScript>
 	private bool autoPlaceShip;
 	public bool AutoPlace { get { return autoPlaceShip; } }
 
+	private bool couchMode;
+	public bool Mode { get { return couchMode; } }
 
 	public int CasheCount { get; private set; }
 
@@ -32,4 +34,7 @@ public class CasheScript : Singleton<CasheScript>
 	}
 
 
+	public void SwitchMode (bool _mode) {
+		couchMode = _mode;
+	}
 }

@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Menu\LoadSceneOnClick.cs" />
      <Compile Include="Assets\Scripts\Menu\LoadShipGrid.cs" />
+     <Compile Include="Assets\Scripts\Menu\ModeSelect.cs" />
      <Compile Include="Assets\Scripts\Menu\QuitOnClick.cs" />
      <Compile Include="Assets\Scripts\NetLieutenant.cs" />
      <Compile Include="Assets\Scripts\NetManager.cs" />
