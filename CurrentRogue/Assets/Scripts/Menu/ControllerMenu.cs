@@ -8,10 +8,13 @@ public class ControllerMenu : MonoBehaviour
 	[SerializeField]
 	private Button[] buttons;
 
-	private int activeBtn = 0;
+	[SerializeField]
+	private int standard;
+	private int activeBtn;
 
 
 	void Start () {
+		activeBtn = standard;
 		buttons [activeBtn].image.color = Color.green;
 	}
 

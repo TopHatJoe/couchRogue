@@ -27,4 +27,8 @@ public class ModeSelect : MonoBehaviour {
 		Debug.Log ("couchmode = " + couchMode);
 		CasheScript.Instance.SwitchMode (couchMode);
 	}
+
+	public void SelectMode (bool _couchMode) {
+		CasheScript.Instance.SwitchMode (_couchMode);
+	}
 }
