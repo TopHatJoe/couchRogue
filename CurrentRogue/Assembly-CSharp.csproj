@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\NetManager.cs" />
      <Compile Include="Assets\Scripts\Placables\AccessorScript.cs" />
      <Compile Include="Assets\Scripts\Placables\AmmoScript.cs" />
+     <Compile Include="Assets\Scripts\Placables\CouchCrewScript.cs" />
      <Compile Include="Assets\Scripts\Placables\CrewScript.cs" />
      <Compile Include="Assets\Scripts\Placables\DangerScript.cs" />
      <Compile Include="Assets\Scripts\Placables\EngineScript.cs" />

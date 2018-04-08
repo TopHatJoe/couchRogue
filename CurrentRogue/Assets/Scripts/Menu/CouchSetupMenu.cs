@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CouchSetupMenu : MonoBehaviour 
 {
@@ -76,7 +77,14 @@ public class CouchSetupMenu : MonoBehaviour
 			if (i == playerReady.Count - 1) {
 				Debug.Log ("all ready!");
 				CasheScript.Instance.GetCtrlDict (ctrlDict);
+
+				LoadBySceneIndex (5);
 			}
 		}
+	}
+
+	public void LoadBySceneIndex (int sceneIndex)
+	{
+		SceneManager.LoadScene (sceneIndex);
 	}
 }

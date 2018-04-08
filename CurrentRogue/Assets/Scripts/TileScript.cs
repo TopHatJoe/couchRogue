@@ -767,21 +767,32 @@ public class TileScript : MonoBehaviour
 			if (Manned && !Debugging) {
 				ColorTile (fullColor);
 			} else {
-				
-				//this is new
+
 				if (CasheScript.Instance.CouchMode) {
-					//CC -> couch coop
-					_objStr = _objStr + "CC";
+					if (CasheScript.Instance.CouchCrewFits ()) {
 
-					Debug.Log ("oi");
+						//CC -> couch coop
+						_objStr = _objStr + "CC";
+
+						//PlaceObj (_objStr);
+						GameObject _obj = (GameObject)Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
+						IPlacable _placable = _obj.GetComponent <IPlacable> ();
+						_placable.PlaceObj (0, this.GridPosition, _obj);
+
+						CasheScript.Instance.AssignController (_obj.GetComponent <CouchCrewScript> ());
+
+						//maybe not the best place for this
+						Camera.main.gameObject.SetActive (false);
+					} else {
+						Debug.Log ("not enough couch companions for full crew");
+					}
+				} else {
+
+					//PlaceCrew ();
+					PlaceObj (_objStr);
+
+					//modal issue 00; fix? -> add postfix depending on mode.
 				}
-
-				//this is not
-
-				//PlaceCrew ();
-				PlaceObj (_objStr);
-
-				//modal issue 00; fix? -> add postfix depending on mode.
 			}
 		} 
 

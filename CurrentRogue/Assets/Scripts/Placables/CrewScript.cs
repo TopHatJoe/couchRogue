@@ -117,13 +117,16 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 			transform.GetChild (0).GetComponent <CrewSelect> ().AddToHash (IsLocalCrew);
 
+			/*
 			if (CouchMode) {
 				rb = gameObject.GetComponent <Rigidbody2D> ();
 			}
+			*/
 		}
 	}
 
 	void Update () {
+		/*
 		if (CouchMode) {
 			if (Input.GetButton ("J00-V")) {
 				//Debug.Log ("axis");
@@ -131,6 +134,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 				rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
 			}
 		}
+		*/
 	}
 
 

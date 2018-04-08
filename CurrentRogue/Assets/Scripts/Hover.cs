@@ -7,9 +7,17 @@ public class Hover : Singleton<Hover>
 	[SerializeField]
 	private SpriteRenderer spriteRenderer;
 
+	private bool couchMode = false;
+
+	void Start () {
+		couchMode = CasheScript.Instance.CouchMode;
+	}
+
 	void Update ()
 	{
-		FollowMouse ();
+		if (!couchMode) {
+			FollowMouse ();
+		}
 	}
 
 	private void FollowMouse()
