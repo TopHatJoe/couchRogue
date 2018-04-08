@@ -66,10 +66,12 @@
      <Compile Include="Assets\Scripts\Menu\ControllerIni.cs" />
      <Compile Include="Assets\Scripts\Menu\ControllerMappingTemp.cs" />
      <Compile Include="Assets\Scripts\Menu\ControllerMenu.cs" />
+     <Compile Include="Assets\Scripts\Menu\CouchSetupMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\LoadSceneOnClick.cs" />
      <Compile Include="Assets\Scripts\Menu\LoadShipGrid.cs" />
      <Compile Include="Assets\Scripts\Menu\ModeSelect.cs" />
      <Compile Include="Assets\Scripts\Menu\QuitOnClick.cs" />
+     <Compile Include="Assets\Scripts\Menu\ReadyBtn.cs" />
      <Compile Include="Assets\Scripts\NetLieutenant.cs" />
      <Compile Include="Assets\Scripts\NetManager.cs" />
      <Compile Include="Assets\Scripts\Placables\AccessorScript.cs" />

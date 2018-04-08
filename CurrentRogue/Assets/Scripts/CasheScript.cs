@@ -18,6 +18,9 @@ public class CasheScript : Singleton<CasheScript>
 
 	public int CasheCount { get; private set; }
 
+	private Dictionary <int, string> ctrlDict = new Dictionary <int, string> ();
+
+
 	void Start ()
 	{
 		DontDestroyOnLoad (this);
@@ -36,5 +39,16 @@ public class CasheScript : Singleton<CasheScript>
 
 	public void SwitchMode (bool _mode) {
 		couchMode = _mode;
+	}
+
+	public void GetCtrlDict (Dictionary <int, string> _ctrlDict) {
+		ctrlDict = _ctrlDict;
+		LogCtrlDict ();
+	}
+
+	private void LogCtrlDict () {
+		for (int i = 0; i < ctrlDict.Count; i++) {
+			Debug.Log (i + ctrlDict [i]);
+		}
 	}
 }
