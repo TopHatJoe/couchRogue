@@ -10,18 +10,36 @@ public class ControllerIni : MonoBehaviour {
 	private List <GameObject> crewList = new List <GameObject> ();
 	private List <Camera> camList = new List <Camera> ();
 
+	private bool j01active = false;
+	private bool j02active = false;
+	private bool j03active = false;
+	private bool j04active = false;
+
+
 	void Update () {
-		if (Input.GetButtonDown ("J01-s")) {
-			CreateCrew ("J01");
-		}	
-		if (Input.GetButtonDown ("J02-s")) {
-			CreateCrew ("J02");
+		if (!j01active) {
+			if (Input.GetButtonDown ("J01-s")) {
+				CreateCrew ("J01");
+				j01active = true;
+			}	
 		}
-		if (Input.GetButtonDown ("J03-s")) {
-			CreateCrew ("J03");
+		if (!j02active) {
+			if (Input.GetButtonDown ("J02-s")) {
+				CreateCrew ("J02");
+				j02active = true;
+			}
 		}
-		if (Input.GetButtonDown ("J04-s")) {
-			CreateCrew ("J04");
+		if (!j03active) {
+			if (Input.GetButtonDown ("J03-s")) {
+				CreateCrew ("J03");				
+				j03active = true;
+			}
+		}
+		if (!j04active) {
+			if (Input.GetButtonDown ("J04-s")) {
+				CreateCrew ("J04");
+				j04active = true;
+			}
 		}
 	}
 
