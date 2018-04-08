@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\HealthScript.cs" />
      <Compile Include="Assets\Scripts\Hover.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\Menu\ControllerIni.cs" />
      <Compile Include="Assets\Scripts\Menu\ControllerMappingTemp.cs" />
      <Compile Include="Assets\Scripts\Menu\ControllerMenu.cs" />
      <Compile Include="Assets\Scripts\Menu\LoadSceneOnClick.cs" />

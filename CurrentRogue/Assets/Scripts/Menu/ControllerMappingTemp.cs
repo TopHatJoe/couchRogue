@@ -9,8 +9,8 @@ public class ControllerMappingTemp : MonoBehaviour
 	[SerializeField]
 	private float speed;
 
-	[SerializeField]
-	private string controllerID;
+	//[SerializeField]
+	public string ControllerID { get; set; }
 
 	void Start () {
 		rb2D = gameObject.GetComponent <Rigidbody2D> ();
@@ -18,7 +18,7 @@ public class ControllerMappingTemp : MonoBehaviour
 
 	void Update () {
 		//Vector3 _vect = new Vector3 (Input.GetAxis ("J01-H"), -Input.GetAxis ("J01-V"), 0);
-		Vector3 _vect = new Vector3 (Input.GetAxis (controllerID + "-H"), 0, 0);
+		Vector3 _vect = new Vector3 (Input.GetAxis (ControllerID + "-H"), 0, 0);
 
 		rb2D.MovePosition (transform.position + _vect * Time.deltaTime * speed);
 	}
