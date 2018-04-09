@@ -22,6 +22,10 @@ public class DoorScript : MonoBehaviour
 
 	private TileScript tween;
 
+	private bool couchMode;
+	[SerializeField]
+	private BoxCollider2D col2D;
+
 
 	void Start ()
 	{
@@ -89,10 +93,16 @@ public class DoorScript : MonoBehaviour
 		if (isOpen) {
 			sprRenderer.sprite = doorOpen;
 			tweenScript.DoorOpen = true;
+
+			//enables the blocking collider for couch mode
+			col2D.enabled = false;
 			//Debug.Log ("door (" + doorPos.X + ", " + doorPos.Y + ") is Open");
 		} else {
 			sprRenderer.sprite = doorClosed;
 			tweenScript.DoorOpen = false;
+
+			//disables the blocking collider for couch mode
+			col2D.enabled = false;
 			//Debug.Log ("door (" + doorPos.X + ", " + doorPos.Y + ") is Closed");
 		}
 	}
@@ -146,5 +156,15 @@ public class DoorScript : MonoBehaviour
 			//ChangeDoorstate (!isOpen);
 			ChangeDoorstate (false);
 		}
+	}
+
+
+	private void OnTriggerEnter2D (Collider2D _col) {
+		ChangeDoorstate (true);
+		Debug.Log ("collision detected");
+	}
+
+	private void OnTriggerExit2D (Collider2D _col) {
+		ChangeDoorstate (false);
 	}
 }
