@@ -5,6 +5,7 @@ using UnityEngine;
 public class CouchCrewScript : MonoBehaviour 
 {
 	private Rigidbody2D rb;
+	private BoxCollider2D col;
 	private float speed = 1024;
 	private string controllerID;
 	[SerializeField]
@@ -13,6 +14,7 @@ public class CouchCrewScript : MonoBehaviour
 
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
+		col = gameObject.GetComponent <BoxCollider2D> ();
 		//_cam = transform.GetChild (0).gameObject.GetComponent <Camera> ();
 	}
 
@@ -103,5 +105,14 @@ public class CouchCrewScript : MonoBehaviour
 		//camList [1].rect = _rect1;
 		//camList [2].rect = _rect2;
 		//camList [3].rect = _rect3;
+	}
+
+
+	public void OnCollosionEnter2D (Collision2D _col) {
+		Debug.Log (_col.gameObject.layer);
+
+		if (_col.gameObject.layer == 8) {
+			Physics2D.IgnoreCollision (_col.collider, col);
+		}
 	}
 }

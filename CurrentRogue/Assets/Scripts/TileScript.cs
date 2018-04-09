@@ -10,6 +10,9 @@ public class TileScript : MonoBehaviour
 
 	//public string RoomString;
 
+	[SerializeField]
+	private BoxCollider2D emptyCol;
+
 	//if gridpos.x is even: its a tile, if not its a tween
 	[SerializeField]
 	public bool IsTile;
@@ -28,7 +31,8 @@ public class TileScript : MonoBehaviour
 	public bool DoorOpen { get; set; }
 
 	public bool IsEmpty { get; set; }
-	public bool Walkable { get; set; }
+	private bool walkable; //{ get; set; }
+	public bool Walkable { get { return walkable; } set { walkable = value; emptyCol.enabled = !value; } }
 	public bool SystemPlacable { get; set; }
 	public bool HasSubSysSlot { get; set; }
 	public bool HasSubSys { get; set; }
@@ -103,7 +107,7 @@ public class TileScript : MonoBehaviour
 		if (IsTile) {
 			if (isEmptySpace) {
 				//swapped
-				Walkable = false;
+				walkable = false;
 				Passable = true;
 				IsEmpty = true;
 				SystemPlacable = false;
@@ -122,7 +126,7 @@ public class TileScript : MonoBehaviour
 				HasDoor = false;
 				DoorOpen = true;
 			} else {
-				Walkable = false;
+				walkable = false;
 				Passable = false;
 				IsEmpty = false;
 				SystemPlacable = false;
@@ -157,7 +161,7 @@ public class TileScript : MonoBehaviour
 
 		if (!IsTile) {
 			//could cause issues
-			Walkable = true;
+			walkable = true;
 
 			Passable = true;
 			IsEmpty = true;
@@ -269,11 +273,11 @@ public class TileScript : MonoBehaviour
 
 					//Dangers
 					else if (objType == 5) {
-							if (Walkable && !Debugging && !OnFire) {
+							if (walkable && !Debugging && !OnFire) {
 								ColorTile (emptyColor);
 							}
 
-							if (!Walkable && !Debugging && OnFire) {
+							if (!walkable && !Debugging && OnFire) {
 								ColorTile (fullColor);
 							} else if (Input.GetMouseButtonDown (0) && !OnFire) {
 								//PlaceDanger ();
@@ -306,12 +310,12 @@ public class TileScript : MonoBehaviour
 						//RemoveDanger ();
 						RemoveObj (4);
 						//} else if (Manned && Input.GetMouseButtonDown (1)) {
-					} else if (Manned && Walkable && Input.GetMouseButtonDown (1)) {
+					} else if (Manned && walkable && Input.GetMouseButtonDown (1)) {
 						//Debug.Log ("REMOVE CREW");
 						//RemoveCrew ();
 						RemoveObj (2);
 						//} else if (!SystemPlacable && Input.GetMouseButtonDown (1)) {
-					} else if (HasSubSysSlot && !SubSysPlacable && Walkable && Input.GetMouseButtonDown (1)) {
+					} else if (HasSubSysSlot && !SubSysPlacable && walkable && Input.GetMouseButtonDown (1)) {
 						//Debug.Log ("REMOVE SUBSYS");
 						//RemoveSubSystem ();
 						RemoveObj (6);
@@ -319,11 +323,11 @@ public class TileScript : MonoBehaviour
 						//Debug.Log ("REMOVE ACCESSOR");
 						//RemoveSubSystem ();
 						RemoveObj (6);
-					} else if (!SystemPlacable && Walkable && Input.GetMouseButtonDown (1)) {
+					} else if (!SystemPlacable && walkable && Input.GetMouseButtonDown (1)) {
 						//Debug.Log ("REMOVE SYSTEM");
 						//RemoveSystem ();
 						RemoveObj (1);
-					} else if (Walkable && Input.GetMouseButtonDown (1)) {
+					} else if (walkable && Input.GetMouseButtonDown (1)) {
 						//Debug.Log ("REMOVE ROOM");
 						//RemoveRoom ();
 						RemoveObj (0);
@@ -800,7 +804,7 @@ public class TileScript : MonoBehaviour
 
 		//Dangers
 		else if (objType == 5) {
-			if (!Walkable && !Debugging && OnFire) {
+			if (!walkable && !Debugging && OnFire) {
 				ColorTile (fullColor);
 			} else if (!OnFire) {
 				//PlaceDanger ();

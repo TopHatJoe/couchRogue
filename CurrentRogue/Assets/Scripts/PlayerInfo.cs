@@ -286,7 +286,7 @@ public class PlayerInfo : NetworkBehaviour
 	private void RpcSyncMovement (Vector3 _start, Vector3 _goal, int _crewIndex) 
 	{
 		CrewScript _crew = crewList [_crewIndex];
-		_crew.UndoChanges (); //SyncedMovement (_start, _goal);
+		_crew.SyncedMovement (_start, _goal);
 	}
 
 

@@ -64,7 +64,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 		DepartTile.Manned = true;
 
-		UndoChanges (); //
+		UndoChangesTwo (); //
 		//repairLoop = RepairLoop ();
 
 		isStationed = true;
@@ -144,7 +144,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 	}
 
 	//Movement
-	/*
+
+	//
 	public void GiveMovementOrders (Point _destination)
 	{
 		//Debug.Log ("myPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
@@ -164,7 +165,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 			if (_tile.IsDestination) {
 				//Debug.Log ("is destined");
 			}
-			//////
+			*/
 
 
 			if (!_tile.Manned && !_tile.IsDestination) {
@@ -200,7 +201,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 						break;
 					}
 				}
-				///////
+				*/
 			}
 		}
 	}
@@ -315,7 +316,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 			//actually dont do reset
 		}
 	}
-	*/
+	//
 
 	public void DisplayPoint (Vector3 worldPos, Color32 color)
 	{
@@ -383,8 +384,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 					transform.SetParent (DestinationTile.transform.GetChild (2));
 
 					//remove ui destination
-					//ResetDestination ();
-					UndoChanges (); //
+					ResetDestination ();
+					//UndoChanges (); 
 
 					CrewRebirth (crewPos, true);
 					//Debug.Log ("final destination");
@@ -473,7 +474,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 
 	//Repair
-	/*
+
+	//
 	//private IEnumerator RepairLoop (RoomScript _room) {
 	private IEnumerator RepairLoop () {
 		RoomScript _room = DestinationTile.transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
@@ -501,11 +503,13 @@ public class CrewScript : MonoBehaviour, IPlacable
 			StartCoroutine (repairLoop);
 		}
 	}
-	*/
+	//
 
 
 	//comment out to get the points in the script that were altered in the great cooperation of april 6th
-	public void UndoChanges () {
+	//public void UndoChanges () {
+		
+	public void UndoChangesTwo () {
 		
 	}
 }

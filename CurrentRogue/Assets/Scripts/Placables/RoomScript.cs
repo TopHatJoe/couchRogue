@@ -301,7 +301,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 				}
 			} else {
 				//continues the crewMovement process
-				_crew.UndoChanges (); //GiveGoAhead (true, tile);
+				_crew.GiveGoAhead (true, tile);
 			}
 		} else {
 			//shouldnt take crewPos, but destinationPos instead //done
@@ -317,7 +317,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 				}
 			} else {
 				//continues the crewMovement process
-				_crew.UndoChanges (); //GiveGoAhead (true, tile);
+				_crew.GiveGoAhead (true, tile);
 			}
 		}
 	}
@@ -439,7 +439,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 		Transform _trans = transform.parent.parent.GetChild (2);
 		for (int i = 0; i < _trans.childCount; i++) {
-			_trans.GetChild (i).GetComponent <CrewScript> ().UndoChanges (); //RepairManager (_isDamaged);
+			_trans.GetChild (i).GetComponent <CrewScript> ().RepairManager (_isDamaged);
 		}
 
 		if (!last) {
