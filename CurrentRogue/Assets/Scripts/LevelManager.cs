@@ -108,6 +108,8 @@ public class LevelManager : Singleton<LevelManager>
 	//list of all roomOrigins //used for allRoomDamaging
 	public List <RoomScript> roomList = new List<RoomScript> ();
 
+	//public List <ElevatorScript> elevatorList
+
 
 
 	//public string RoomString;

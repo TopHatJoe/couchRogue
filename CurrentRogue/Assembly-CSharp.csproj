@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\Placables\CouchCrewScript.cs" />
      <Compile Include="Assets\Scripts\Placables\CrewScript.cs" />
      <Compile Include="Assets\Scripts\Placables\DangerScript.cs" />
+     <Compile Include="Assets\Scripts\Placables\ElevatorScript.cs" />
      <Compile Include="Assets\Scripts\Placables\EngineScript.cs" />
      <Compile Include="Assets\Scripts\Placables\GunBtnScr.cs" />
      <Compile Include="Assets\Scripts\Placables\IPlacable.cs" />

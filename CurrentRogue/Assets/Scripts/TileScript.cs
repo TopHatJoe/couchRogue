@@ -45,6 +45,8 @@ public class TileScript : MonoBehaviour
 	public bool IsDestination { get; set; }
 
 	public bool HasElevator { get; set; }
+	private bool ElevatorHere { get; set; }
+	//public bool ElevatorHere { get { return elevatorHere; } set { elevatorHere = value; } }
 	public bool Passable { get; set; }
 	public bool OnFire { get; set; }
 	//public bool Targeted { get; set; }
@@ -189,6 +191,8 @@ public class TileScript : MonoBehaviour
 			//adds newTile to Tiles Dictionary
 			LevelManager.Instance.Tiles.Add(gridPos, this);
 		}
+
+		ElevatorHere = false;
 	}
 
 	private void OnMouseOver ()
