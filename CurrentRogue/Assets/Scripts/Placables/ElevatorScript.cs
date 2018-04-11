@@ -59,4 +59,13 @@ public class ElevatorScript : MonoBehaviour
 			}
 		}
 	}
+
+
+	public void OnTriggerEnter2D (Collider2D _col) {
+		Debug.Log ("im walking here");
+	}
+
+	public void OnTriggerExit2D (Collider2D _col) {
+		Debug.Log ("are you still there");
+	}
 }

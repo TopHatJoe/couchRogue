@@ -75,6 +75,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 		//Initialize ();
 
 		GameManager.Instance.Buy ();
+
+		Debug.Log (crewIndex);
 	}
 
 
