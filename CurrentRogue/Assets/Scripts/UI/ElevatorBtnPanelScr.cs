@@ -8,9 +8,10 @@ public class ElevatorBtnPanelScr : MonoBehaviour
 	private int levelNum;
 
 
-	public void PressButton () {
+	public int PressButton () {
 		Debug.Log (levelNum);
 
+		return levelNum;
 		//close the menu
 		//move towards level
 		//once reached, reenable crew movement

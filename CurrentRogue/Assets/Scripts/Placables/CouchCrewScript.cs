@@ -6,19 +6,27 @@ public class CouchCrewScript : MonoBehaviour
 {
 	private Rigidbody2D rb;
 	private BoxCollider2D col;
-	private float speed = 1024;
+	private float speed = 1024f;
 	private string controllerID;
 	[SerializeField]
 	private Camera cam;
 	private int couchPlayerID;
 	//the player is using an elevator, repairing stuff etc
 	private bool isOccupied;
+	private bool elevatorIsNear;
+	private ElevatorScript elevator;
+
+	[SerializeField]
+	private GameObject elevatorMenu;
+	private IEnumerator useElevator;
 
 
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
 		col = gameObject.GetComponent <BoxCollider2D> ();
 		//_cam = transform.GetChild (0).gameObject.GetComponent <Camera> ();
+
+		//StartCoroutine (Test ());
 	}
 
 	void Update () {
@@ -26,6 +34,19 @@ public class CouchCrewScript : MonoBehaviour
 			Vector3 _vect = new Vector3 (Input.GetAxis (controllerID + "-H"), 0);
 			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
 		}
+
+		if (elevatorIsNear) {
+			if (Input.GetButtonDown (controllerID + "-s")) {
+				DoElevatorMenu ();
+			}
+		}
+
+		/*
+		if (true) {
+			Vector3 _vect = Vector3.left;
+			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
+		}
+		*/
 	}
 
 	public void CouchCrewSetup (string _controllerID, int _couchPlayerID, int _couchCount) {
@@ -119,6 +140,87 @@ public class CouchCrewScript : MonoBehaviour
 
 		if (_col.gameObject.layer == 8) {
 			Physics2D.IgnoreCollision (_col.collider, col);
+		}
+
+
+	}
+
+	public void IsElevatorNear (bool _isNear, ElevatorScript _elevator) {
+		elevatorIsNear = _isNear;
+		elevator = _elevator;
+	}
+
+	private void DoElevatorMenu () {
+		//Debug.Log ("ele- ele- elevator!");
+
+
+		isOccupied = true;
+		elevatorMenu.SetActive (true);
+	}
+
+
+	public void UseElevator (int _level) {
+		elevatorMenu.SetActive (false);
+
+		useElevator = UseElevatorCR (_level);
+		StartCoroutine (useElevator);
+	}
+
+	private IEnumerator UseElevatorCR (int _level) {
+		
+
+		//move here
+		Point _point = elevator.GridPos;
+		Vector3 _pos = LevelManager.Instance.Tiles [_point].transform.position;
+
+		Vector3 _direction = _pos - transform.position;
+
+		Debug.Log (transform.position);
+		Debug.Log (_pos);
+
+		while (Vector2.Distance (transform.position, _pos) > 5f) {
+			//Vector3 _vect = Vector3.MoveTowards (transform.position, _pos, speed * Time.deltaTime);
+			_direction = _pos - transform.position;
+			_direction.Normalize ();
+			rb.MovePosition (transform.position + _direction * speed * Time.deltaTime);
+			yield return new WaitForSeconds (0.005f);
+		}
+
+
+		//Debug.Log ("im tryin, im tryin!");
+
+		/*
+		rb.MovePosition (Vector2.down);
+
+		if (_point.Y < _level) {
+			//up
+		} else {
+			//down
+		}
+
+		//move here
+		//_point.Y = _level;
+		*/
+
+		_point.Y = _level;
+		_pos = LevelManager.Instance.Tiles [_point].transform.position;
+
+		Debug.Log (transform.position);
+		Debug.Log (_pos);
+
+		while (Vector2.Distance (transform.position, _pos) > 0.5f) {
+			Vector3 _vect = Vector3.MoveTowards (transform.position, _pos, Time.deltaTime);
+			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
+			yield return new WaitForSeconds (0.05f);
+		}
+	}
+
+	private IEnumerator Test () {
+		while (true) {
+			Vector3 _vect = Vector3.left;
+			rb.MovePosition (transform.position + _vect * speed / 0.05f);
+
+			yield return new WaitForSeconds (0.05f);
 		}
 	}
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ElevatorScript : MonoBehaviour 
 {
 	private Point gridPos;
+	public Point GridPos { get { return gridPos; } }
 	private bool couchMode;
 
 	private List <int> accessIndexList = new List <int> ();
@@ -62,10 +63,18 @@ public class ElevatorScript : MonoBehaviour
 
 
 	public void OnTriggerEnter2D (Collider2D _col) {
-		Debug.Log ("im walking here");
+		//Debug.Log ("im walking here");
+
+		//if (_col.GetComponent <CouchCrewScript> () != null) {
+			_col.GetComponent <CouchCrewScript> ().IsElevatorNear (true, this);
+		//}
 	}
 
 	public void OnTriggerExit2D (Collider2D _col) {
-		Debug.Log ("are you still there");
+		//Debug.Log ("are you still there");
+
+		//if (_col.GetComponent <CouchCrewScript> () != null) {
+			_col.GetComponent <CouchCrewScript> ().IsElevatorNear (false, null);
+		//}
 	}
 }
