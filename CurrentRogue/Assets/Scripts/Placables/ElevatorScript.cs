@@ -9,6 +9,7 @@ public class ElevatorScript : MonoBehaviour
 	private bool couchMode;
 
 	private List <int> accessIndexList = new List <int> ();
+	public List <int> AccessIndexList { get { return accessIndexList; } }
 	private Dictionary <int, TileScript> accessDict = new Dictionary <int, TileScript> ();
 
 
@@ -65,9 +66,9 @@ public class ElevatorScript : MonoBehaviour
 	public void OnTriggerEnter2D (Collider2D _col) {
 		//Debug.Log ("im walking here");
 
-		//if (_col.GetComponent <CouchCrewScript> () != null) {
+		if (_col.GetComponent <CouchCrewScript> () != null) {
 			_col.GetComponent <CouchCrewScript> ().IsElevatorNear (true, this);
-		//}
+		}
 	}
 
 	public void OnTriggerExit2D (Collider2D _col) {

@@ -115,6 +115,7 @@
      <Compile Include="Assets\Scripts\TweenScript.cs" />
      <Compile Include="Assets\Scripts\UI\CouchCursorScr.cs" />
      <Compile Include="Assets\Scripts\UI\ElevatorBtnPanelScr.cs" />
+     <Compile Include="Assets\Scripts\UI\ElevatorBtnScr.cs" />
      <None Include="Assets\Resources\tritonBU.txt" />
      <None Include="Assets\Resources\smiley.txt" />
      <None Include="Assets\Resources\old Ships\Gurren (empty).txt" />

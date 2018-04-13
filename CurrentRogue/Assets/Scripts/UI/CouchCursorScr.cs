@@ -18,6 +18,8 @@ public class CouchCursorScr : MonoBehaviour
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
 		couchCrew = transform.parent.parent.GetComponent <CouchCrewScript> ();
+
+		controllerID = couchCrew.ControllerID;
 	}
 
 	void Update () {
@@ -32,8 +34,8 @@ public class CouchCursorScr : MonoBehaviour
 		if (col != null) {
 			if (Input.GetButtonDown (controllerID + "-s")) {
 				//mayhap just make the cursor useless outside the panel...
-				if (col.GetComponent <ElevatorBtnPanelScr> () != null) {
-					int _levelNum = col.GetComponent <ElevatorBtnPanelScr> ().PressButton ();
+				if (col.GetComponent <ElevatorBtnScr> () != null) {
+					int _levelNum = col.GetComponent <ElevatorBtnScr> ().PressButton ();
 					Debug.Log ("please dont press that button again");
 					couchCrew.UseElevator (_levelNum);
 				}

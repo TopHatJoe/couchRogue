@@ -99,6 +99,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 	private void Start ()
 	{
+		CouchMode = CasheScript.Instance.CouchMode;
+
 		//DepartTile = transform.parent.parent.GetComponent <TileScript> ();
 		//crewPos = DepartTile.GridPosition;
 
@@ -117,7 +119,9 @@ public class CrewScript : MonoBehaviour, IPlacable
 			player.crewList.Add (this);
 			player.SetCrewIndex ();
 
-			transform.GetChild (0).GetComponent <CrewSelect> ().AddToHash (IsLocalCrew);
+			if (!CouchMode) {
+				transform.GetChild (0).GetComponent <CrewSelect> ().AddToHash (IsLocalCrew);
+			}
 
 			/*
 			if (CouchMode) {

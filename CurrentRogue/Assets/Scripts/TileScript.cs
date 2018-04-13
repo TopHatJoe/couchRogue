@@ -790,7 +790,9 @@ public class TileScript : MonoBehaviour
 						CasheScript.Instance.AssignController (_obj.GetComponent <CouchCrewScript> ());
 
 						//maybe not the best place for this
-						Camera.main.gameObject.SetActive (false);
+						if (Camera.main != null) {
+							Camera.main.gameObject.SetActive (false);
+						}
 					} else {
 						Debug.Log ("not enough couch companions for full crew");
 					}

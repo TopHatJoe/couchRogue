@@ -8,6 +8,7 @@ public class CouchCrewScript : MonoBehaviour
 	private BoxCollider2D col;
 	private float speed = 1024f;
 	private string controllerID;
+	public string ControllerID { get { return controllerID; } }
 	[SerializeField]
 	private Camera cam;
 	private int couchPlayerID;
@@ -33,11 +34,12 @@ public class CouchCrewScript : MonoBehaviour
 		if (!isOccupied) {
 			Vector3 _vect = new Vector3 (Input.GetAxis (controllerID + "-H"), 0);
 			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
-		}
+		
 
-		if (elevatorIsNear) {
-			if (Input.GetButtonDown (controllerID + "-s")) {
-				DoElevatorMenu ();
+			if (elevatorIsNear) {
+				if (Input.GetButtonDown (controllerID + "-s")) {
+					DoElevatorMenu ();
+				}
 			}
 		}
 
@@ -156,6 +158,10 @@ public class CouchCrewScript : MonoBehaviour
 
 		isOccupied = true;
 		elevatorMenu.SetActive (true);
+		//give the menu the elevator reference
+
+		ElevatorScript _elevator = elevator.GetComponent <ElevatorScript> ();
+		elevatorMenu.transform.GetChild (1).GetComponent <ElevatorBtnPanelScr> ().SetBtns (_elevator);
 	}
 
 
@@ -173,16 +179,17 @@ public class CouchCrewScript : MonoBehaviour
 		Point _point = elevator.GridPos;
 		Vector3 _pos = LevelManager.Instance.Tiles [_point].transform.position;
 
-		Vector3 _direction = _pos - transform.position;
+		//Vector3 _direction = _pos - transform.position;
 
-		Debug.Log (transform.position);
-		Debug.Log (_pos);
+		//Debug.Log (transform.position);
+		//Debug.Log (_pos);
 
 		while (Vector2.Distance (transform.position, _pos) > 5f) {
 			//Vector3 _vect = Vector3.MoveTowards (transform.position, _pos, speed * Time.deltaTime);
-			_direction = _pos - transform.position;
-			_direction.Normalize ();
-			rb.MovePosition (transform.position + _direction * speed * Time.deltaTime);
+			//_direction = _pos - transform.position;
+			//_direction.Normalize ();
+			transform.position = Vector2.MoveTowards (transform.position, _pos, speed * Time.deltaTime);
+			//rb.MovePosition (transform.position + _direction * speed * Time.deltaTime);
 			yield return new WaitForSeconds (0.005f);
 		}
 
@@ -205,16 +212,25 @@ public class CouchCrewScript : MonoBehaviour
 		_point.Y = _level;
 		_pos = LevelManager.Instance.Tiles [_point].transform.position;
 
-		Debug.Log (transform.position);
-		Debug.Log (_pos);
+		//Debug.Log (transform.position);
+		//Debug.Log (_pos);
 
 		while (Vector2.Distance (transform.position, _pos) > 0.5f) {
-			Vector3 _vect = Vector3.MoveTowards (transform.position, _pos, Time.deltaTime);
-			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
+			transform.position = Vector2.MoveTowards (transform.position, _pos, speed * Time.deltaTime);
+
+
+			//Vector3 _vect = Vector3.MoveTowards (transform.position, _pos, Time.deltaTime);
+			//rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
 			yield return new WaitForSeconds (0.05f);
 		}
+
+		Debug.Log ("Done");
+		isOccupied = false;
+		rb.MovePosition (transform.position + Vector3.left);
 	}
 
+
+	/*
 	private IEnumerator Test () {
 		while (true) {
 			Vector3 _vect = Vector3.left;
@@ -223,4 +239,5 @@ public class CouchCrewScript : MonoBehaviour
 			yield return new WaitForSeconds (0.05f);
 		}
 	}
+	*/
 }
