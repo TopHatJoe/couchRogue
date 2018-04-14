@@ -62,17 +62,19 @@ public class RoomScript : MonoBehaviour, IPlacable
 	private string saveStr;
 
 	//progress of the repairs... //updated by crew
-	private int repairProgress = 0;
+	private int repairProgress = 100;
+	/*
 	private int RepairProgress { 
 		get { 
 			return repairProgress; 
 		} set { 
 			repairProgress = value; 
 			if (isOrigin) {
-				UpdateRepairBar (value);
+				UpdateRepairBar (repairProgress / 100);
 			}
 		} 
 	}
+	*/
 
 
 	//list of all systems, subsystems and other placables except for everything that moves...
@@ -411,7 +413,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 		}
 	}
 
-
+	/*
 	public void GetRepaired (int _amount) {
 		if (isOrigin) {
 			RepairProgress += _amount;
@@ -432,6 +434,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 			originObj.GetComponent <RoomScript> ().GetRepaired (_amount);
 		}
 	}
+	*/
 
 	public RoomScript GetRoomOrigin () {
 		return originObj.GetComponent <RoomScript> ();
@@ -459,7 +462,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 		Transform _trans = transform.parent.parent.GetChild (2);
 		for (int i = 0; i < _trans.childCount; i++) {
-			_trans.GetChild (i).GetComponent <CrewScript> ().RepairManager (_isDamaged);
+			//_trans.GetChild (i).GetComponent <CrewScript> ().RepairManager (_isDamaged);
 		}
 
 		if (!last) {
@@ -471,9 +474,33 @@ public class RoomScript : MonoBehaviour, IPlacable
 		return gameObject.GetComponent <HealthScript> ().IsDamaged;
 	}
 
-	private void UpdateRepairBar (int _repairProgress) {
-		Vector3 _vect = new Vector3 ((_repairProgress / 100), 1, 1);
 
+
+	private void UpdateRepairBar () {
+		//Debug.Log ("repairProgress: " + repairProgress);
+		//Debug.Log ("trying to repair: " + gridPos.X + ", " + gridPos.Y);
+		float _float = (repairProgress / 100f);
+		//Debug.Log ("float: " + _float);
+		Vector3 _vect = new Vector3 (_float, 1f);
+		//Debug.Log ("bar: " + _vect.x);
 		healthBar.transform.localScale = _vect;
+	}
+
+
+	//new dmg system //test
+	public void TakeCrewDamage (int _amount) {
+		//RepairProgress = repairProgress - _amount;
+		//Debug.Log (RepairProgress);
+
+		if (isOrigin) {
+			RepairProgress (_amount);
+		} else {
+			originObj.GetComponent <RoomScript> ().TakeCrewDamage (_amount);	
+		}
+	}
+
+	private void RepairProgress (int _value) {
+		repairProgress -= _value;
+		UpdateRepairBar ();
 	}
 }

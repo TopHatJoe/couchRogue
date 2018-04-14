@@ -12,6 +12,8 @@ public class ElevatorScript : MonoBehaviour
 	public List <int> AccessIndexList { get { return accessIndexList; } }
 	private Dictionary <int, TileScript> accessDict = new Dictionary <int, TileScript> ();
 
+	private BoxCollider2D col;
+
 
 	/*
 	void Update () {
@@ -24,8 +26,16 @@ public class ElevatorScript : MonoBehaviour
 	*/
 
 	public void ElevatorAccessIni (Point _point, bool _couchMode) {
+		col = gameObject.GetComponent <BoxCollider2D> ();
+
 		gridPos = _point;
 		couchMode = _couchMode;
+
+		if (couchMode) {
+			col.enabled = true;
+		} else {
+			col.enabled = false;
+		}
 
 		FindOtherElevators ();
 	}

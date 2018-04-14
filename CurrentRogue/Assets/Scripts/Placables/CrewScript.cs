@@ -497,7 +497,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 	//Repair
 
-	//
+	/*
 	//private IEnumerator RepairLoop (RoomScript _room) {
 	private IEnumerator RepairLoop () {
 		if (DestinationTile == null) {
@@ -530,7 +530,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 			StartCoroutine (repairLoop);
 		}
 	}
-	//
+	*/
 
 
 	//comment out to get the points in the script that were altered in the great cooperation of april 6th

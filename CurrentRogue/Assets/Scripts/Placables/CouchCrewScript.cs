@@ -15,16 +15,30 @@ public class CouchCrewScript : MonoBehaviour
 	//the player is using an elevator, repairing stuff etc
 	private bool isOccupied;
 	private bool elevatorIsNear;
+	private bool usingElevator;
+
 	private ElevatorScript elevator;
 
 	[SerializeField]
 	private GameObject elevatorMenu;
 	private IEnumerator useElevator;
+	private IEnumerator dmgLoop;
+
+	private Point crewPos;
+	//important for crew reassignment
+	private float tileDistance;
+	private Vector3 previousPos;
 
 
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
 		col = gameObject.GetComponent <BoxCollider2D> ();
+		crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
+
+		GetTileDistances ();
+		previousPos = transform.position;
+		Debug.Log (tileDistance);
+
 		//_cam = transform.GetChild (0).gameObject.GetComponent <Camera> ();
 
 		//StartCoroutine (Test ());
@@ -41,7 +55,36 @@ public class CouchCrewScript : MonoBehaviour
 					DoElevatorMenu ();
 				}
 			}
+
+			if (Input.GetButtonDown (controllerID + "-a")) {
+				DoSomeDamage (10);
+			} else if (Input.GetButtonDown (controllerID + "-t")) {
+				DoSomeDamage (-10);
+			}
+		} else if (!usingElevator) {
+			if (Input.GetButtonDown (controllerID + "-c")) {
+				StopSomeDamage ();
+			}
 		}
+
+
+		//reassigns crewPos
+		if (transform.position.x - previousPos.x > tileDistance) {
+			//moved to the right
+			UpdateCrewPos (2);
+
+			//crewPos.X += 2;
+			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
+			//Debug.Log ("crewPos: " + crewPos.X);
+		} else if (transform.position.x - previousPos.x < -tileDistance) {
+			//moved to the left
+			UpdateCrewPos (-2);
+
+			//crewPos.X -= 2;
+			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
+			//Debug.Log ("crewPos: " + crewPos.X);
+		}
+
 
 		/*
 		if (true) {
@@ -157,6 +200,8 @@ public class CouchCrewScript : MonoBehaviour
 
 
 		isOccupied = true;
+		usingElevator = true;
+
 		elevatorMenu.SetActive (true);
 		//give the menu the elevator reference
 
@@ -210,7 +255,8 @@ public class CouchCrewScript : MonoBehaviour
 		*/
 
 		_point.Y = _level;
-		_pos = LevelManager.Instance.Tiles [_point].transform.position;
+		TileScript _tile = LevelManager.Instance.Tiles [_point];
+		_pos = _tile.transform.position;
 
 		//Debug.Log (transform.position);
 		//Debug.Log (_pos);
@@ -227,9 +273,70 @@ public class CouchCrewScript : MonoBehaviour
 		//Debug.Log ("Done");
 		rb.simulated = true;
 		isOccupied = false;
+		usingElevator = false;
 		rb.MovePosition (transform.position + Vector3.left);
+
+		crewPos = _tile.GridPosition;
+		previousPos = _pos;
 	}
 
+
+
+
+
+	//crew reassignment //test
+
+	//gets the distance between tiles for UpdateCrewPos ()
+	private void GetTileDistances () {
+		//theres probably a more elegant soltion to this... but fuggid!
+		Point _point0 = new Point (0, 0, 0);
+		Point _point1 = new Point (1, 0, 0);
+
+		Vector3 _vect0 = LevelManager.Instance.Tiles [_point0].transform.position;
+		Vector3 _vect1 = LevelManager.Instance.Tiles [_point1].transform.position;
+
+		float _distance = _vect1.x - _vect0.x;
+		tileDistance = (_distance * 2);
+	}
+
+	private void UpdateCrewPos (int _amount) {
+		crewPos.X += _amount;
+		previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
+		Debug.Log ("crewPos: " + crewPos.X + ", " + crewPos.Y);
+	}
+
+
+
+	//crew damage
+	private void DoSomeDamage (int _amount) {
+		Debug.Log ("gonna do some damage!");
+		dmgLoop = DmgLoop (_amount);
+		StartCoroutine (dmgLoop); 
+	}
+
+	private void StopSomeDamage () {
+		Debug.Log ("gonna stop doin some damage!");
+
+		StopCoroutine (dmgLoop);
+
+		isOccupied = false;
+	}
+
+	private IEnumerator DmgLoop (int _amount) {
+		isOccupied = true;
+
+		RoomScript _room = LevelManager.Instance.Tiles [crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
+
+		yield return new WaitForSeconds (1f);
+
+		while (true) {
+			_room.TakeCrewDamage (_amount);
+			Debug.Log ("took " + _amount + " damage!");
+			yield return new WaitForSeconds (1f);
+		}
+
+		//isOccupied = false;
+	}
 
 	/*
 	private IEnumerator Test () {
