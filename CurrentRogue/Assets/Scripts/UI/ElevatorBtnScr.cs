@@ -9,7 +9,7 @@ public class ElevatorBtnScr : MonoBehaviour
 
 
 	public int PressButton () {
-		Debug.Log (levelNum);
+		//Debug.Log (levelNum);
 
 		return levelNum;
 		//close the menu

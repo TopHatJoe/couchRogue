@@ -17,7 +17,7 @@ public class ElevatorBtnPanelScr : MonoBehaviour
 
 
 	public void SetBtns (ElevatorScript _elevator) {
-		Debug.Log ("elevatro"); 
+		//Debug.Log ("elevatro"); 
 
 		for (int i = 0; i < btnArr.Length; i++) {
 			btnArr [i].gameObject.SetActive (false);

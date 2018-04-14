@@ -13,7 +13,7 @@ public class ElevatorScript : MonoBehaviour
 	private Dictionary <int, TileScript> accessDict = new Dictionary <int, TileScript> ();
 
 
-
+	/*
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			for (int i = 0; i < accessIndexList.Count; i++) {
@@ -21,6 +21,7 @@ public class ElevatorScript : MonoBehaviour
 			}
 		}
 	}
+	*/
 
 	public void ElevatorAccessIni (Point _point, bool _couchMode) {
 		gridPos = _point;
@@ -65,17 +66,20 @@ public class ElevatorScript : MonoBehaviour
 
 	public void OnTriggerEnter2D (Collider2D _col) {
 		//Debug.Log ("im walking here");
-
-		if (_col.GetComponent <CouchCrewScript> () != null) {
-			_col.GetComponent <CouchCrewScript> ().IsElevatorNear (true, this);
+		if (couchMode) {
+			if (_col.GetComponent <CouchCrewScript> () != null) {
+				_col.GetComponent <CouchCrewScript> ().IsElevatorNear (true, this);
+			}
 		}
 	}
 
 	public void OnTriggerExit2D (Collider2D _col) {
 		//Debug.Log ("are you still there");
 
-		//if (_col.GetComponent <CouchCrewScript> () != null) {
-			_col.GetComponent <CouchCrewScript> ().IsElevatorNear (false, null);
-		//}
+		if (couchMode) {
+			if (_col.GetComponent <CouchCrewScript> () != null) {
+				_col.GetComponent <CouchCrewScript> ().IsElevatorNear (false, null);
+			}
+		}
 	}
 }

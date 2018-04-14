@@ -54,8 +54,8 @@ public class CouchCrewScript : MonoBehaviour
 	public void CouchCrewSetup (string _controllerID, int _couchPlayerID, int _couchCount) {
 		controllerID = _controllerID;
 
-		Debug.Log ("playerID: " + _couchPlayerID);
-		Debug.Log ("couchCount: " + _couchCount);
+		//Debug.Log ("playerID: " + _couchPlayerID);
+		//Debug.Log ("couchCount: " + _couchCount);
 
 		couchPlayerID = _couchPlayerID;
 
@@ -138,7 +138,7 @@ public class CouchCrewScript : MonoBehaviour
 
 
 	public void OnCollosionEnter2D (Collision2D _col) {
-		Debug.Log (_col.gameObject.layer);
+		//Debug.Log (_col.gameObject.layer);
 
 		if (_col.gameObject.layer == 8) {
 			Physics2D.IgnoreCollision (_col.collider, col);
@@ -173,7 +173,7 @@ public class CouchCrewScript : MonoBehaviour
 	}
 
 	private IEnumerator UseElevatorCR (int _level) {
-		
+		rb.simulated = false;
 
 		//move here
 		Point _point = elevator.GridPos;
@@ -224,7 +224,8 @@ public class CouchCrewScript : MonoBehaviour
 			yield return new WaitForSeconds (0.05f);
 		}
 
-		Debug.Log ("Done");
+		//Debug.Log ("Done");
+		rb.simulated = true;
 		isOccupied = false;
 		rb.MovePosition (transform.position + Vector3.left);
 	}

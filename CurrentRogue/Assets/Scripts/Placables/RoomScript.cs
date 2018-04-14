@@ -63,10 +63,24 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 	//progress of the repairs... //updated by crew
 	private int repairProgress = 0;
+	private int RepairProgress { 
+		get { 
+			return repairProgress; 
+		} set { 
+			repairProgress = value; 
+			if (isOrigin) {
+				UpdateRepairBar (value);
+			}
+		} 
+	}
 
 
 	//list of all systems, subsystems and other placables except for everything that moves...
 	private List <GameObject> roomContents = new List <GameObject> ();
+
+	private GameObject healthBarBase;
+	[SerializeField]
+	private GameObject healthBar;
 
 
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
@@ -84,6 +98,9 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 			//adds the origin to the roomList for ICR (InitialContentReferencing)
 			LevelManager.Instance.roomList.Add (this);
+
+			//healthbar!
+			healthBarBase = healthBar.transform.parent.gameObject;
 		}
 
 		//gridPos = _gridPos;
@@ -226,6 +243,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 		} 
 	}
 
+	//is the room free of stuff it may be removed
 	private bool IsFree ()
 	{
 		//if (tile.OnFire || !tile.SystemPlacable || tile.Manned || tile.HasSubSysSlot && !tile.SubSysPlacable) {
@@ -283,10 +301,12 @@ public class RoomScript : MonoBehaviour, IPlacable
 	}
 	*/
 
+	/*
 	public void Damage ()
 	{
 		gameObject.GetComponent <SpriteRenderer> ().sprite = dmgSprite;
 	}
+	*/
 
 	//give it another bool, that checks if the current component is on the same level as the crew
 	public void RoomComponentFree (TileScript _desTile, CrewScript _crew, bool _yFull) {
@@ -394,12 +414,12 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 	public void GetRepaired (int _amount) {
 		if (isOrigin) {
-			repairProgress += _amount;
-			if (repairProgress > 100) {
+			RepairProgress += _amount;
+			if (RepairProgress >= 100) {
 				//Debug.Log (repairProgress);
 
 				//this way the excess repairProgress gets carried over...
-				repairProgress = repairProgress - 100;
+				RepairProgress = RepairProgress - 100;
 				//this way it doesnt
 				//repairProgress = 0;
 
@@ -449,5 +469,11 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 	public bool IsDamaged () {
 		return gameObject.GetComponent <HealthScript> ().IsDamaged;
+	}
+
+	private void UpdateRepairBar (int _repairProgress) {
+		Vector3 _vect = new Vector3 ((_repairProgress / 100), 1, 1);
+
+		healthBar.transform.localScale = _vect;
 	}
 }

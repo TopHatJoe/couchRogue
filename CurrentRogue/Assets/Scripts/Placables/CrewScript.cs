@@ -347,6 +347,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 		//stops repairLoop
 		IsStationed (false);
 
+		Debug.Log ("not null 0");
+
 		while (path.Count > 0) {
 			transform.position = Vector2.MoveTowards (transform.position, destination, speed * Time.deltaTime);
 
@@ -381,17 +383,31 @@ public class CrewScript : MonoBehaviour, IPlacable
 				}
 
 				if (path.Count == 0) {
+					Debug.Log ("not null 1");
+
+					if (DestinationTile == null) {
+						Debug.LogError ("destinationTile == NULL!!!");
+					}
+
 					//room reaction on crew arrival
 					DestinationTile.Manned = true;
 
+					Debug.Log ("not null 2");
+
 					//starts repairLoop
-					IsStationed (true);
+					//IsStationed (true);
+
+					Debug.Log ("not null 3");
 
 					transform.SetParent (DestinationTile.transform.GetChild (2));
+
+					Debug.Log ("not null 4");
 
 					//remove ui destination
 					ResetDestination ();
 					//UndoChanges (); 
+
+					//Debug.Log ("not null 2");
 
 					CrewRebirth (crewPos, true);
 					//Debug.Log ("final destination");
@@ -484,14 +500,19 @@ public class CrewScript : MonoBehaviour, IPlacable
 	//
 	//private IEnumerator RepairLoop (RoomScript _room) {
 	private IEnumerator RepairLoop () {
-		RoomScript _room = DestinationTile.transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
-		//RoomScript _room = LevelManager.Instance.Tiles[crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
+		if (DestinationTile == null) {
+			Debug.LogError ("desyinationTile == NULL!");
+		} else {
+			Debug.Log ("dest: " + DestinationTile.GridPosition.X + ", " + DestinationTile.GridPosition.Y);
+			RoomScript _room = DestinationTile.transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
+			//RoomScript _room = LevelManager.Instance.Tiles[crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
 
-		//and obj is damaged //or all obj have a limit and crew just does its thing...
-		while (true) {
-			//while (isStationed) {
-			_room.GetRepaired (repairSpeed);
-			yield return new WaitForSeconds (0.2f);
+			//and obj is damaged //or all obj have a limit and crew just does its thing...
+			while (true) {
+				//while (isStationed) {
+				_room.GetRepaired (repairSpeed);
+				yield return new WaitForSeconds (0.2f);
+			}
 		}
 	}
 

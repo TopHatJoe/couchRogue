@@ -36,7 +36,7 @@ public class CouchCursorScr : MonoBehaviour
 				//mayhap just make the cursor useless outside the panel...
 				if (col.GetComponent <ElevatorBtnScr> () != null) {
 					int _levelNum = col.GetComponent <ElevatorBtnScr> ().PressButton ();
-					Debug.Log ("please dont press that button again");
+					//Debug.Log ("please dont press that button again");
 					couchCrew.UseElevator (_levelNum);
 				}
 			}

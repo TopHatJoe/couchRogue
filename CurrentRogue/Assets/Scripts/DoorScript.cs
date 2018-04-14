@@ -161,7 +161,7 @@ public class DoorScript : MonoBehaviour
 
 	private void OnTriggerEnter2D (Collider2D _col) {
 		ChangeDoorstate (true);
-		Debug.Log ("collision detected");
+		//Debug.Log ("collision detected");
 	}
 
 	private void OnTriggerExit2D (Collider2D _col) {
