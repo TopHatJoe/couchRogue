@@ -80,9 +80,14 @@ public class RoomScript : MonoBehaviour, IPlacable
 	//list of all systems, subsystems and other placables except for everything that moves...
 	private List <GameObject> roomContents = new List <GameObject> ();
 
-	private GameObject healthBarBase;
+	//private GameObject healthBarBase;
 	[SerializeField]
 	private GameObject healthBar;
+
+	private bool isFullyDamaged = false;
+	public bool IsFullyDamaged { get { return originObj.GetComponent <RoomScript> ().isFullyDamaged; } }
+	private bool isFullyRepaired = true;
+	public bool IsFullyRepaired { get { return originObj.GetComponent <RoomScript> ().isFullyRepaired; } }
 
 
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
@@ -102,7 +107,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 			LevelManager.Instance.roomList.Add (this);
 
 			//healthbar!
-			healthBarBase = healthBar.transform.parent.gameObject;
+			//healthBarBase = healthBar.transform.parent.gameObject;
 		}
 
 		//gridPos = _gridPos;
@@ -501,6 +506,19 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 	private void RepairProgress (int _value) {
 		repairProgress -= _value;
+
+		if (repairProgress <= 0) {
+			repairProgress = 0;
+			isFullyDamaged = true;
+		} else if (repairProgress >= 100) {
+			Debug.Log ("over 9000!!");
+			repairProgress = 100;
+			isFullyRepaired = true;
+		} else {
+			isFullyDamaged = false;
+			isFullyRepaired = false; 
+		}
+
 		UpdateRepairBar ();
 	}
 }

@@ -332,10 +332,23 @@ public class CouchCrewScript : MonoBehaviour
 		while (true) {
 			_room.TakeCrewDamage (_amount);
 			Debug.Log ("took " + _amount + " damage!");
+
+			if (_amount > 0) {
+				if (_room.IsFullyDamaged) {
+					Debug.Log ("break!");
+					break;
+				}
+			} else if (_amount < 0) {
+				if (_room.IsFullyRepaired) {
+					Debug.Log ("break!");
+					break;
+				}
+			}
+
 			yield return new WaitForSeconds (1f);
 		}
 
-		//isOccupied = false;
+		isOccupied = false;
 	}
 
 	/*
