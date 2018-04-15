@@ -36,7 +36,12 @@ public class CouchCrewScript : MonoBehaviour
 		crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
 
 		GetTileDistances ();
+
+		//Vector3 _vect = transform.position;
+		//vect.x -= tileDistance;
 		previousPos = transform.position;
+		//previousPos = _vect;
+
 		Debug.Log (tileDistance);
 
 		//_cam = transform.GetChild (0).gameObject.GetComponent <Camera> ();
@@ -296,12 +301,15 @@ public class CouchCrewScript : MonoBehaviour
 		Vector3 _vect1 = LevelManager.Instance.Tiles [_point1].transform.position;
 
 		float _distance = _vect1.x - _vect0.x;
-		tileDistance = (_distance * 2);
+		tileDistance = (_distance + 0.1f);
 	}
 
 	private void UpdateCrewPos (int _amount) {
 		crewPos.X += _amount;
+		//Vector3 _vect = LevelManager.Instance.Tiles [crewPos].transform.position;
+		//_vect.x -= (tileDistance / 2);
 		previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
+		//previousPos = _vect;
 		Debug.Log ("crewPos: " + crewPos.X + ", " + crewPos.Y);
 	}
 
