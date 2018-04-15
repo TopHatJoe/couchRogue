@@ -238,9 +238,9 @@ public class CouchCrewScript : MonoBehaviour
 			//Vector3 _vect = Vector3.MoveTowards (transform.position, _pos, speed * Time.deltaTime);
 			//_direction = _pos - transform.position;
 			//_direction.Normalize ();
-			transform.position = Vector2.MoveTowards (transform.position, _pos, speed * Time.deltaTime);
+			transform.position = Vector2.MoveTowards (transform.position, _pos, speed * 0.05f);
 			//rb.MovePosition (transform.position + _direction * speed * Time.deltaTime);
-			yield return new WaitForSeconds (0.005f);
+			yield return new WaitForSeconds (0.05f);
 		}
 
 
@@ -267,7 +267,7 @@ public class CouchCrewScript : MonoBehaviour
 		//Debug.Log (_pos);
 
 		while (Vector2.Distance (transform.position, _pos) > 0.5f) {
-			transform.position = Vector2.MoveTowards (transform.position, _pos, speed * Time.deltaTime);
+			transform.position = Vector2.MoveTowards (transform.position, _pos, speed * 0.05f);
 
 
 			//Vector3 _vect = Vector3.MoveTowards (transform.position, _pos, Time.deltaTime);

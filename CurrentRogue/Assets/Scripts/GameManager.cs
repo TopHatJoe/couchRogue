@@ -27,11 +27,19 @@ public class GameManager : Singleton<GameManager>
 		} 
 	}
 
+	//[SerializeField]
+	//private GameObject mainUI;
+
+
 
 	void Start ()
 	{
 		Money = 10000000;
 		//Money = 500;
+
+		//if (CasheScript.Instance.CouchMode) {
+		//	mainUI.SetActive (false);
+		//}
 	}
 
 	void Update ()

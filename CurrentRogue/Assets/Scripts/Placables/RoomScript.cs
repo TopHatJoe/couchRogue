@@ -14,6 +14,8 @@ public class RoomScript : MonoBehaviour, IPlacable
 	[SerializeField]
 	private Sprite dmgSprite;
 
+	private SpriteRenderer sprRenderer;
+
 	//number of damaged objects in room (including room itself)
 	private int damages = 0;
 
@@ -170,6 +172,8 @@ public class RoomScript : MonoBehaviour, IPlacable
 			IPlacable _placable = thisNextObj.GetComponent <IPlacable> ();
 			_placable.PlaceObj (_index, gridPos, originObj);
 		}
+
+		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
 	}
 
 	private void DoBool () {
@@ -510,10 +514,12 @@ public class RoomScript : MonoBehaviour, IPlacable
 		if (repairProgress <= 0) {
 			repairProgress = 0;
 			isFullyDamaged = true;
+			ChangeSprite ();
 		} else if (repairProgress >= 100) {
-			Debug.Log ("over 9000!!");
+			//Debug.Log ("over 9000!!");
 			repairProgress = 100;
 			isFullyRepaired = true;
+			ChangeSprite ();
 		} else {
 			isFullyDamaged = false;
 			isFullyRepaired = false; 
@@ -521,4 +527,12 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 		UpdateRepairBar ();
 	}
+
+	private void ChangeSprite () {
+		if (isFullyDamaged) {
+			sprRenderer.sprite = dmgSprite;
+		} else if (IsFullyRepaired) {
+			sprRenderer.sprite = roomSprite;
+		}
+	} 
 }
