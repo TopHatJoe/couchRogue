@@ -8,6 +8,9 @@ public class TileScript : MonoBehaviour
 	private int playerID = 0;
 	public int PlayerID { get { return playerID; } }
 
+	//for dmg
+	private Dictionary <int, GameObject> localObjDict = new Dictionary <int, GameObject> ();
+
 	//public string RoomString;
 
 	[SerializeField]
@@ -438,7 +441,11 @@ public class TileScript : MonoBehaviour
 		GameObject _obj = (GameObject)Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
 		IPlacable _placable = _obj.GetComponent <IPlacable> ();
 		_placable.PlaceObj (0, this.GridPosition, _obj);
+
+
+		//localObjDict.Add (_type, _obj);	
 	}
+
 
 	/*
 	//public void PlaceRoom (int tmpObjRef, int width)
