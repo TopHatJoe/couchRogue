@@ -110,7 +110,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 			//healthbar!
 			//healthBarBase = healthBar.transform.parent.gameObject;
-		}
+		} 
 
 		//gridPos = _gridPos;
 		gridPos = new Point (_gridPos.X + Mathf.RoundToInt (nextPos.x * 2), _gridPos.Y + Mathf.RoundToInt (nextPos.y), _gridPos.Z);
@@ -126,6 +126,13 @@ public class RoomScript : MonoBehaviour, IPlacable
 		*/
 	
 		tile = LevelManager.Instance.Tiles [gridPos];
+
+		/*
+		//important for dmg
+		if (this.gameObject != originObj) {
+			tile.LocalObjDict.Add (0, gameObject.GetComponent <HealthScript> ());
+		}
+		*/
 
 		transform.position = tile.transform.position;
 		//Quaternion.identity = tile.Quaternion.identity;

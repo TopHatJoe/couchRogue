@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealthScript : MonoBehaviour 
 {
+	private int couchHealth = 100;
+
 	[SerializeField]
 	private int maxHealth;
 	[SerializeField]
@@ -144,5 +146,9 @@ public class HealthScript : MonoBehaviour
 			room.Damages (-1);
 		}
 		*/
+	}
+
+	public void TakeCrewDamage (int _amount) {
+		room.TakeCrewDamage (_amount);
 	}
 }

@@ -9,7 +9,7 @@ public class TileScript : MonoBehaviour
 	public int PlayerID { get { return playerID; } }
 
 	//for dmg
-	private Dictionary <int, GameObject> localObjDict = new Dictionary <int, GameObject> ();
+	public Dictionary <int, HealthScript> LocalObjDict = new Dictionary <int, HealthScript> ();
 
 	//public string RoomString;
 
@@ -437,15 +437,16 @@ public class TileScript : MonoBehaviour
 	}
 
 
-	private void PlaceObj (string _objStr) {
+	private void PlaceObj (string _objStr, int _type = 10) {
 		GameObject _obj = (GameObject)Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
 		IPlacable _placable = _obj.GetComponent <IPlacable> ();
 		_placable.PlaceObj (0, this.GridPosition, _obj);
 
-
-		//localObjDict.Add (_type, _obj);	
+		if (_type < 10) {
+			LocalObjDict.Add (_type, _obj.GetComponent <HealthScript> ());
+			//Debug.Log ("type: " + _type);
+		}
 	}
-
 
 	/*
 	//public void PlaceRoom (int tmpObjRef, int width)
@@ -745,7 +746,7 @@ public class TileScript : MonoBehaviour
 
 			if (TheresRoom (_objDim, 0, 0, 0)) {
 				//PlaceRoom
-				PlaceObj (_objStr);
+				PlaceObj (_objStr, 0);
 			}
 		}
 
@@ -756,7 +757,7 @@ public class TileScript : MonoBehaviour
 			
 			if (TheresRoom (_objDim, 0, 0, 1)) {
 				//PlaceSystem
-				PlaceObj (_objStr);
+				PlaceObj (_objStr, 1);
 			}
 		} 
 
@@ -764,7 +765,7 @@ public class TileScript : MonoBehaviour
 		else if (objType == 2) {
 			if (SubSysPlacable) {
 				//PlaceSubSystem
-				PlaceObj (_objStr);
+				PlaceObj (_objStr, 2);
 			}
 		} 
 
@@ -772,7 +773,7 @@ public class TileScript : MonoBehaviour
 		else if (objType == 3) {
 			if (SystemPlacable || SubSysPlacable) {
 				//PlaceAccessor
-				PlaceObj (_objStr);
+				PlaceObj (_objStr, 2);
 			}
 		}
 
@@ -895,5 +896,21 @@ public class TileScript : MonoBehaviour
 
 
 		//if (SubSysPlacable) //-> need bool for that
+	}
+
+
+	public void TakeCrewDamage (int rmDmg, int sysDmg, int subDmg) {
+		if (rmDmg == 0) {
+			Debug.LogError ("Damage is 0!");
+		} else {
+			if (LocalObjDict.ContainsKey (0)) {
+				LocalObjDict [0].TakeCrewDamage (rmDmg);
+			} else {
+				//not the nicest way of doin' it but...
+				LocalObjDict.Add (0, transform.GetChild (0).GetChild (0).gameObject.GetComponent <HealthScript> ());
+				Debug.Log ("dict entry made");
+				LocalObjDict [0].TakeCrewDamage (rmDmg);
+			}
+		}
 	}
 }

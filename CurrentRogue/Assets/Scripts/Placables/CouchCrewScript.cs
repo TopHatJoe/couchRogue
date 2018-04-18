@@ -25,6 +25,7 @@ public class CouchCrewScript : MonoBehaviour
 	private IEnumerator dmgLoop;
 
 	private Point crewPos;
+
 	//important for crew reassignment
 	private float tileDistance;
 	private Vector3 previousPos;
@@ -330,7 +331,7 @@ public class CouchCrewScript : MonoBehaviour
 		isOccupied = false;
 	}
 
-	private IEnumerator DmgLoop (int _amount) {
+	private IEnumerator RoomDmgLoop (int _amount) {
 		isOccupied = true;
 
 		RoomScript _room = LevelManager.Instance.Tiles [crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
@@ -352,6 +353,38 @@ public class CouchCrewScript : MonoBehaviour
 					break;
 				}
 			}
+
+			yield return new WaitForSeconds (1f);
+		}
+
+		isOccupied = false;
+	}
+
+	private IEnumerator DmgLoop (int _amount) {
+		isOccupied = true;
+		TileScript _tile = LevelManager.Instance.Tiles [crewPos];
+
+		//RoomScript _room = LevelManager.Instance.Tiles [crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
+
+		yield return new WaitForSeconds (1f);
+
+		while (true) {
+			_tile.TakeCrewDamage (_amount, 0, 0);
+			Debug.Log ("took " + _amount + " damage!");
+
+			/*
+			if (_amount > 0) {
+				if (_tile.IsFullyDamaged) {
+					Debug.Log ("break!");
+					break;
+				}
+			} else if (_amount < 0) {
+				if (_tile.IsFullyRepaired) {
+					Debug.Log ("break!");
+					break;
+				}
+			}
+			*/
 
 			yield return new WaitForSeconds (1f);
 		}
