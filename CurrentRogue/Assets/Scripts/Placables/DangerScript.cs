@@ -37,4 +37,9 @@ public class DangerScript : MonoBehaviour, IPlacable
 	public void UpdateHealth (int _amount) {
 		Debug.Log ("took Damage");
 	}
+
+
+	public GameObject GetOriginObj () {
+		return gameObject;
+	}
 }

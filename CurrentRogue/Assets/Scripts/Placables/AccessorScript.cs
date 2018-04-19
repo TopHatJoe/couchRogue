@@ -93,6 +93,11 @@ public class AccessorScript : MonoBehaviour, IPlacable
 		}
 	}
 
+
+	public GameObject GetOriginObj () {
+		return gameObject;
+	}
+
 	/*
 	//finds the other elevator access points
 	private void FindOtherElevators () {

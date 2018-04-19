@@ -189,4 +189,9 @@ public class SystemScript : MonoBehaviour, IPlacable
 			_sys.UpdateHealth (_amount);
 		}
 	}
+
+
+	public GameObject GetOriginObj () {
+		return originObj;
+	}
 }

@@ -368,11 +368,14 @@ public class CouchCrewScript : MonoBehaviour
 
 		yield return new WaitForSeconds (1f);
 
+		//HealthScript[] _hScr = _tile.TakeCrewDamage (_amount, 0, 0);
+
 		while (true) {
 			_tile.TakeCrewDamage (_amount, 0, 0);
 			Debug.Log ("took " + _amount + " damage!");
 
 			/*
+			//this should happen if all obj on that tile are completely destroyed or repaired...
 			if (_amount > 0) {
 				if (_tile.IsFullyDamaged) {
 					Debug.Log ("break!");

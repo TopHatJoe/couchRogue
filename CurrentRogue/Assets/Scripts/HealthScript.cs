@@ -12,6 +12,13 @@ public class HealthScript : MonoBehaviour
 	private int health;
 	public int Health { get { return health; } }
 
+	private int repairProgress = 100;
+
+	[SerializeField]
+	private GameObject healthBar;
+	private bool isFullyRepaired = true;
+	private bool isFullyDamaged = false;
+
 	//private int[] damageStages;
 
 	[SerializeField]
@@ -29,6 +36,9 @@ public class HealthScript : MonoBehaviour
 	//roomOrigin
 	private RoomScript room;
 
+	//private IPlacable originPlac;
+	private HealthScript originHScr;
+	//public HealthScript OriginHScr { get { return originHScr; } set { originHScr = value; } }
 	/*
 	[SerializeField]
 	private bool isRoom;
@@ -46,6 +56,10 @@ public class HealthScript : MonoBehaviour
 		health = maxHealth;
 		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
 		room = transform.parent.parent.GetChild (0).GetChild (0).GetComponent <RoomScript> ().GetRoomOrigin ();
+
+		//originPlac = gameObject.GetComponent <IPlacable> ();
+		//originHScr = originPlac.GetGameObj ().GetComponent <HealthScript> ();
+		originHScr = gameObject.GetComponent <IPlacable> ().GetOriginObj ().GetComponent <HealthScript> ();
 	}
 
 	public void TakeDamage (int _dmg)
@@ -149,6 +163,50 @@ public class HealthScript : MonoBehaviour
 	}
 
 	public void TakeCrewDamage (int _amount) {
-		room.TakeCrewDamage (_amount);
+		//room.TakeCrewDamage (_amount);
+
+		/*
+		if (originHScr == null) {
+			//originPlac = gameObject.GetComponent <IPlacable> ();
+			//originHScr = originPlac.GetGameObj ().GetComponent <HealthScript> ();
+			Debug.Log (this.gameObject.transform.position.x + ", " + originHScr.gameObject.transform.position.x);
+
+			//originHScr.RepairProgress (_amount);
+		} else {
+			originHScr.RepairProgress (_amount);
+		}
+		*/
+
+		originHScr.RepairProgress (_amount);
+	}
+
+	private void RepairProgress (int _amount) {
+		repairProgress -= _amount;
+
+		if (repairProgress <= 0) {
+			repairProgress = 0;
+			isFullyDamaged = true;
+			//ChangeSprite ();
+		} else if (repairProgress >= 100) {
+			//Debug.Log ("over 9000!!");
+			repairProgress = 100;
+			isFullyRepaired = true;
+			//ChangeSprite ();
+		} else {
+			isFullyDamaged = false;
+			isFullyRepaired = false; 
+		}
+
+		UpdateRepairBar ();
+	}
+
+	private void UpdateRepairBar () {
+		//Debug.Log ("repairProgress: " + repairProgress);
+		//Debug.Log ("trying to repair: " + gridPos.X + ", " + gridPos.Y);
+		float _float = (repairProgress / 100f);
+		//Debug.Log ("float: " + _float);
+		Vector3 _vect = new Vector3 (_float, 1f);
+		//Debug.Log ("bar: " + _vect.x);
+		originHScr.healthBar.transform.localScale = _vect;
 	}
 }

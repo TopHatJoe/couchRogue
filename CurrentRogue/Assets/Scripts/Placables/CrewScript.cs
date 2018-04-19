@@ -539,4 +539,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 	public void UndoChangesTwo () {
 		
 	}
+
+	public GameObject GetOriginObj () {
+		return gameObject;
+	}
 }

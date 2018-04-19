@@ -508,11 +508,14 @@ public class RoomScript : MonoBehaviour, IPlacable
 		//RepairProgress = repairProgress - _amount;
 		//Debug.Log (RepairProgress);
 
+
+		/*
 		if (isOrigin) {
 			RepairProgress (_amount);
 		} else {
 			originObj.GetComponent <RoomScript> ().TakeCrewDamage (_amount);	
 		}
+		*/
 	}
 
 	private void RepairProgress (int _value) {
@@ -542,4 +545,8 @@ public class RoomScript : MonoBehaviour, IPlacable
 			sprRenderer.sprite = roomSprite;
 		}
 	} 
+
+	public GameObject GetOriginObj () {
+		return originObj;
+	}
 }

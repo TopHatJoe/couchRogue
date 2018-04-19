@@ -912,5 +912,14 @@ public class TileScript : MonoBehaviour
 				LocalObjDict [0].TakeCrewDamage (rmDmg);
 			}
 		}
+
+
+
+		/*
+		HealthScript[] _hScrArr = new HealthScript[LocalObjDict.Count];
+		for (int i = 0; i < LocalObjDict.Count; i++) {
+			_hScrArr [i] = 
+		}
+		*/
 	}
 }

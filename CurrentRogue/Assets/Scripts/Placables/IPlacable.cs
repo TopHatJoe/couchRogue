@@ -8,4 +8,6 @@ public interface IPlacable {
 
 	//string ReturnParameter ();
 	void UpdateHealth (int _amount);
+
+	GameObject GetOriginObj ();
 }

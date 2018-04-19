@@ -304,4 +304,9 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 		}
 	}
 	*/
+
+
+	public GameObject GetOriginObj () {
+		return gameObject;
+	}
 }

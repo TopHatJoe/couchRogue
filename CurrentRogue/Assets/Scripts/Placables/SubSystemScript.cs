@@ -46,4 +46,9 @@ public class SubSystemScript : MonoBehaviour, IPlacable
 	public void UpdateHealth (int _amount) {
 		Debug.Log ("subSys took Damage");
 	}
+
+
+	public GameObject GetOriginObj () {
+		return gameObject;
+	}
 }
