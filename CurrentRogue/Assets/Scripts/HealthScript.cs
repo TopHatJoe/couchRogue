@@ -53,6 +53,10 @@ public class HealthScript : MonoBehaviour
 	[SerializeField]
 	private int objType;
 
+	public HealthScript NextHScr { get; set; }
+
+
+
 	private void Start ()
 	{
 		health = maxHealth;
@@ -192,12 +196,16 @@ public class HealthScript : MonoBehaviour
 		if (repairProgress <= 0) {
 			repairProgress = 0;
 			isFullyDamaged = true;
-			//ChangeSprite ();
+			//ChangeSprite (); //change state
+			//sprRenderer.sprite = damageSpr;
+			ChangeSprite (true);
 		} else if (repairProgress >= 100) {
 			//Debug.Log ("over 9000!!");
 			repairProgress = 100;
 			isFullyRepaired = true;
-			//ChangeSprite ();
+			//ChangeSprite (); //change state
+			//sprRenderer.sprite = standardSpr;
+			ChangeSprite (false);
 		} else {
 			isFullyDamaged = false;
 			isFullyRepaired = false; 
@@ -214,5 +222,21 @@ public class HealthScript : MonoBehaviour
 		Vector3 _vect = new Vector3 (_float, 1f);
 		//Debug.Log ("bar: " + _vect.x);
 		originHScr.healthBar.transform.localScale = _vect;
+	}
+
+	private void ChangeSprite (bool _isDamaged) {
+		if (_isDamaged) {
+			sprRenderer.sprite = damageSpr;
+			if (NextHScr != null) {
+				NextHScr.ChangeSprite (true);
+			} else {
+				Debug.LogError ("no Next hScr!");
+			}
+		} else {
+			sprRenderer.sprite = standardSpr;
+			if (NextHScr != null) {
+				NextHScr.ChangeSprite (false);
+			}
+		}
 	}
 }

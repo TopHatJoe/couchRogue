@@ -917,6 +917,38 @@ public class TileScript : MonoBehaviour
 			_hScrArr [0] = LocalObjDict [0].GetOriginHScr ();
 		}
 
+		if (sysDmg == 0) {
+			Debug.LogError ("Damage is 0!");
+		} else {
+			if (LocalObjDict.ContainsKey (1)) {
+				//LocalObjDict [0].TakeCrewDamage (rmDmg);
+				_hScrArr [1] = LocalObjDict [1].GetOriginHScr ();
+			} else if (!SystemPlacable) {
+				//not the nicest way of doin' it but...
+				LocalObjDict.Add (1, transform.GetChild (1).GetChild (0).gameObject.GetComponent <HealthScript> ());
+				Debug.Log ("dict entry made");
+				//LocalObjDict [0].TakeCrewDamage (rmDmg);
+
+				_hScrArr [1] = LocalObjDict [1].GetOriginHScr ();
+			}
+		}
+
+		if (subDmg == 0) {
+			Debug.LogError ("Damage is 0!");
+		} else {
+			if (LocalObjDict.ContainsKey (2)) {
+				//LocalObjDict [0].TakeCrewDamage (rmDmg);
+				_hScrArr [2] = LocalObjDict [2].GetOriginHScr ();
+			} else if (transform.GetChild (6).childCount > 0) {
+				//not the nicest way of doin' it but...
+				LocalObjDict.Add (2, transform.GetChild (6).GetChild (0).gameObject.GetComponent <HealthScript> ());
+				Debug.Log ("dict entry made");
+				//LocalObjDict [0].TakeCrewDamage (rmDmg);
+
+				_hScrArr [2] = LocalObjDict [2].GetOriginHScr ();
+			}
+		}
+
 		return _hScrArr;
 
 		/*

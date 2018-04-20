@@ -43,6 +43,8 @@ public class SystemScript : MonoBehaviour, IPlacable
 
 	private string saveStr;
 
+	private HealthScript hScr;
+
 
 
 
@@ -64,6 +66,8 @@ public class SystemScript : MonoBehaviour, IPlacable
 
 
 		tile = LevelManager.Instance.Tiles [gridPos];
+		hScr = gameObject.GetComponent <HealthScript> ();
+
 
 		transform.position = tile.transform.position;
 		//Quaternion.identity = tile.Quaternion.identity;
@@ -90,6 +94,8 @@ public class SystemScript : MonoBehaviour, IPlacable
 
 			IPlacable _placable = thisNextObj.GetComponent <IPlacable> ();
 			_placable.PlaceObj (_index, gridPos, originObj);
+
+			hScr.NextHScr = thisNextObj.GetComponent <HealthScript> ();
 		}
 	}
 

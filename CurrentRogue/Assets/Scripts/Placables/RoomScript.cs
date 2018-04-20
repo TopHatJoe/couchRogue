@@ -85,6 +85,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 	//private GameObject healthBarBase;
 	[SerializeField]
 	private GameObject healthBar;
+	private HealthScript hScr;
 
 	private bool isFullyDamaged = false;
 	public bool IsFullyDamaged { get { return originObj.GetComponent <RoomScript> ().isFullyDamaged; } }
@@ -126,6 +127,8 @@ public class RoomScript : MonoBehaviour, IPlacable
 		*/
 	
 		tile = LevelManager.Instance.Tiles [gridPos];
+		hScr = gameObject.GetComponent <HealthScript> ();
+
 
 		/*
 		//important for dmg
@@ -178,6 +181,9 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 			IPlacable _placable = thisNextObj.GetComponent <IPlacable> ();
 			_placable.PlaceObj (_index, gridPos, originObj);
+
+			Debug.Log ("nextHScr set!");
+			hScr.NextHScr = thisNextObj.GetComponent <HealthScript> ();
 		}
 
 		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
@@ -361,9 +367,6 @@ public class RoomScript : MonoBehaviour, IPlacable
 	}
 
 
-	public void UpdateHealth (int _amount) {
-		//Debug.Log ("took Damage");
-	}
 
 
 	//gets Contents (except for crew and other movables) of all roomComponents
@@ -548,5 +551,9 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 	public GameObject GetOriginObj () {
 		return originObj;
+	}
+
+	public void UpdateHealth (int _amount) {
+		//gameObject.GetComponent <HealthScript> ().ChangeSprite ();
 	}
 }

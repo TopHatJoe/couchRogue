@@ -6,6 +6,7 @@ public interface IPlacable {
 	//void RemoveObj (int _index, Point _gridPos);
 	void RemoveObj ();
 
+	//basically just updates sprites now...
 	//string ReturnParameter ();
 	void UpdateHealth (int _amount);
 

@@ -311,20 +311,21 @@ public class CouchCrewScript : MonoBehaviour
 		//_vect.x -= (tileDistance / 2);
 		previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 		//previousPos = _vect;
-		Debug.Log ("crewPos: " + crewPos.X + ", " + crewPos.Y);
+
+		//Debug.Log ("crewPos: " + crewPos.X + ", " + crewPos.Y);
 	}
 
 
 
 	//crew damage
 	private void DoSomeDamage (int _amount) {
-		Debug.Log ("gonna do some damage!");
+		//Debug.Log ("gonna do some damage!");
 		dmgLoop = DmgLoop (_amount);
 		StartCoroutine (dmgLoop); 
 	}
 
 	private void StopSomeDamage () {
-		Debug.Log ("gonna stop doin some damage!");
+		//Debug.Log ("gonna stop doin some damage!");
 
 		StopCoroutine (dmgLoop);
 
@@ -340,16 +341,16 @@ public class CouchCrewScript : MonoBehaviour
 
 		while (true) {
 			_room.TakeCrewDamage (_amount);
-			Debug.Log ("took " + _amount + " damage!");
+			//Debug.Log ("took " + _amount + " damage!");
 
 			if (_amount > 0) {
 				if (_room.IsFullyDamaged) {
-					Debug.Log ("break!");
+					//Debug.Log ("break!");
 					break;
 				}
 			} else if (_amount < 0) {
 				if (_room.IsFullyRepaired) {
-					Debug.Log ("break!");
+					//Debug.Log ("break!");
 					break;
 				}
 			}
@@ -366,32 +367,81 @@ public class CouchCrewScript : MonoBehaviour
 
 		//RoomScript _room = LevelManager.Instance.Tiles [crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
 
-		HealthScript[] _hScrArr = _tile.GetHScripts (_amount, 0, 0);
+		HealthScript[] _hScrArr = _tile.GetHScripts (_amount, _amount, _amount);
 
 		yield return new WaitForSeconds (1f);
+
+		bool _hasSys = false;
+		if (_hScrArr [1] != null) {
+			_hasSys = true;
+		}
+
+		bool _hasSubSys = false;
+		if (_hScrArr [2] != null) {
+			_hasSubSys = true;
+		}
 
 		while (true) {
 			//_tile.TakeCrewDamage (_amount, 0, 0);
 			_hScrArr [0].TakeCrewDamage (_amount);
+			if (_hasSys) {
+				_hScrArr [1].TakeCrewDamage (_amount - 2);
+			}
+			if (_hasSubSys) {
+				_hScrArr [2].TakeCrewDamage (_amount + 2);
+			}
 
-			Debug.Log ("took " + _amount + " damage!");
+			//Debug.Log ("took " + _amount + " damage!");
+
 
 
 			//this should happen if all obj on that tile are completely destroyed or repaired...
 			if (_amount > 0) {
 				if (_hScrArr[0].IsFullyDamaged) {
-					Debug.Log ("break!");
-					break;
+					if (_hasSys) {
+						if (_hScrArr [1].IsFullyDamaged) {
+							if (_hasSubSys) {
+								if (_hScrArr [2].IsFullyDamaged) {
+									break;
+								}
+							} else {
+								break;
+							}
+						}
+					} else if (_hasSubSys) {
+						if (_hScrArr [2].IsFullyDamaged) {
+							break;
+						}
+					} else {
+						break;
+					}
 				}
 			} else if (_amount < 0) {
 				if (_hScrArr [0].IsFullyRepaired) {
-					Debug.Log ("break!");
-					break;
+					if (_hasSys) {
+						if (_hScrArr [1].IsFullyRepaired) {
+							if (_hasSubSys) {
+								if (_hScrArr [2].IsFullyRepaired) {
+									break;
+								}
+							} else {
+								break;
+							}
+						}
+					} else if (_hasSubSys) {
+						if (_hScrArr [2].IsFullyRepaired) {
+							break;
+						}
+					} else {
+						//Debug.Log ("break!");
+						break;
+					}
 				}
 			}
 
 
-			yield return new WaitForSeconds (1f);
+
+			yield return new WaitForSeconds (0.5f);
 		}
 
 		isOccupied = false;
