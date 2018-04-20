@@ -366,28 +366,30 @@ public class CouchCrewScript : MonoBehaviour
 
 		//RoomScript _room = LevelManager.Instance.Tiles [crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
 
+		HealthScript[] _hScrArr = _tile.GetHScripts (_amount, 0, 0);
+
 		yield return new WaitForSeconds (1f);
 
-		//HealthScript[] _hScr = _tile.TakeCrewDamage (_amount, 0, 0);
-
 		while (true) {
-			_tile.TakeCrewDamage (_amount, 0, 0);
+			//_tile.TakeCrewDamage (_amount, 0, 0);
+			_hScrArr [0].TakeCrewDamage (_amount);
+
 			Debug.Log ("took " + _amount + " damage!");
 
-			/*
+
 			//this should happen if all obj on that tile are completely destroyed or repaired...
 			if (_amount > 0) {
-				if (_tile.IsFullyDamaged) {
+				if (_hScrArr[0].IsFullyDamaged) {
 					Debug.Log ("break!");
 					break;
 				}
 			} else if (_amount < 0) {
-				if (_tile.IsFullyRepaired) {
+				if (_hScrArr [0].IsFullyRepaired) {
 					Debug.Log ("break!");
 					break;
 				}
 			}
-			*/
+
 
 			yield return new WaitForSeconds (1f);
 		}

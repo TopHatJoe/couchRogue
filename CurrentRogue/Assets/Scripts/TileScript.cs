@@ -899,21 +899,25 @@ public class TileScript : MonoBehaviour
 	}
 
 
-	public void TakeCrewDamage (int rmDmg, int sysDmg, int subDmg) {
+	public HealthScript [] GetHScripts (int rmDmg, int sysDmg, int subDmg) {
+		HealthScript[] _hScrArr = new HealthScript[3];
+
 		if (rmDmg == 0) {
 			Debug.LogError ("Damage is 0!");
 		} else {
 			if (LocalObjDict.ContainsKey (0)) {
-				LocalObjDict [0].TakeCrewDamage (rmDmg);
+				//LocalObjDict [0].TakeCrewDamage (rmDmg);
 			} else {
 				//not the nicest way of doin' it but...
 				LocalObjDict.Add (0, transform.GetChild (0).GetChild (0).gameObject.GetComponent <HealthScript> ());
 				Debug.Log ("dict entry made");
-				LocalObjDict [0].TakeCrewDamage (rmDmg);
+				//LocalObjDict [0].TakeCrewDamage (rmDmg);
 			}
+
+			_hScrArr [0] = LocalObjDict [0].GetOriginHScr ();
 		}
 
-
+		return _hScrArr;
 
 		/*
 		HealthScript[] _hScrArr = new HealthScript[LocalObjDict.Count];

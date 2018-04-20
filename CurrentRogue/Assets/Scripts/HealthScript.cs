@@ -17,7 +17,9 @@ public class HealthScript : MonoBehaviour
 	[SerializeField]
 	private GameObject healthBar;
 	private bool isFullyRepaired = true;
+	public bool IsFullyRepaired { get { return isFullyRepaired; } }
 	private bool isFullyDamaged = false;
+	public bool IsFullyDamaged { get { return isFullyDamaged; } }
 
 	//private int[] damageStages;
 
@@ -151,7 +153,6 @@ public class HealthScript : MonoBehaviour
 		}
 		*/
 
-
 		/*
 		if (health == maxHealth) {
 			room.Damages (-1);
@@ -160,6 +161,10 @@ public class HealthScript : MonoBehaviour
 			room.Damages (-1);
 		}
 		*/
+	}
+
+	public HealthScript GetOriginHScr () {
+		return originHScr;
 	}
 
 	public void TakeCrewDamage (int _amount) {
@@ -177,7 +182,8 @@ public class HealthScript : MonoBehaviour
 		}
 		*/
 
-		originHScr.RepairProgress (_amount);
+		//originHScr.RepairProgress (_amount);
+		RepairProgress (_amount);
 	}
 
 	private void RepairProgress (int _amount) {
