@@ -230,7 +230,7 @@ public class HealthScript : MonoBehaviour
 			if (NextHScr != null) {
 				NextHScr.ChangeSprite (true);
 			} else {
-				Debug.LogError ("no Next hScr!");
+				//Debug.LogError ("no Next hScr!");
 			}
 		} else {
 			sprRenderer.sprite = standardSpr;

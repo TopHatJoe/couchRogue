@@ -3,14 +3,14 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HealthScript.cs">
     <Files>
       <File FileName="Assets/Scripts/LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HealthScript.cs" Line="168" Column="3" />
-      <File FileName="Assets/Scripts/TileScript.cs" Line="916" Column="3" />
-      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="371" Column="5" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="233" Column="7" />
+      <File FileName="Assets/Scripts/TileScript.cs" Line="942" Column="52" />
+      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="353" Column="8" />
       <File FileName="Assets/Scripts/UI/ElevatorBtnPanelScr.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/DoorScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="550" Column="19" />
-      <File FileName="Assets/Scripts/Placables/SystemScript.cs" Line="195" Column="20" />
-      <File FileName="Assets/Scripts/Placables/IPlacable.cs" Line="12" Column="29" />
+      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="88" Column="2" />
+      <File FileName="Assets/Scripts/Placables/SystemScript.cs" Line="98" Column="63" />
+      <File FileName="Assets/Scripts/Placables/IPlacable.cs" Line="9" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

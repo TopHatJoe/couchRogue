@@ -75,7 +75,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	public void UpdateHealth (int _hp) {
 		Debug.Log ("ISystem/Shield");
 
-		/*
+		/* 	
 		//onDamage
 		if (_hp <= 0 && !isDamaged) {
 			isDamaged = true;
