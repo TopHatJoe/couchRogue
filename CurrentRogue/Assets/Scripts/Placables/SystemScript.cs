@@ -184,20 +184,27 @@ public class SystemScript : MonoBehaviour, IPlacable
 		//transform.parent.GetComponent <TileScript> ().RemoteRemoval (false, true, false);
 	}
 
-
-	public void UpdateHealth (int _amount) {
+	/* 21.04.18
+	public void UpdateHealth (bool _isFullyDamaged, bool _isFullyRepaired) {
 		//mayhap implement ISystem interface for consequences...
 		//Debug.Log ("sys took Damage");
 
 
 		if (gameObject.GetComponent <ISystem> () != null) { 
 			ISystem _sys = gameObject.GetComponent <ISystem> ();
-			_sys.UpdateHealth (_amount);
+			_sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
 		}
 	}
-
+	*/
 
 	public GameObject GetOriginObj () {
 		return originObj;
+	}
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+		if (gameObject.GetComponent <ISystem> () != null) { 
+			ISystem _sys = gameObject.GetComponent <ISystem> ();
+			_sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
+		}
 	}
 }

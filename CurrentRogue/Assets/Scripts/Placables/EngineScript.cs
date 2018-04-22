@@ -115,6 +115,7 @@ public class EngineScript : MonoBehaviour, ISystem
 	}
 	*/
 
+	/*
 	public void UpdateHealth (int _hp) {
 		//onDamage
 		if (_hp <= 0 && !isDamaged) {
@@ -138,6 +139,23 @@ public class EngineScript : MonoBehaviour, ISystem
 			}
 		}
 	}
+	*/
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+		Debug.Log ("engine: " + gridPos.X + ", " + gridPos.Y);
+
+		if (_isFullyDamaged) {
+			PowerManager.Instance.DamageSystem (systemType, -powerReq);
+		} 
+
+		if (_isFullyRepaired) {
+			PowerManager.Instance.DamageSystem (systemType, powerReq);
+		}
+
+		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
+		//Debug.Log ("isFullyRepaired = " + _isFullyRepaired);
+	}
+
 
 
 	/*

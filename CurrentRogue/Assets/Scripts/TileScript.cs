@@ -850,7 +850,8 @@ public class TileScript : MonoBehaviour
 	*/
 
 
-	//DAMAGING
+	//DAMAGING //21.04.18: commented out
+	/*
 	public void TakeDamage (int _dmg) {
 		//introduce damageType etc later...
 
@@ -892,11 +893,12 @@ public class TileScript : MonoBehaviour
 
 			transform.GetChild (0).GetChild (0).GetComponent <HealthScript> ().TakeDamage (_dmg);
 		}
-		*/
+		////
 
 
 		//if (SubSysPlacable) //-> need bool for that
 	}
+	*/
 
 
 	public HealthScript [] GetHScripts (int rmDmg, int sysDmg, int subDmg) {

@@ -10,7 +10,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>BUILT</string>
+	<string>theDing</string>
 	<key>CFBundleGetInfoString</key>
 	<string>Unity Player version 5.6.1f1 (2860b30f0b54). (c) 2017 Unity Technologies ApS. All rights reserved.</string>
 	<key>CFBundleIconFile</key>

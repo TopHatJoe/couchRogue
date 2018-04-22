@@ -20,6 +20,8 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	//the amount of additional hitpoints
 	private int shieldBoost;
 
+	//[SerializeField]
+	private int systemType = 1;
 
 	void Start () {
 		Setup ();
@@ -94,5 +96,21 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 			PowerManager.Instance.DamageSystem (systemType, powerReq);
 		}
 		*/
+	}
+
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+		//Debug.Log ("shield: " + gridPos.X + ", " + gridPos.Y);
+
+		if (_isFullyDamaged) {
+			PowerManager.Instance.DamageSystem (1, -powerReq);
+		} 
+
+		if (_isFullyRepaired) {
+			PowerManager.Instance.DamageSystem (1, powerReq);
+		}
+
+		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
+		//Debug.Log ("isFullyRepaired = " + _isFullyRepaired);
 	}
 }

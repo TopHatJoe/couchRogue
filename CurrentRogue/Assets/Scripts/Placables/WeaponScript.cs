@@ -273,10 +273,11 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 
 
-
+	/* 
 	public void UpdateHealth (int _amount) {
 		Debug.Log ("took Damage");
 	}
+	*/
 
 
 	//public void OnDamage () {
@@ -308,5 +309,9 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 	public GameObject GetOriginObj () {
 		return gameObject;
+	}
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+
 	}
 }

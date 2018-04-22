@@ -266,7 +266,14 @@ public class AmmoScript : MonoBehaviour
 	private void DealDamage (int _dmg) {
 		Point _pos = targetObj.transform.parent.GetComponent <TargetScript> ().GridPos;
 		//-_dmg so damage can be positive but deals negative effect
-		LevelManager.Instance.Tiles [_pos].TakeDamage (-_dmg);
+
+		//LevelManager.Instance.Tiles [_pos].TakeDamage (-_dmg);
+		HealthScript[] _hScr = LevelManager.Instance.Tiles [_pos].GetHScripts (_dmg, _dmg, _dmg);
+		for (int i = 0; i < _hScr.Length; i++) {
+			if (_hScr [i] != null) {
+				_hScr [i].TakeCrewDamage (_dmg);
+			}
+		}
 	}
 
 

@@ -55,6 +55,14 @@ public class HealthScript : MonoBehaviour
 
 	public HealthScript NextHScr { get; set; }
 
+	//for dmg
+	[SerializeField]
+	private bool _isRoom;
+	[SerializeField]
+	private bool _isSys;
+	private SystemScript sys;
+	[SerializeField]
+	private bool _isSubSys;
 
 
 	private void Start ()
@@ -66,8 +74,13 @@ public class HealthScript : MonoBehaviour
 		//originPlac = gameObject.GetComponent <IPlacable> ();
 		//originHScr = originPlac.GetGameObj ().GetComponent <HealthScript> ();
 		originHScr = gameObject.GetComponent <IPlacable> ().GetOriginObj ().GetComponent <HealthScript> ();
+
+		if (_isSys) {
+			sys = gameObject.GetComponent <SystemScript> ();
+		}
 	}
 
+	/*  21.04.18
 	public void TakeDamage (int _dmg)
 	{
 		health += _dmg;
@@ -77,7 +90,7 @@ public class HealthScript : MonoBehaviour
 			isDamaged = true;
 
 			IPlacable _placable = gameObject.GetComponent <IPlacable> ();
-			_placable.UpdateHealth (health);
+			_placable.UpdateHealthState (health);
 
 			sprRenderer.sprite = damageSpr;
 
@@ -88,7 +101,7 @@ public class HealthScript : MonoBehaviour
 			isDamaged = false;
 
 			IPlacable _placable = gameObject.GetComponent <IPlacable> ();
-			_placable.UpdateHealth (health);
+			_placable.UpdateHealthState (health);
 
 			sprRenderer.sprite = standardSpr;
 
@@ -97,7 +110,7 @@ public class HealthScript : MonoBehaviour
 		//ugly fix to damage without purpose
 		} else if (health < maxHealth) {
 			IPlacable _placable = gameObject.GetComponent <IPlacable> ();
-			_placable.UpdateHealth (health);
+			_placable.UpdateHealthState (health);
 		}
 
 
@@ -165,7 +178,8 @@ public class HealthScript : MonoBehaviour
 			room.Damages (-1);
 		}
 		*/
-	}
+	//}
+	//*/
 
 	public HealthScript GetOriginHScr () {
 		return originHScr;
@@ -195,17 +209,21 @@ public class HealthScript : MonoBehaviour
 
 		if (repairProgress <= 0) {
 			repairProgress = 0;
-			isFullyDamaged = true;
-			//ChangeSprite (); //change state
-			//sprRenderer.sprite = damageSpr;
-			ChangeSprite (true);
+			if (!isFullyDamaged) {
+				isFullyDamaged = true;
+				//ChangeSprite (); //change state
+				//sprRenderer.sprite = damageSpr;
+				UpdateSystem (true);
+			}
 		} else if (repairProgress >= 100) {
 			//Debug.Log ("over 9000!!");
 			repairProgress = 100;
-			isFullyRepaired = true;
-			//ChangeSprite (); //change state
-			//sprRenderer.sprite = standardSpr;
-			ChangeSprite (false);
+			if (!isFullyRepaired) {
+				isFullyRepaired = true;
+				//ChangeSprite (); //change state
+				//sprRenderer.sprite = standardSpr;
+				UpdateSystem (false);
+			}
 		} else {
 			isFullyDamaged = false;
 			isFullyRepaired = false; 
@@ -224,19 +242,35 @@ public class HealthScript : MonoBehaviour
 		originHScr.healthBar.transform.localScale = _vect;
 	}
 
-	private void ChangeSprite (bool _isDamaged) {
+
+	private void UpdateSystem (bool _isDamaged) {
 		if (_isDamaged) {
 			sprRenderer.sprite = damageSpr;
 			if (NextHScr != null) {
-				NextHScr.ChangeSprite (true);
+				NextHScr.UpdateSystem (true);
+
+				UpdatePlacable (true, false);
 			} else {
 				//Debug.LogError ("no Next hScr!");
+				UpdatePlacable (true, false);
 			}
 		} else {
 			sprRenderer.sprite = standardSpr;
 			if (NextHScr != null) {
-				NextHScr.ChangeSprite (false);
+				NextHScr.UpdateSystem (false);
+
+				UpdatePlacable (false, true);
+			} else {
+				UpdatePlacable (false, true);
 			}
+		}
+	}
+
+	private void UpdatePlacable (bool _isFullyDamaged, bool _isFullyRepaired) {
+		//Debug.LogError ("kell");
+
+		if (_isSys) {
+			sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
 		}
 	}
 }

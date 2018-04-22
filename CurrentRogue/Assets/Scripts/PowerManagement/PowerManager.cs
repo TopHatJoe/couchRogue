@@ -191,10 +191,15 @@ public class PowerManager : Singleton <PowerManager>
 		sysPowerBtns[_x].GetComponent <PowerBtnScript> ().RemoteShutdown ();
 	}
 
+
+
 	//updateSystemHealth would be more fitting don't ya think?
 	public void DamageSystem (int _sysType, int _amount) {
+		//reactor = 0, shield, gun, engine 
 		sysPowerBtns [_sysType].GetComponent <PowerBtnScript> ().UpdateCurrentCapacity (_amount);
 	}
+
+
 
 
 	public void GetGunBtn (GunBtnScr _gunBtn) {

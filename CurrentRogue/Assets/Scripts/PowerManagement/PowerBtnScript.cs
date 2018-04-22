@@ -67,7 +67,7 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 
 	//updates number of available powerBars and powersDown if necessary
 	public void UpdateCurrentCapacity (int _amount) {
-		Debug.Log ("updatrin cap | amount: " + _amount);
+		Debug.Log ("updatin cap | amount: " + _amount);
 
 		//negate all UI damage
 		int y = barList.Count - 1;

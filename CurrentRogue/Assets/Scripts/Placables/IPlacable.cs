@@ -8,7 +8,7 @@ public interface IPlacable {
 
 	//basically just updates sprites now...
 	//string ReturnParameter ();
-	void UpdateHealth (int _amount);
+	void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired);
 
 	GameObject GetOriginObj ();
 }

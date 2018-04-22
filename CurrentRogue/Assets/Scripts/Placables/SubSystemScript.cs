@@ -51,4 +51,8 @@ public class SubSystemScript : MonoBehaviour, IPlacable
 	public GameObject GetOriginObj () {
 		return gameObject;
 	}
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+
+	}
 }

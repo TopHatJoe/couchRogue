@@ -397,7 +397,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 		}
 	}
 
-
+	/* 21.04.18
 	//actually only the origin needs to have an hp script... //?
 	public void DistributeDamage (bool _fromOrigin, int _amount) {
 		if (isOrigin || _fromOrigin) {
@@ -415,7 +415,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 				_obj.transform.GetChild (2).GetChild (i).GetComponent <CrewScript> ().RemoveObj ();
 			}
 			//}
-			*/
+			////
 
 
 			//room
@@ -431,6 +431,8 @@ public class RoomScript : MonoBehaviour, IPlacable
 			originObj.GetComponent <RoomScript> ().DistributeDamage (false, _amount);
 		}
 	}
+	*/
+
 
 	/*
 	public void GetRepaired (int _amount) {
@@ -555,5 +557,12 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 	public void UpdateHealth (int _amount) {
 		//gameObject.GetComponent <HealthScript> ().ChangeSprite ();
+	}
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+		//Debug.Log ("room: ");
+
+		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
+		//Debug.Log ("isFullyRepaired = " + _isFullyRepaired);
 	}
 }

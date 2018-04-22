@@ -463,10 +463,11 @@ public class CrewScript : MonoBehaviour, IPlacable
 	}
 
 
-
+	/* 21.04.18
 	public void UpdateHealth (int _amount) {
 		Debug.Log ("took Damage");
 	}
+	*/
 
 	private void IsStationed (bool _value) {
 		//isStationed = !isStationed;
@@ -542,5 +543,9 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 	public GameObject GetOriginObj () {
 		return gameObject;
+	}
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+
 	}
 }

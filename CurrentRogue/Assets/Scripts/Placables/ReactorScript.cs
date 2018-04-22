@@ -22,6 +22,10 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 	private bool isLocalReact = false;
 
+	//[SerializeField]
+	private int systemType = 0;
+
+
 	void Start ()
 	{
 		sysScr = gameObject.GetComponent <SystemScript> ();
@@ -134,6 +138,15 @@ public class ReactorScript : MonoBehaviour, ISystem
 			PowerManager.Instance.DamageSystem (systemType, powerReq);
 		}
 		*/
+	}
+
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+		Debug.Log ("reaktor: ");
+
+		Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
+		Debug.Log ("isFullyRepaired = " + _isFullyRepaired);
+
 	}
 
 	/*

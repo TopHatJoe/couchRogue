@@ -77,7 +77,7 @@ public class AccessorScript : MonoBehaviour, IPlacable
 	}
 
 
-
+	/*
 	public void UpdateHealth (int _amount) {
 		Debug.Log (_amount);
 
@@ -91,6 +91,11 @@ public class AccessorScript : MonoBehaviour, IPlacable
 
 			Debug.Log ("hasElevator: " + tile.HasElevator);
 		}
+	}
+	*/
+
+	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+	
 	}
 
 
