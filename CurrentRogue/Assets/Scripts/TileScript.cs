@@ -72,7 +72,7 @@ public class TileScript : MonoBehaviour
 	private string localRoom;
 	private string localSystem;
 	private string localCrew;
-	private string localDanger;
+	//private string localDanger;
 
 
 	//private int objType;
@@ -697,6 +697,7 @@ public class TileScript : MonoBehaviour
 	}
 	*/
 
+	/*
 	private void RemoveDanger ()
 	{
 		//Debug.Log ("Danger Removed at " + GridPosition.X + ", " + GridPosition.Y);
@@ -720,6 +721,8 @@ public class TileScript : MonoBehaviour
 
 		GameManager.Instance.Sell ();
 	}
+	*/
+
 
 	private void RemoveSubSystem ()
 	{
@@ -959,5 +962,10 @@ public class TileScript : MonoBehaviour
 			_hScrArr [i] = 
 		}
 		*/
+	}
+
+	public ISystem GetSystem () {
+		ISystem _iSys = transform.GetChild (1).GetChild (0).GetComponent <ISystem> ();
+		return _iSys;
 	}
 }

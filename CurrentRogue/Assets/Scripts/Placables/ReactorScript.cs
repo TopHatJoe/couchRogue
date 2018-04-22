@@ -24,12 +24,18 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 	//[SerializeField]
 	private int systemType = 0;
+	private ShipPowerMngr pwrMngr;
+
 
 
 	void Start ()
 	{
 		sysScr = gameObject.GetComponent <SystemScript> ();
 		gridPos = sysScr.GridPos;
+
+		GameObject _ship = transform.parent.parent.parent.parent.gameObject;
+		pwrMngr = _ship.GetComponent <ShipPowerMngr> ();
+
 		ReactorSetup ();
 	}
 
@@ -97,7 +103,7 @@ public class ReactorScript : MonoBehaviour, ISystem
 		if (PowerManager.Instance != null) {
 			PowerManager.Instance.UpdateReactorCapacity (_amount);
 		} else {
-			Debug.LogError ("PowerManager == null");
+			//Debug.LogError ("PowerManager == null");
 		}
 	}
 
@@ -142,11 +148,32 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 
 	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
-		Debug.Log ("reaktor: ");
+		Debug.Log ("reactor: " + gridPos.X + ", " + gridPos.Y);
 
-		Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
-		Debug.Log ("isFullyRepaired = " + _isFullyRepaired);
+		if (_isFullyDamaged) {
+			//PowerManager.Instance.DamageSystem (systemType, -powerReq);
+			pwrMngr.ApplyHealthState (systemType, componentCapacity);
+		} 
 
+		if (_isFullyRepaired) {
+			//PowerManager.Instance.DamageSystem (systemType, powerReq);
+			pwrMngr.ApplyHealthState (systemType, -componentCapacity);
+		}
+
+		//Debug.Log ("reaktor: ");
+		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
+		//Debug.Log ("isFullyRepaired = " + _isFullyRepaired);
+	}
+
+
+	//to all
+	public void ReceivePowerUpdate (bool _isPowered) {
+		
+	}
+
+	public void UpdatePowerState (bool _isPowered) {
+		//isPowered = !isPowered;
+		//Debug.LogError ("engine powered = " + isPowered);
 	}
 
 	/*

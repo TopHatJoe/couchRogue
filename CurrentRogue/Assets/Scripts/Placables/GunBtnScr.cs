@@ -55,8 +55,10 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 		powerReq = weapon.PowerReq;
 
 		//PowerManager.Instance.UpdatePowerDistribution2 (powerReq, 1);
-		PowerManager.Instance.UpdateSystemCapacity (1, powerReq);
-		PowerManager.Instance.GetGunBtn (this);
+
+		//220418
+		//PowerManager.Instance.UpdateSystemCapacity (1, powerReq);
+		//PowerManager.Instance.GetGunBtn (this);
 	}
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthScript : MonoBehaviour 
 {
-	private int couchHealth = 100;
+	//private int couchHealth = 100;
 
 	[SerializeField]
 	private int maxHealth;
@@ -33,10 +33,10 @@ public class HealthScript : MonoBehaviour
 
 	private bool isDamaged = false;
 	public bool IsDamaged { get { return isDamaged; } }
-	private bool isInoperable = false;
+	//private bool isInoperable = false;
 
 	//roomOrigin
-	private RoomScript room;
+	//private RoomScript room;
 
 	//private IPlacable originPlac;
 	private HealthScript originHScr;
@@ -69,7 +69,7 @@ public class HealthScript : MonoBehaviour
 	{
 		health = maxHealth;
 		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
-		room = transform.parent.parent.GetChild (0).GetChild (0).GetComponent <RoomScript> ().GetRoomOrigin ();
+		//room = transform.parent.parent.GetChild (0).GetChild (0).GetComponent <RoomScript> ().GetRoomOrigin ();
 
 		//originPlac = gameObject.GetComponent <IPlacable> ();
 		//originHScr = originPlac.GetGameObj ().GetComponent <HealthScript> ();

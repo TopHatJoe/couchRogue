@@ -97,9 +97,13 @@
      <Compile Include="Assets\Scripts\PlacementParameter.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\Point.cs" />
+     <Compile Include="Assets\Scripts\PowerManagement\BarTowerScr.cs" />
+     <Compile Include="Assets\Scripts\PowerManagement\PowerBarScr.cs" />
      <Compile Include="Assets\Scripts\PowerManagement\PowerBarScript.cs" />
      <Compile Include="Assets\Scripts\PowerManagement\PowerBtnScript.cs" />
      <Compile Include="Assets\Scripts\PowerManagement\PowerManager.cs" />
+     <Compile Include="Assets\Scripts\PowerManagement\PowerPanelScr.cs" />
+     <Compile Include="Assets\Scripts\PowerManagement\ShipPowerMngr.cs" />
      <Compile Include="Assets\Scripts\SaveLoad\AddByBtn.cs" />
      <Compile Include="Assets\Scripts\SaveLoad\Player.cs" />
      <Compile Include="Assets\Scripts\SaveLoad\SaveLoadManager.cs" />
@@ -110,6 +114,7 @@
      <Compile Include="Assets\Scripts\Singleton.cs" />
      <Compile Include="Assets\Scripts\SquareTileScript.cs" />
      <Compile Include="Assets\Scripts\TargetingManager.cs" />
+     <Compile Include="Assets\Scripts\Test\TestScr.cs" />
      <Compile Include="Assets\Scripts\TestScript.cs" />
      <Compile Include="Assets\Scripts\TileScript.cs" />
      <Compile Include="Assets\Scripts\TweenScript.cs" />

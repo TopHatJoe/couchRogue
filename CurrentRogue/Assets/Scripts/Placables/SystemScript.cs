@@ -8,6 +8,9 @@ public class SystemScript : MonoBehaviour, IPlacable
 	//is there a next component to this obj?
 	private bool last;
 
+	private bool isOrigin;
+	public bool IsOrigin { get { return isOrigin; } }
+
 	[SerializeField]
 	//next component to be placed
 	private GameObject nextObj;
@@ -51,6 +54,10 @@ public class SystemScript : MonoBehaviour, IPlacable
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
 		originObj = _originObj;
 		originSys = originObj.GetComponent <SystemScript> ();
+
+		if (originObj == gameObject) {
+			isOrigin = true;
+		}
 
 		if (this.gameObject == originObj) {
 			//string _string = (objStr + ",1," + gridPos.X.ToString () + "," + gridPos.Y.ToString ());
@@ -205,6 +212,17 @@ public class SystemScript : MonoBehaviour, IPlacable
 		if (gameObject.GetComponent <ISystem> () != null) { 
 			ISystem _sys = gameObject.GetComponent <ISystem> ();
 			_sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
+		}
+	}
+
+	public void UpdatePowerState (bool _isPowered) {
+		if (gameObject.GetComponent <ISystem> () != null) { 
+			ISystem _sys = gameObject.GetComponent <ISystem> ();
+			_sys.UpdatePowerState (_isPowered);
+		}
+
+		if (!last) {
+			thisNextSys.UpdatePowerState (_isPowered);
 		}
 	}
 }

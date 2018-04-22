@@ -20,8 +20,16 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	//the amount of additional hitpoints
 	private int shieldBoost;
 
+	private bool isPowered = false;
+	public bool IsPowered { get { return isPowered; } }
+
 	//[SerializeField]
 	private int systemType = 1;
+
+	//private ShipScript shipScr;
+	private ShipPowerMngr pwrMngr; 
+	private HealthScript hScr;
+
 
 	void Start () {
 		Setup ();
@@ -30,7 +38,12 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	private void Setup () {
 		gridPos = systemScr.GridPos;
 
+		//needs more info...
+		//ship = LevelManager.Instance.Ships [playerID].GetComponent <ShipScript> ();
 		GameObject _ship = transform.parent.parent.parent.parent.gameObject;
+		//ShipScript _shipScr = _ship.GetComponent <ShipScript> ();
+		pwrMngr = _ship.GetComponent <ShipPowerMngr> ();
+		hScr = systemScr.GetOriginObj ().GetComponent <HealthScript> ();
 
 		//Debug.LogError (_ship.transform.childCount);
 
@@ -60,6 +73,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 		}
 
 		AddToHP (shieldBoost);
+		pwrMngr.PowerSetup (systemType, powerReq);
 	}
 
 	/*
@@ -100,17 +114,47 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 
 	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
-		//Debug.Log ("shield: " + gridPos.X + ", " + gridPos.Y);
+		Debug.Log ("shield: " + gridPos.X + ", " + gridPos.Y);
 
 		if (_isFullyDamaged) {
-			PowerManager.Instance.DamageSystem (1, -powerReq);
+			//PowerManager.Instance.DamageSystem (1, -powerReq);
+			pwrMngr.ApplyHealthState (systemType, powerReq);
 		} 
 
 		if (_isFullyRepaired) {
-			PowerManager.Instance.DamageSystem (1, powerReq);
+			//PowerManager.Instance.DamageSystem (1, powerReq);
+			pwrMngr.ApplyHealthState (systemType, -powerReq);
 		}
 
 		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
 		//Debug.Log ("isFullyRepaired = " + _isFullyRepaired);
+	}
+
+
+	//to all
+	public void ReceivePowerUpdate (bool _isPowered) {
+		SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+		_sysScr.UpdatePowerState (_isPowered);
+	}
+
+	public void UpdatePowerState (bool _isPowered) {
+		if (isPowered) {
+			//try power down
+			pwrMngr.PowerDistribution (systemType, -powerReq);
+			isPowered = false;
+		} else {
+			if (!hScr.IsFullyDamaged) {
+
+
+				//try power up
+				pwrMngr.PowerDistribution (systemType, powerReq);
+				isPowered = true;
+			}
+
+			Debug.Log ("is fully damaged: " + hScr.IsFullyDamaged);
+		}
+
+		//isPowered = !isPowered;
+		Debug.Log ("shield powered = " + isPowered);
 	}
 }

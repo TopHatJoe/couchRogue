@@ -60,6 +60,16 @@ public class CouchCrewScript : MonoBehaviour
 				if (Input.GetButtonDown (controllerID + "-s")) {
 					DoElevatorMenu ();
 				}
+			} else {
+				if (Input.GetButtonDown (controllerID + "-s")) {
+					//power system
+					TileScript _tile = LevelManager.Instance.Tiles [crewPos];
+					if (!_tile.SystemPlacable) {
+						ISystem _iSys = _tile.GetSystem ();
+						//currently just switches
+						_iSys.ReceivePowerUpdate (true);
+					}
+				}
 			}
 
 			if (Input.GetButtonDown (controllerID + "-a")) {
@@ -332,6 +342,7 @@ public class CouchCrewScript : MonoBehaviour
 		isOccupied = false;
 	}
 
+	/*
 	private IEnumerator RoomDmgLoop (int _amount) {
 		isOccupied = true;
 
@@ -360,6 +371,7 @@ public class CouchCrewScript : MonoBehaviour
 
 		isOccupied = false;
 	}
+	*/
 
 	private IEnumerator DmgLoop (int _amount) {
 		isOccupied = true;

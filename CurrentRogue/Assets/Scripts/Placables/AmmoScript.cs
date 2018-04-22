@@ -12,6 +12,7 @@ public class AmmoScript : MonoBehaviour
 
 	//[SerializeField]
 	private int damage;
+	public int Damage { get { return damage; } }
 
 	private Vector3 target;
 	private Vector2 overshotTarget;
@@ -155,7 +156,9 @@ public class AmmoScript : MonoBehaviour
 
 		//evasion check 
 		//if (targetObj.GetComponent <TargetScript>().GridPos.Z == NetManager.Instance.localPlayerID) {
-		int _x = Random.Range (1, 100);
+
+		//int _x = Random.Range (1, 100);
+
 		//50 is a placeholder, needs to be evasion chance
 		//int _evasion = LevelManager.Instance.Ships [playerID].GetComponent <ShipScript> ().EvasionChance;
 		int _evasion = ship.EvasionChance;

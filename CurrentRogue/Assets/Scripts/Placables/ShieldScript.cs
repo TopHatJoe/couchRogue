@@ -49,6 +49,7 @@ public class ShieldScript : MonoBehaviour
 		//spr = gameObject.GetComponent <Sprite> ();
 		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
 
+		/* 220418
 		if (maxShieldHP != 0) {
 			//currentHP = maxShieldHP;
 			currentHP = 0;
@@ -59,6 +60,7 @@ public class ShieldScript : MonoBehaviour
 		} else {
 			Debug.LogError ("shieldHP == 0!");
 		}
+		*/
 
 		GameObject _ship = transform.parent.gameObject;
 		GameObject _field = _ship.transform.GetChild (1).gameObject;
@@ -72,6 +74,7 @@ public class ShieldScript : MonoBehaviour
 
 		transform.localScale = new Vector3 (_scale0, _scale1);
 
+		/*
 		if (NetManager.Instance != null) {
 			if (playerID == NetManager.Instance.localPlayerID) {
 				PowerManager.Instance.GetShield (this);
@@ -80,7 +83,7 @@ public class ShieldScript : MonoBehaviour
 		} else {
 			Debug.LogError ("NetManager is null!");
 		}
-
+		*/
 
 		//Debug.LogError ("loopTIme!"); 
 		chargeShield = ChargeShield ();
@@ -97,12 +100,18 @@ public class ShieldScript : MonoBehaviour
 			if (_ammo.PlayerID == playerID) {
 				Debug.Log ("'ello");
 			} else {
+				currentHP -= _ammo.Damage;
+
+				Destroy (_ammo.gameObject);
+
+				/* 220418
 				int _ID = _ammo.PlayerID;
 
 				Destroy (_ammo.gameObject);
 				currentHP--;
 
 				AdjustAlpha ();
+				*/
 
 				/*
 				Color _colour = sprRenderer.color;
