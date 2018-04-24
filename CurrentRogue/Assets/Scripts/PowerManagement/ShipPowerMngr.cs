@@ -44,7 +44,7 @@ public class ShipPowerMngr : MonoBehaviour
 	}
 
 
-	public void ApplyHealthState (int _sysType, int _amount) {
+	public void ApplyHealthState (int _sysType, int _amount, bool _wasPowered) {
 		//reactor
 		if (_sysType == 0) {
 			Debug.Log ("reactor capaity reduced by " + _amount);
@@ -60,6 +60,18 @@ public class ShipPowerMngr : MonoBehaviour
 		//engines
 		} else if (_sysType == 3) {
 			Debug.Log ("engine capaity reduced by " + _amount);
+		}
+
+
+		powerPanel.UpdateDamage (_sysType, _amount);
+		if (_amount > 0 &&  _wasPowered) {
+			//only if system was powered to begin with!
+			//if () {
+			PowerDistribution (_sysType, -_amount);
+			//}
+		} else {
+			//to update the red bars
+			PowerDistribution (_sysType, 0);
 		}
 
 		capacityArr [_sysType] -= _amount;

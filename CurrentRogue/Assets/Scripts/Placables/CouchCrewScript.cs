@@ -453,7 +453,7 @@ public class CouchCrewScript : MonoBehaviour
 
 
 
-			yield return new WaitForSeconds (0.5f);
+			yield return new WaitForSeconds (0.2f);
 		}
 
 		isOccupied = false;

@@ -30,4 +30,8 @@ public class PowerPanelScr : MonoBehaviour
 	public void UpdateUsage (int _sysType, int _usage) {
 		barTowerArr [_sysType].UpdateUsage (_usage);
 	}
+
+	public void UpdateDamage (int _sysType, int _amount) {
+		barTowerArr [_sysType].UpdateDamage (_amount);
+	}
 }

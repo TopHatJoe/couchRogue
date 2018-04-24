@@ -1,20 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PowerManagement/PowerBtnScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PowerManagement/ShipPowerMngr.cs">
     <Files>
-      <File FileName="Assets/Scripts/TileScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HealthScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/WeaponScript.cs" Line="276" Column="5" />
       <File FileName="Assets/Scripts/Placables/ISystem.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="456" Column="40" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PowerManagement/ShipPowerMngr.cs" Line="70" Column="3" />
+      <File FileName="Assets/Scripts/PowerManagement/PowerPanelScr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PowerManagement/BarTowerScr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PowerManagement/PowerBarScr.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Placables/SystemScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/EngineScript.cs" Line="150" Column="3" />
-      <File FileName="Assets/Scripts/Placables/ReactorScript.cs" Line="26" Column="28" />
-      <File FileName="Assets/Scripts/Placables/ShieldSystemScript.cs" Line="103" Column="5" />
-      <File FileName="Assets/Scripts/Placables/AccessorScript.cs" Line="100" Column="2" />
-      <File FileName="Assets/Scripts/Placables/CrewScript.cs" Line="549" Column="3" />
-      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="563" Column="5" />
-      <File FileName="Assets/Scripts/PowerManagement/PowerManager.cs" Line="199" Column="81" />
-      <File FileName="Assets/Scripts/PowerManagement/PowerBtnScript.cs" Line="70" Column="20" />
+      <File FileName="Assets/Scripts/Placables/ReactorScript.cs" Line="159" Column="31" />
+      <File FileName="Assets/Scripts/Placables/EngineScript.cs" Line="169" Column="53" />
+      <File FileName="Assets/Scripts/Placables/ShieldSystemScript.cs" Line="128" Column="62" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -118,12 +118,14 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 		if (_isFullyDamaged) {
 			//PowerManager.Instance.DamageSystem (1, -powerReq);
-			pwrMngr.ApplyHealthState (systemType, powerReq);
+
+			pwrMngr.ApplyHealthState (systemType, powerReq, isPowered);
+			isPowered = false;
 		} 
 
 		if (_isFullyRepaired) {
 			//PowerManager.Instance.DamageSystem (1, powerReq);
-			pwrMngr.ApplyHealthState (systemType, -powerReq);
+			pwrMngr.ApplyHealthState (systemType, -powerReq, isPowered);
 		}
 
 		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);

@@ -152,12 +152,13 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 		if (_isFullyDamaged) {
 			//PowerManager.Instance.DamageSystem (systemType, -powerReq);
-			pwrMngr.ApplyHealthState (systemType, componentCapacity);
+			pwrMngr.ApplyHealthState (systemType, componentCapacity, true);
 		} 
 
 		if (_isFullyRepaired) {
+			//might cause reaktor bugs!
 			//PowerManager.Instance.DamageSystem (systemType, powerReq);
-			pwrMngr.ApplyHealthState (systemType, -componentCapacity);
+			pwrMngr.ApplyHealthState (systemType, -componentCapacity, true);
 		}
 
 		//Debug.Log ("reaktor: ");
