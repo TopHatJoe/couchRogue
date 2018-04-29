@@ -57,12 +57,12 @@ public class HealthScript : MonoBehaviour
 
 	//for dmg
 	[SerializeField]
-	private bool _isRoom;
+	private bool isRoom;
 	[SerializeField]
-	private bool _isSys;
+	private bool isSys;
 	private SystemScript sys;
 	[SerializeField]
-	private bool _isSubSys;
+	private bool isSubSys;
 
 
 	private void Start ()
@@ -75,7 +75,7 @@ public class HealthScript : MonoBehaviour
 		//originHScr = originPlac.GetGameObj ().GetComponent <HealthScript> ();
 		originHScr = gameObject.GetComponent <IPlacable> ().GetOriginObj ().GetComponent <HealthScript> ();
 
-		if (_isSys) {
+		if (isSys) {
 			sys = gameObject.GetComponent <SystemScript> ();
 		}
 	}
@@ -269,7 +269,7 @@ public class HealthScript : MonoBehaviour
 	private void UpdatePlacable (bool _isFullyDamaged, bool _isFullyRepaired) {
 		//Debug.LogError ("kell");
 
-		if (_isSys) {
+		if (isSys) {
 			sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
 		}
 	}

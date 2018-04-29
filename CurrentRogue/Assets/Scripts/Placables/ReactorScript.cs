@@ -169,6 +169,11 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 		if (_isFullyDamaged) {
 			//PowerManager.Instance.DamageSystem (systemType, -powerReq);
+
+			if (isPowered) {
+				ReceivePowerUpdate (false);
+			}
+
 			pwrMngr.ApplyHealthState (systemType, componentCapacity, true, this);
 		} 
 

@@ -107,6 +107,9 @@ public class ShipPowerMngr : MonoBehaviour
 
 
 		powerPanel.UpdateDamage (_sysType, _amount);
+		PowerDistribution (_sysType, 0, _iSys);
+
+		/*
 		if (_amount > 0 &&  _wasPowered) {
 			//only if system was powered to begin with!
 			//if () {
@@ -119,5 +122,6 @@ public class ShipPowerMngr : MonoBehaviour
 
 		capacityArr [_sysType] -= _amount;
 		Debug.Log (capacityArr [_sysType]);
+		*/
 	}
 }

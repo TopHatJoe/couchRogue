@@ -172,8 +172,12 @@ public class EngineScript : MonoBehaviour, ISystem
 		if (_isFullyDamaged) {
 			//PowerManager.Instance.DamageSystem (systemType, -powerReq);
 
+			if (isPowered) {
+				ReceivePowerUpdate (false);
+			}
+
 			pwrMngr.ApplyHealthState (systemType, powerReq, isPowered, this);
-			isPowered = false;
+			//isPowered = false;
 		} 
 
 		if (_isFullyRepaired) {
