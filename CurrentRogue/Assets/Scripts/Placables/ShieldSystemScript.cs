@@ -12,10 +12,13 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	[SerializeField]
 	private GameObject shield;
 	private ShieldScript shieldScr;
+	private ShieldSystemScript originShldSys;
 
 	[SerializeField]
 	private int powerReq;
 	public int PowerReq { get { return powerReq; } }
+	private int fullPwrReq = 0;
+
 	[SerializeField]
 	//the amount of additional hitpoints
 	private int shieldBoost;
@@ -74,6 +77,9 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 		AddToHP (shieldBoost);
 		pwrMngr.PowerSetup (systemType, powerReq);
+
+		originShldSys = GetOriginShielSystem ();
+		originShldSys.fullPwrReq += powerReq;
 	}
 
 	/*
@@ -119,13 +125,13 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 		if (_isFullyDamaged) {
 			//PowerManager.Instance.DamageSystem (1, -powerReq);
 
-			pwrMngr.ApplyHealthState (systemType, powerReq, isPowered);
+			pwrMngr.ApplyHealthState (systemType, powerReq, isPowered, this);
 			isPowered = false;
 		} 
 
 		if (_isFullyRepaired) {
 			//PowerManager.Instance.DamageSystem (1, powerReq);
-			pwrMngr.ApplyHealthState (systemType, -powerReq, isPowered);
+			pwrMngr.ApplyHealthState (systemType, -powerReq, isPowered, this);
 		}
 
 		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
@@ -142,15 +148,27 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	public void UpdatePowerState (bool _isPowered) {
 		if (isPowered) {
 			//try power down
-			pwrMngr.PowerDistribution (systemType, -powerReq);
+			pwrMngr.PowerDistribution (systemType, -powerReq, this);
+			//updates available power
+			//pwrMngr.PowerDistribution (0, powerReq);
+			pwrMngr.UpdateReactor (powerReq);
 			isPowered = false;
 		} else {
 			if (!hScr.IsFullyDamaged) {
+				Debug.Log ("req: " + powerReq);
+				Debug.Log ("full req: " + originShldSys.fullPwrReq);
+				if (this == originShldSys) {
+					if (pwrMngr.EnoughPower (fullPwrReq)) {
+						//try power up
 
-
-				//try power up
-				pwrMngr.PowerDistribution (systemType, powerReq);
-				isPowered = true;
+						pwrMngr.PowerDistribution (systemType, powerReq, this);
+						isPowered = true;
+					}
+				} else {
+					Debug.Log ("fasfaf");
+					pwrMngr.PowerDistribution (systemType, powerReq, this);
+					isPowered = true;
+				}
 			}
 
 			Debug.Log ("is fully damaged: " + hScr.IsFullyDamaged);
@@ -158,5 +176,10 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 		//isPowered = !isPowered;
 		Debug.Log ("shield powered = " + isPowered);
+	}
+
+	private ShieldSystemScript GetOriginShielSystem () {
+		ShieldSystemScript _shldScr = systemScr.GetOriginObj ().GetComponent <ShieldSystemScript> ();
+		return _shldScr;
 	}
 }

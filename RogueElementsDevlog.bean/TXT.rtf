@@ -1640,7 +1640,8 @@ can be called separately by crew.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 \strike \strikec2 -fixed it! //-> BUG: when repaired, system is immediately powered\
-\strike0\striked0 //damaging seems to work for now. \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 //damaging seems to work for now. \
 -reimplement shield\
 -reimplement weapons\
 -implement terminals as interactibles\
@@ -1649,12 +1650,36 @@ can be called separately by crew.\
 	-spawn and sync crew \
 	//the system interactions can be synced through them...\
 -crew to crew combat\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 -have fixed ship size //take out adaptive scaling...\
+-have fixed ship size //take out adaptive scaling...\
 //-> important for networked pos (?)\
 -implement reactor UI and such\
-//something i forgot... but what?\
-\strike \strikec2 \page -create network manager in lobby\
+//something i forgot... but what? ah -> elevators\
+-do elevator interaction by crewPos instead of collider\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 \
+\
+\
+\
+\
+\
+apr 25th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -implement engines\
+-implement reactors\
+	-proper reactor shutdown\
+	//might prove tricky since power management is a one way 		road at the moment...\
+	//fix? -> add all powered systems to a list located on 		shipPwrMngr, remove all destroyed or unpowered ones.\
+	//need separate function or bool to power reactor	\
+	//the origin should know about the full system requirement?\
+	//-> okay, i\'92ve made it worse... \
+	-> back to the drawing-board...\
+//reactor fuel could cost shit, thus you might not want all to 	run full time...\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 \page -create network manager in lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\

@@ -17,6 +17,10 @@ public class ShipPowerMngr : MonoBehaviour
 	//the amount of power invested
 	private int[] powerArr = new int[4];
 
+	private List <ISystem> iSysList = new List<ISystem> ();
+	public List <ISystem> ISysList { get { return iSysList; } }
+
+
 
 	//system setup adding capacities to systemType
 	public void PowerSetup (int _sysType, int _amount) {
@@ -29,22 +33,59 @@ public class ShipPowerMngr : MonoBehaviour
 
 
 	//system gets powered or unpowered
-	public void PowerDistribution (int _sysType, int _amount) {
+	public void PowerDistribution (int _sysType, int _amount, ISystem _iSys) {
+		//if reactor has enough power to give //do that seperately?
+		//if (powerArr [0] - _amount >= 0) {
 		if (powerArr [_sysType] + _amount >= 0) {
 			if (powerArr [_sysType] + _amount <= capacityArr [_sysType]) {
 				powerArr [_sysType] += _amount;
 
 				powerPanel.UpdateUsage (_sysType, powerArr [_sysType]);
+
+				if (_amount < 0) {
+					iSysList.Remove (_iSys);
+				} else {
+					iSysList.Add (_iSys);
+				}
 			} else {
 				Debug.LogError ("fuller than full power!");
 			}
 		} else {
 			Debug.LogError ("sub zero power!");
 		}
+
+		//} else {
+		//	Debug.LogError ("not enough power dipshit!");
+		//}
+	}
+
+	public void UpdateReactor (int _amount) {
+		if (powerArr [0] + _amount >= 0) {
+			if (powerArr [0] + _amount <= capacityArr [0]) {
+				powerArr [0] += _amount;
+
+				powerPanel.UpdateUsage (0, powerArr [0]);
+			} else {
+				Debug.LogError ("fuller than full power!");
+			}
+		} else {
+ 			Debug.LogError ("sub zero power!");
+		}
+	}
+
+	public bool EnoughPower (int _amount) {
+		if (powerArr [0] - _amount >= 0) {
+			//reactor reaction
+			//PowerDistribution (0, -_amount);
+			UpdateReactor (-_amount);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 
-	public void ApplyHealthState (int _sysType, int _amount, bool _wasPowered) {
+	public void ApplyHealthState (int _sysType, int _amount, bool _wasPowered, ISystem _iSys) {
 		//reactor
 		if (_sysType == 0) {
 			Debug.Log ("reactor capaity reduced by " + _amount);
@@ -67,11 +108,11 @@ public class ShipPowerMngr : MonoBehaviour
 		if (_amount > 0 &&  _wasPowered) {
 			//only if system was powered to begin with!
 			//if () {
-			PowerDistribution (_sysType, -_amount);
+			PowerDistribution (_sysType, -_amount, _iSys);
 			//}
 		} else {
 			//to update the red bars
-			PowerDistribution (_sysType, 0);
+			PowerDistribution (_sysType, 0, _iSys);
 		}
 
 		capacityArr [_sysType] -= _amount;

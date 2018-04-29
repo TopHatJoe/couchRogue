@@ -26,6 +26,10 @@ public class ReactorScript : MonoBehaviour, ISystem
 	private int systemType = 0;
 	private ShipPowerMngr pwrMngr;
 
+	private bool isPowered = false;
+	private HealthScript hScr;
+	//private SystemScript systemScr;
+
 
 
 	void Start ()
@@ -35,8 +39,11 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 		GameObject _ship = transform.parent.parent.parent.parent.gameObject;
 		pwrMngr = _ship.GetComponent <ShipPowerMngr> ();
+		hScr = gameObject.GetComponent <HealthScript> ();
 
 		ReactorSetup ();
+
+		pwrMngr.PowerSetup (systemType, componentCapacity);
 	}
 
 
@@ -152,13 +159,13 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 		if (_isFullyDamaged) {
 			//PowerManager.Instance.DamageSystem (systemType, -powerReq);
-			pwrMngr.ApplyHealthState (systemType, componentCapacity, true);
+			pwrMngr.ApplyHealthState (systemType, componentCapacity, true, this);
 		} 
 
 		if (_isFullyRepaired) {
 			//might cause reaktor bugs!
 			//PowerManager.Instance.DamageSystem (systemType, powerReq);
-			pwrMngr.ApplyHealthState (systemType, -componentCapacity, true);
+			pwrMngr.ApplyHealthState (systemType, -componentCapacity, true, this);
 		}
 
 		//Debug.Log ("reaktor: ");
@@ -169,10 +176,49 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 	//to all
 	public void ReceivePowerUpdate (bool _isPowered) {
-		
+		SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
+		_sysScr.UpdatePowerState (_isPowered);
 	}
 
 	public void UpdatePowerState (bool _isPowered) {
+		Debug.Log ("heil reactor");
+
+		if (isPowered) {
+			//try power down
+
+			List <ISystem> _iSysList = pwrMngr.ISysList;
+			int _emergency = 0;
+			while (_emergency < 100) {
+				//checks if theres enough free power for shut down
+				if (pwrMngr.EnoughPower (componentCapacity)) {
+					//pwrMngr.PowerDistribution (systemType, -componentCapacity, this);
+					pwrMngr.UpdateReactor (-componentCapacity);
+					isPowered = false;
+					break;
+				} else {
+					//if there isn't, it shuts a random system down //<- this might prove to be tricky!
+					Debug.LogError ("cant shut down! initiating emergency shutdown"); 
+
+					int _int = Random.Range (1, (_iSysList.Count - 1));
+					_iSysList [_int].ReceivePowerUpdate (false);
+					_emergency++;
+				}
+			}
+		} else {
+			if (!hScr.IsFullyDamaged) {
+				//try power up
+				//pwrMngr.PowerDistribution (systemType, componentCapacity, this);
+				pwrMngr.UpdateReactor (componentCapacity);
+
+				isPowered = true;
+			}
+
+			Debug.Log ("is fully damaged: " + hScr.IsFullyDamaged);
+		}
+
+		//isPowered = !isPowered;
+		Debug.Log ("reactor powered = " + isPowered);
+
 		//isPowered = !isPowered;
 		//Debug.LogError ("engine powered = " + isPowered);
 	}

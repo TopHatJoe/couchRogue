@@ -16,6 +16,8 @@ public class EngineScript : MonoBehaviour, ISystem
 
 	[SerializeField]
 	private int powerReq;
+	//improtant for "isThere enough power?" checks
+	private int fullPwrReq = 0;
 
 	[SerializeField]
 	//the amount by which the evasiveness is hightened
@@ -30,6 +32,7 @@ public class EngineScript : MonoBehaviour, ISystem
 	private bool isLocal = false;
 
 	private ShipPowerMngr pwrMngr;
+	private EngineScript originEngScr;
 
 
 	void Start () {
@@ -49,6 +52,8 @@ public class EngineScript : MonoBehaviour, ISystem
 
 		pwrMngr.PowerSetup (systemType, powerReq);
 
+		originEngScr = GetOriginEngine ();
+		originEngScr.fullPwrReq += powerReq;
 		/* 220418
 		if (NetManager.Instance != null) {
 			if (playerID == NetManager.Instance.localPlayerID) {
@@ -160,13 +165,13 @@ public class EngineScript : MonoBehaviour, ISystem
 		if (_isFullyDamaged) {
 			//PowerManager.Instance.DamageSystem (systemType, -powerReq);
 
-			pwrMngr.ApplyHealthState (3, powerReq, isPowered);
+			pwrMngr.ApplyHealthState (systemType, powerReq, isPowered, this);
 			isPowered = false;
 		} 
 
 		if (_isFullyRepaired) {
 			//PowerManager.Instance.DamageSystem (systemType, powerReq);
-			pwrMngr.ApplyHealthState (3, -powerReq, isPowered);
+			pwrMngr.ApplyHealthState (systemType, -powerReq, isPowered, this);
 		}
 
 		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
@@ -184,15 +189,26 @@ public class EngineScript : MonoBehaviour, ISystem
 	public void UpdatePowerState (bool _isPowered) {
 		if (isPowered) {
 			//try power down
-			pwrMngr.PowerDistribution (systemType, -powerReq);
+			pwrMngr.PowerDistribution (systemType, -powerReq, this);
+			//updates available power
+			//pwrMngr.PowerDistribution (0, powerReq);
+			pwrMngr.UpdateReactor (powerReq);
 			isPowered = false;
 		} else {
 			if (!hScr.IsFullyDamaged) {
-			
-
-				//try power up
-				pwrMngr.PowerDistribution (systemType, powerReq);
-				isPowered = true;
+				Debug.Log ("req: " + powerReq);
+				Debug.Log ("full req: " + originEngScr.fullPwrReq);
+				if (this == originEngScr) {
+					if (pwrMngr.EnoughPower (fullPwrReq)) {
+						//try power up
+						pwrMngr.PowerDistribution (systemType, powerReq, this);
+						isPowered = true;
+					}
+				} else {
+					Debug.Log ("ehhhhh");
+					pwrMngr.PowerDistribution (systemType, powerReq, this);
+					isPowered = true;
+				}
 			}
 
 			Debug.Log ("is fully damaged: " + hScr.IsFullyDamaged);
@@ -202,6 +218,10 @@ public class EngineScript : MonoBehaviour, ISystem
 		Debug.Log ("engine powered = " + isPowered);
 	}
 
+	private EngineScript GetOriginEngine () {
+		EngineScript _engScr = systemScr.GetOriginObj ().GetComponent <EngineScript> ();
+		return _engScr;
+	}
 
 
 	/*
