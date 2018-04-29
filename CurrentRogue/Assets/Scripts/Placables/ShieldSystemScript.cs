@@ -13,6 +13,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	private GameObject shield;
 	private ShieldScript shieldScr;
 	private ShieldSystemScript originShldSys;
+	private bool isOrigin = false;
 
 	[SerializeField]
 	private int powerReq;
@@ -80,6 +81,10 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 		originShldSys = GetOriginShielSystem ();
 		originShldSys.fullPwrReq += powerReq;
+
+		if (this == originShldSys) {
+			isOrigin = true;
+		}
 	}
 
 	/*
@@ -141,10 +146,88 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 	//to all
 	public void ReceivePowerUpdate (bool _isPowered) {
-		SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
-		_sysScr.UpdatePowerState (_isPowered);
+		if (isOrigin) {
+			if (isPowered) {
+				SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+				_sysScr.UpdatePowerState (false);
+			} else {
+				if (!hScr.IsFullyDamaged) {
+					//Debug.Log ("req: " + powerReq);
+					//Debug.Log ("full req: " + originShldSys.fullPwrReq);
+
+					if (pwrMngr.EnoughPower (fullPwrReq)) {
+						//try power up
+						SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+						_sysScr.UpdatePowerState (true);
+
+						//pwrMngr.PowerDistribution (systemType, powerReq, this);
+						//isPowered = true;
+					} else {
+						Debug.LogError ("not enough power");
+					}
+				}
+			}
+		} else {
+			originShldSys.ReceivePowerUpdate (_isPowered);
+		}
+
+		//SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+		//_sysScr.UpdatePowerState (_isPowered);
 	}
 
+
+	public void UpdatePowerState (bool _isPowered) {
+		//Debug.LogError ("PowerUpdate!!!");
+		//at this point we know theres enough power and can power down or up
+		if (isPowered) {
+			//try power down
+			pwrMngr.PowerDistribution (systemType, -powerReq, this);
+			pwrMngr.UpdateReactor (powerReq);
+			isPowered = false;
+		} else {
+			//Debug.Log ("req: " + powerReq);
+			//Debug.Log ("full req: " + originShldSys.fullPwrReq);
+
+			pwrMngr.PowerDistribution (systemType, powerReq, this);
+			isPowered = true;
+		}
+
+
+		/*
+		if (isPowered) {
+			//try power down
+			pwrMngr.PowerDistribution (systemType, -powerReq, this);
+			//updates available power
+			//pwrMngr.PowerDistribution (0, powerReq);
+			pwrMngr.UpdateReactor (powerReq);
+			isPowered = false;
+		} else {
+			if (!hScr.IsFullyDamaged) {
+				Debug.Log ("req: " + powerReq);
+				Debug.Log ("full req: " + originEngScr.fullPwrReq);
+				if (isOrigin) {
+					if (pwrMngr.EnoughPower (fullPwrReq)) {
+						//try power up
+						pwrMngr.PowerDistribution (systemType, powerReq, this);
+						isPowered = true;
+					}
+				} else {
+					//stupid as fuuuuk! -> will always execute no matter what //right?
+					Debug.Log ("ehhhhh");
+					pwrMngr.PowerDistribution (systemType, powerReq, this);
+					isPowered = true;
+				}
+			}
+
+			Debug.Log ("is fully damaged: " + hScr.IsFullyDamaged);
+		}
+		*/
+
+		//isPowered = !isPowered;
+		//Debug.Log ("shield powered = " + isPowered);
+	}
+
+	/*
 	public void UpdatePowerState (bool _isPowered) {
 		if (isPowered) {
 			//try power down
@@ -177,6 +260,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 		//isPowered = !isPowered;
 		Debug.Log ("shield powered = " + isPowered);
 	}
+	*/
 
 	private ShieldSystemScript GetOriginShielSystem () {
 		ShieldSystemScript _shldScr = systemScr.GetOriginObj ().GetComponent <ShieldSystemScript> ();

@@ -60,6 +60,8 @@ public class ShipPowerMngr : MonoBehaviour
 	}
 
 	public void UpdateReactor (int _amount) {
+		//Debug.LogError ("power: " + powerArr [0] + " + " + _amount + " = " + (powerArr [0] + _amount));
+
 		if (powerArr [0] + _amount >= 0) {
 			if (powerArr [0] + _amount <= capacityArr [0]) {
 				powerArr [0] += _amount;
@@ -69,7 +71,7 @@ public class ShipPowerMngr : MonoBehaviour
 				Debug.LogError ("fuller than full power!");
 			}
 		} else {
- 			Debug.LogError ("sub zero power!");
+			Debug.LogError ("sub zero power!");
 		}
 	}
 

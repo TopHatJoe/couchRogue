@@ -7,6 +7,7 @@ public class ReactorScript : MonoBehaviour, ISystem
 	[SerializeField]
 	//the amount of bars added by placing this.Reactor
 	private int componentCapacity;
+	private int fullCapacity;
 
 	//maybe if only the localPlayer adds to capacity...
 	private static int reactorCapacity = 0;
@@ -19,6 +20,8 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 	private Point gridPos;
 	private SystemScript sysScr;
+	private ReactorScript originReactorScr;
+	private bool isOrigin = false;
 
 	private bool isLocalReact = false;
 
@@ -32,6 +35,7 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 
 
+
 	void Start ()
 	{
 		sysScr = gameObject.GetComponent <SystemScript> ();
@@ -40,6 +44,12 @@ public class ReactorScript : MonoBehaviour, ISystem
 		GameObject _ship = transform.parent.parent.parent.parent.gameObject;
 		pwrMngr = _ship.GetComponent <ShipPowerMngr> ();
 		hScr = gameObject.GetComponent <HealthScript> ();
+		originReactorScr = GetOriginReactor ();
+
+		originReactorScr.fullCapacity += componentCapacity;
+		if (this == originReactorScr) {
+			isOrigin = true;
+		}
 
 		ReactorSetup ();
 
@@ -176,8 +186,36 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 	//to all
 	public void ReceivePowerUpdate (bool _isPowered) {
-		SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
-		_sysScr.UpdatePowerState (_isPowered);
+		if (isOrigin) {
+			if (isPowered) {
+				//tryPowerDown
+				if (pwrMngr.EnoughPower (fullCapacity)) {
+					Debug.Log ("canPowerDown");
+					SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
+					_sysScr.UpdatePowerState (_isPowered);
+				} else {
+					//shut down random system & call ReceivePowerUpdate again
+					Debug.LogError ("cant shut down! initiating emergency shutdown");
+					ShutDownRandomSystem (_isPowered);
+				}
+			} else {
+				if (!hScr.IsFullyDamaged) {
+					SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
+					_sysScr.UpdatePowerState (_isPowered);
+				}
+			}
+		} else {
+			originReactorScr.ReceivePowerUpdate (_isPowered);
+		}
+	}
+
+	private void ShutDownRandomSystem (bool _isPowered) {
+		List <ISystem> _iSysList = pwrMngr.ISysList;
+		int _int = Random.Range (1, (_iSysList.Count - 1));
+		_iSysList [_int].ReceivePowerUpdate (false);
+
+		//call ReceivePowerUpdate again
+		ReceivePowerUpdate (_isPowered);
 	}
 
 	public void UpdatePowerState (bool _isPowered) {
@@ -186,6 +224,20 @@ public class ReactorScript : MonoBehaviour, ISystem
 		if (isPowered) {
 			//try power down
 
+			//checks if theres enough free power for shut down
+			//if (pwrMngr.EnoughPower (componentCapacity)) {
+				//is done by the power check already
+				//pwrMngr.UpdateReactor (-componentCapacity);
+
+				//reactorCapacity -= componentCapacity;
+				//Debug.Log ("reactor capacity 00: " + reactorCapacity);
+				isPowered = false;
+			//} else {
+				//if there isn't, it shuts a random system down //<- this might prove to be tricky!
+			//	Debug.LogError ("cant shut down! initiating emergency shutdown"); 
+			//}
+
+			/*
 			List <ISystem> _iSysList = pwrMngr.ISysList;
 			int _emergency = 0;
 			while (_emergency < 100) {
@@ -204,16 +256,18 @@ public class ReactorScript : MonoBehaviour, ISystem
 					_emergency++;
 				}
 			}
+			*/
 		} else {
-			if (!hScr.IsFullyDamaged) {
+			//if (!hScr.IsFullyDamaged) {
 				//try power up
 				//pwrMngr.PowerDistribution (systemType, componentCapacity, this);
 				pwrMngr.UpdateReactor (componentCapacity);
-
+				//reactorCapacity += componentCapacity;
+				//Debug.Log ("reactor capacity 01: " + reactorCapacity);
 				isPowered = true;
-			}
+			//}
 
-			Debug.Log ("is fully damaged: " + hScr.IsFullyDamaged);
+			//Debug.Log ("is fully damaged: " + hScr.IsFullyDamaged);
 		}
 
 		//isPowered = !isPowered;
@@ -222,6 +276,12 @@ public class ReactorScript : MonoBehaviour, ISystem
 		//isPowered = !isPowered;
 		//Debug.LogError ("engine powered = " + isPowered);
 	}
+
+	private ReactorScript GetOriginReactor () {
+		ReactorScript _reactScr = sysScr.GetOriginObj ().GetComponent <ReactorScript> ();
+		return _reactScr;
+	}
+
 
 	/*
 	public void OnDamage () {
