@@ -72,6 +72,7 @@ public class EngineScript : MonoBehaviour, ISystem
 		*/
 	}
 
+	/*
 	public void TryPowerUp () {
 		if (PowerManager.Instance.HasCapacity (systemType, powerReq)) {
 			if (ReactorScript.DirectPower (powerReq)) {
@@ -114,7 +115,7 @@ public class EngineScript : MonoBehaviour, ISystem
 			Debug.Log ("already powered down");
 		}
 	}
-
+	*/
 
 
 	public void SyncedPower (bool _isPowered) {

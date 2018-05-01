@@ -53,6 +53,8 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 		if (_ship.transform.childCount < 7) {
 		//if (_ship.transform.GetChild (7) == null) {
+			//Debug.LogError ("shield stuff called");
+
 			GameObject _shield = (GameObject)Instantiate (shield, _ship.transform);
 			shield = _shield;
 
@@ -72,11 +74,13 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 			shield.transform.localScale = new Vector3 (_scale0, _scale1);
 			*/
 		} else {
+			//Debug.LogError ("no shield stuff called");
+
 			shield = _ship.transform.GetChild (6).gameObject;
 			shieldScr = shield.GetComponent <ShieldScript> ();
 		}
 
-		AddToHP (shieldBoost);
+		//IncreaseShieldCapacity (shieldBoost);
 		pwrMngr.PowerSetup (systemType, powerReq);
 
 		originShldSys = GetOriginShielSystem ();
@@ -94,8 +98,9 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	}
 	*/
 
-	private void AddToHP (int _amount) {
-		shieldScr.SetMax (_amount);
+	private void IncreaseShieldCapacity (int _amount) {
+		//shieldScr.SetMax (_amount);
+		shieldScr.IncreaseCapacity (_amount);
 	}
 
 
@@ -187,12 +192,18 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 			//try power down
 			pwrMngr.PowerDistribution (systemType, -powerReq, this);
 			pwrMngr.UpdateReactor (powerReq);
+
+			IncreaseShieldCapacity (-shieldBoost);
+
 			isPowered = false;
 		} else {
 			//Debug.Log ("req: " + powerReq);
 			//Debug.Log ("full req: " + originShldSys.fullPwrReq);
 
 			pwrMngr.PowerDistribution (systemType, powerReq, this);
+
+			IncreaseShieldCapacity (shieldBoost);
+
 			isPowered = true;
 		}
 

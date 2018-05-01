@@ -51,12 +51,12 @@ public class ReactorScript : MonoBehaviour, ISystem
 			isOrigin = true;
 		}
 
-		ReactorSetup ();
+		//ReactorSetup ();
 
 		pwrMngr.PowerSetup (systemType, componentCapacity);
 	}
 
-
+	/*
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Comma)) {
 			Debug.Log ("capacity: " + reactorCapacity + ", reactorUsage: " + reactorUsage + "\navailablePower: " + availablePower);
@@ -74,6 +74,7 @@ public class ReactorScript : MonoBehaviour, ISystem
 			}
 		}
 	}
+
 
 	private void ReactorSetup () {
 		if (NetManager.Instance != null) {
@@ -130,6 +131,7 @@ public class ReactorScript : MonoBehaviour, ISystem
 		}
 	}
 
+
 	void OnDestroy () {
 		//Debug.Log ("waeeee");
 		if (isLocalReact) {
@@ -160,8 +162,9 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 			PowerManager.Instance.DamageSystem (systemType, powerReq);
 		}
-		*/
+		////
 	}
+	*/
 
 
 	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {

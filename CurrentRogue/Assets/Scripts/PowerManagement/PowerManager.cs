@@ -33,7 +33,7 @@ public class PowerManager : Singleton <PowerManager>
 	//availablePower -> capacity - usage
 
 
-
+	/*
 	//for gun by btn
 	void Update () {
 		if (Input.GetButtonDown ("Gun0")) {
@@ -149,7 +149,7 @@ public class PowerManager : Singleton <PowerManager>
 			_obj.GetComponent <Image> ().color = Color.grey;
 		}
 	}
-	*/
+	////
 
 	public void UpdateSystemCapacity (int _sysType, int _amount) {
 		sysPowerBtns [_sysType].GetComponent <PowerBtnScript> ().IncreaseMaxCapacity (_amount);
@@ -159,7 +159,7 @@ public class PowerManager : Singleton <PowerManager>
 			GameObject _obj = (GameObject) Instantiate (powerBar, systemPower [_sysType].transform);
 			_obj.GetComponent <Image> ().color = Color.grey;
 		}
-		*/
+		////
 	}
 
 	public void UpdatePowerByBtn (int _sysType) {
@@ -180,7 +180,7 @@ public class PowerManager : Singleton <PowerManager>
 		for (int i = 0; i < _amount; i++) {
 			overallBarList [i].GetComponent <Image> ().color = Color.green;
 		}
-		*/
+		////
 	}
 
 	public void RandomSystemShutdown () {
@@ -221,4 +221,5 @@ public class PowerManager : Singleton <PowerManager>
 			return false;
 		}
 	}
-}
+
+	*/

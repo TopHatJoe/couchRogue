@@ -26,6 +26,6 @@ public class ShipScript : MonoBehaviour
 
 	private void GetShield () {
 		shield = transform.GetChild (6).GetComponent <ShieldScript> ();
-		int _int = shield.Power;
+		//int _int = shield.Power;
 	}
 }

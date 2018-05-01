@@ -67,9 +67,9 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 	{
 
 		if (_eventData.button == PointerEventData.InputButton.Left) {
-			GunLogic (true);
+			//GunLogic (true);
 		} else if (_eventData.button == PointerEventData.InputButton.Right) {
-			GunLogic (false);
+			//GunLogic (false);
 		}
 
 		//outsource logic to separate function
@@ -93,6 +93,7 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 	}
 
 
+	/*
 	public void GunLogic (bool _powerUp) {
 		if (_powerUp) {
 			if (!isPowered) {
@@ -110,6 +111,7 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 			TryPowerDown ();
 		}
 	}
+	*/
 
 
 	private void Target () {
@@ -135,7 +137,7 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 		}
 	}
 
-
+	/*
 	public void TryPowerUp () {
 		//debug //fixes IDontGenerateThere//BUG
 		if (notSynced) {
@@ -157,7 +159,7 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 					} else {
 						objImg.color = Color.white;
 						powered = true;
-						*/
+				/////
 			}
 
 			//still needs to do this, since the btn statements cant be synced
@@ -188,7 +190,7 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 			Debug.Log ("already powered down");
 		}
 	}
-
+	*/
 
 	/*
 	public IEnumerator ChargeWeapon () {

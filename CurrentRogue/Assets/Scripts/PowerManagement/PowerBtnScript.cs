@@ -65,6 +65,8 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 		}
 	}
 
+
+	/*
 	//updates number of available powerBars and powersDown if necessary
 	public void UpdateCurrentCapacity (int _amount) {
 		Debug.Log ("updatin cap | amount: " + _amount);
@@ -102,24 +104,31 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 			
 		}
 	}
+	*/
+
 
 	//gets btn input
 	public void OnPointerClick (PointerEventData _eventData)
 	{
-		Debug.Log ("Pre: maxCap: " + maxPowerCapacity + " | currentCap: " + powerCapacity + " | used: " + powerUsage);
+		//Debug.Log ("Pre: maxCap: " + maxPowerCapacity + " | currentCap: " + powerCapacity + " | used: " + powerUsage);
 
 		if (_eventData.button == PointerEventData.InputButton.Left) {
 			//Debug.Log ("clicked!");
-			CheckChunk ();
+
+			//CheckChunk ();
 		} else if (_eventData.button == PointerEventData.InputButton.Right) {
 			//Debug.Log ("right clicked!");
-			UncheckChunk ();
+
+			//UncheckChunk ();
 		}
 
-		Debug.Log ("Post: maxCap: " + maxPowerCapacity + " | currentCap: " + powerCapacity + " | used: " + powerUsage);
+		//Debug.Log ("Post: maxCap: " + maxPowerCapacity + " | currentCap: " + powerCapacity + " | used: " + powerUsage);
 		//Debug.Log ("not clicked!");
 
 	}
+
+
+	/*
 
 	//power up?
 	private void CheckChunk () {
@@ -200,6 +209,8 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 		}
 	}
 
+	*/
+
 
 	public void GetGunBtns (GunBtnScr _gunBtn) {
 		gunBtnList.Add (_gunBtn);
@@ -215,9 +226,11 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 	}
 
 
+	/*
 	public void RemoteShutdown () {
 		UncheckChunk ();
 	}
+	*/
 
 	public bool HasCapacity (int _amount) {
 		int _capacity = maxPowerCapacity - (powerUsage + damage + _amount);
@@ -230,6 +243,7 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 	}
 
 
+	/*
 	public void KeyWeapon (int _index, bool _value) {
 		if (gunBtnList.Count > _index) {
 			gunBtnList [_index].GunLogic (_value);
@@ -237,4 +251,5 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 			Debug.LogError ("not nuff gunz fool!");
 		}
 	}
+	*/
 }

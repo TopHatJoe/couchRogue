@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShieldScript : MonoBehaviour 
 {
+	/* 010518
 	[SerializeField]
 	private GameObject[] shieldLayer;
 
@@ -40,8 +41,93 @@ public class ShieldScript : MonoBehaviour
 	//private bool isPowered;
 
 	private IEnumerator chargeShield;
+	*/
+
+	//maximum amount a shield can be powered by.
+	private int maxCapacity = 8;
+	//the amount of hp the shield
+	private int currentCapacity;
+	//the maximum shield hp is the lower of the above...
+
+	//the current shield hp
+	private int currentAmount;
+
+	private SpriteRenderer sprRenderer;
+	private float alphaUnit;
+
+	[SerializeField]
+	private float chargeTime;
 
 
+
+	public void Setup (int _ID) {
+		Debug.LogError ("shield stuff called");
+
+		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
+
+		GameObject _ship = transform.parent.gameObject;
+		GameObject _field = _ship.transform.GetChild (1).gameObject;
+
+		transform.position = _field.transform.position;
+		float _scale0 = (_field.transform.localScale.x * 16 / 1920);
+		float _scale1 = (_field.transform.localScale.y * 16 / 1080);
+
+		transform.localScale = new Vector3 (_scale0, _scale1);
+
+		alphaUnit = (1f / maxCapacity);
+		Debug.Log ("shield blah " + (alphaUnit));
+
+		UpdateShieldAlpha ();
+
+		StartCoroutine (ChargeShield ());
+	}
+
+	public void IncreaseCapacity (int _amount) {
+		currentCapacity += _amount;
+
+		if (_amount < 0) {
+			if (currentAmount > currentCapacity) {
+				currentAmount = currentCapacity;
+				UpdateShieldAlpha ();
+			}
+		}
+	}
+
+	public void RemoteShield (int _amount) {
+		//is called by cmd stuff... 
+	}
+
+	private void UpdateShieldAlpha () {
+		Color _color = sprRenderer.color;
+		_color.a = (currentAmount * alphaUnit);
+
+		sprRenderer.color = _color;
+		Debug.Log ("shield alpha blah " + (sprRenderer.color.a));
+		//Debug.Log ("shield current blah " + (currentCapacity));
+	}
+
+	private IEnumerator ChargeShield () {
+		while (true) {
+			if (currentAmount < maxCapacity && currentAmount < currentCapacity) {
+				float _elapsedTime = 0;
+				while (_elapsedTime < chargeTime) {
+					_elapsedTime += 0.2f;
+					yield return new WaitForSeconds (0.2f);
+				}
+
+				if (currentAmount < maxCapacity && currentAmount < currentCapacity) {
+					currentAmount++;
+					UpdateShieldAlpha ();
+				} else {
+					Debug.Log ("power was reduced");
+				}
+			}
+
+			yield return new WaitForSeconds (0.32f);
+		}
+	}
+
+	/* 010518
 	public void Setup (int _ID) {
 		//transform.position = _pos;
 		playerID = _ID;
@@ -60,7 +146,7 @@ public class ShieldScript : MonoBehaviour
 		} else {
 			Debug.LogError ("shieldHP == 0!");
 		}
-		*/
+		////
 
 		GameObject _ship = transform.parent.gameObject;
 		GameObject _field = _ship.transform.GetChild (1).gameObject;
@@ -83,7 +169,7 @@ public class ShieldScript : MonoBehaviour
 		} else {
 			Debug.LogError ("NetManager is null!");
 		}
-		*/
+		////
 
 		//Debug.LogError ("loopTIme!"); 
 		chargeShield = ChargeShield ();
@@ -111,7 +197,7 @@ public class ShieldScript : MonoBehaviour
 				currentHP--;
 
 				AdjustAlpha ();
-				*/
+				////
 
 				/*
 				Color _colour = sprRenderer.color;
@@ -119,7 +205,7 @@ public class ShieldScript : MonoBehaviour
 				float _tmp2 = _tmp1 / 255;
 				_colour.a = _tmp2;
 				sprRenderer.color = _colour;
-				*/
+				////
 			}
 		}
 
@@ -155,7 +241,7 @@ public class ShieldScript : MonoBehaviour
 		//sprRenderer.color = new Color (1, 1, 1, _a);
 		sprRenderer.material.color = _colour;
 		//}
-		*/
+		////
 	}
 
 	//could be put in update()
@@ -185,7 +271,7 @@ public class ShieldScript : MonoBehaviour
 				currentHP--;
 				AdjustAlpha ();
 			}
-			*/
+			////
 
 			yield return new WaitForSeconds (0.32f);
 		}
@@ -208,10 +294,46 @@ public class ShieldScript : MonoBehaviour
 		maxShieldHP += _amount;
 	}
 
+	public void RemoteShield (int _power) {
+		power = _power;
+		AdjustAlpha ();
+
+		PowerCheckLoop ();
+		/*
+		while (true) {
+			if (currentHP > power / 2) {
+				//if (chargeShield != null) {
+				//	StopCoroutine (chargeShield);
+				//}
+
+				currentHP--;
+				AdjustAlpha ();
+				//} else if (currentHP = power / 2) {
+				//if (chargeShield != null) {
+				//	StopCoroutine (chargeShield);
+				//}
+
+				//	break;
+			} else {
+				break;
+			}
+		}
+		////
+	}
+
+	private void PowerCheckLoop () {
+		while (true) {
+			if (currentHP > power / 2) {
+				currentHP--;
+				AdjustAlpha ();
+			} else {
+				break;
+			}
+		}
+	}
 
 
-
-
+	/*
 	public void TryPowerUp () {
 		if (power + 2 <= maxPower) {
 			if (ReactorScript.DirectPower (powerReq)) {
@@ -276,7 +398,7 @@ public class ShieldScript : MonoBehaviour
 					break;
 				}
 			}
-			*/
+			////
 
 			PowerManager.Instance.RoutePower (0, -powerReq);
 
@@ -286,44 +408,7 @@ public class ShieldScript : MonoBehaviour
 			Debug.Log ("already powered down");
 		}
 	}
-
-	public void RemoteShield (int _power) {
-		power = _power;
-		AdjustAlpha ();
-
-		PowerCheckLoop ();
-		/*
-		while (true) {
-			if (currentHP > power / 2) {
-				//if (chargeShield != null) {
-				//	StopCoroutine (chargeShield);
-				//}
-
-				currentHP--;
-				AdjustAlpha ();
-				//} else if (currentHP = power / 2) {
-				//if (chargeShield != null) {
-				//	StopCoroutine (chargeShield);
-				//}
-
-				//	break;
-			} else {
-				break;
-			}
-		}
-		*/
-	}
-
-	private void PowerCheckLoop () {
-		while (true) {
-			if (currentHP > power / 2) {
-				currentHP--;
-				AdjustAlpha ();
-			} else {
-				break;
-			}
-		}
-	}
+	*/
 
 	/*
 	private void OnTriggerStay (Collider2D _col) {

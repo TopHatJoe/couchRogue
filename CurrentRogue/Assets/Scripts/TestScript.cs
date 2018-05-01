@@ -16,6 +16,8 @@ public class TestScript : MonoBehaviour
 	[SerializeField]
 	private GameObject target;
 
+
+	/*
 	public void IncrementReactor () {
 		if (ReactorScript.DirectPower (amount)) {
 			Debug.Log ("let there be light");
@@ -38,7 +40,7 @@ public class TestScript : MonoBehaviour
 		//_obj.GetComponent <AmmoScript> ().Fire (target, _angle);
 	}
 
-
+	*/
 
 
 
