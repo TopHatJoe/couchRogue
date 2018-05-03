@@ -28,8 +28,8 @@ public class EngineScript : MonoBehaviour, ISystem
 
 	private int systemType = 3;
 
-	private bool isDamaged = false;
-	private bool isLocal = false;
+	//private bool isDamaged = false;
+	//private bool isLocal = false;
 
 	private ShipPowerMngr pwrMngr;
 	private EngineScript originEngScr;
@@ -227,12 +227,18 @@ public class EngineScript : MonoBehaviour, ISystem
 			//try power down
 			pwrMngr.PowerDistribution (systemType, -powerReq, this);
 			pwrMngr.UpdateReactor (powerReq);
+
+			ship.IncreaseEvasionChance (-componentCapacity);
+
 			isPowered = false;
 		} else {
 			//Debug.Log ("req: " + powerReq);
 			//Debug.Log ("full req: " + originEngScr.fullPwrReq);
 
 			pwrMngr.PowerDistribution (systemType, powerReq, this);
+
+			ship.IncreaseEvasionChance (componentCapacity);
+
 			isPowered = true;
 		}
 

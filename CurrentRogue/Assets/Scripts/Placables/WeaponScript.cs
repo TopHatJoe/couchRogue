@@ -54,11 +54,16 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 	private int[] probArr;
 	private int probCounter;
 
+
+	private ShipScript shipScr;
+
+
 	//TMP
 	void Start ()
 	{
-		SetButton ();
-		ResetBar ();
+		//030518
+		//SetButton ();
+		//ResetBar ();
 
 
 		//GunBtnScr.AssignButton (this);
@@ -83,6 +88,7 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
 		gridPos = _gridPos;
 		tile = LevelManager.Instance.Tiles [gridPos];
+		shipScr = LevelManager.Instance.Ships [gridPos.Z].GetComponent <ShipScript> ();
 
 		saveStr = (objStr + ",7," + gridPos.X.ToString () + "," + gridPos.Y.ToString ());
 		LevelManager.Instance.parameterList.Add (saveStr);
@@ -187,9 +193,6 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 		float _elapsedTime = 0;
 
 		while (_elapsedTime < chargeTime) {
-			
-			//_elapsedTime += Time.deltaTime;
-
 			_elapsedTime += 0.01f;
 
 			//updates bar
@@ -216,8 +219,6 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 				gunBtn.ChargeBtn (true);
 			}
 		}
-
-		//Debug.Log ("weaponWasCharged");
 	}
 
 

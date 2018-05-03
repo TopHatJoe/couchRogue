@@ -94,6 +94,7 @@
      <Compile Include="Assets\Scripts\Placables\SystemScript.cs" />
      <Compile Include="Assets\Scripts\Placables\TargetScript.cs" />
      <Compile Include="Assets\Scripts\Placables\WeaponScript.cs" />
+     <Compile Include="Assets\Scripts\Placables\WeaponSysScr.cs" />
      <Compile Include="Assets\Scripts\PlacementManager.cs" />
      <Compile Include="Assets\Scripts\PlacementParameter.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
