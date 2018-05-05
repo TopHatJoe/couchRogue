@@ -281,6 +281,8 @@ public class ReactorScript : MonoBehaviour, ISystem
 		//isPowered = !isPowered;
 		Debug.Log ("reactor powered = " + isPowered);
 
+		//systemScr.IsPowered = isPowered;
+
 		//isPowered = !isPowered;
 		//Debug.LogError ("engine powered = " + isPowered);
 	}

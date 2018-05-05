@@ -207,6 +207,8 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 			isPowered = true;
 		}
 
+		systemScr.IsPowered = isPowered;
+
 
 		/*
 		if (isPowered) {

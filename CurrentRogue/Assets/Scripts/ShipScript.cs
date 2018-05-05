@@ -10,6 +10,10 @@ public class ShipScript : MonoBehaviour
 	private int evasionChance = 0;
 	public int EvasionChance { get { return evasionChance; } }
 
+	[SerializeField]
+	private Camera shipCam;
+	public Camera ShipCam { get { return shipCam; } }
+
 
 	public void RemoteUpdateEvasionChance (int _eC) {
 		evasionChance = _eC;

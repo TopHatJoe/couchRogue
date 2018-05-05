@@ -48,6 +48,8 @@ public class SystemScript : MonoBehaviour, IPlacable
 
 	private HealthScript hScr;
 
+	private bool isPowered = false;
+	public bool IsPowered { get { return isPowered; } set { isPowered = value; tile.SysIsPowered = value; } }
 
 
 

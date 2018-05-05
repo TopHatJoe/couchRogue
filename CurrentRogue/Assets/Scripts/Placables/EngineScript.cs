@@ -242,6 +242,8 @@ public class EngineScript : MonoBehaviour, ISystem
 			isPowered = true;
 		}
 
+		systemScr.IsPowered = isPowered;
+
 
 		/*
 		if (isPowered) {

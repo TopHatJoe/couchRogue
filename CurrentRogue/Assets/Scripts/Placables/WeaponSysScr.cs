@@ -131,6 +131,8 @@ public class WeaponSysScr : MonoBehaviour, ISystem
 
 			isPowered = true;
 		}
+
+		systemScr.IsPowered = isPowered;
 	}
 
 

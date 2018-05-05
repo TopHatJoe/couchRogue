@@ -37,6 +37,7 @@ public class TileScript : MonoBehaviour
 	private bool walkable; //{ get; set; }
 	public bool Walkable { get { return walkable; } set { walkable = value; emptyCol.enabled = !value; } }
 	public bool SystemPlacable { get; set; }
+	public bool SysIsPowered { get; set; }
 	public bool HasSubSysSlot { get; set; }
 	public bool HasSubSys { get; set; }
 	public bool SubSysPlacable { get; set; }
@@ -196,6 +197,7 @@ public class TileScript : MonoBehaviour
 		}
 
 		ElevatorHere = false;
+		SysIsPowered = false;
 	}
 
 	private void OnMouseOver ()
@@ -968,4 +970,9 @@ public class TileScript : MonoBehaviour
 		ISystem _iSys = transform.GetChild (1).GetChild (0).GetComponent <ISystem> ();
 		return _iSys;
 	}
+
+	public TerminalScr GetTerminal () {
+		TerminalScr _terminalScr = transform.GetChild (6).GetChild (0).GetComponent <TerminalScr> ();
+		return _terminalScr;
+	} 
 }

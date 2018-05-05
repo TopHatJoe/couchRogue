@@ -14,11 +14,13 @@ public class CouchCrewScript : MonoBehaviour
 	private Camera cam;
 	private int couchPlayerID;
 	//the player is using an elevator, repairing stuff etc
-	private bool isOccupied;
+	private bool isOccupied = false;
 	private bool elevatorIsNear;
-	private bool usingElevator;
+	private bool usingElevator = false;
+	private bool usingTerminal = false;
 
 	private ElevatorScript elevator;
+	private TerminalScr terminalScr;
 
 	[SerializeField]
 	private GameObject elevatorMenu;
@@ -56,29 +58,52 @@ public class CouchCrewScript : MonoBehaviour
 			Vector3 _vect = new Vector3 (Input.GetAxis (controllerID + "-H"), 0);
 			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
 		
-
+			/*
 			if (elevatorIsNear) {
 				if (Input.GetButtonDown (controllerID + "-s")) {
 					DoElevatorMenu ();
 				}
 			} else {
-				if (Input.GetButtonDown (controllerID + "-s")) {
-					//power system
-					TileScript _tile = LevelManager.Instance.Tiles [crewPos];
-					if (!_tile.SystemPlacable) {
+			*/	
+			if (Input.GetButtonDown (controllerID + "-s")) {
+				//power system
+				TileScript _tile = LevelManager.Instance.Tiles [crewPos];
+				if (_tile.HasElevator) {
+					DoElevatorMenu ();
+				} else if (!_tile.SystemPlacable) {
+					if (_tile.SysIsPowered && _tile.HasSubSys) {
+						Debug.LogError ("im afraid i cant let you do that dave...");
+						terminalScr = _tile.GetTerminal ();
+
+						isOccupied = true;
+						usingTerminal = true;
+						terminalScr.UseTerminal (this);
+					} else {
 						ISystem _iSys = _tile.GetSystem ();
+
 						//currently just switches
 						_iSys.ReceivePowerUpdate (true);
 					}
 				}
 			}
+			//}
 
 			if (Input.GetButtonDown (controllerID + "-a")) {
 				DoSomeDamage (10);
 			} else if (Input.GetButtonDown (controllerID + "-t")) {
 				DoSomeDamage (-10);
 			}
-		} else if (!usingElevator) {
+		} else //exits terminal
+			if (usingTerminal) {
+				if (Input.GetButtonDown (controllerID + "-c")) {
+					terminalScr.StopUsingTerminal ();
+					usingTerminal = false;
+					isOccupied = false;
+				}
+
+				//switch ship cameras
+
+			} else if (!usingElevator) {
 			if (Input.GetButtonDown (controllerID + "-c")) {
 				StopSomeDamage ();
 			}
@@ -101,6 +126,7 @@ public class CouchCrewScript : MonoBehaviour
 			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 			//Debug.Log ("crewPos: " + crewPos.X);
 		}
+			
 
 
 		/*
@@ -341,6 +367,8 @@ public class CouchCrewScript : MonoBehaviour
 		StopCoroutine (dmgLoop);
 
 		isOccupied = false;
+
+		Debug.LogError ("stopped damaging!");
 	}
 
 	/*
