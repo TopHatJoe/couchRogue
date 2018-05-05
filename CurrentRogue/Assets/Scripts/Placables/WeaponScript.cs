@@ -278,14 +278,14 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 	public void UpdateHealth (int _amount) {
 		Debug.Log ("took Damage");
 	}
-	*/
+	////
 
 
 	//public void OnDamage () {
 
 	//}
 
-	/*
+	////
 	public void TryFire (float _angle) {
 		if (isCharged) {
 			Fire (_angle);

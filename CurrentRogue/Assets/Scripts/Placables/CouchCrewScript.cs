@@ -6,7 +6,8 @@ public class CouchCrewScript : MonoBehaviour
 {
 	private Rigidbody2D rb;
 	private BoxCollider2D col;
-	private float speed = 1024f;
+	[SerializeField]
+	private float speed;
 	private string controllerID;
 	public string ControllerID { get { return controllerID; } }
 	[SerializeField]

@@ -277,5 +277,12 @@ public class Player : Singleton <Player>
 	}
 
 
+	public void LoadFromBtn () {
+		string _shipString = LoadShip (loadFileName);
+
+		Debug.LogError (_shipString);
+		PlaceShip (_shipString, 0);
+	}
+
 	//MADNESS
 }

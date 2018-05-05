@@ -93,6 +93,7 @@
      <Compile Include="Assets\Scripts\Placables\SystemParentScr.cs" />
      <Compile Include="Assets\Scripts\Placables\SystemScript.cs" />
      <Compile Include="Assets\Scripts\Placables\TargetScript.cs" />
+     <Compile Include="Assets\Scripts\Placables\TerminalScr.cs" />
      <Compile Include="Assets\Scripts\Placables\WeaponScript.cs" />
      <Compile Include="Assets\Scripts\Placables\WeaponSysScr.cs" />
      <Compile Include="Assets\Scripts\PlacementManager.cs" />
