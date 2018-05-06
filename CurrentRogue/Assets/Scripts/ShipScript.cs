@@ -14,6 +14,9 @@ public class ShipScript : MonoBehaviour
 	private Camera shipCam;
 	public Camera ShipCam { get { return shipCam; } }
 
+	private List <WeaponScript> weaponList = new List <WeaponScript> ();
+	public List <WeaponScript> WeaponList { get { return weaponList; } }
+
 
 	public void RemoteUpdateEvasionChance (int _eC) {
 		evasionChance = _eC;
@@ -31,5 +34,9 @@ public class ShipScript : MonoBehaviour
 	private void GetShield () {
 		shield = transform.GetChild (6).GetComponent <ShieldScript> ();
 		//int _int = shield.Power;
+	}
+
+	public void AddWeaponToList (WeaponScript _weapon) {
+		weaponList.Add (_weapon);
 	}
 }

@@ -99,6 +99,8 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 		tile.WeaponPlacable = false;
 
 		GameManager.Instance.Buy ();
+
+		shipScr.AddWeaponToList (this);
 	}
 
 
