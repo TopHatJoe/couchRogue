@@ -15,6 +15,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 	private Sprite dmgSprite;
 
 	private SpriteRenderer sprRenderer;
+	private BoxCollider2D thisCol;
 
 	//number of damaged objects in room (including room itself)
 	private int damages = 0;
@@ -94,6 +95,12 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
+		thisCol = gameObject.GetComponent <BoxCollider2D> ();
+		if (CasheScript.Instance.GameMode == 0) {
+			thisCol.enabled = false;
+		} else {
+			thisCol.enabled = true;
+		}
 
 		originObj = _originObj;
 
@@ -564,5 +571,16 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 		//Debug.Log ("isFullyDamaged = " + _isFullyDamaged);
 		//Debug.Log ("isFullyRepaired = " + _isFullyRepaired);
+	}
+
+	/*
+	private void OnTriggerEnter2D (Collider2D _col) {
+		Debug.LogError ("hey youve collided with me. room: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
+	}
+	*/
+
+	public void TargetingPing () {
+		Debug.LogError ("hey youve collided with me. room: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
+		tile.PlaceTarget ();
 	}
 }

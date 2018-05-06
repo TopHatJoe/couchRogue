@@ -53,7 +53,9 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 		//ReactorSetup ();
 
-		pwrMngr.PowerSetup (systemType, componentCapacity);
+		if (CasheScript.Instance.GameMode != 0) {
+			pwrMngr.PowerSetup (systemType, componentCapacity);
+		}
 	}
 
 	/*

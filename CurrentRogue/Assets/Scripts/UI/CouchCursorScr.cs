@@ -14,6 +14,9 @@ public class CouchCursorScr : MonoBehaviour
 
 	private CouchCrewScript couchCrew;
 
+	[SerializeField]
+	private bool isTargeter;
+
 
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
@@ -31,29 +34,82 @@ public class CouchCursorScr : MonoBehaviour
 		rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
 		//Debug.Log (Input.GetAxis (controllerID + "-H") + ", " + Input.GetAxis (controllerID + "-V"));
 
-		if (col != null) {
-			if (Input.GetButtonDown (controllerID + "-s")) {
-				//mayhap just make the cursor useless outside the panel...
-				if (col.GetComponent <ElevatorBtnScr> () != null) {
-					int _levelNum = col.GetComponent <ElevatorBtnScr> ().PressButton ();
-					//Debug.Log ("please dont press that button again");
-					couchCrew.UseElevator (_levelNum);
+		if (!isTargeter) {
+			if (col != null) {
+				if (Input.GetButtonDown (controllerID + "-s")) {
+					//mayhap just make the cursor useless outside the panel...
+					if (col.GetComponent <ElevatorBtnScr> () != null) {
+						int _levelNum = col.GetComponent <ElevatorBtnScr> ().PressButton ();
+						//Debug.Log ("please dont press that button again");
+						couchCrew.UseElevator (_levelNum);
+					}
 				}
+			}
+		} 
+		/*
+		else {
+			if (Input.GetButtonDown (controllerID + "-s")) {
+				//raycast tile, trigger onMouse
+				if (col != null) {
+					TileScript _tile = col.GetComponent <TileScript> ();
+					Debug.Log ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
+				}
+
+			}
+		}
+		*/
+	}
+
+
+	public void OnTriggerStay2D (Collider2D _col) {
+		if (isTargeter) {
+			col = _col;
+
+			if (col != null) {
+				if (Input.GetButtonDown (controllerID + "-s")) {
+					RoomScript _room = col.GetComponent <RoomScript> ();
+					_room.TargetingPing ();
+					//TileScript _tile = _room.transform.parent.parent.GetComponent <TileScript> ();
+					//Debug.LogError ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
+				}
+			} else {
+				Debug.LogError ("col is null!");
 			}
 		}
 	}
 
-	public void OnTriggerEnter2D (Collider2D _col) {
-		col = _col;
-
-		_col.GetComponent <SpriteRenderer> ().color = Color.green;
-		//_col.GetComponent <ElevatorBtnPanelScr> ().PressButton ();
-	}
-
 	public void OnTriggerExit2D (Collider2D _col) {
-		col = null;
+		if (isTargeter) {
+			col = null;
+		} else {
+			col = null;
 
-		_col.GetComponent <SpriteRenderer> ().color = Color.grey;
-		//_col.GetComponent <ElevatorBtnPanelScr> ().PressButton ();
+			_col.GetComponent <SpriteRenderer> ().color = Color.grey;
+			//_col.GetComponent <ElevatorBtnPanelScr> ().PressButton ();
+		}
 	}
+
+
+	public void OnTriggerEnter2D (Collider2D _col) {
+		if (!isTargeter) {
+			col = _col;
+
+			_col.GetComponent <SpriteRenderer> ().color = Color.green;
+			//_col.GetComponent <ElevatorBtnPanelScr> ().PressButton ();
+		}
+		//} else {
+		//	_col.GetComponent <RoomScript> ().TargetingPing ();
+		//}
+	}
+
+	/*
+	public void OnTriggerExit2D (Collider2D _col) {
+		//if (!isTargeter) {
+			col = null;
+
+			_col.GetComponent <SpriteRenderer> ().color = Color.grey;
+			//_col.GetComponent <ElevatorBtnPanelScr> ().PressButton ();
+		//}
+	}
+	*/
 }

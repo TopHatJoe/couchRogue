@@ -33,11 +33,16 @@ public class CouchCrewScript : MonoBehaviour
 	private float tileDistance;
 	private Vector3 previousPos;
 
+	//targeting
+	private GameObject targetingCursor;
+
 
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
 		col = gameObject.GetComponent <BoxCollider2D> ();
 		crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
+
+		targetingCursor = transform.GetChild (3).GetChild (0).gameObject;
 
 		GetTileDistances ();
 
@@ -78,6 +83,7 @@ public class CouchCrewScript : MonoBehaviour
 						isOccupied = true;
 						usingTerminal = true;
 						terminalScr.UseTerminal (this);
+						targetingCursor.gameObject.SetActive (true);
 					} else {
 						ISystem _iSys = _tile.GetSystem ();
 
@@ -97,6 +103,8 @@ public class CouchCrewScript : MonoBehaviour
 			if (usingTerminal) {
 				if (Input.GetButtonDown (controllerID + "-c")) {
 					terminalScr.StopUsingTerminal ();
+
+					targetingCursor.gameObject.SetActive (false);
 					usingTerminal = false;
 					isOccupied = false;
 				}

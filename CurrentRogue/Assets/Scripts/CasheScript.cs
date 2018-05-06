@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//enum GameMode { hangar = 0, classic, couch }
 public class CasheScript : Singleton<CasheScript>
 {
 	[SerializeField]
@@ -19,6 +20,8 @@ public class CasheScript : Singleton<CasheScript>
 
 	private bool couchMode;
 	public bool CouchMode { get { return couchMode; } }
+	private int gameMode;
+	public int GameMode { get { return gameMode; } }
 
 	//divide the screen by this number, spawn that number of crew;
 	private int couchPlayerCount;
@@ -27,6 +30,8 @@ public class CasheScript : Singleton<CasheScript>
 	public int CasheCount { get; private set; }
 
 	private Dictionary <int, string> ctrlDict = new Dictionary <int, string> ();
+
+
 
 
 	void Start ()
@@ -47,6 +52,11 @@ public class CasheScript : Singleton<CasheScript>
 
 	public void SwitchMode (bool _mode) {
 		couchMode = _mode;
+		if (couchMode == true) {
+			gameMode = 2;
+		} else {
+			gameMode = 1;
+		}
 	}
 
 	public void GetCtrlDict (Dictionary <int, string> _ctrlDict) {
@@ -77,4 +87,21 @@ public class CasheScript : Singleton<CasheScript>
 	public void AssignController (CouchCrewScript _couchCrew) {
 		_couchCrew.CouchCrewSetup (ctrlDict [couchCrewCount - 1], couchCrewCount, couchPlayerCount);
 	}
+
+	public void UpdateGameMode (int _mode) {
+		gameMode = _mode;
+
+		if (_mode == 0) {
+			Debug.Log ("hangar");
+		} else if (_mode == 1) {
+			Debug.Log ("classic");
+			SwitchMode (false);
+		} else if (_mode == 2) {
+			Debug.Log ("couch");
+			SwitchMode (true);
+		} else {
+			Debug.LogError ("unknown mode!");
+			gameMode = 0;
+		}
+	}	
 }

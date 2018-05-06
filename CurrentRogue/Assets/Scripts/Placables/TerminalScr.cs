@@ -35,5 +35,7 @@ public class TerminalScr : MonoBehaviour
 		} else {
 			_shipCam.gameObject.SetActive (false);
 		}
+
+
 	}
 }

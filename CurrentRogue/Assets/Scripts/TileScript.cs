@@ -543,7 +543,9 @@ public class TileScript : MonoBehaviour
 		TargetScript _targetScr = _obj.GetComponent <TargetScript> ();
 		_targetScr.PlaceObj (0, this.GridPosition, _obj);
 		//Debug.Log ("target Placer");
-		_targetScr.GetGun (_gunPoint, _angle);
+
+		Debug.LogError ("get gun is commented out");
+		//_targetScr.GetGun (_gunPoint, _angle);
 
 		//_obj.transform.SetParent (transform);
 
@@ -975,4 +977,8 @@ public class TileScript : MonoBehaviour
 		TerminalScr _terminalScr = transform.GetChild (6).GetChild (0).GetComponent <TerminalScr> ();
 		return _terminalScr;
 	} 
+
+	public void PlaceTarget () {
+		SetTarget ("Target");
+	}
 }

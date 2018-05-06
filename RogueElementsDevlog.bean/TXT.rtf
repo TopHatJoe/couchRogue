@@ -1732,7 +1732,8 @@ apr 25th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 \strike \strikec2 -fix hangar shipLoading\
-\strike0\striked0 -implement terminal functionality\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 -implement terminal functionality\
 //are terminals systemType specific or can they be applied to 	anything and their functionality is then determined by the system 	they\'92ve been place on?\
 	-weaponsTerminal\
 		\strike \strikec2 -terminal interaction logic for couchCrew\strike0\striked0 \
@@ -1743,6 +1744,24 @@ apr 25th 2018;\
 		-selecting weapons\
 		-powering weapons\
 		-charging weapons\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 may 6th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -weaponsTerminal\
+	\strike \strikec2 -cursor for aiming\
+\strike0\striked0 	//cursor collision is detected by room\
+	//couchTarget placement works differently from Classic\
+	\strike \strikec2 -placing targets by controller\strike0\striked0  //outcommented tileScr.GetGun\
+	-loading weapons\
+	-selecting weapons\
+	-powering weapons\
+	-charging weapons\
+//weaponSlot has and needs box collider for seemingly no reason.\
+->fix it! //roomCol needs to be deactivated in hangar\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 

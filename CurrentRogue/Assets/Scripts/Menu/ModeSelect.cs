@@ -8,13 +8,16 @@ public class ModeSelect : MonoBehaviour {
 	private Text text;
 	[SerializeField]
 	private bool couchMode = true;
+	[SerializeField]
+	private int mode;
 
 
 	void Start () {
-		couchMode = !couchMode;
-		SwitchMode ();
+		//couchMode = !couchMode;
+		//SwitchMode ();
 	}
 
+	/*
 	public void SwitchMode () {
 		couchMode = !couchMode;
 
@@ -27,8 +30,10 @@ public class ModeSelect : MonoBehaviour {
 		Debug.Log ("couchmode = " + couchMode);
 		CasheScript.Instance.SwitchMode (couchMode);
 	}
+	*/
 
 	public void SelectMode (bool _couchMode) {
-		CasheScript.Instance.SwitchMode (_couchMode);
+		//CasheScript.Instance.SwitchMode (_couchMode);
+		CasheScript.Instance.UpdateGameMode (mode);
 	}
 }
