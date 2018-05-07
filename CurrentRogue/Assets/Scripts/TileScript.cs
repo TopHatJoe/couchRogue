@@ -514,7 +514,12 @@ public class TileScript : MonoBehaviour
 		//GameObject _gun = PlacementManager.Instance.GunObj;
 		//Point _gunPos = _gun.GetComponent <WeaponScript> ().GridPos;
 		//Vector3 _gunVect = new Vector3 (_gunPos.X, _gunPos.Y, _gunPos.Z);
-		Point _gunPoint = PlacementManager.Instance.GunPoint;
+
+		Debug.LogError ("gun finder!");
+		//Point _gunPoint = PlacementManager.Instance.GunPoint;
+		ShipScript _ship = transform.parent.parent.GetComponent <ShipScript> ();
+		Point _gunPoint = _ship.WeaponList [0].GridPos;
+
 		Vector3 _gunPos = new Vector3 (_gunPoint.X, _gunPoint.Y, _gunPoint.Z);
 
 
@@ -545,7 +550,7 @@ public class TileScript : MonoBehaviour
 		//Debug.Log ("target Placer");
 
 		Debug.LogError ("get gun is commented out");
-		//_targetScr.GetGun (_gunPoint, _angle);
+		_targetScr.GetGun (_gunPoint, _angle);
 
 		//_obj.transform.SetParent (transform);
 

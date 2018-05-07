@@ -1,8 +1,10 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
 {\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Menlo-Italic;
 \f3\fnil\fcharset0 Menlo-BoldItalic;}
-{\colortbl;\red255\green255\blue255;\red51\green51\blue51;\red116\green112\blue94;}
-{\*\expandedcolortbl;;\csgenericrgb\c20000\c20000\c20000;\csgenericrgb\c45490\c43922\c36863;}
+{\colortbl;\red255\green255\blue255;\red51\green51\blue51;\red116\green112\blue94;\red51\green51\blue51;
+\red88\green109\blue117;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c20000\c20000\c20000;\csgenericrgb\c45490\c43922\c36863;\cssrgb\c25880\c25884\c25879;
+\csgenericrgb\c34510\c42745\c45882;\cssrgb\c0\c0\c0;}
 \paperw12240\paperh15840\margl1011\margr1011\margb1445\margt1011\vieww14000\viewh16000\viewkind1\viewscale191
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
@@ -1751,7 +1753,7 @@ apr 25th 2018;\
 \f0\b \cf2 may 6th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 -weaponsTerminal\
+\f1\b0 \cf2 -\cf4 weaponsTerminal\cf2 \
 	\strike \strikec2 -cursor for aiming\
 \strike0\striked0 	//cursor collision is detected by room\
 	//couchTarget placement works differently from Classic\
@@ -1759,9 +1761,21 @@ apr 25th 2018;\
 //out-commented tileScr.GetGun\
 //weaponSlot has and needs box collider for seemingly no reason.\
 ->fix it! \
-\strike \strikec2 -fix roomCol\strike0\striked0  //roomCol needs to be deactivated in hangar\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -fix roomCol\strike0\striked0  //roomCol needs to be deactivated in hangar\
 \strike \strikec2 -implement 3mode structure\strike0\striked0  //hangar, classic, couch\
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 may 7th 2018;\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf5 	\cf4 //when terminal is used -> sys is powered. \uc0\u8232 	//for weaponScr that means, that you may distribute any available 	weaponPower //but cant aim without a terminal\u8232 	//players can only do that by using a terminal.\u8232 	//-> there may be weaponSys without terminals, but you can't 		interface with it, just boost the available power\
+	\strike \strikec4 -firing weapons \strike0\striked0 //though without random acc, with just one gun, 		just one player, etc. 
+\f0\b //but damaging works!
+\f1\b0 \
+	-implement terminal kick //kick user from terminal if system or 		terminal is destroyed or unpowered\
+	\cf6 \uc0\u8232 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \

@@ -129,7 +129,9 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 		GameObject _obj = Instantiate (ammo, ammoSpawn.transform.position, Quaternion.identity);
 		//wtf is this even necessary?
 		if (_obj.GetComponent <AmmoScript> () != null) {
-			_obj.GetComponent <AmmoScript> ().Fire (targetObj, probArr [probCounter], _angle, gridPos.Z, damage);
+			//Debug.Log (probArr [probCounter]);
+			Debug.LogError ("removed random probability");
+			_obj.GetComponent <AmmoScript> ().Fire (targetObj, 35, _angle, gridPos.Z, damage);
 		} else {
 			Debug.LogError ("NO AMMO!!!");
 		}
