@@ -2,20 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Placables/WeaponScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/Placables/WeaponScript.cs" Line="134" Column="57" />
-      <File FileName="Assets/Scripts/Placables/TerminalScr.cs" Line="45" Column="4" />
+      <File FileName="Assets/Scripts/Placables/WeaponScript.cs" Line="40" Column="80" />
+      <File FileName="Assets/Scripts/Placables/TerminalScr.cs" Line="53" Column="33" />
       <File FileName="Assets/Scripts/LevelManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/ShipScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/WeaponSysScr.cs" Line="124" Column="21" />
-      <File FileName="Assets/Scripts/Placables/GunBtnScr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/ReactorScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/CouchCursorScr.cs" Line="89" Column="3" />
-      <File FileName="Assets/Scripts/TileScript.cs" Line="520" Column="31" />
-      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/TargetScript.cs" Line="43" Column="20" />
-      <File FileName="Assets/Scripts/PlayerInfo.cs" Line="161" Column="23" />
-      <File FileName="Assets/Scripts/NetManager.cs" Line="366" Column="23" />
+      <File FileName="Assets/Scripts/Placables/WeaponSysScr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="548" Column="60" />
+      <File FileName="Assets/Scripts/TileScript.cs" Line="303" Column="48" />
+      <File FileName="Assets/Scripts/UI/CouchCursorScr.cs" Line="74" Column="51" />
+      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="584" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -579,8 +579,8 @@ public class RoomScript : MonoBehaviour, IPlacable
 	}
 	*/
 
-	public void TargetingPing () {
+public void TargetingPing (int _gunID) {
 		Debug.LogError ("hey youve collided with me. room: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
-		tile.PlaceTarget ();
+		tile.PlaceTarget (_gunID);
 	}
 }

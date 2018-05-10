@@ -10,8 +10,12 @@ public class CouchCrewScript : MonoBehaviour
 	private float speed;
 	private string controllerID;
 	public string ControllerID { get { return controllerID; } }
+
 	[SerializeField]
 	private Camera cam;
+	[SerializeField]
+	private Camera crewShipCam;
+
 	private int couchPlayerID;
 	//the player is using an elevator, repairing stuff etc
 	private bool isOccupied = false;
@@ -35,6 +39,9 @@ public class CouchCrewScript : MonoBehaviour
 
 	//targeting
 	private GameObject targetingCursor;
+
+	private ShipScript targetedShip;
+
 
 
 	void Start () {
@@ -77,13 +84,16 @@ public class CouchCrewScript : MonoBehaviour
 					DoElevatorMenu ();
 				} else if (!_tile.SystemPlacable) {
 					if (_tile.SysIsPowered && _tile.HasSubSys) {
-						Debug.LogError ("im afraid i cant let you do that dave...");
+						//use terminal
+						//Debug.LogError ("im afraid i cant let you do that dave...");
 						terminalScr = _tile.GetTerminal ();
 
 						isOccupied = true;
 						usingTerminal = true;
 						terminalScr.UseTerminal (this);
 						targetingCursor.gameObject.SetActive (true);
+
+
 					} else {
 						ISystem _iSys = _tile.GetSystem ();
 
@@ -103,10 +113,18 @@ public class CouchCrewScript : MonoBehaviour
 			if (usingTerminal) {
 				if (Input.GetButtonDown (controllerID + "-c")) {
 					terminalScr.StopUsingTerminal ();
+					SetCrewCamValues (null, false);
 
 					targetingCursor.gameObject.SetActive (false);
 					usingTerminal = false;
 					isOccupied = false;
+				}
+
+				//swap weapons //temp?
+				if (Input.GetButtonDown (controllerID + "-a")) {
+					terminalScr.SwapWeapon (1);
+				} else if (Input.GetButtonDown (controllerID + "-t")) {
+					terminalScr.SwapWeapon (-1);
 				}
 
 				//switch ship cameras
@@ -161,6 +179,8 @@ public class CouchCrewScript : MonoBehaviour
 			FourPlayerSplit (_couchPlayerID);
 		}
 
+		crewShipCam.rect = cam.rect;
+
 		CanvasManager.Instance.CouchCanvas (couchPlayerID, cam);
 	}
 
@@ -192,7 +212,7 @@ public class CouchCrewScript : MonoBehaviour
 			Rect _rect2 = new Rect (0.5f, 0f, 0.5f, 0.5f);
 			cam.rect = _rect2;
 		}
-
+			
 
 		//Rect _rect0 = new Rect (0f, 0.5f, 1f, 0.5f);
 		//Rect _rect1 = new Rect (0f, 0f, 0.5f, 0.5f);
@@ -506,4 +526,25 @@ public class CouchCrewScript : MonoBehaviour
 		}
 	}
 	*/
+
+	public void SetCrewCamValues (ShipScript _ship, bool _usingTerminal) {
+		if (_usingTerminal) {
+			targetedShip = _ship;
+			crewShipCam.transform.SetParent (targetedShip.transform);
+			Debug.LogError ("cam size: " + crewShipCam.orthographicSize);
+			crewShipCam.orthographicSize = targetedShip.ShipCam.orthographicSize;
+			Debug.LogError ("cam size: " + crewShipCam.orthographicSize);
+
+			crewShipCam.transform.position = new Vector3 (0, 0, -20);
+			cam.gameObject.SetActive (false);
+			crewShipCam.gameObject.SetActive (true);
+		}
+
+		cam.gameObject.SetActive (!_usingTerminal);
+		crewShipCam.gameObject.SetActive (_usingTerminal);
+	}
+
+	public void GiveTerminalReference (TerminalScr _terminal) {
+		targetingCursor.GetComponent <CouchCursorScr> ().Terminal = _terminal;
+	}
 }

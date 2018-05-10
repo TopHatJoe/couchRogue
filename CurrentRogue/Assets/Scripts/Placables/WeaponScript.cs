@@ -180,8 +180,11 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 	private void HandleCharge (bool _isPowered) {
 		if (_isPowered) {
-			chargeLoop = ChargeLoop ();
-			StartCoroutine (chargeLoop);
+			//if wasn't previously powered
+			//if (!isPowered) {
+				chargeLoop = ChargeLoop ();
+				StartCoroutine (chargeLoop);
+			//}
 		} else {
 			StopCoroutine (chargeLoop);
 			isCharged = false;
@@ -191,6 +194,8 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 				gunBtn.ChargeBtn (false);
 			}
 		}
+
+		//isPowered = _isPowered;
 	}
 
 	private IEnumerator ChargeLoop () {

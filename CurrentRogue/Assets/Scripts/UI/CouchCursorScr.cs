@@ -17,6 +17,9 @@ public class CouchCursorScr : MonoBehaviour
 	[SerializeField]
 	private bool isTargeter;
 
+	private TerminalScr terminal;
+	public TerminalScr Terminal { get { return terminal; } set { terminal = value; } }
+
 
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
@@ -68,7 +71,7 @@ public class CouchCursorScr : MonoBehaviour
 			if (col != null) {
 				if (Input.GetButtonDown (controllerID + "-s")) {
 					RoomScript _room = col.GetComponent <RoomScript> ();
-					_room.TargetingPing ();
+					_room.TargetingPing (terminal.CurrentWeaponID);
 					//TileScript _tile = _room.transform.parent.parent.GetComponent <TileScript> ();
 					//Debug.LogError ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
 				}

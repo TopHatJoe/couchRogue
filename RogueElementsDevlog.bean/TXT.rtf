@@ -1775,7 +1775,29 @@ apr 25th 2018;\
 \f0\b //but damaging works!
 \f1\b0 \
 	-implement terminal kick //kick user from terminal if system or 		terminal is destroyed or unpowered\
-	\cf6 \uc0\u8232 \
+\
+	\
+	
+\f0\b may 10th 2018;\
+	
+\f1\b0 -implement couch mp weapon usage\
+		\strike \strikec4 -implement splitscreen shipScreen\strike0\striked0 //spawn an instance of cam? \
+		//relocate cam -> size and position copied from shipCam?\
+		-> save standardCamValues\
+		//no can do -> pos is relative to player -> 2 cams\
+		//all couchPlayers have 2 cams, a crewCam and a ship cam 			that becomes the child of the monitored ship	-> spawned by c\
+		\strike \strikec4 -implement weapon selection\
+		\strike0\striked0 -weapon charge feels hinky //whenever the gun is changed, it 		recharges, but is still fireable if the gun was previously 			charged. when i tried to fix the issue, the guns stopped 			working after a few shots fired...\
+		//but switching weapons isn\'92t supposed to power the weapons 		in the first place, so it\'92s just a not yet coded issue...\
+	-reimplement online mp \
+		~or~\
+	-implement ai/enemy ships\
+	-implement crew damaging\
+	-implement crew to crew combat\
+	-fix fullSpace elevator obstruction //elevators can move crew 		through fullspace tiles. they shouldn\'92t...\
+	-get rid of ship scaling //have one size, thats it... let unitys 	cameras handle the rest.\
+	-create shipFrame creation software\
+	\cf6 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \

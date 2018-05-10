@@ -136,6 +136,7 @@
      <None Include="Assets\Resources\triton.txt" />
      <None Include="Assets\Resources\old Ships\LevelOriginal.txt" />
      <None Include="Assets\Resources\concorde.txt" />
+     <None Include="Assets\Resources\conquista.txt" />
      <None Include="Assets\Resources\trisect.txt" />
      <None Include="Assets\Resources\normandy.txt" />
      <None Include="Assets\Resources\gurrenBU.txt" />
