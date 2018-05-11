@@ -41,6 +41,8 @@ public class CouchCrewScript : MonoBehaviour
 	private GameObject targetingCursor;
 
 	private ShipScript targetedShip;
+	private Color crewColor;
+	public Color CrewColor { get { return crewColor; } } 
 
 
 
@@ -63,6 +65,8 @@ public class CouchCrewScript : MonoBehaviour
 		//_cam = transform.GetChild (0).gameObject.GetComponent <Camera> ();
 
 		//StartCoroutine (Test ());
+
+		CrewColorAssignment ();
 	}
 
 	void Update () {
@@ -182,6 +186,20 @@ public class CouchCrewScript : MonoBehaviour
 		crewShipCam.rect = cam.rect;
 
 		CanvasManager.Instance.CouchCanvas (couchPlayerID, cam);
+
+
+	}
+
+	private void CrewColorAssignment () {
+		if (couchPlayerID == 1) {
+			crewColor = Color.white;
+		} else if (couchPlayerID == 2) {
+			crewColor = Color.red;
+		} else if (couchPlayerID == 3) {
+			crewColor = Color.yellow;
+		} else if (couchPlayerID == 4) {
+			crewColor = Color.cyan;
+		} 
 	}
 
 	private void TwoPlayerSplit (int _couchPlayerID) {

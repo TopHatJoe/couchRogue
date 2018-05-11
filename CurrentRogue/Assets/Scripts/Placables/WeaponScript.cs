@@ -40,6 +40,8 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 	public bool IsPowered { get { return isPowered; } set { HandleCharge (value); isPowered = value; } }
 
 	public bool isCharged;
+	private bool isCharging = false;
+
 	private bool hasTarget;
 
 	private float angleTmp;
@@ -57,13 +59,19 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 	private ShipScript shipScr;
 
+	[SerializeField]
+	private SpriteRenderer outlinesSpr;
+
+	public bool isUsedByCrew;
+
+
 
 	//TMP
 	void Start ()
 	{
 		//030518
-		//SetButton ();
-		//ResetBar ();
+		SetButton ();
+		ResetBar ();
 
 
 		//GunBtnScr.AssignButton (this);
@@ -180,13 +188,17 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 	private void HandleCharge (bool _isPowered) {
 		if (_isPowered) {
-			//if wasn't previously powered
-			//if (!isPowered) {
+			if (!isCharging) {
 				chargeLoop = ChargeLoop ();
 				StartCoroutine (chargeLoop);
-			//}
+			}
 		} else {
 			StopCoroutine (chargeLoop);
+			isCharging = false;
+
+			//might fix wonky charge issue in couchWeapon management
+			//chargeLoop = null;
+
 			isCharged = false;
 			ResetBar ();
 
@@ -199,6 +211,8 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 	}
 
 	private IEnumerator ChargeLoop () {
+		isCharging = true;
+
 		float _elapsedTime = 0;
 
 		while (_elapsedTime < chargeTime) {
@@ -216,6 +230,7 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 		//isCharged = true;
 		//gunBtn.ChargeBtn (true);
 
+		isCharging = false;
 
 		if (hasTarget) {
 			//yield return new WaitForSeconds (0.01f);
@@ -323,5 +338,10 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
 
+	}
+
+	public void HandleOutline (bool _isActive, Color _color) {
+		outlinesSpr.color = _color;
+		outlinesSpr.gameObject.SetActive (_isActive);
 	}
 }

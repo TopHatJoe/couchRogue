@@ -10,11 +10,13 @@ public class TerminalScr : MonoBehaviour
 	private int currentWeaponID = 0;
 	public int CurrentWeaponID { get { return currentWeaponID; } }
 
+	private Color userColor;
+
 
 	public void UseTerminal (CouchCrewScript _user) {
 		Debug.LogError ("hello there mr. crew!");
 
-
+		userColor = _user.CrewColor;
 		//gun terminal behaviour
 
 			//switch to full ship view
@@ -80,33 +82,90 @@ public class TerminalScr : MonoBehaviour
 
 		//whats the purpose of this?
 		if (currentWeapon != null) {
+			currentWeapon.HandleOutline (false, userColor);
+			currentWeapon.isUsedByCrew = false;
 			currentWeapon.IsPowered = true;
 		}
 	}
 
-	public void SwapWeapon (int _amount) {
-		currentWeaponID += _amount;
 
-		if (currentWeaponID < 0) {
-			currentWeaponID = (ship.WeaponList.Count - 1);
-		} else if (currentWeaponID >= ship.WeaponList.Count) {
-			currentWeaponID = 0;
+	public void SwapWeapon (int _amount) {
+		if (currentWeapon != null) { 
+			//deacts the outline of previous weapon
+			currentWeapon.HandleOutline (false, userColor);
+			currentWeapon.isUsedByCrew = false;
 		}
 
-		Debug.LogError ("current gun: " + currentWeaponID);
-		GetWeapon ();
+		int _counter = currentWeaponID;
+		bool _weaponFree;
+
+		while (true) {
+			currentWeaponID += _amount;
+
+			if (currentWeaponID < 0) {
+				currentWeaponID = (ship.WeaponList.Count - 1);
+			} else if (currentWeaponID >= ship.WeaponList.Count) {
+				currentWeaponID = 0;
+			}
+
+			//Debug.LogError ("current gun: " + currentWeaponID);
+			GetWeapon ();
+
+			if (!currentWeapon.isUsedByCrew) {
+				_weaponFree = true;
+				break;
+			}
+
+			if (currentWeaponID == _counter) {
+				Debug.LogError ("all weapons in use!");
+				_weaponFree = false;
+				break;
+			}
+		}
+
+
+		if (_weaponFree) {
+			ActivateWeapon ();
+		} else {
+			Debug.LogError ("stop using terminal");
+			//StopUsingTerminal ();
+		}
 	}
+
 
 	private void GetWeapon () {
 		//should be outsourced to weaponTerminal subScr?
 
+		/*
+		if (currentWeapon != null) { 
+			//deacts the outline of previous weapon
+			currentWeapon.HandleOutline (false);
+		}
+		*/
 
 		if (ship.WeaponList.Count > currentWeaponID) {
 			currentWeapon = ship.WeaponList [currentWeaponID];
 		} 
 
+		/*
 		if (currentWeapon != null) {
-			currentWeapon.IsPowered = true;
+			currentWeapon.HandleOutline (true); 	
+
+			if (!currentWeapon.IsPowered) {
+				currentWeapon.IsPowered = true;
+			}
+		}
+		*/
+	}
+
+	private void ActivateWeapon () {
+		if (currentWeapon != null) {
+			currentWeapon.isUsedByCrew = true;
+			currentWeapon.HandleOutline (true, userColor); 	
+
+			if (!currentWeapon.IsPowered) {
+				currentWeapon.IsPowered = true;
+			}
 		}
 	}
 
