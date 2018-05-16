@@ -798,21 +798,35 @@ public class TileScript : MonoBehaviour
 			} else {
 
 				if (CasheScript.Instance.CouchMode) {
-					if (CasheScript.Instance.CouchCrewFits ()) {
+					if (GridPosition.Z == NetManager.Instance.localPlayerID) {
+						//could quite possibly become a problem when implementing shipHopping...
 
-						//CC -> couch coop
-						_objStr = _objStr + "CC";
+						//Debug.LogError ("pos: " + GridPosition.Z + ", netID: " + NetManager.Instance.localPlayerID);
+						if (CasheScript.Instance.CouchCrewFits ()) {
+							//CC -> couch coop
+							_objStr = _objStr + "CC";
 
-						//PlaceObj (_objStr);
-						GameObject _obj = (GameObject)Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
-						IPlacable _placable = _obj.GetComponent <IPlacable> ();
-						_placable.PlaceObj (0, this.GridPosition, _obj);
+							//PlaceObj (_objStr);
 
-						CasheScript.Instance.AssignController (_obj.GetComponent <CouchCrewScript> ());
+							//whats group!?
+							//GameObject _obj = (GameObject)Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
 
-						//maybe not the best place for this
-						if (Camera.main != null) {
-							Camera.main.gameObject.SetActive (false);
+							//NetManager.Instance.SpawnCrew (LevelManager.Instance.ObjDict [_objStr]);
+
+
+							GameObject _obj = (GameObject) Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
+							IPlacable _placable = _obj.GetComponent <IPlacable> ();
+							_placable.PlaceObj (0, this.GridPosition, _obj);
+
+							CasheScript.Instance.AssignController (_obj.GetComponent <CouchCrewScript> ());
+
+							//maybe not the best place for this
+							if (Camera.main != null) {
+								Camera.main.gameObject.SetActive (false);
+							}
+
+
+							NetManager.Instance.SpawnCrewCmd (_obj);
 						}
 					} else {
 						Debug.Log ("not enough couch companions for full crew");

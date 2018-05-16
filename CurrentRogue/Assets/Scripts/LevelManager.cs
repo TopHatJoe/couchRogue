@@ -129,7 +129,7 @@ public class LevelManager : Singleton<LevelManager>
 		SetShipsActive ();
 
 		//Debug.Log ("Start start");
-		SetTheScreenUp ();
+		ScreenSetup ();
 		//Debug.Log ("Screen was Setup");
 
 		CreateLevel ();
@@ -226,9 +226,11 @@ public class LevelManager : Singleton<LevelManager>
 	}
 
 
-	private void SetTheScreenUp ()
+	private void ScreenSetup ()
 	{
-		gameObject.GetComponent <ScreenSetup> ().Setup ();
+		ScreenSetup _screen = gameObject.GetComponent <ScreenSetup> ();
+		_screen.Setup ();
+		screenWidthFloat = _screen.ScreenWidth;
 	}
 
 	private void CreateLevel ()

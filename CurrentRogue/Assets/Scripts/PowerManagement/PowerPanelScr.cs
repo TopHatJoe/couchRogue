@@ -14,7 +14,7 @@ public class PowerPanelScr : MonoBehaviour
 
 
 	public void AddBars (int _sysType, int _amount) {
-		Debug.Log ("oi Panel");
+		//Debug.Log ("oi Panel");
 		barTowerArr [_sysType].AddBars (_amount);
 
 		/*

@@ -1814,22 +1814,49 @@ apr 25th 2018;\
 	//if the cursor is very between tiles, the collision won\'92t work.\cf6 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 -implement weapon powerManagement\
-\strike \strikec2 -stop charge coroutine properly\strike0\striked0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -stop charge coroutine properly\strike0\striked0 \
 //weapon charge behavior makes no damn sense. -> rewrite
 \f0\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 -fix pathGoal assignment //in classic\
+\f1\b0 \cf2 -fix pathGoal assignment //in classic\
 //dafuq!? the damn thing simply won\'92t work properly...\
 -> same issue as i have with the couchCursor? collider issue?\
 //could be some collider obstructing the tile...\
-\strike \strikec2 -give active weapon colour coded outline\strike0\striked0  //may be removed\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -multiuser weapon management\strike0\striked0  //if someone uses the weapon, it 	can\'92t be used by somebody else? or is can multiple people use the 	same weapon?\
+\cf2 \strike \strikec2 -give active weapon colour coded outline\strike0\striked0  //may be removed\
+\strike \strikec2 -multiuser weapon management\strike0\striked0  //if someone uses the weapon, it 	can\'92t be used by somebody else? or is can multiple people use the 	same weapon?\
 //already targeted rooms should still be targetable\
-//missed shots should also remove their target obj.\strike \strikec2 \
-\page -create network manager in lobby\
+//missed shots should also remove their target obj.\
+\
+\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
+
+\f0\b \cf2 may 15th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 \strike \strikec2 -implement mp powerDisplay\strike0\striked0 \
+-implement synced powerManagement\strike \strikec2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 -spawn couchCrew\
+-implement couchTargeting ship switch \
+//switching between ships in couchTargeting\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 may 16th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 \strike \strikec2 -fix resolution\strike0\striked0  //no more var! just fixed ^^\
+//alter cam to fit ship, instead of altering ship to fit cam...\
+//make cam a child of displayField?\
+-spawn couchCrew\
+\strike \strikec2 	-spawn hostCouchCrew\
+\strike0\striked0 	-spawn clientCouchCrew\
+	//client can\'92t spawn!?\strike \strikec2 \page -create network manager in lobby\
+\strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -assign unique networkID to every player.\strike0\striked0 \

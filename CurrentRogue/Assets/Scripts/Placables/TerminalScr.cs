@@ -14,7 +14,7 @@ public class TerminalScr : MonoBehaviour
 
 
 	public void UseTerminal (CouchCrewScript _user) {
-		Debug.LogError ("hello there mr. crew!");
+		//Debug.LogError ("hello there mr. crew!");
 
 		userColor = _user.CrewColor;
 		//gun terminal behaviour
@@ -25,7 +25,7 @@ public class TerminalScr : MonoBehaviour
 		ship = LevelManager.Instance.Ships[0].GetComponent <ShipScript> ();
 		Camera _shipCam = ship.ShipCam;
 		if (_shipCam == null) {
-			Debug.LogError ("no cam!");
+			Debug.Log ("no cam!");
 		} else {
 			//_shipCam.gameObject.SetActive (true);
 			_user.SetCrewCamValues (ship, true);
@@ -36,7 +36,7 @@ public class TerminalScr : MonoBehaviour
 			if (_sysObj.transform.GetChild (0).GetComponent <WeaponSysScr> () != null) {
 				weaponSysScr = _sysObj.transform.GetChild (0).GetComponent <WeaponSysScr> ();
 			} else {
-				Debug.LogError ("weaponSysScr == null");
+				Debug.Log ("weaponSysScr == null");
 			}
 		}
 
@@ -117,7 +117,7 @@ public class TerminalScr : MonoBehaviour
 			}
 
 			if (currentWeaponID == _counter) {
-				Debug.LogError ("all weapons in use!");
+				Debug.Log ("all weapons in use!");
 				_weaponFree = false;
 				break;
 			}

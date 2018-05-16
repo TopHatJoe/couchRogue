@@ -61,7 +61,7 @@ public class ShieldScript : MonoBehaviour
 
 
 	public void Setup (int _ID) {
-		Debug.LogError ("shield stuff called");
+		//Debug.LogError ("shield stuff called");
 
 		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
 
@@ -102,7 +102,7 @@ public class ShieldScript : MonoBehaviour
 		_color.a = (currentAmount * alphaUnit);
 
 		sprRenderer.color = _color;
-		Debug.Log ("shield alpha blah " + (sprRenderer.color.a));
+		//Debug.Log ("shield alpha blah " + (sprRenderer.color.a));
 		//Debug.Log ("shield current blah " + (currentCapacity));
 	}
 

@@ -172,7 +172,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 						//pwrMngr.PowerDistribution (systemType, powerReq, this);
 						//isPowered = true;
 					} else {
-						Debug.LogError ("not enough power");
+						Debug.Log ("not enough power");
 					}
 				}
 			}

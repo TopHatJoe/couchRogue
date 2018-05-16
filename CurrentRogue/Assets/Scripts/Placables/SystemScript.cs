@@ -125,7 +125,7 @@ public class SystemScript : MonoBehaviour, IPlacable
 					originSys.RemoveSystem (true);
 				}
 			} else {
-				Debug.LogError ("System is Obstructed");
+				Debug.Log ("System is Obstructed");
 			}
 		}
 

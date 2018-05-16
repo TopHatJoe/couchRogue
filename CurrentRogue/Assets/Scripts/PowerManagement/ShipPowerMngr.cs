@@ -9,6 +9,8 @@ public class ShipPowerMngr : MonoBehaviour
 	//[SerializeField]
 	//private GameObject powerBar;
 
+	[SerializeField]
+	private int shipID;
 
 	//the maximum capacity of the system based on what the ship has installed
 	private int[] maxCapacityArr = new int[4];
@@ -21,6 +23,15 @@ public class ShipPowerMngr : MonoBehaviour
 	public List <ISystem> ISysList { get { return iSysList; } }
 
 
+	void Start () {
+		if (NetManager.Instance.localPlayerID == shipID) {
+			powerPanel.gameObject.SetActive (true);
+			Debug.LogError ("da same");
+		}
+
+		Debug.LogError ("ship: " + shipID + ", localPlayer: " + NetManager.Instance.localPlayerID);
+	}
+
 
 	//system setup adding capacities to systemType
 	public void PowerSetup (int _sysType, int _amount) {
@@ -28,7 +39,7 @@ public class ShipPowerMngr : MonoBehaviour
 		capacityArr [_sysType] = maxCapacityArr [_sysType];
 
 		powerPanel.AddBars (_sysType, _amount);
-		Debug.Log (_sysType + ", " + maxCapacityArr [_sysType]);
+		//Debug.Log (_sysType + ", " + maxCapacityArr [_sysType]);
 	}
 
 

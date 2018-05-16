@@ -22,12 +22,25 @@ public class ScreenSetup : MonoBehaviour
 	[SerializeField]
 	private GameObject gunBtnField;
 
+	private float screenHeight;
+	private float screenWidth;
+	public float ScreenWidth { get { return screenWidth; } }
+
 
 	public void Setup ()
 	{
+		SetValues ();
 		SetCamera ();
 		SetDisplayField ();
 		GridFieldSetup ();
+	}
+
+	private void SetValues () {
+		//screenHeight = Screen.height;
+		screenHeight = 900;
+		//screenWidth = Screen.width;
+		screenWidth = 1600;
+
 	}
 
 	private void SetCamera ()
@@ -35,12 +48,12 @@ public class ScreenSetup : MonoBehaviour
 		//let it set up all cams simultaniously...
 
 		//sets the camera to make 1unit = 1px
-		mainCamera.GetComponent<Camera> ().orthographicSize = (Screen.height * 5);
+		mainCamera.GetComponent<Camera> ().orthographicSize = (screenHeight * 5);
 
 		//sets the size of other cams
 		//for (int i = 0; i < otherCameras.Length; i++) {
 		for (int i = 0; i < LevelManager.Instance.NumOfShips; i++) {
-			otherCameras [i].GetComponent<Camera> ().orthographicSize = (Screen.height * 5);
+			otherCameras [i].GetComponent<Camera> ().orthographicSize = (screenHeight * 5);
 		}
 
 		//debugging
@@ -48,7 +61,7 @@ public class ScreenSetup : MonoBehaviour
 		//Debug.Log ("screen hight: " + Screen.height + "\nscreen width: " + Screen.width);
 		//Debug.Log ("ratio = " + screenTileRatio);
 
-		float screenSize = Screen.width;
+		//float screenSize = screenWidth;
 		//float numOfTile = 48;
 		//float otherScreenTileRatio = (screenSize / numOfTile);
 		//Debug.Log ("screen hight: " + Screen.height + "\nscreen width from float: " + screenSize + "\nnumOfTile: " + numOfTile);
@@ -58,7 +71,7 @@ public class ScreenSetup : MonoBehaviour
 	private void SetDisplayField ()
 	{
 		//sets the display field to match the screenRes
-		displayField.transform.localScale = new Vector3 (Screen.width, Screen.height, 1);
+		displayField.transform.localScale = new Vector3 (screenWidth, screenHeight, 1);
 	}
 
 	private void GridFieldSetup ()
@@ -70,8 +83,8 @@ public class ScreenSetup : MonoBehaviour
 
 		//for (int i = 0; i < gridFields.Length; i++) {
 		for (int i = 0; i < LevelManager.Instance.NumOfShips; i++) {
-			gridFields [i].transform.position = otherCameras [i].GetComponent <Camera> ().ScreenToWorldPoint (new Vector3 (0, ((Screen.height / 2) - (((Screen.width / 16) * 9) / 2)), 20));
-			gridFields [i].transform.localScale = new Vector3 (Screen.width, ((Screen.width / 16) * 9), 0);
+			gridFields [i].transform.position = otherCameras [i].GetComponent <Camera> ().ScreenToWorldPoint (new Vector3 (0, ((screenHeight / 2) - (((screenWidth / 16) * 9) / 2)), 20));
+			gridFields [i].transform.localScale = new Vector3 (screenWidth, ((screenWidth / 16) * 9), 0);
 		}
 	}
 }

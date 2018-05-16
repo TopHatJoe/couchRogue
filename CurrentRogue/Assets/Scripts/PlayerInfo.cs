@@ -389,4 +389,26 @@ public class PlayerInfo : NetworkBehaviour
 		WeaponScript _weapon = _tile.transform.GetChild (0).GetComponent <WeaponScript> ();
 		_weapon.ReceiveProbStr (_probStr);
 	}
+
+
+	public void SpawnCouchCrew (GameObject _obj) {
+		NetworkServer.Spawn (_obj);
+		Debug.LogError ("oi! spawned Crew!");
+
+		//CmdSpawnCouchCrew (_obj);
+	}
+
+	[Command]
+	private void CmdSpawnCouchCrew (GameObject _obj) {
+		//RpcSpawnCouchCrew ();
+		NetworkServer.Spawn (_obj);
+		Debug.LogError ("oi! spawned Crew!");
+	}  
+
+	/*
+	[ClientRpc]
+	private void RpcSpawnCouchCrew (GameObject _obj) {
+		
+	}
+	*/
 }

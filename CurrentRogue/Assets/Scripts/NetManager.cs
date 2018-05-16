@@ -9,6 +9,9 @@ public class NetManager : Singleton <NetManager>
 	//[SerializeField]
 	//private GameObject[] shipObjs;
 
+	[SerializeField]
+	private NetworkManager networkMngr;
+
 	private int numOfPlayers;
 	public int NumOfPlayers { get { return numOfPlayers; } }
 
@@ -394,8 +397,12 @@ public class NetManager : Singleton <NetManager>
 		playerList [localPlayerID].SyncProbStr (_pos, _probStr);
 	}
 
+	public void SpawnCrewCmd (GameObject _obj) {
+		playerList [localPlayerID].SpawnCouchCrew (_obj);
+	}
+
 	
-	
+
 
 	/*
 	public void SetCrewIndex () {

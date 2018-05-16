@@ -44,6 +44,8 @@ public class CouchCrewScript : MonoBehaviour
 	private Color crewColor;
 	public Color CrewColor { get { return crewColor; } } 
 
+	private bool isLocal = false;
+
 
 
 	void Start () {
@@ -70,10 +72,23 @@ public class CouchCrewScript : MonoBehaviour
 	}
 
 	void Update () {
+		if (isLocal) {
+			CrewControls ();
+		}
+
+		/*
+		if (true) {
+			Vector3 _vect = Vector3.left;
+			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
+		}
+		*/
+	}
+
+	private void CrewControls () {
 		if (!isOccupied) {
 			Vector3 _vect = new Vector3 (Input.GetAxis (controllerID + "-H"), 0);
 			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
-		
+
 			/*
 			if (elevatorIsNear) {
 				if (Input.GetButtonDown (controllerID + "-s")) {
@@ -134,10 +149,10 @@ public class CouchCrewScript : MonoBehaviour
 				//switch ship cameras
 
 			} else if (!usingElevator) {
-			if (Input.GetButtonDown (controllerID + "-c")) {
-				StopSomeDamage ();
+				if (Input.GetButtonDown (controllerID + "-c")) {
+					StopSomeDamage ();
+				}
 			}
-		}
 
 
 		//reassigns crewPos
@@ -156,19 +171,13 @@ public class CouchCrewScript : MonoBehaviour
 			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 			//Debug.Log ("crewPos: " + crewPos.X);
 		}
-			
 
 
-		/*
-		if (true) {
-			Vector3 _vect = Vector3.left;
-			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
-		}
-		*/
 	}
 
 	public void CouchCrewSetup (string _controllerID, int _couchPlayerID, int _couchCount) {
 		controllerID = _controllerID;
+		isLocal = true;
 
 		//Debug.Log ("playerID: " + _couchPlayerID);
 		//Debug.Log ("couchCount: " + _couchCount);
@@ -414,7 +423,7 @@ public class CouchCrewScript : MonoBehaviour
 
 		isOccupied = false;
 
-		Debug.LogError ("stopped damaging!");
+		Debug.Log ("stopped damaging!");
 	}
 
 	/*
@@ -549,9 +558,9 @@ public class CouchCrewScript : MonoBehaviour
 		if (_usingTerminal) {
 			targetedShip = _ship;
 			crewShipCam.transform.SetParent (targetedShip.transform);
-			Debug.LogError ("cam size: " + crewShipCam.orthographicSize);
+			//Debug.LogError ("cam size: " + crewShipCam.orthographicSize);
 			crewShipCam.orthographicSize = targetedShip.ShipCam.orthographicSize;
-			Debug.LogError ("cam size: " + crewShipCam.orthographicSize);
+			//Debug.LogError ("cam size: " + crewShipCam.orthographicSize);
 
 			crewShipCam.transform.position = new Vector3 (0, 0, -20);
 			cam.gameObject.SetActive (false);
