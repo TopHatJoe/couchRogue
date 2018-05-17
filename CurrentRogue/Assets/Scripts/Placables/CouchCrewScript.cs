@@ -69,12 +69,16 @@ public class CouchCrewScript : MonoBehaviour
 		//StartCoroutine (Test ());
 
 		CrewColorAssignment ();
+
+		Debug.LogError ("isLocalCrew: " + isLocal);
 	}
 
 	void Update () {
 		if (isLocal) {
 			CrewControls ();
 		}
+
+		ReassignCrewPos ();
 
 		/*
 		if (true) {
@@ -85,6 +89,7 @@ public class CouchCrewScript : MonoBehaviour
 	}
 
 	private void CrewControls () {
+		//Debug.LogError ("ctrl!");
 		if (!isOccupied) {
 			Vector3 _vect = new Vector3 (Input.GetAxis (controllerID + "-H"), 0);
 			rb.MovePosition (transform.position + _vect * speed * Time.deltaTime);
@@ -128,33 +133,35 @@ public class CouchCrewScript : MonoBehaviour
 			} else if (Input.GetButtonDown (controllerID + "-t")) {
 				DoSomeDamage (-10);
 			}
-		} else //exits terminal
-			if (usingTerminal) {
-				if (Input.GetButtonDown (controllerID + "-c")) {
-					terminalScr.StopUsingTerminal ();
-					SetCrewCamValues (null, false);
+			//exits terminal
+		} else if (usingTerminal) {
+			if (Input.GetButtonDown (controllerID + "-c")) {
+				terminalScr.StopUsingTerminal ();
+				SetCrewCamValues (null, false);
 
-					targetingCursor.gameObject.SetActive (false);
-					usingTerminal = false;
-					isOccupied = false;
-				}
-
-				//swap weapons //temp?
-				if (Input.GetButtonDown (controllerID + "-a")) {
-					terminalScr.SwapWeapon (1);
-				} else if (Input.GetButtonDown (controllerID + "-t")) {
-					terminalScr.SwapWeapon (-1);
-				}
+				targetingCursor.gameObject.SetActive (false);
+				usingTerminal = false;
+				isOccupied = false;
+			}
+			
+			//swap weapons //temp?
+			if (Input.GetButtonDown (controllerID + "-a")) {
+				terminalScr.SwapWeapon (1);
+			} else if (Input.GetButtonDown (controllerID + "-t")) {
+				terminalScr.SwapWeapon (-1);
+			}
 
 				//switch ship cameras
 
-			} else if (!usingElevator) {
-				if (Input.GetButtonDown (controllerID + "-c")) {
-					StopSomeDamage ();
-				}
+		} else if (!usingElevator) {
+			if (Input.GetButtonDown (controllerID + "-c")) {
+				StopSomeDamage ();
 			}
+		}
+	}
 
 
+	private void ReassignCrewPos () {
 		//reassigns crewPos
 		if (transform.position.x - previousPos.x > tileDistance) {
 			//moved to the right
@@ -171,11 +178,13 @@ public class CouchCrewScript : MonoBehaviour
 			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 			//Debug.Log ("crewPos: " + crewPos.X);
 		}
-
-
 	}
 
+
+
 	public void CouchCrewSetup (string _controllerID, int _couchPlayerID, int _couchCount) {
+		Debug.LogError ("crewSetup");
+
 		controllerID = _controllerID;
 		isLocal = true;
 
@@ -193,6 +202,7 @@ public class CouchCrewScript : MonoBehaviour
 		}
 
 		crewShipCam.rect = cam.rect;
+		cam.gameObject.SetActive (true);
 
 		CanvasManager.Instance.CouchCanvas (couchPlayerID, cam);
 
@@ -404,7 +414,7 @@ public class CouchCrewScript : MonoBehaviour
 		previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 		//previousPos = _vect;
 
-		//Debug.Log ("crewPos: " + crewPos.X + ", " + crewPos.Y);
+		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y);
 	}
 
 

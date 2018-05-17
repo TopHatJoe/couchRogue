@@ -392,10 +392,10 @@ public class PlayerInfo : NetworkBehaviour
 
 
 	public void SpawnCouchCrew (GameObject _obj) {
-		NetworkServer.Spawn (_obj);
-		Debug.LogError ("oi! spawned Crew!");
+		//NetworkServer.Spawn (_obj);
+		Debug.LogError ("oi! sendin to server!");
 
-		//CmdSpawnCouchCrew (_obj);
+		CmdSpawnCouchCrew (_obj);
 	}
 
 	[Command]

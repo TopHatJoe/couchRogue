@@ -1854,8 +1854,28 @@ apr 25th 2018;\
 //make cam a child of displayField?\
 -spawn couchCrew\
 \strike \strikec2 	-spawn hostCouchCrew\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 	-spawn clientCouchCrew\
+	//client can\'92t spawn!?\
+-fix shipBuildIssue //ship won\'92t be placed if build is host...\
+//-> if editor is client!? wtf?\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 may 17th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -spawn couchCrew\strike \strikec2 \
 \strike0\striked0 	-spawn clientCouchCrew\
-	//client can\'92t spawn!?\strike \strikec2 \page -create network manager in lobby\
+	//client can\'92t spawn!? //-> it would seem that it isn\'92t 		possible to send obj from clients to servers?\
+	//it\'92s the only explanation i could come up with...\
+	//good news is, server side spawned obj work fine and are 		synced properly... they are controlled only by the local 		players etc...\
+	//-> fix: spawn crew by sending a string to the server, the 		server instantiates the obj, passes the owners info to all 		clients and only the owner can runs CouchCrewSetup ();\
+	//or place crew only on server, then distribute placement 		rights? -> no! cuz i need dem couchPlayerCounts...\
+	//could sync those though... is it worth it though?\
+	-> it might be since you might want to know the size of the 		team you\'92re up against? but then, the way it looks now, you 		would anyways... \strike \strikec2 \page -create network manager in lobby\
 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
