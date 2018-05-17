@@ -813,12 +813,13 @@ public class TileScript : MonoBehaviour
 
 							//NetManager.Instance.SpawnCrew (LevelManager.Instance.ObjDict [_objStr]);
 
-
+							/*
 							GameObject _obj = (GameObject) Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
 							IPlacable _placable = _obj.GetComponent <IPlacable> ();
 							_placable.PlaceObj (0, this.GridPosition, _obj);
 
 							CasheScript.Instance.AssignController (_obj.GetComponent <CouchCrewScript> ());
+							*/
 
 							//maybe not the best place for this
 							if (Camera.main != null) {
@@ -826,7 +827,7 @@ public class TileScript : MonoBehaviour
 							}
 
 
-							NetManager.Instance.SpawnCrewCmd (_obj);
+							NetManager.Instance.SpawnCrewCmd (GridPosition, _objStr);
 						}
 					} else {
 						Debug.Log ("not enough couch companions for full crew");
@@ -998,7 +999,28 @@ public class TileScript : MonoBehaviour
 		return _terminalScr;
 	} 
 
-public void PlaceTarget (int _gunID) {
+	public void PlaceTarget (int _gunID) {
 		SetTarget ("Target", _gunID);
+	}
+
+	//only called on server
+	public GameObject RemoteCouchCrew (string _objStr) {
+		GameObject _obj = (GameObject) Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
+		IPlacable _placable = _obj.GetComponent <IPlacable> ();
+		_placable.PlaceObj (0, this.GridPosition, _obj);
+
+		//CasheScript.Instance.AssignController (_obj.GetComponent <CouchCrewScript> ());
+		/*
+		if (GridPosition.Z == NetManager.Instance.localPlayerID) {
+			//isLocal = true;
+
+			//couchCrewSetup is called by this as well...
+			CasheScript.Instance.AssignController (_obj.GetComponent <CouchCrewScript> ());
+		}
+
+		Debug.LogError ("crewPos: " + GridPosition.Z + ", netID: " + NetManager.Instance.localPlayerID);
+		*/
+
+		return _obj;
 	}
 }

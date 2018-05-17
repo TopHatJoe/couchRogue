@@ -397,8 +397,10 @@ public class NetManager : Singleton <NetManager>
 		playerList [localPlayerID].SyncProbStr (_pos, _probStr);
 	}
 
-	public void SpawnCrewCmd (GameObject _obj) {
-		playerList [localPlayerID].SpawnCouchCrew (_obj);
+		public void SpawnCrewCmd (Point _pos, string _objStr) {
+		Vector3 _posVect = PointToVector (_pos);
+
+		playerList [localPlayerID].SpawnCouchCrew (_posVect, _objStr);
 	}
 
 	

@@ -391,17 +391,24 @@ public class PlayerInfo : NetworkBehaviour
 	}
 
 
-	public void SpawnCouchCrew (GameObject _obj) {
+	public void SpawnCouchCrew (Vector3 _posVect, string _objStr) {
 		//NetworkServer.Spawn (_obj);
 		Debug.LogError ("oi! sendin to server!");
 
-		CmdSpawnCouchCrew (_obj);
+		CmdSpawnCouchCrew (_posVect, _objStr);
 	}
 
 	[Command]
-	private void CmdSpawnCouchCrew (GameObject _obj) {
+	private void CmdSpawnCouchCrew (Vector3 _posVect, string _objStr) {
 		//RpcSpawnCouchCrew ();
+		Point _pos = VectorToPoint (_posVect);
+
+		//instantiate crew
+		GameObject _obj = LevelManager.Instance.Tiles [_pos].RemoteCouchCrew (_objStr);
+
+		//spawn crew
 		NetworkServer.Spawn (_obj);
+
 		Debug.LogError ("oi! spawned Crew!");
 	}  
 

@@ -1875,8 +1875,25 @@ apr 25th 2018;\
 	//-> fix: spawn crew by sending a string to the server, the 		server instantiates the obj, passes the owners info to all 		clients and only the owner can runs CouchCrewSetup ();\
 	//or place crew only on server, then distribute placement 		rights? -> no! cuz i need dem couchPlayerCounts...\
 	//could sync those though... is it worth it though?\
-	-> it might be since you might want to know the size of the 		team you\'92re up against? but then, the way it looks now, you 		would anyways... \strike \strikec2 \page -create network manager in lobby\
-\strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
+	-> it might be since you might want to know the size of the 		team you\'92re up against? but then, the way it looks now, you 		would anyways... \
+	//seems to work... but the controller assignment is too fast 		for this spawning method... i\'92ll have to send the string `		with it //place crew last?\
+	\strike \strikec2 -fix slowNetSync issue\strike0\striked0 \
+	//rigidbody sync is not the way to go it seems...\
+	
+\f0\b //crewPos isn\'92t set!
+\f1\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 	
+\f1\b0 //okay... that\'92s it for today... it didn\'92t work sadly. 		although the cam was set properly this time, the clients 		position isn\'92t synced, the servers position has an offset...\
+	//i\'92ll just set the networkTransform back from rb to pos\
+	
+\f0\b //client crew doesn\'92t have authority!! \
+	
+\f1\b0 -> cuz it was instantiated on the server! \
+	//can it be overridden? //how do i do that?\strike \strikec2 \page -create network manager in lobby\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -assign unique networkID to every player.\strike0\striked0 \

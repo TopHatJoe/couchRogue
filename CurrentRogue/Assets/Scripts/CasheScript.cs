@@ -31,6 +31,8 @@ public class CasheScript : Singleton<CasheScript>
 
 	private Dictionary <int, string> ctrlDict = new Dictionary <int, string> ();
 
+	//because reasons //net sync too slow...
+	private int assignedCrewCount = 0;
 
 
 
@@ -85,7 +87,13 @@ public class CasheScript : Singleton<CasheScript>
 	}
 
 	public void AssignController (CouchCrewScript _couchCrew) {
-		_couchCrew.CouchCrewSetup (ctrlDict [couchCrewCount - 1], couchCrewCount, couchPlayerCount);
+		//crew placement os too fast for network sync 
+		//-> count needs to be increased twice, once for placement, once for controller 
+
+		assignedCrewCount++;
+		_couchCrew.CouchCrewSetup (ctrlDict [assignedCrewCount - 1], assignedCrewCount, couchPlayerCount);
+
+		//_couchCrew.CouchCrewSetup (ctrlDict [couchCrewCount - 1], couchCrewCount, couchPlayerCount);
 	}
 
 	public void UpdateGameMode (int _mode) {

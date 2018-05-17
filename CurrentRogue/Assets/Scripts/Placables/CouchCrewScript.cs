@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class CouchCrewScript : MonoBehaviour 
+public class CouchCrewScript : NetworkBehaviour 
 {
 	private Rigidbody2D rb;
 	private BoxCollider2D col;
@@ -47,11 +48,12 @@ public class CouchCrewScript : MonoBehaviour
 	private bool isLocal = false;
 
 
-
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
 		col = gameObject.GetComponent <BoxCollider2D> ();
 		crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
+		CmdSyncCrewPos ();
+
 
 		targetingCursor = transform.GetChild (3).GetChild (0).gameObject;
 
@@ -583,5 +585,32 @@ public class CouchCrewScript : MonoBehaviour
 
 	public void GiveTerminalReference (TerminalScr _terminal) {
 		targetingCursor.GetComponent <CouchCursorScr> ().Terminal = _terminal;
+	}
+
+	[Command]
+	private void CmdSyncCrewPos () {
+		//the servers crewPos was set properly...
+		Vector3 _vect = new Vector3 (crewPos.X, crewPos.Y, crewPos.Z);
+
+		Debug.LogError ("crewPosOnServer");
+
+		RpcSyncCrewPos (_vect);
+	}
+
+	[ClientRpc]
+	private void RpcSyncCrewPos (Vector3 _vect) {
+		Point _pos = new Point (Mathf.RoundToInt(_vect.x), Mathf.RoundToInt(_vect.y), Mathf.RoundToInt(_vect.z));
+
+		crewPos = _pos;
+
+		if (crewPos.Z == NetManager.Instance.localPlayerID) {
+			isLocal = true;
+
+			//couchCrewSetup is called by this as well...
+			CasheScript.Instance.AssignController (this);
+		}
+
+		Debug.LogError ("RpcCrewPos: " + crewPos.Z + ", netID: " + NetManager.Instance.localPlayerID);
+
 	}
 }
