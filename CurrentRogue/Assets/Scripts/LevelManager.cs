@@ -473,14 +473,17 @@ public class LevelManager : Singleton<LevelManager>
 	}
 
 	private IEnumerator ArtificialDelayIni () {
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (1f);
+
+		Debug.LogError ("placement ini");
 
 		//this check is probably unnecessary since its perfomed within place all ships...
 		if (NetManager.Instance != null) {
 			if (NetManager.Instance.localPlayerID == 0) {
-				if (CasheScript.Instance.AutoPlace) {
+				//if (CasheScript.Instance.AutoPlace) {
+					Debug.LogError ("Placing all ships?");
 					PlaceAllShips ();
-				}
+				//}
 			}
 		} 
 

@@ -26,9 +26,11 @@ public class NetManager : Singleton <NetManager>
 	public List <PlayerInfo> playerList;
 	//public Dictionary <NetworkHash128, CrewScript> crewDict = new Dictionary<NetworkHash128, CrewScript> ();
 
-	//a diectionary of connwctions and objects
-	[SerializeField]
-	public Dictionary <NetworkConnection, GameObject> objByConn;
+	//a diectionary of connections and objects
+	//[SerializeField]
+	//public Dictionary <NetworkConnection, GameObject> objByConn;
+	private Dictionary <int, NetworkConnection> connDict = new Dictionary <int, NetworkConnection> ();
+	public Dictionary <int, NetworkConnection> ConnDict { get { return connDict; } }
 
 
 	[SerializeField]
@@ -122,6 +124,8 @@ public class NetManager : Singleton <NetManager>
 		GetLocalPLayerID ();
 		Declarations ();
 
+		//get conns
+		GetConns ();
 		//CheckForMissingStrings ();
 		//DeclareShipArray ();
 		//LevelManager.Instance.Setup ();
@@ -177,6 +181,19 @@ public class NetManager : Singleton <NetManager>
 		}
 		*/
 	}
+
+
+
+
+	private void GetConns () {
+		for (int i = 0; i < playerList.Count; i++) {
+			connDict.Add (i, playerList [i].connectionToClient);
+			Debug.LogError ("Conn: " + i + ", " + playerList [i].connectionToClient);
+		}
+	}
+
+
+
 
 	/*
 	private void CheckForMissingStrings ()
@@ -404,8 +421,18 @@ public class NetManager : Singleton <NetManager>
 	}
 
 	
+	public void OnPlayerConnected (NetworkPlayer _player) {
+		Debug.Log ("playerIP: " + _player.ipAddress);
+	}
 
 
+	/*
+	public void AddToConnDict (int _playerID, NetworkConnection _conn) {
+		connDict.Add (_playerID, _conn);
+		Debug.LogError ("Conn: " + _playerID + ", " + _conn);
+	}
+	*/
+	
 	/*
 	public void SetCrewIndex () {
 		Debug.Log ("crew");

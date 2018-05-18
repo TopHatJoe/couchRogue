@@ -40,6 +40,12 @@ public class PlayerInfo : NetworkBehaviour
 
 
 		DontDestroyOnLoad (this);
+
+		//adds conn to server.connList
+		Debug.LogError ("localPlayer?: " + isLocalPlayer);
+		if (isLocalPlayer) {
+		//	CmdAddConn (connectionToClient);
+		}
 	}
 		
 
@@ -411,6 +417,14 @@ public class PlayerInfo : NetworkBehaviour
 
 		Debug.LogError ("oi! spawned Crew!");
 	}  
+
+
+	/*
+	[Command]
+	private void CmdAddConn (NetworkConnection _conn) {
+		NetManager.Instance.AddToConnDict (PlayerID, _conn);
+	}
+	*/
 
 	/*
 	[ClientRpc]

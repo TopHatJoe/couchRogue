@@ -7,6 +7,7 @@ public class CouchCrewScript : NetworkBehaviour
 {
 	private Rigidbody2D rb;
 	private BoxCollider2D col;
+	private NetworkIdentity netID;
 	[SerializeField]
 	private float speed;
 	private string controllerID;
@@ -51,8 +52,14 @@ public class CouchCrewScript : NetworkBehaviour
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
 		col = gameObject.GetComponent <BoxCollider2D> ();
-		crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
-		CmdSyncCrewPos ();
+		netID = gameObject.GetComponent <NetworkIdentity> ();
+		if (isServer) {
+			//NetworkIdentity.
+			crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
+			CmdSyncCrewPos ();
+
+			netID.AssignClientAuthority (NetManager.Instance.ConnDict [crewPos.Z]);
+		}
 
 
 		targetingCursor = transform.GetChild (3).GetChild (0).gameObject;
@@ -164,6 +171,10 @@ public class CouchCrewScript : NetworkBehaviour
 
 
 	private void ReassignCrewPos () {
+		//Debug.LogError ("crewtrans: " + transform.position.x);
+		//Debug.LogError ("crewPrev: " + previousPos.x);
+		//Debug.LogError ("tileDist: " + tileDistance);
+
 		//reassigns crewPos
 		if (transform.position.x - previousPos.x > tileDistance) {
 			//moved to the right
@@ -413,10 +424,14 @@ public class CouchCrewScript : NetworkBehaviour
 		crewPos.X += _amount;
 		//Vector3 _vect = LevelManager.Instance.Tiles [crewPos].transform.position;
 		//_vect.x -= (tileDistance / 2);
+
+		//stuff here!
+		Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
 		previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 		//previousPos = _vect;
 
 		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y);
+
 	}
 
 
@@ -611,6 +626,7 @@ public class CouchCrewScript : NetworkBehaviour
 		}
 
 		Debug.LogError ("RpcCrewPos: " + crewPos.Z + ", netID: " + NetManager.Instance.localPlayerID);
+		Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
 
 	}
 }
