@@ -47,6 +47,7 @@ public class SystemScript : MonoBehaviour, IPlacable
 	private string saveStr;
 
 	private HealthScript hScr;
+	public HealthScript HScr { get { return hScr; } }
 
 	private bool isPowered = false;
 	public bool IsPowered { get { return isPowered; } set { isPowered = value; tile.SysIsPowered = value; } }
@@ -211,11 +212,25 @@ public class SystemScript : MonoBehaviour, IPlacable
 	}
 
 	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
+		//NetManager.Instance.SyncSysHealth (gridPos, _isFullyDamaged, _isFullyRepaired);
+		ISystem _sys = gameObject.GetComponent <ISystem> ();
+		_sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
+
+		/*
 		if (gameObject.GetComponent <ISystem> () != null) { 
 			ISystem _sys = gameObject.GetComponent <ISystem> ();
 			_sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
 		}
+		*/
 	}
+
+	/* syncd health
+	public void ReceiveHealthUpdate (bool _isFullyDamaged, bool _isFullyRepaired) {
+		ISystem _sys = gameObject.GetComponent <ISystem> ();
+		_sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
+	}
+	*/
+
 
 	public void UpdatePowerState (bool _isPowered) {
 		if (gameObject.GetComponent <ISystem> () != null) { 
@@ -226,5 +241,17 @@ public class SystemScript : MonoBehaviour, IPlacable
 		if (!last) {
 			thisNextSys.UpdatePowerState (_isPowered);
 		}
+	}
+
+
+	public void SyncPowerUpdate (bool _isPowered) {
+		NetManager.Instance.SyncPowerState (gridPos, _isPowered);
+	}
+
+	public void ReceivePowerUpdate (bool _isPowered) {
+		Debug.LogError ("system powered up at: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
+
+		ISystem _iSys = gameObject.GetComponent <ISystem> ();
+		_iSys.ReceivePowerUpdate (_isPowered);
 	}
 }

@@ -219,6 +219,7 @@ public class ReactorScript : MonoBehaviour, ISystem
 		}
 	}
 
+
 	private void ShutDownRandomSystem (bool _isPowered) {
 		List <ISystem> _iSysList = pwrMngr.ISysList;
 		int _int = Random.Range (1, (_iSysList.Count - 1));

@@ -1899,11 +1899,39 @@ apr 25th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 \strike \strikec2 -fix build to unity placement\strike0\striked0  //just extended artificialDelay ()\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix client crewPos update\strike0\striked0  //if (isServer) \{ SyncPos (); \}\
+\strike \strikec2 -fix client crewPos update\strike0\striked0  //if (isServer) \{ SyncPos (); \}\
 \strike \strikec2 -fix authority issue\
-\strike0\striked0 -fix posDesync issue\
--sync dmg, rpr loop //all crew actions for that matter\strike \strikec2 \page -create network manager in lobby\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 -fix editor/build posDesync issue\
+-sync dmg, rpr loop //all crew actions for that matter\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 may 19th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -implement classic/couch compatibility //taking and syncing modes\
+//how to sync damage and power...\
+-sync dmg, rpr loop \
+	\strike \strikec2 -sync damageStates\strike0\striked0  //isn\'92t too helpful though, should be 		handled through health sync. //no states\
+	-> every other way would probably lead to bugs...\
+	//all obj could sync every now and then, if its not fully 		damaged or repaired.\
+//not by couchCrew though, but rather by GridPos //oldschool\
+-reimplement powerManagement in classic\
+-implement basic classicCrew behaviour\
+//the players netID has reign over the powerSync\
+//reroute system update to pass SysScr\
+//should classicCrew also have a netID? -> syncing health and 	other shit...	//doesn\'92t necessarily need to sync transform 	though, right?\
+//health updates: increase/decrease by amount.\
+//but sync current hp every now and then...?\
+//-create tile.hScrDict <int, HScr> //for easy health referencing\
+-> i did that already\strike \strikec2 \
+\strike0\striked0 //022 room ain\'92t workin\'92...\
+-visual power reference \
+//so you can tell by looking wether a system is powered or not...\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 \
+\
+\page -create network manager in lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\

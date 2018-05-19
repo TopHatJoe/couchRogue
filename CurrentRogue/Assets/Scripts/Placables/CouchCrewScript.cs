@@ -79,7 +79,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 		CrewColorAssignment ();
 
-		Debug.LogError ("isLocalCrew: " + isLocal);
+		//Debug.LogError ("isLocalCrew: " + isLocal);
 	}
 
 	void Update () {
@@ -128,10 +128,14 @@ public class CouchCrewScript : NetworkBehaviour
 
 
 					} else {
-						ISystem _iSys = _tile.GetSystem ();
+						//ISystem _iSys = _tile.GetSystem ();
+						SystemScript _sysScr = _tile.GetSystem ();
 
-						//currently just switches
-						_iSys.ReceivePowerUpdate (true);
+						//currently just switches //the bool ain't needed
+						_sysScr.SyncPowerUpdate (true);
+						//_sysScr.ReceivePowerUpdate (true);
+
+						//let's network that! //in iSys
 					}
 				}
 			}
@@ -196,7 +200,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 
 	public void CouchCrewSetup (string _controllerID, int _couchPlayerID, int _couchCount) {
-		Debug.LogError ("crewSetup");
+		//Debug.LogError ("crewSetup");
 
 		controllerID = _controllerID;
 		isLocal = true;
@@ -426,7 +430,8 @@ public class CouchCrewScript : NetworkBehaviour
 		//_vect.x -= (tileDistance / 2);
 
 		//stuff here!
-		Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
+		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
+
 		previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 		//previousPos = _vect;
 
@@ -607,7 +612,7 @@ public class CouchCrewScript : NetworkBehaviour
 		//the servers crewPos was set properly...
 		Vector3 _vect = new Vector3 (crewPos.X, crewPos.Y, crewPos.Z);
 
-		Debug.LogError ("crewPosOnServer");
+		//Debug.LogError ("crewPosOnServer");
 
 		RpcSyncCrewPos (_vect);
 	}
@@ -625,8 +630,8 @@ public class CouchCrewScript : NetworkBehaviour
 			CasheScript.Instance.AssignController (this);
 		}
 
-		Debug.LogError ("RpcCrewPos: " + crewPos.Z + ", netID: " + NetManager.Instance.localPlayerID);
-		Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
+		//Debug.LogError ("RpcCrewPos: " + crewPos.Z + ", netID: " + NetManager.Instance.localPlayerID);
+		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
 
 	}
 }

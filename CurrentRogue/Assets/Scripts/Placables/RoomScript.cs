@@ -189,7 +189,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 			IPlacable _placable = thisNextObj.GetComponent <IPlacable> ();
 			_placable.PlaceObj (_index, gridPos, originObj);
 
-			Debug.Log ("nextHScr set!");
+			//Debug.Log ("nextHScr set!");
 			hScr.NextHScr = thisNextObj.GetComponent <HealthScript> ();
 		}
 

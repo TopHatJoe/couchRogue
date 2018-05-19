@@ -64,12 +64,33 @@ public class HealthScript : MonoBehaviour
 	[SerializeField]
 	private bool isSubSys;
 
+	private TileScript tile;
+
 
 	private void Start ()
 	{
 		health = maxHealth;
 		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
 		//room = transform.parent.parent.GetChild (0).GetChild (0).GetComponent <RoomScript> ().GetRoomOrigin ();
+
+		tile = transform.parent.parent.GetComponent <TileScript> ();
+
+		int _type = 1000;
+		if (isRoom) {
+			_type = 0;
+		} else if (isSys) {
+			_type = 1;
+		} else if (isSubSys) {
+			//Debug.LogError ("added subSys");
+			_type = 2;
+		}
+
+		if (_type != 1000) {
+			objType = _type;
+			//tile.HScrDict.Add (objType, this);
+		} else {
+			Debug.LogError ("no type set: isRoom: " + isRoom);
+		}
 
 		//originPlac = gameObject.GetComponent <IPlacable> ();
 		//originHScr = originPlac.GetGameObj ().GetComponent <HealthScript> ();
@@ -213,7 +234,7 @@ public class HealthScript : MonoBehaviour
 				isFullyDamaged = true;
 				//ChangeSprite (); //change state
 				//sprRenderer.sprite = damageSpr;
-				UpdateSystem (true);
+				SyncDamageState (true);
 			}
 		} else if (repairProgress >= 100) {
 			//Debug.Log ("over 9000!!");
@@ -222,7 +243,7 @@ public class HealthScript : MonoBehaviour
 				isFullyRepaired = true;
 				//ChangeSprite (); //change state
 				//sprRenderer.sprite = standardSpr;
-				UpdateSystem (false);
+				SyncDamageState (false);
 			}
 		} else {
 			isFullyDamaged = false;
@@ -243,7 +264,14 @@ public class HealthScript : MonoBehaviour
 	}
 
 
-	private void UpdateSystem (bool _isDamaged) {
+
+	private void SyncDamageState (bool _isDamaged) {
+		//the second bool isnt used as of now   ...i think
+		NetManager.Instance.SyncSysHealth (tile.GridPosition, _isDamaged, true, objType);
+		//UpdateSystem (_isDamaged);
+	}
+
+	public void UpdateSystem (bool _isDamaged) {
 		if (_isDamaged) {
 			sprRenderer.sprite = damageSpr;
 			if (NextHScr != null) {

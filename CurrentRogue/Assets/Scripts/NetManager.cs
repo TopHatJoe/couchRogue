@@ -188,7 +188,7 @@ public class NetManager : Singleton <NetManager>
 	private void GetConns () {
 		for (int i = 0; i < playerList.Count; i++) {
 			connDict.Add (i, playerList [i].connectionToClient);
-			Debug.LogError ("Conn: " + i + ", " + playerList [i].connectionToClient);
+			//Debug.LogError ("Conn: " + i + ", " + playerList [i].connectionToClient);
 		}
 	}
 
@@ -393,22 +393,37 @@ public class NetManager : Singleton <NetManager>
 		playerList [localPlayerID].SyncDoorstate (_pos, _doorstate);
 	}
 
-	public void SyncPowerState (Point _point, int _type, bool _isPowered)
+
+
+	
+	
+	//public void SyncPowerState (Point _point, int _type, bool _isPowered)
+	public void SyncPowerState (Point _point, bool _isPowered)
 	{
 		Vector3 _pos = PointToVector (_point);
-		playerList [localPlayerID].SyncPowerstate (_pos, _type, _isPowered);
+		playerList [localPlayerID].SyncPowerstate (_pos, _isPowered);
 	}
+
+	//ill just use the first bool as _isDamaged for now.
+	public void SyncSysHealth (Point _point, bool _isFullyDamaged, bool _isFullyRepaired, int _type)
+	{
+		Vector3 _pos = PointToVector (_point);
+			playerList [localPlayerID].SyncSysHealthState (_pos, _isFullyDamaged, _isFullyRepaired, _type);
+	}
+
+
 
 	
 	private Vector3 PointToVector (Point _point) {
 		return new Vector3 (_point.X, _point.Y, _point.Z);
 	}
 			
-
+	
+	/*
 	public void SyncShield (int _power, int _ID) {
 		playerList [localPlayerID].SyncShieldPower (_power, _ID);
 	}
-
+	*/
 	
 	public void SyncProbabilityString (Vector3 _pos, string _probStr) {
 		playerList [localPlayerID].SyncProbStr (_pos, _probStr);
@@ -424,6 +439,8 @@ public class NetManager : Singleton <NetManager>
 	public void OnPlayerConnected (NetworkPlayer _player) {
 		Debug.Log ("playerIP: " + _player.ipAddress);
 	}
+
+
 
 
 	/*

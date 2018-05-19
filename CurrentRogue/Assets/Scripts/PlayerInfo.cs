@@ -42,7 +42,7 @@ public class PlayerInfo : NetworkBehaviour
 		DontDestroyOnLoad (this);
 
 		//adds conn to server.connList
-		Debug.LogError ("localPlayer?: " + isLocalPlayer);
+		//Debug.LogError ("localPlayer?: " + isLocalPlayer);
 		if (isLocalPlayer) {
 		//	CmdAddConn (connectionToClient);
 		}
@@ -298,25 +298,31 @@ public class PlayerInfo : NetworkBehaviour
 
 
 
-	public void SyncPowerstate (Vector3 _pos, int _type, bool _isPowered) {
+
+	//POWER
+	public void SyncPowerstate (Vector3 _pos, bool _isPowered) {
 		if (isServer) {
-			RpcSyncPowerstate (_pos, _type, _isPowered);
+			RpcSyncPowerstate (_pos, _isPowered);
 		} else {
-			CmdSyncPowerstate (_pos, _type, _isPowered);
+			CmdSyncPowerstate (_pos, _isPowered);
 		}
 	}
 
 	[Command]
-	private void CmdSyncPowerstate (Vector3 _pos, int _type, bool _isPowered) {
-		RpcSyncPowerstate (_pos, _type, _isPowered);
+	private void CmdSyncPowerstate (Vector3 _pos, bool _isPowered) {
+		RpcSyncPowerstate (_pos, _isPowered);
 	}
 
 	[ClientRpc]
-	private void RpcSyncPowerstate (Vector3 _pos, int _type, bool _isPowered) {
+	private void RpcSyncPowerstate (Vector3 _pos, bool _isPowered) {
 		Point _point = VectorToPoint (_pos);
 		TileScript _tile = LevelManager.Instance.Tiles [_point];
 
+		SystemScript _sysScr = _tile.GetSystem ();
+		_sysScr.ReceivePowerUpdate (_isPowered);
 
+
+		/*
 		//weapons
 		if (_type == 1) {
 			//WeaponScript _weapon = LevelManager.Instance.Tiles [_point].transform.GetChild (0).GetComponent <WeaponScript> ();
@@ -330,7 +336,46 @@ public class PlayerInfo : NetworkBehaviour
 			EngineScript _engine = _tile.transform.GetChild (1).GetChild (0).GetComponent <EngineScript> ();
 			_engine.SyncedPower (_isPowered);
 		}
+		*/
 	}
+
+
+	//HEALTHSTATE
+	public void SyncSysHealthState (Vector3 _pos, bool _isFullyDamaged, bool _isFullyRepaired, int _type) {
+		if (isServer) {
+			RpcSyncHealthState (_pos, _isFullyDamaged, _isFullyRepaired, _type);
+		} else {
+			CmdSyncHealthState (_pos, _isFullyDamaged, _isFullyRepaired, _type);
+		}
+	}
+
+	[Command]
+	private void CmdSyncHealthState (Vector3 _pos, bool _isFullyDamaged, bool _isFullyRepaired, int _type) {
+		RpcSyncHealthState (_pos, _isFullyDamaged, _isFullyRepaired, _type);
+	}
+
+	[ClientRpc]
+	private void RpcSyncHealthState (Vector3 _pos, bool _isFullyDamaged, bool _isFullyRepaired, int _type) {
+		Point _point = VectorToPoint (_pos);
+		TileScript _tile = LevelManager.Instance.Tiles [_point];
+
+		_tile.HScrDict [_type].UpdateSystem (_isFullyDamaged);
+
+		/*
+		foreach (var _hScr in _tile.HScrDict) {
+			_hScr.Value.UpdateSystem (_isFullyDamaged);
+		}
+		*/
+
+		//SystemScript _sysScr = _tile.GetSystem ();
+		//_sysScr.HScr.UpdateSystem (_isFullyDamaged);
+
+		//_sysScr.ReceiveHealthUpdate (_isFullyDamaged, _isFullyRepaired);
+		//_sysScr.ReceivePowerUpdate (_isPowered);
+	}
+
+
+
 
 
 	/*
@@ -349,6 +394,7 @@ public class PlayerInfo : NetworkBehaviour
 		
 	}
 
+	/*
 	public void SyncShieldPower (int _power, int _ID) {
 		if (isServer) {
 			RpcSyncShieldPower (_power, _ID);
@@ -372,7 +418,7 @@ public class PlayerInfo : NetworkBehaviour
 			_shieldObj.GetComponent <ShieldScript> ().RemoteShield (_power);
 		}
 	}
-
+	*/
 
 	//probability Strings
 	public void SyncProbStr (Vector3 _pos, string _probStr) {
@@ -399,7 +445,7 @@ public class PlayerInfo : NetworkBehaviour
 
 	public void SpawnCouchCrew (Vector3 _posVect, string _objStr) {
 		//NetworkServer.Spawn (_obj);
-		Debug.LogError ("oi! sendin to server!");
+		//Debug.LogError ("oi! sendin to server!");
 
 		CmdSpawnCouchCrew (_posVect, _objStr);
 	}
@@ -415,9 +461,32 @@ public class PlayerInfo : NetworkBehaviour
 		//spawn crew
 		NetworkServer.Spawn (_obj);
 
-		Debug.LogError ("oi! spawned Crew!");
+		//Debug.LogError ("oi! spawned Crew!");
 	}  
 
+
+
+	/*
+	public void SyncPowerState (Point _pos, bool _isPowered) {
+		
+
+		if (isServer) {
+			RpcSyncPowerState (_pos, _isPowered);
+		} else {
+			CmdSyncPowerState (_pos, _isPowered);
+		}
+	}
+
+	[Command]
+	private void CmdSyncPowerState (Point _pos, bool _isPowered) {
+		RpcSyncPowerState (_pos, _isPowered);
+	}
+
+	[ClientRpc]
+	private void RpcSyncPowerState (Point _pos, bool _isPowered) {
+
+	}
+	*/
 
 	/*
 	[Command]

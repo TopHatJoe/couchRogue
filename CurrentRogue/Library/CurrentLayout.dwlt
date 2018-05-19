@@ -325,7 +325,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 383
-    height: 339
+    height: 493
   m_MinSize: {x: 277, y: 71}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 22}
@@ -349,9 +349,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 339
+    y: 493
     width: 383
-    height: 363
+    height: 209
   m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 24}
@@ -608,7 +608,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: a890feff7c91feff8292feff8e92feffe692feff5093feff6293feff6c93feff7493feff8093feff8893feff9093feffdafbffff00000000
+    m_ExpandedIDs: 14c6f4ffd6c6f4ffeac7f4ff04c8f4ff6ac8f4ffe2c8f4ff02c9f4ff1ac9f4ff30c9f4ff4ac9f4ff60c9f4ff76c9f4ff440cf9ff480cf9ff540cf9ff0c0df9ff300df9ff8210f9ffa610f9ff2218f9ff1671f9ff3a71f9ffcc71f9fff071f9ff5072f9ff7472f9ff0073f9ff2473f9ff1677f9ff3a77f9ff507bf9ff58a2fcff2ca3fcff2ea4fcff36a4fcff8aa4fcfff0a4fcfffea4fcff04a5fcff08a5fcff10a5fcff14a5fcff18a5fcff7200fdff9c01fdff9e02fdffa602fdfffa02fdff6003fdff6e03fdff7403fdff7803fdff8003fdff8403fdff8803fdfffc62fdffd063fdffd264fdffda64fdff2e65fdff9465fdffa265fdffa865fdffac65fdffb465fdffb865fdffbc65fdff9868fdffc269fdffc86afdffd46afdff2c6bfdff966bfdffa86bfdffb26bfdffba6bfdffc66bfdffce6bfdffd66bfdffdafbffff000000008e980100d29d0100ec9d010062a50100a6aa0100c0aa0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -668,19 +668,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs/Rooms
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs/Rooms
   m_LastFoldersGridSize: 16
   m_LastProjectPath: /Users/lyn/Projects/Github/couchRogue/CurrentRogue
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 193}
-    m_SelectedIDs: b6290000
-    m_LastClickedID: 10678
-    m_ExpandedIDs: 000000007825000084280000b629000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 96.99963}
+    m_SelectedIDs: 1c260000
+    m_LastClickedID: 9756
+    m_ExpandedIDs: 0000000038250000442800006c2800007629000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -708,7 +708,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007825000084280000b6290000
+    m_ExpandedIDs: 00000000382500004428000076290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -739,18 +739,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 3042ffff2ae4ffff3a240000c6d0feffd0d3feff14d8feff08cdfeff1c2400002224000006070000c8060000d6060000fc0600008406000032240000362400003e240000d8240000042500008024000090240000c6240000382400000c2500002a30000034c7ffff128400001c82fcff6067fcffb051fcff5a260000c02600005a25000036260000000000009e260000f6280000cc2600001e270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: NetManager
+      m_OriginalName: NetManager
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 1696
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -760,7 +760,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 106.99927}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_DirectoriesAreaWidth: 110
 --- !u!114 &22
@@ -788,7 +788,7 @@ MonoBehaviour:
     x: 899
     y: 93
     width: 381
-    height: 318
+    height: 472
   m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
@@ -852,6 +852,6 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 899
-    y: 432
+    y: 586
     width: 381
-    height: 342
+    height: 188

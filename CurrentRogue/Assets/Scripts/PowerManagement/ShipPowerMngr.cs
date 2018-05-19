@@ -26,10 +26,10 @@ public class ShipPowerMngr : MonoBehaviour
 	void Start () {
 		if (NetManager.Instance.localPlayerID == shipID) {
 			powerPanel.gameObject.SetActive (true);
-			Debug.LogError ("da same");
+			//Debug.LogError ("da same");
 		}
 
-		Debug.LogError ("ship: " + shipID + ", localPlayer: " + NetManager.Instance.localPlayerID);
+		//Debug.LogError ("ship: " + shipID + ", localPlayer: " + NetManager.Instance.localPlayerID);
 	}
 
 
