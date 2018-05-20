@@ -296,6 +296,10 @@ public class ReactorScript : MonoBehaviour, ISystem
 	}
 
 
+	public bool IsPowered () {
+		return isPowered;
+	}
+
 	/*
 	public void OnDamage () {
 		Debug.Log ("ISystem/Reactor");

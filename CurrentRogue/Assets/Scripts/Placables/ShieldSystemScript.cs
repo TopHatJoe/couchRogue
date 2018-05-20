@@ -25,7 +25,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	private int shieldBoost;
 
 	private bool isPowered = false;
-	public bool IsPowered { get { return isPowered; } }
+	//public bool IsPowered { get { return isPowered; } }
 
 	//[SerializeField]
 	private int systemType = 1;
@@ -282,5 +282,10 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	private ShieldSystemScript GetOriginShielSystem () {
 		ShieldSystemScript _shldScr = systemScr.GetOriginObj ().GetComponent <ShieldSystemScript> ();
 		return _shldScr;
+	}
+
+
+	public bool IsPowered () {
+		return isPowered;
 	}
 }

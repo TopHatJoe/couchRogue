@@ -446,7 +446,8 @@ public class TileScript : MonoBehaviour
 		_placable.PlaceObj (0, this.GridPosition, _obj);
 
 		if (_type < 10) {
-			HScrDict.Add (_type, _obj.GetComponent <HealthScript> ());
+			//HScrDict.Add (_type, _obj.GetComponent <HealthScript> ()); //SHITFUCK DIS IS DA ONE!!! TWATS CAUSING ME ALL THIS TROUBLE
+
 			//Debug.Log ("type: " + _type);
 		}
 	}
@@ -936,9 +937,11 @@ public class TileScript : MonoBehaviour
 			Debug.LogError ("Damage is 0!");
 		} else {
 			if (HScrDict.ContainsKey (0)) {
+				Debug.LogError ("tilePos 3: " + GridPosition.X + ", " + GridPosition.Y + ", " + GridPosition.Z);
 				//LocalObjDict [0].TakeCrewDamage (rmDmg);
 			} else {
 				//not the nicest way of doin' it but...
+				Debug.LogError ("tilePos 2: " + GridPosition.X + ", " + GridPosition.Y + ", " + GridPosition.Z);
 				HScrDict.Add (0, transform.GetChild (0).GetChild (0).gameObject.GetComponent <HealthScript> ());
 				Debug.Log ("dict entry made");
 				//LocalObjDict [0].TakeCrewDamage (rmDmg);

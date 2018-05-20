@@ -267,6 +267,11 @@ public class HealthScript : MonoBehaviour
 
 	private void SyncDamageState (bool _isDamaged) {
 		//the second bool isnt used as of now   ...i think
+		if (isRoom) {
+			Debug.LogError ("tilePos: " + tile.GridPosition.X + ", " + tile.GridPosition.Y + ", " + tile.GridPosition.Z);
+			//Debug.LogError ("tile.HScrDict: " + tile.HScrDict [0]);
+		}
+
 		NetManager.Instance.SyncSysHealth (tile.GridPosition, _isDamaged, true, objType);
 		//UpdateSystem (_isDamaged);
 	}

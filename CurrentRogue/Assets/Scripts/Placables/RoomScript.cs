@@ -122,7 +122,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 		//gridPos = _gridPos;
 		gridPos = new Point (_gridPos.X + Mathf.RoundToInt (nextPos.x * 2), _gridPos.Y + Mathf.RoundToInt (nextPos.y), _gridPos.Z);
-
+		Debug.Log ("gridPos: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
 
 
 		//set tweens walkable
@@ -133,8 +133,11 @@ public class RoomScript : MonoBehaviour, IPlacable
 		}
 		*/
 	
-		tile = LevelManager.Instance.Tiles [gridPos];
+		tile = LevelManager.Instance.Tiles [gridPos]; //-> ye fucktard! that's what's caused the issue shithead! //?
 		hScr = gameObject.GetComponent <HealthScript> ();
+		//transform.parent.parent.GetComponent <TileScript> ();
+
+		tile.HScrDict.Add (0, hScr);
 
 
 		/*
@@ -176,6 +179,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 		DoBool ();
 
 		GameManager.Instance.Buy ();
+
 
 		if (!last) {
 			//creates next component of obj

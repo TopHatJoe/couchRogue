@@ -24,7 +24,7 @@ public class EngineScript : MonoBehaviour, ISystem
 	private int componentCapacity;
 
 	private bool isPowered = false;
-	public bool IsPowered { get { return isPowered; } }
+	//public bool IsPowered { get { return isPowered; } }
 
 	private int systemType = 3;
 
@@ -283,6 +283,10 @@ public class EngineScript : MonoBehaviour, ISystem
 	private EngineScript GetOriginEngine () {
 		EngineScript _engScr = systemScr.GetOriginObj ().GetComponent <EngineScript> ();
 		return _engScr;
+	}
+
+	public bool IsPowered () {
+		return isPowered;
 	}
 
 

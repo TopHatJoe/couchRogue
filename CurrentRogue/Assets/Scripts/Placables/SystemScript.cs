@@ -52,6 +52,10 @@ public class SystemScript : MonoBehaviour, IPlacable
 	private bool isPowered = false;
 	public bool IsPowered { get { return isPowered; } set { isPowered = value; tile.SysIsPowered = value; } }
 
+	[SerializeField]
+	private GameObject powerIndicator;
+	private SpriteRenderer pwrIndicatorSpr;
+
 
 
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
@@ -60,6 +64,7 @@ public class SystemScript : MonoBehaviour, IPlacable
 
 		if (originObj == gameObject) {
 			isOrigin = true;
+			pwrIndicatorSpr = powerIndicator.GetComponent <SpriteRenderer> ();
 		}
 
 		if (this.gameObject == originObj) {
@@ -233,6 +238,17 @@ public class SystemScript : MonoBehaviour, IPlacable
 
 
 	public void UpdatePowerState (bool _isPowered) {
+		//update indicator
+		if (isOrigin) {
+			if (_isPowered) {
+				pwrIndicatorSpr.color = Color.green;
+			} else {
+				pwrIndicatorSpr.color = Color.grey;
+			}
+		}
+
+
+		//update powerState
 		if (gameObject.GetComponent <ISystem> () != null) { 
 			ISystem _sys = gameObject.GetComponent <ISystem> ();
 			_sys.UpdatePowerState (_isPowered);
@@ -244,6 +260,7 @@ public class SystemScript : MonoBehaviour, IPlacable
 	}
 
 
+
 	public void SyncPowerUpdate (bool _isPowered) {
 		NetManager.Instance.SyncPowerState (gridPos, _isPowered);
 	}
@@ -251,6 +268,8 @@ public class SystemScript : MonoBehaviour, IPlacable
 	public void ReceivePowerUpdate (bool _isPowered) {
 		Debug.LogError ("system powered up at: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
 
+
+		//update systenPower
 		ISystem _iSys = gameObject.GetComponent <ISystem> ();
 		_iSys.ReceivePowerUpdate (_isPowered);
 	}

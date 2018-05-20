@@ -24,7 +24,7 @@ public class WeaponSysScr : MonoBehaviour, ISystem
 	private int componentCapacity;
 
 	private bool isPowered = false;
-	public bool IsPowered { get { return isPowered; } }
+	//public bool IsPowered { get { return isPowered; } }
 
 	private int systemType = 2;
 
@@ -144,5 +144,10 @@ public class WeaponSysScr : MonoBehaviour, ISystem
 		}
 	
 		return _weaponSysScr;
+	}
+
+
+	public bool IsPowered () {
+		return isPowered;
 	}
 }
