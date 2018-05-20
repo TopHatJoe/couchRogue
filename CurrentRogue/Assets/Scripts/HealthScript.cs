@@ -234,7 +234,10 @@ public class HealthScript : MonoBehaviour
 				isFullyDamaged = true;
 				//ChangeSprite (); //change state
 				//sprRenderer.sprite = damageSpr;
-				SyncDamageState (true);
+
+
+				UpdateSystem (true);
+				//SyncDamageState (true);
 			}
 		} else if (repairProgress >= 100) {
 			//Debug.Log ("over 9000!!");
@@ -243,7 +246,10 @@ public class HealthScript : MonoBehaviour
 				isFullyRepaired = true;
 				//ChangeSprite (); //change state
 				//sprRenderer.sprite = standardSpr;
-				SyncDamageState (false);
+
+
+				UpdateSystem (false);
+				//SyncDamageState (false);
 			}
 		} else {
 			isFullyDamaged = false;

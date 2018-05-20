@@ -466,6 +466,26 @@ public class PlayerInfo : NetworkBehaviour
 
 
 
+
+	public void SyncWeaponPower (Vector3 _pos, bool _value) {
+		CmdSyncWeaponPower (_pos, _value);
+	}
+
+	[Command]
+	private void CmdSyncWeaponPower (Vector3 _pos, bool _value) {
+		RpcSyncWeaponPower (_pos, _value);
+	}
+
+	[ClientRpc]
+	private void RpcSyncWeaponPower (Vector3 _pos, bool _value) {
+		Point _point = VectorToPoint (_pos);
+		TileScript _tile = LevelManager.Instance.Tiles [_point];
+
+		WeaponScript _weapon = _tile.transform.GetChild (0).GetComponent <WeaponScript> ();
+		_weapon.ReceiveHandleCharge (_value);
+	} 
+
+
 	/*
 	public void SyncPowerState (Point _pos, bool _isPowered) {
 		

@@ -47,6 +47,7 @@ public class CouchCrewScript : NetworkBehaviour
 	public Color CrewColor { get { return crewColor; } } 
 
 	private bool isLocal = false;
+	private bool controlsSet = false;
 
 
 	void Start () {
@@ -77,9 +78,12 @@ public class CouchCrewScript : NetworkBehaviour
 
 		//StartCoroutine (Test ());
 
-		CrewColorAssignment ();
+		//CrewColorAssignment ();
+		//Debug.Log ("crewColour: " + crewColor);
+		//Debug.Log ("crewID: " + couchPlayerID);
 
 		//Debug.LogError ("isLocalCrew: " + isLocal);
+
 	}
 
 	void Update () {
@@ -142,9 +146,11 @@ public class CouchCrewScript : NetworkBehaviour
 			//}
 
 			if (Input.GetButtonDown (controllerID + "-a")) {
-				DoSomeDamage (10);
+				//DoSomeDamage (10);
+				CmdSyncLoops (true, 10);
 			} else if (Input.GetButtonDown (controllerID + "-t")) {
-				DoSomeDamage (-10);
+				//DoSomeDamage (-10);
+				CmdSyncLoops (true, -10);
 			}
 			//exits terminal
 		} else if (usingTerminal) {
@@ -168,7 +174,8 @@ public class CouchCrewScript : NetworkBehaviour
 
 		} else if (!usingElevator) {
 			if (Input.GetButtonDown (controllerID + "-c")) {
-				StopSomeDamage ();
+				//StopSomeDamage ();
+				CmdSyncLoops (false, 0);
 			}
 		}
 	}
@@ -209,6 +216,7 @@ public class CouchCrewScript : NetworkBehaviour
 		//Debug.Log ("couchCount: " + _couchCount);
 
 		couchPlayerID = _couchPlayerID;
+		CrewColorAssignment ();
 
 		if (_couchCount == 2) {
 			TwoPlayerSplit (_couchPlayerID);
@@ -402,6 +410,8 @@ public class CouchCrewScript : NetworkBehaviour
 		rb.MovePosition (transform.position + Vector3.left);
 
 		crewPos = _tile.GridPosition;
+		CmdSyncCrewPos ();
+
 		previousPos = _pos;
 	}
 
@@ -612,7 +622,7 @@ public class CouchCrewScript : NetworkBehaviour
 		//the servers crewPos was set properly...
 		Vector3 _vect = new Vector3 (crewPos.X, crewPos.Y, crewPos.Z);
 
-		//Debug.LogError ("crewPosOnServer");
+		Debug.LogError ("crewPosOnServer");
 
 		RpcSyncCrewPos (_vect);
 	}
@@ -623,15 +633,50 @@ public class CouchCrewScript : NetworkBehaviour
 
 		crewPos = _pos;
 
+		Debug.LogError ("crewPosOnClient");
+
+		SetControls ();
+		/*
 		if (crewPos.Z == NetManager.Instance.localPlayerID) {
 			isLocal = true;
 
 			//couchCrewSetup is called by this as well...
 			CasheScript.Instance.AssignController (this);
 		}
+		*/
 
 		//Debug.LogError ("RpcCrewPos: " + crewPos.Z + ", netID: " + NetManager.Instance.localPlayerID);
 		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
 
+	}
+
+	private void SetControls () {
+		if (!controlsSet) {
+			if (crewPos.Z == NetManager.Instance.localPlayerID) {
+				isLocal = true;
+
+				//couchCrewSetup is called by this as well...
+				CasheScript.Instance.AssignController (this);
+				controlsSet = true;
+			}
+		}
+	}
+
+
+
+	[Command]
+	private void CmdSyncLoops (bool _doDamage, int _amount) {
+		RpcSyncLoops (_doDamage, _amount);
+	}
+
+	[ClientRpc]
+	private void RpcSyncLoops (bool _doDamage, int _amount) {
+		Debug.LogError ("dmgLoop: " + _amount);
+
+		if (_doDamage) {
+			DoSomeDamage (_amount);
+		} else {
+			StopSomeDamage ();
+		}
 	}
 }

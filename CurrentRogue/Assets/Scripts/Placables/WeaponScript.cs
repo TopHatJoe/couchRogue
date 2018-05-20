@@ -37,7 +37,7 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 	public int PowerReq { get { return powerReq; } }
 
 	private bool isPowered;
-	public bool IsPowered { get { return isPowered; } set { HandleCharge (value); isPowered = value; } }
+	public bool IsPowered { get { return isPowered; } set { SyncWeaponPower (value); isPowered = value; } } //set { HandleCharge (value); isPowered = value; } }
 
 	public bool isCharged;
 	private bool isCharging = false;
@@ -343,5 +343,15 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 	public void HandleOutline (bool _isActive, Color _color) {
 		outlinesSpr.color = _color;
 		outlinesSpr.gameObject.SetActive (_isActive);
+	}
+
+
+	private void SyncWeaponPower (bool _value) {
+		NetManager.Instance.SyncWeaponPower (gridPos, _value);
+	}
+
+	public void ReceiveHandleCharge (bool _value) {
+		HandleCharge (_value);
+		isPowered = _value;
 	}
 }

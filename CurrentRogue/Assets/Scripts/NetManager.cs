@@ -441,6 +441,12 @@ public class NetManager : Singleton <NetManager>
 	}
 
 
+		public void SyncWeaponPower (Point _pos, bool _value) {
+		Vector3 _vect = PointToVector (_pos);
+		playerList [localPlayerID].SyncWeaponPower (_vect, _value);
+		}
+
+
 
 
 	/*
