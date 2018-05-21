@@ -17,6 +17,8 @@ public class ShipScript : MonoBehaviour
 	private List <WeaponScript> weaponList = new List <WeaponScript> ();
 	public List <WeaponScript> WeaponList { get { return weaponList; } }
 
+	//private Vector3 shipCenter;
+
 
 	public void RemoteUpdateEvasionChance (int _eC) {
 		evasionChance = _eC;

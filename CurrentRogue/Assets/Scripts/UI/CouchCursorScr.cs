@@ -71,7 +71,7 @@ public class CouchCursorScr : MonoBehaviour
 			if (col != null) {
 				if (Input.GetButtonDown (controllerID + "-s")) {
 					RoomScript _room = col.GetComponent <RoomScript> ();
-					_room.TargetingPing (terminal.CurrentWeaponID);
+					_room.TargetingPing (terminal.CurrentWeaponID, terminal.GridPos.Z);
 					//TileScript _tile = _room.transform.parent.parent.GetComponent <TileScript> ();
 					//Debug.LogError ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
 				}

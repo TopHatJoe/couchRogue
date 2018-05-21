@@ -49,6 +49,9 @@ public class CouchCrewScript : NetworkBehaviour
 	private bool isLocal = false;
 	private bool controlsSet = false;
 
+	private int targetedShipID;
+
+
 
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
@@ -125,11 +128,12 @@ public class CouchCrewScript : NetworkBehaviour
 						//Debug.LogError ("im afraid i cant let you do that dave...");
 						terminalScr = _tile.GetTerminal ();
 
-						isOccupied = true;
-						usingTerminal = true;
-						terminalScr.UseTerminal (this);
-						targetingCursor.gameObject.SetActive (true);
-
+						if (!terminalScr.IsUsed) {
+							isOccupied = true;
+							usingTerminal = true;
+							terminalScr.UseTerminal (this);
+							targetingCursor.gameObject.SetActive (true);
+						}
 
 					} else {
 						//ISystem _iSys = _tile.GetSystem ();
@@ -156,7 +160,7 @@ public class CouchCrewScript : NetworkBehaviour
 		} else if (usingTerminal) {
 			if (Input.GetButtonDown (controllerID + "-c")) {
 				terminalScr.StopUsingTerminal ();
-				SetCrewCamValues (null, false);
+				SetCrewCamValues (null, false, 0);
 
 				targetingCursor.gameObject.SetActive (false);
 				usingTerminal = false;
@@ -168,6 +172,13 @@ public class CouchCrewScript : NetworkBehaviour
 				terminalScr.SwapWeapon (1);
 			} else if (Input.GetButtonDown (controllerID + "-t")) {
 				terminalScr.SwapWeapon (-1);
+			}
+
+			//swap ships
+			if (Input.GetButtonDown (controllerID + "-l1")) {
+				terminalScr.SwapTargetedShip (-1);
+			} else if (Input.GetButtonDown (controllerID + "-r1")) {
+				terminalScr.SwapTargetedShip (1);
 			}
 
 				//switch ship cameras
@@ -596,7 +607,11 @@ public class CouchCrewScript : NetworkBehaviour
 	}
 	*/
 
-	public void SetCrewCamValues (ShipScript _ship, bool _usingTerminal) {
+
+
+
+
+	public void SetCrewCamValues (ShipScript _ship, bool _usingTerminal, int _shipID) {
 		if (_usingTerminal) {
 			targetedShip = _ship;
 			crewShipCam.transform.SetParent (targetedShip.transform);
@@ -604,14 +619,32 @@ public class CouchCrewScript : NetworkBehaviour
 			crewShipCam.orthographicSize = targetedShip.ShipCam.orthographicSize;
 			//Debug.LogError ("cam size: " + crewShipCam.orthographicSize);
 
-			crewShipCam.transform.position = new Vector3 (0, 0, -20);
+
 			cam.gameObject.SetActive (false);
 			crewShipCam.gameObject.SetActive (true);
+
+			//crewShipCam.transform.position = new Vector3 (0, 0, -20);
+			crewShipCam.transform.position = _ship.ShipCam.transform.position;
+
+			targetingCursor.transform.position = _ship.transform.position;
+			/* 
+			Matrix4x4 _mat = crewShipCam.projectionMatrix;
+			if (NetManager.Instance.localPlayerID == _shipID) {
+				_mat *= Matrix4x4.Scale (new Vector3 (1, 1, 1));
+			} else {
+				_mat *= Matrix4x4.Scale (new Vector3 (-1, 1, 1));
+			}
+			crewShipCam.projectionMatrix = _mat;
+			*/
 		}
 
 		cam.gameObject.SetActive (!_usingTerminal);
 		crewShipCam.gameObject.SetActive (_usingTerminal);
 	}
+
+
+
+
 
 	public void GiveTerminalReference (TerminalScr _terminal) {
 		targetingCursor.GetComponent <CouchCursorScr> ().Terminal = _terminal;

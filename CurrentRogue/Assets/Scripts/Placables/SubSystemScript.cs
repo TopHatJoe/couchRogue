@@ -8,6 +8,7 @@ public class SubSystemScript : MonoBehaviour, IPlacable
 	private TileScript tile;
 	//the gridPos
 	private Point gridPos;
+	public Point GridPos { get { return gridPos; } }
 
 	[SerializeField]
 	private string objStr;

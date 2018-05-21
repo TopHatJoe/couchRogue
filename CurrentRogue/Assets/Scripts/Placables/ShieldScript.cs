@@ -57,11 +57,13 @@ public class ShieldScript : MonoBehaviour
 
 	[SerializeField]
 	private float chargeTime;
+	private int playerID;
 
 
 
 	public void Setup (int _ID) {
 		//Debug.LogError ("shield stuff called");
+		playerID = NetManager.Instance.localPlayerID;
 
 		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
 
@@ -124,6 +126,76 @@ public class ShieldScript : MonoBehaviour
 			}
 
 			yield return new WaitForSeconds (0.32f);
+		}
+	}
+
+
+	private void OnTriggerEnter2D (Collider2D _col) {
+		if (currentAmount > 0) {
+			AmmoScript _ammo = _col.GetComponent <AmmoScript> ();
+			//Destroy (_ammo.gameObject);
+
+			if (_ammo.PlayerID == playerID + 1) {
+				Debug.Log ("'ello");
+			} else {
+				currentAmount--; //-= _ammo.Damage;
+				UpdateShieldAlpha ();
+
+				Destroy (_ammo.gameObject);
+
+				/* 220418
+				int _ID = _ammo.PlayerID;
+
+				Destroy (_ammo.gameObject);
+				currentHP--;
+
+				AdjustAlpha ();
+				////
+
+				/*
+				Color _colour = sprRenderer.color;
+				float _tmp1 = alphaUnit * shieldHP;
+				float _tmp2 = _tmp1 / 255;
+				_colour.a = _tmp2;
+				sprRenderer.color = _colour;
+				////
+			}
+		}
+
+		/*
+		//if (_ID == playerID) {
+				//print ("hows it hangin?");
+				//} else {
+				Destroy (_ammo.gameObject);
+
+				shieldHP--;
+
+				Debug.Log (shieldHP + ", " + alphaUnit);
+
+				Color _colour = sprRenderer.material.color;
+				//Color _colour = sprRenderer.color;
+
+
+
+				//_colour.a = alphaUnit * shieldHP;
+				float _a = (alphaUnit * shieldHP) / 255;
+
+				float _tmp1 = alphaUnit * shieldHP;
+				float _tmp2 = _tmp1 / 255;
+
+				Debug.Log (alphaUnit + " * " + shieldHP + " = " + alphaUnit * shieldHP);
+				Debug.Log (alphaUnit * shieldHP + " / " + 255 + " = " + alphaUnit * shieldHP / 255);
+				Debug.Log (_tmp2);
+
+				_colour.a = _tmp2;
+
+				Debug.Log (_a);
+
+				//sprRenderer.color = new Color (1, 1, 1, _a);
+				sprRenderer.material.color = _colour;
+				//}
+				*/
+			}
 		}
 	}
 

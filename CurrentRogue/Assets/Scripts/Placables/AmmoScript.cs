@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AmmoScript : MonoBehaviour 
 {
-	[SerializeField]
+	//[SerializeField]
 	//the time the obj takes to reach its destination
-	private float time;
+	//private float time;
 	//the speed when taking the distance into account
+
+	[SerializeField]
 	private float speed;
 
 	//[SerializeField]
@@ -47,11 +49,12 @@ public class AmmoScript : MonoBehaviour
 		prob = _prob;
 
 		//dist = Screen.width * 10;
-		GameObject _gridField = LevelManager.Instance.GridField;
-		float _a = _gridField.GetComponent <SpriteRenderer> ().sprite.bounds.size.x;
-		float _b = _gridField.transform.localScale.x;
+		//GameObject _gridField = LevelManager.Instance.GridField;
+		//float _a = _gridField.GetComponent <SpriteRenderer> ().sprite.bounds.size.x;
+		//float _b = _gridField.transform.localScale.x;
 		//dist = _gridField.GetComponent <SpriteRenderer> ().sprite.bounds.size.x;
-		dist = _a * _b;
+		//dist = _a * _b;
+		//dist = 16384;
 
 
 		target = new Vector3 (transform.position.x + dist, transform.position.y, transform.position.z);
@@ -63,7 +66,10 @@ public class AmmoScript : MonoBehaviour
 		angle = _angle;
 
 		//test
-		speed = dist/time;
+
+
+		//speed = dist/time; //unnecessary...
+
 		//Debug.LogError ("dist: " + dist);
 		//Debug.LogError ("time: " + time);
 		//Debug.LogError ("speed: " + speed);

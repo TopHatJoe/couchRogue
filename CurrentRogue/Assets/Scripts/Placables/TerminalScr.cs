@@ -5,16 +5,51 @@ using UnityEngine;
 public class TerminalScr : MonoBehaviour
 {
 	private ShipScript ship;
+	private ShipScript targetedShip;
+
 	private WeaponSysScr weaponSysScr;
 	private WeaponScript currentWeapon;
 	private int currentWeaponID = 0;
 	public int CurrentWeaponID { get { return currentWeaponID; } }
+	private int targetedShipID = 0;
+	private Camera shipCam;
+
+	private GameObject[] shipArr;
+	private int numOfShips;
 
 	private Color userColor;
+
+	private bool isUsed = false;
+	public bool IsUsed { get { return isUsed; } }
+
+	private CouchCrewScript userScr;
+
+	private Point gridPos;
+	public Point GridPos { get { return gridPos; } } 
+
+
+
+	void Start () {
+		Setup ();
+	}
+
+	private void Setup () {
+		SubSystemScript _subSysScr = gameObject.GetComponent <SubSystemScript> ();
+		gridPos = _subSysScr.GridPos;
+		ship = LevelManager.Instance.Ships [_subSysScr.GridPos.Z].GetComponent <ShipScript> ();	
+	}
 
 
 	public void UseTerminal (CouchCrewScript _user) {
 		//Debug.LogError ("hello there mr. crew!");
+		userScr = _user;
+
+
+		isUsed = true;
+
+		shipArr = LevelManager.Instance.Ships;
+		numOfShips = NetManager.Instance.NumOfPlayers;
+		Debug.LogError ("numOfShips: " + numOfShips);
 
 		userColor = _user.CrewColor;
 		//gun terminal behaviour
@@ -22,7 +57,10 @@ public class TerminalScr : MonoBehaviour
 			//switch to full ship view
 
 		//Camera.main.enabled = true;
-		ship = LevelManager.Instance.Ships[0].GetComponent <ShipScript> ();
+
+		SetCrewCam ();
+		/*
+		ship = LevelManager.Instance.Ships[targetedShipID].GetComponent <ShipScript> ();
 		Camera _shipCam = ship.ShipCam;
 		if (_shipCam == null) {
 			Debug.Log ("no cam!");
@@ -30,6 +68,8 @@ public class TerminalScr : MonoBehaviour
 			//_shipCam.gameObject.SetActive (true);
 			_user.SetCrewCamValues (ship, true);
 		}
+		*/
+
 
 		GameObject _sysObj = transform.parent.parent.GetChild (1).gameObject;
 		if (_sysObj.transform.childCount > 0) {
@@ -39,6 +79,7 @@ public class TerminalScr : MonoBehaviour
 				Debug.Log ("weaponSysScr == null");
 			}
 		}
+
 
 
 		/*
@@ -77,6 +118,10 @@ public class TerminalScr : MonoBehaviour
 			_shipCam.gameObject.SetActive (false);
 		}
 		*/
+
+		isUsed = false;	
+
+		userScr = null;
 
 		//_user.SetCrewCamValues (ship, false);
 
@@ -171,5 +216,32 @@ public class TerminalScr : MonoBehaviour
 
 	private void GiveTerminalReference (CouchCrewScript _user) {
 		_user.GiveTerminalReference (this);
+	}
+
+	public void SwapTargetedShip (int _amount) {
+		targetedShipID += _amount;
+
+		if (targetedShipID < 0) {
+			targetedShipID = numOfShips - 1;
+		} else if (targetedShipID >= numOfShips) {
+			targetedShipID = 0;
+		}
+
+		Debug.LogError ("targeted ship: " + targetedShipID);
+
+
+
+		SetCrewCam ();
+	}
+
+	private void SetCrewCam () {
+		targetedShip = shipArr [targetedShipID].GetComponent <ShipScript> ();
+		shipCam = targetedShip.ShipCam;
+		if (shipCam == null) {
+			Debug.Log ("no cam!");
+		} else {
+			//_shipCam.gameObject.SetActive (true);
+			userScr.SetCrewCamValues (targetedShip, true, targetedShipID);
+		}
 	}
 }

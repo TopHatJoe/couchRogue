@@ -1,19 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HealthScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TileScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/Placables/SystemScript.cs" Line="218" Column="3" />
-      <File FileName="Assets/Scripts/NetManager.cs" Line="408" Column="1" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="478" Column="1" />
-      <File FileName="Assets/Scripts/HealthScript.cs" Line="92" Column="52" />
-      <File FileName="Assets/Scripts/PlayerInfo.cs" Line="362" Column="57" />
-      <File FileName="Assets/Scripts/TileScript.cs" Line="958" Column="5" />
-      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="134" Column="56" />
-      <File FileName="Assets/Scripts/PowerManagement/ShipPowerMngr.cs" Line="29" Column="6" />
-      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="192" Column="6" />
-      <File FileName="Assets/Scripts/Placables/ReactorScript.cs" Line="222" Column="1" />
-      <File FileName="Assets/Scripts/Placables/EngineScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/ISystem.cs" Line="4" Column="7" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NetManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/TileScript.cs" Line="525" Column="89" />
+      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="163" Column="5" />
+      <File FileName="Assets/Scripts/Placables/WeaponSysScr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Placables/WeaponScript.cs" Line="189" Column="15" />
+      <File FileName="Assets/Scripts/Placables/TerminalScr.cs" Line="38" Column="32" />
+      <File FileName="Assets/Scripts/PlayerInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Placables/AmmoScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ShipScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Placables/TargetScript.cs" Line="57" Column="17" />
+      <File FileName="Assets/Scripts/UI/CouchCursorScr.cs" Line="74" Column="71" />
+      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="586" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

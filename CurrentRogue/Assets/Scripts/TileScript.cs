@@ -300,8 +300,8 @@ public class TileScript : MonoBehaviour
 					else if (objType == 6) {
 							if (Input.GetMouseButtonDown (0))
 					//set target
-								Debug.LogError ("gun finder classic!");
-								SetTarget (_objStr, 0);
+								Debug.LogError ("gun finder classic! //is commented out...");
+								//SetTarget (_objStr, 0);
 						}  
 					}
 
@@ -509,7 +509,7 @@ public class TileScript : MonoBehaviour
 
 	//END DEBUG
 
-	private void SetTarget (string _objStr, int _gunID)
+	private void SetTarget (string _objStr, int _gunID, int _shipID)
 	{
 		Vector3 targetPos = new Vector3 (GridPosition.X, GridPosition.Y, GridPosition.Z);
 
@@ -519,7 +519,12 @@ public class TileScript : MonoBehaviour
 
 		Debug.LogError ("gun finder!");
 		//Point _gunPoint = PlacementManager.Instance.GunPoint;
-		ShipScript _ship = transform.parent.parent.GetComponent <ShipScript> ();
+
+		//goddamn! ye little fuck! no wonder it doesnt work...
+
+		ShipScript _ship = LevelManager.Instance.Ships [_shipID].GetComponent <ShipScript> (); //transform.parent.parent.GetComponent <ShipScript> ();
+
+
 		Point _gunPoint = _ship.WeaponList [_gunID].GridPos;
 
 		Vector3 _gunPos = new Vector3 (_gunPoint.X, _gunPoint.Y, _gunPoint.Z);
@@ -1004,8 +1009,8 @@ public class TileScript : MonoBehaviour
 		return _terminalScr;
 	} 
 
-	public void PlaceTarget (int _gunID) {
-		SetTarget ("Target", _gunID);
+	public void PlaceTarget (int _gunID, int _shipID) {
+		SetTarget ("Target", _gunID, _shipID);
 	}
 
 	//only called on server
