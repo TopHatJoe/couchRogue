@@ -106,6 +106,8 @@ public class TerminalScr : MonoBehaviour
 			//while in this view, deactivate couchCrew movement
 
 			//o exits the terminal
+
+		SwapWeapon (1);
 	}
 
 	public void StopUsingTerminal () {
@@ -208,9 +210,13 @@ public class TerminalScr : MonoBehaviour
 			currentWeapon.isUsedByCrew = true;
 			currentWeapon.HandleOutline (true, userColor); 	
 
+
+			/*
 			if (!currentWeapon.IsPowered) {
 				currentWeapon.IsPowered = true;
 			}
+			*/
+
 		}
 	}
 

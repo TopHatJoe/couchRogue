@@ -37,7 +37,7 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 	public int PowerReq { get { return powerReq; } }
 
 	private bool isPowered;
-	public bool IsPowered { get { return isPowered; } set { SyncWeaponPower (value); isPowered = value; } } //set { HandleCharge (value); isPowered = value; } }
+	public bool IsPowered { get { return isPowered; } set { SyncWeaponPower (value); /* isPowered = value; */ } } //set { HandleCharge (value); isPowered = value; } }
 
 	public bool isCharged;
 	private bool isCharging = false;
@@ -58,6 +58,7 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 
 	private ShipScript shipScr;
+	private ShipPowerMngr pwrMngr;
 
 	[SerializeField]
 	private SpriteRenderer outlinesSpr;
@@ -97,6 +98,7 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 		gridPos = _gridPos;
 		tile = LevelManager.Instance.Tiles [gridPos];
 		shipScr = LevelManager.Instance.Ships [gridPos.Z].GetComponent <ShipScript> ();
+		pwrMngr = shipScr.gameObject.GetComponent <ShipPowerMngr> ();
 
 		saveStr = (objStr + ",7," + gridPos.X.ToString () + "," + gridPos.Y.ToString ());
 		LevelManager.Instance.parameterList.Add (saveStr);
@@ -347,11 +349,20 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 
 	private void SyncWeaponPower (bool _value) {
-		NetManager.Instance.SyncWeaponPower (gridPos, _value);
+		//if enough power
+		if (pwrMngr.EnoughWeaponSysPower (powerReq)) {
+			NetManager.Instance.SyncWeaponPower (gridPos, _value);
+		}
 	}
 
 	public void ReceiveHandleCharge (bool _value) {
 		HandleCharge (_value);
 		isPowered = _value;
+
+		if (isPowered) {
+			pwrMngr.HandleWeaponPower (powerReq);
+		} else {
+			pwrMngr.HandleWeaponPower (-powerReq);
+		}
 	}
 }

@@ -99,7 +99,19 @@ public class CouchCursorScr : MonoBehaviour
 
 			_col.GetComponent <SpriteRenderer> ().color = Color.green;
 			//_col.GetComponent <ElevatorBtnPanelScr> ().PressButton ();
+		} else {
+			col = _col;
+
+			if (col != null) {
+				if (Input.GetButtonDown (controllerID + "-s")) {
+					RoomScript _room = col.GetComponent <RoomScript> ();
+					_room.TargetingPing (terminal.CurrentWeaponID, terminal.GridPos.Z);
+					//TileScript _tile = _room.transform.parent.parent.GetComponent <TileScript> ();
+					//Debug.LogError ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
+				}
+			}
 		}
+
 		//} else {
 		//	_col.GetComponent <RoomScript> ().TargetingPing ();
 		//}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
     x: 0
-    y: 44
+    y: 45
     width: 1280
     height: 752
   m_ShowMode: 4
@@ -106,10 +106,10 @@ MonoBehaviour:
     y: 30
     width: 1280
     height: 702
-  m_MinSize: {x: 683, y: 492}
+  m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 18006, y: 14042}
   vertical: 0
-  controlID: 1607
+  controlID: 1172
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,10 +130,10 @@ MonoBehaviour:
     y: 0
     width: 897
     height: 702
-  m_MinSize: {x: 406, y: 492}
+  m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
-  controlID: 1608
+  controlID: 1173
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,10 +154,10 @@ MonoBehaviour:
     y: 0
     width: 897
     height: 309
-  m_MinSize: {x: 406, y: 221}
-  m_MaxSize: {x: 8006, y: 4021}
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 1563
+  controlID: 1129
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 334, y: 271}
   m_MaxSize: {x: 14004, y: 10021}
   vertical: 0
-  controlID: 1609
+  controlID: 1174
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 192}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 1709
+  controlID: 1257
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 402
+    y: 19
     width: 631
     height: 372
   m_MaximizeOnPlay: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 93
+    y: 94
     width: 631
     height: 288
   m_SceneLighting: 1
@@ -601,14 +601,14 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 635
-    y: 93
+    y: 94
     width: 260
     height: 288
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
+    m_SelectedIDs: 0e270000
     m_LastClickedID: 0
-    m_ExpandedIDs: e6f2faffecf3faffecf4fafff4f4faff48f5faffaef5faffbcf5faffc2f5faffc6f5faffcef5faffd2f5faffd6f5faff1059fbff587afbff1c7bfbffbc02fcffd002fcfff40dfcff7219fdff241afdff261bfdff2e1bfdff821bfdffe81bfdfff61bfdfffc1bfdff001cfdff081cfdff0c1cfdff101cfdff6648fdff2a49fdff96d0fdffaad0fdffccdbfdffdafbffff0000000090600000d4650000ee65000006a800004aad000064ad0000
+    m_ExpandedIDs: 2a84feff6288feff648afeff2c8bfeff2e8cfeff368cfeff8a8cfefff08cfefffe8cfeff048dfeff088dfeff108dfeff148dfeff188dfeffc43cffff8c3dffff803effff8c3effffe43effff4e3fffff5e3fffff683fffff703fffff7c3fffff843fffff8c3fffff6843ffff1046ffffdafbffff00000000129c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -654,7 +654,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 635
-    y: 402
+    y: 403
     width: 260
     height: 372
   m_SearchFilter:
@@ -668,18 +668,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs/Weapons/Munition
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/Weapons/Munition
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: /Users/lyn/Projects/Github/couchRogue/CurrentRogue
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 138.99884}
-    m_SelectedIDs: 94260000
-    m_LastClickedID: 9876
+    scrollPos: {x: 0, y: 236.99872}
+    m_SelectedIDs: ca290000
+    m_LastClickedID: 10698
     m_ExpandedIDs: 00000000382500008425000056270000542800008e29000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -739,18 +739,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 3042ffff2ae4ffff3a240000c6d0feffd0d3feff14d8feff08cdfeff1c2400002224000006070000c8060000d6060000fc0600008406000032240000362400003e240000d8240000042500008024000090240000c6240000382400000c2500002a30000034c7ffff128400001c82fcff6067fcffb051fcff5a260000c02600005a25000036260000000000009e260000f6280000cc2600001e270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: ShipPowerMngr
+      m_OriginalName: ShipPowerMngr
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 1616
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 899
-    y: 93
+    y: 94
     width: 381
     height: 364
   m_ScrollPosition: {x: 0, y: 0}
@@ -852,6 +852,6 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 899
-    y: 478
+    y: 479
     width: 381
     height: 296

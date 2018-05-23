@@ -22,6 +22,9 @@ public class ShipPowerMngr : MonoBehaviour
 	private List <ISystem> iSysList = new List<ISystem> ();
 	public List <ISystem> ISysList { get { return iSysList; } }
 
+	//keeps track of that shit
+	private int wpnPwrUsage;
+
 
 	void Start () {
 		if (NetManager.Instance.localPlayerID == shipID) {
@@ -134,5 +137,27 @@ public class ShipPowerMngr : MonoBehaviour
 		capacityArr [_sysType] -= _amount;
 		Debug.Log (capacityArr [_sysType]);
 		*/
+	}
+
+
+	//has the weapon sys enough available power to power weapon?
+	public bool EnoughWeaponSysPower (int _amount) {
+		if ((wpnPwrUsage + _amount) <= powerArr [2]) {
+			Debug.Log ("weapon power available. powerArr: " + powerArr [2]);
+			return true;
+		} else {
+			Debug.LogError ("not enough weapon power!");
+			return false;
+		}
+	}
+
+	public void HandleWeaponPower (int _amount) {
+		wpnPwrUsage += _amount;
+
+		if (wpnPwrUsage > powerArr [2]) {
+			Debug.LogError ("something in weapon power is fuuuuckd!");
+		} else if (wpnPwrUsage < 0) {
+			Debug.LogError ("sub zero weapon power!");
+		}
 	}
 }
