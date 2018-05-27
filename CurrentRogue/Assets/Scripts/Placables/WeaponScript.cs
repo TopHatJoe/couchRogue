@@ -349,8 +349,13 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 
 	private void SyncWeaponPower (bool _value) {
-		//if enough power
-		if (pwrMngr.EnoughWeaponSysPower (powerReq)) {
+		//if getting powered
+		if (_value) {
+			//if enough power
+			if (pwrMngr.EnoughWeaponSysPower (powerReq)) {
+				NetManager.Instance.SyncWeaponPower (gridPos, _value);
+			}
+		} else {
 			NetManager.Instance.SyncWeaponPower (gridPos, _value);
 		}
 	}
@@ -360,9 +365,9 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 		isPowered = _value;
 
 		if (isPowered) {
-			pwrMngr.HandleWeaponPower (powerReq);
+			pwrMngr.HandleWeaponPower (powerReq,  this);
 		} else {
-			pwrMngr.HandleWeaponPower (-powerReq);
+			pwrMngr.HandleWeaponPower (-powerReq, this);
 		}
 	}
 }

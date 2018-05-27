@@ -266,7 +266,7 @@ public class SystemScript : MonoBehaviour, IPlacable
 	}
 
 	public void ReceivePowerUpdate (bool _isPowered) {
-		Debug.LogError ("system powered up at: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
+		//Debug.LogError ("system powered up at: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
 
 
 		//update systenPower

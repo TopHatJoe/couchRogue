@@ -49,7 +49,7 @@ public class TerminalScr : MonoBehaviour
 
 		shipArr = LevelManager.Instance.Ships;
 		numOfShips = NetManager.Instance.NumOfPlayers;
-		Debug.LogError ("numOfShips: " + numOfShips);
+		//Debug.LogError ("numOfShips: " + numOfShips);
 
 		userColor = _user.CrewColor;
 		//gun terminal behaviour
@@ -131,7 +131,9 @@ public class TerminalScr : MonoBehaviour
 		if (currentWeapon != null) {
 			currentWeapon.HandleOutline (false, userColor);
 			currentWeapon.isUsedByCrew = false;
-			currentWeapon.IsPowered = true;
+		
+			//wait what? ill comment this out. 270518
+			//currentWeapon.IsPowered = true;
 		}
 	}
 
@@ -249,5 +251,19 @@ public class TerminalScr : MonoBehaviour
 			//_shipCam.gameObject.SetActive (true);
 			userScr.SetCrewCamValues (targetedShip, true, targetedShipID);
 		}
+	}
+
+	public void PowerWeapon (bool _isPowered) {		
+		//Debug.LogError (currentWeapon.IsPowered);
+
+		if (currentWeapon.IsPowered) {
+			currentWeapon.IsPowered = false;
+		} else {
+			currentWeapon.IsPowered = true;
+		}
+
+		//bool _bool = currentWeapon.IsPowered;
+		//currentWeapon.IsPowered = !_bool;
+		//Debug.LogError (currentWeapon.IsPowered);
 	}
 }

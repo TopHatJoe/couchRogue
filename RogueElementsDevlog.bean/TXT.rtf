@@ -1973,25 +1973,47 @@ apr 25th 2018;\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f0\b \cf2 may 23rd 2018;\
+\f0\b \cf2 may 22nd 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 //the cursor targeting does its thing, but not great...\
 -implement proper weapon power\
 	\strike \strikec2 -limit power-able weapons by available power\
-	\strike0\striked0 //d-pad for weapon switching //will do that shit tomorrow...\
-	//tis super annoying to figure out controller bindings...\strike \strikec2 \
+	\strike0\striked0 //d-pad for weapon switching //will do that shit tomorrow...\strike \strikec2 \
 \strike0\striked0 	-power weapons\
 	-unpower weapons \
 \
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 may 27th 2018; \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 //yeah yeah, i was sick alright?\
+\strike \strikec2 -implement proper weapon power\strike0\striked0  //unpowers twice. //sync takes too \
+	\strike \strikec2 -weaponSys dmg weapon powerdown\strike0\striked0  //when a weapon sys is 		powered down or damaged, it needs to check if there\'92s still 		enough power available to power the powered weapons.\
+	//neednt be synced! cuz wSys.power is synced! but not which!\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -set up controller\strike0\striked0  //if random weapon is shutdown, sync is needed\
+	-setup d-pad //not possible in standard unity it seems...
+\f0\b \strike \strikec2 \
+
+\f1\b0 	-setup shoulder buttons\strike0\striked0  //huge gridPos desync issue! -> fix!\strike \strikec2 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 //funny bug: weapons can\'92t unpower unless theres enough power to 	power the weapon up... easy fix though.\
+
+\f0\b some other day:\
+
+\f1\b0 -fix pos desync //crew seems left-er than is //editor issue?\
+-fix client altitude issue //y isn\'92t synced for clients?\
+-fix speed issues //what\'92s up with those?\
+\
+\
+\
+\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-
-\f0\b \cf2 \strike \strikec2 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-
-\f1\b0 \cf2 \page -create network manager in lobby\
+\cf2 \strike \strikec2 \page -create network manager in lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\

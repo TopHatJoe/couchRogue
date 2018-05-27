@@ -22,6 +22,9 @@ public class ShipPowerMngr : MonoBehaviour
 	private List <ISystem> iSysList = new List<ISystem> ();
 	public List <ISystem> ISysList { get { return iSysList; } }
 
+	private List <WeaponScript> weaponList = new List <WeaponScript> ();
+	//public List <WeaponScript> WeaponList { get { return weaponList; } set { weaponList = value; } }
+
 	//keeps track of that shit
 	private int wpnPwrUsage;
 
@@ -48,11 +51,62 @@ public class ShipPowerMngr : MonoBehaviour
 
 	//system gets powered or unpowered
 	public void PowerDistribution (int _sysType, int _amount, ISystem _iSys) {
+		Debug.LogError ("powerDist");
+
 		//if reactor has enough power to give //do that seperately?
 		//if (powerArr [0] - _amount >= 0) {
 		if (powerArr [_sysType] + _amount >= 0) {
 			if (powerArr [_sysType] + _amount <= capacityArr [_sysType]) {
 				powerArr [_sysType] += _amount;
+
+
+				//power down weapons if not enough power
+				if (_sysType == 2) {
+					int _emergencyCounter = 0;
+					while (wpnPwrUsage > powerArr [2]) {
+						//makes shit slitly predictable, but it's suuuper hard. is it reliable though?
+						int _i = (weaponList.Count - 1); //Random.Range (0, weaponList.Count);
+						Debug.LogError ("hi");
+						//weaponList [_i].IsPowered = false;
+						weaponList [_i].ReceiveHandleCharge (false);
+
+						//weaponList.Remove (weaponList [_i]);
+
+						if (_emergencyCounter > 100) {
+							Debug.LogError ("while issue!");
+							break;
+						}
+					}
+
+
+					/*
+					int _emergencyCounter = 0;
+					while (wpnPwrUsage > powerArr [_sysType]) {
+						//Debug.LogError ("shut guns down!");
+						int _i = Random.Range (0, weaponList.Count);
+						weaponList [_i].IsPowered = false;
+						weaponList.Remove (weaponList [_i]);
+						_emergencyCounter++;
+
+						if (weaponList.Count <= 0) {
+							Debug.LogError ("running out of list");
+						}
+
+						Debug.LogError ("hi");
+						if (wpnPwrUsage <= powerArr [_sysType]) {
+							break;
+						}
+
+						if (_emergencyCounter > 100) {
+							Debug.LogError ("while issue!");
+							break;
+						}
+					}
+					*/
+				}
+
+
+
 
 				powerPanel.UpdateUsage (_sysType, powerArr [_sysType]);
 
@@ -151,11 +205,33 @@ public class ShipPowerMngr : MonoBehaviour
 		}
 	}
 
-	public void HandleWeaponPower (int _amount) {
+	public void HandleWeaponPower (int _amount, WeaponScript _weapon) {
+		if (_amount < 0) {
+			//remove
+			weaponList.Remove (_weapon);
+		} else { //if (_amount > 0) {
+			//add
+			weaponList.Add (_weapon);
+		}
+
+		/* 
+		else {
+			Debug.LogError ("powerReq = " + _amount + "!");
+		}
+		*/ 
+
+
 		wpnPwrUsage += _amount;
+
+		Debug.LogError ("available pwr: " + powerArr [2] + ", usedPwr: " + wpnPwrUsage);
 
 		if (wpnPwrUsage > powerArr [2]) {
 			Debug.LogError ("something in weapon power is fuuuuckd!");
+
+
+			Debug.LogError ("SHUT WEAPON DOWN DAMMIT!");
+
+			//power down random weapon //not here
 		} else if (wpnPwrUsage < 0) {
 			Debug.LogError ("sub zero weapon power!");
 		}

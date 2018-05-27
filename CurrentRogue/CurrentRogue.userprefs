@@ -1,22 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Placables/TerminalScr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PowerManagement/ShipPowerMngr.cs">
     <Files>
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/NetManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HealthScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/TileScript.cs" Line="525" Column="89" />
-      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/WeaponSysScr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/WeaponScript.cs" Line="365" Column="32" />
-      <File FileName="Assets/Scripts/Placables/TerminalScr.cs" Line="110" Column="18" />
-      <File FileName="Assets/Scripts/PlayerInfo.cs" Line="485" Column="11" />
-      <File FileName="Assets/Scripts/Placables/AmmoScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ShipScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/TargetScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UI/CouchCursorScr.cs" Line="114" Column="3" />
-      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PowerManagement/ShipPowerMngr.cs" Line="148" Column="11" />
+      <File FileName="Assets/Scripts/PowerManagement/ShipPowerMngr.cs" Line="67" Column="85" />
+      <File FileName="Assets/Scripts/Placables/WeaponScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Placables/WeaponSysScr.cs" Line="117" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

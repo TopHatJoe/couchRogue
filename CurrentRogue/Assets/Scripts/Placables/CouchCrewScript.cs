@@ -158,6 +158,8 @@ public class CouchCrewScript : NetworkBehaviour
 			}
 			//exits terminal
 		} else if (usingTerminal) {
+			
+			//stop using target
 			if (Input.GetButtonDown (controllerID + "-c")) {
 				terminalScr.StopUsingTerminal ();
 				SetCrewCamValues (null, false, 0);
@@ -179,6 +181,12 @@ public class CouchCrewScript : NetworkBehaviour
 				terminalScr.SwapTargetedShip (-1);
 			} else if (Input.GetButtonDown (controllerID + "-r1")) {
 				terminalScr.SwapTargetedShip (1);
+			}
+
+			//power weapon up/down
+			if (Input.GetButtonDown (controllerID + "-s")) {
+				//bool doesn't matter currently...
+				terminalScr.PowerWeapon (true);
 			}
 
 				//switch ship cameras
