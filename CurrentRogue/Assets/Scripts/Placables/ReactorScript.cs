@@ -170,7 +170,7 @@ public class ReactorScript : MonoBehaviour, ISystem
 
 
 	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
-		Debug.Log ("reactor: " + gridPos.X + ", " + gridPos.Y);
+		//Debug.Log ("reactor: " + gridPos.X + ", " + gridPos.Y);
 
 		if (_isFullyDamaged) {
 			//PowerManager.Instance.DamageSystem (systemType, -powerReq);
@@ -200,18 +200,19 @@ public class ReactorScript : MonoBehaviour, ISystem
 			if (isPowered) {
 				//tryPowerDown
 				if (pwrMngr.EnoughPower (fullCapacity)) {
-					Debug.Log ("canPowerDown");
+					//Debug.Log ("canPowerDown");
 					SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
-					_sysScr.UpdatePowerState (_isPowered);
+					_sysScr.UpdatePowerState (false); //(_isPowered);
 				} else {
 					//shut down random system & call ReceivePowerUpdate again
-					Debug.LogError ("cant shut down! initiating emergency shutdown");
+					
+					//Debug.LogError ("cant shut down! initiating emergency shutdown");
 					ShutDownRandomSystem (_isPowered);
 				}
 			} else {
 				if (!hScr.IsFullyDamaged) {
 					SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
-					_sysScr.UpdatePowerState (_isPowered);
+					_sysScr.UpdatePowerState (true); //(_isPowered);
 				}
 			}
 		} else {

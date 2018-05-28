@@ -8,8 +8,10 @@ public class CouchCrewScript : NetworkBehaviour
 	private Rigidbody2D rb;
 	private BoxCollider2D col;
 	private NetworkIdentity netID;
-	[SerializeField]
-	private float speed;
+
+	//[SerializeField]
+	private float speed = 4096;
+
 	private string controllerID;
 	public string ControllerID { get { return controllerID; } }
 
@@ -57,10 +59,11 @@ public class CouchCrewScript : NetworkBehaviour
 		rb = gameObject.GetComponent <Rigidbody2D> ();
 		col = gameObject.GetComponent <BoxCollider2D> ();
 		netID = gameObject.GetComponent <NetworkIdentity> ();
+	
 		if (isServer) {
 			//NetworkIdentity.
 			crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
-			CmdSyncCrewPos ();
+			SyncCrewPos ();
 
 			netID.AssignClientAuthority (NetManager.Instance.ConnDict [crewPos.Z]);
 		}
@@ -429,7 +432,11 @@ public class CouchCrewScript : NetworkBehaviour
 		rb.MovePosition (transform.position + Vector3.left);
 
 		crewPos = _tile.GridPosition;
-		CmdSyncCrewPos ();
+
+		//Debug.LogError ("_tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
+		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
+
+		SyncCrewPos ();
 
 		previousPos = _pos;
 	}
@@ -484,7 +491,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 		isOccupied = false;
 
-		Debug.Log ("stopped damaging!");
+		//Debug.Log ("stopped damaging!");
 	}
 
 	/*
@@ -658,12 +665,19 @@ public class CouchCrewScript : NetworkBehaviour
 		targetingCursor.GetComponent <CouchCursorScr> ().Terminal = _terminal;
 	}
 
-	[Command]
-	private void CmdSyncCrewPos () {
-		//the servers crewPos was set properly...
-		Vector3 _vect = new Vector3 (crewPos.X, crewPos.Y, crewPos.Z);
 
-		Debug.LogError ("crewPosOnServer");
+	private void SyncCrewPos () {
+		Vector3 _vect = new Vector3 (crewPos.X, crewPos.Y, crewPos.Z);
+		CmdSyncCrewPos (_vect);
+	}
+
+	[Command]
+	private void CmdSyncCrewPos (Vector3 _vect) {
+		//the servers crewPos was set properly...
+
+		//Vector3 _vect = new Vector3 (crewPos.X, crewPos.Y, crewPos.Z);
+
+		//Debug.LogError ("crewPosOnServer");
 
 		RpcSyncCrewPos (_vect);
 	}
@@ -674,7 +688,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 		crewPos = _pos;
 
-		Debug.LogError ("crewPosOnClient");
+		//Debug.LogError ("syncedCrewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z); //"crewPosOnClient");
 
 		SetControls ();
 		/*
@@ -712,7 +726,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 	[ClientRpc]
 	private void RpcSyncLoops (bool _doDamage, int _amount) {
-		Debug.LogError ("dmgLoop: " + _amount);
+		//	Debug.LogError ("dmgLoop: " + _amount);
 
 		if (_doDamage) {
 			DoSomeDamage (_amount);

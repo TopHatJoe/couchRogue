@@ -78,7 +78,7 @@ public class LevelManager : Singleton<LevelManager>
 	private int numOfTilesY = 27;
 
 	//stores screen.width in a float, so localScale doesnt round to int
-	private float screenWidthFloat = Screen.width;
+	private float screenWidthFloat; // = Screen.width;
 
 	//calculates tilesize by multiplying the sprite size with the transorm.localScale
 	private float TileSizeX

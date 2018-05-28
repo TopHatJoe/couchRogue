@@ -240,9 +240,11 @@ public class SystemScript : MonoBehaviour, IPlacable
 	public void UpdatePowerState (bool _isPowered) {
 		//update indicator
 		if (isOrigin) {
-			if (_isPowered) {
+			if (_isPowered) { //(!sprStateGreen) { //(_isPowered) { //if (isPowered) {
+				Debug.LogError ("powered up!");
 				pwrIndicatorSpr.color = Color.green;
 			} else {
+				Debug.LogError ("powered down!");
 				pwrIndicatorSpr.color = Color.grey;
 			}
 		}
@@ -272,5 +274,11 @@ public class SystemScript : MonoBehaviour, IPlacable
 		//update systenPower
 		ISystem _iSys = gameObject.GetComponent <ISystem> ();
 		_iSys.ReceivePowerUpdate (_isPowered);
+	}
+
+
+
+	void Nonsh () {
+		float _f = Screen.width;
 	}
 }
