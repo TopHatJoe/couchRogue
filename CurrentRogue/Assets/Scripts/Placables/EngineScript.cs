@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EngineScript : MonoBehaviour, ISystem
 {
-	[SerializeField]
-	private SystemScript systemScr;
+	//[SerializeField]
+    private SystemScript sysScr;
 	private HealthScript hScr;
 
 	private Point gridPos;
@@ -41,13 +41,14 @@ public class EngineScript : MonoBehaviour, ISystem
 	}
 
 	private void Setup () {
-		gridPos = systemScr.GridPos;
+        sysScr = GetComponent<SystemScript>();
+		gridPos = sysScr.GridPos;
 		playerID = gridPos.Z;
 
 		ship = LevelManager.Instance.Ships [playerID].GetComponent <ShipScript> ();
 		pwrMngr = ship.GetComponent <ShipPowerMngr> ();
 
-		hScr = systemScr.GetOriginObj ().GetComponent <HealthScript> ();
+		hScr = sysScr.GetOriginObj ().GetComponent <HealthScript> ();
 
 		//ship.IncreaseEvasionChance (componentCapacity);
 
@@ -60,6 +61,9 @@ public class EngineScript : MonoBehaviour, ISystem
 
 		originEngScr.fullPwrReq += powerReq;
 
+        if (isOrigin) {
+            pwrMngr.AddToSysScrList(systemType, sysScr);
+        }
 
 		/* 220418
 		if (NetManager.Instance != null) {
@@ -196,7 +200,7 @@ public class EngineScript : MonoBehaviour, ISystem
 	public void ReceivePowerUpdate (bool _isPowered) {
 		if (isOrigin) {
 			if (isPowered) {
-				SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+				SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
 				_sysScr.UpdatePowerState (false);
 			} else {
 				if (!hScr.IsFullyDamaged) {
@@ -205,7 +209,7 @@ public class EngineScript : MonoBehaviour, ISystem
 
 					if (pwrMngr.EnoughPower (fullPwrReq)) {
 						//try power up
-						SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+						SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
 						_sysScr.UpdatePowerState (true);
 
 						//pwrMngr.PowerDistribution (systemType, powerReq, this);
@@ -242,7 +246,7 @@ public class EngineScript : MonoBehaviour, ISystem
 			isPowered = true;
 		}
 
-		systemScr.IsPowered = isPowered;
+		sysScr.IsPowered = isPowered;
 
 
 		/*
@@ -281,7 +285,7 @@ public class EngineScript : MonoBehaviour, ISystem
 
 
 	private EngineScript GetOriginEngine () {
-		EngineScript _engScr = systemScr.GetOriginObj ().GetComponent <EngineScript> ();
+		EngineScript _engScr = sysScr.GetOriginObj ().GetComponent <EngineScript> ();
 		return _engScr;
 	}
 

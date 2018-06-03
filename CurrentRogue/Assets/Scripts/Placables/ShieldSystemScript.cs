@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShieldSystemScript : MonoBehaviour, ISystem
 {
-	[SerializeField]
-	private SystemScript systemScr;
+	//[SerializeField]
+    private SystemScript sysScr;
 
 	private Point gridPos;
 
@@ -40,14 +40,15 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	}
 
 	private void Setup () {
-		gridPos = systemScr.GridPos;
+        sysScr = GetComponent<SystemScript>();
+		gridPos = sysScr.GridPos;
 
 		//needs more info...
 		//ship = LevelManager.Instance.Ships [playerID].GetComponent <ShipScript> ();
 		GameObject _ship = transform.parent.parent.parent.parent.gameObject;
 		//ShipScript _shipScr = _ship.GetComponent <ShipScript> ();
 		pwrMngr = _ship.GetComponent <ShipPowerMngr> ();
-		hScr = systemScr.GetOriginObj ().GetComponent <HealthScript> ();
+		hScr = sysScr.GetOriginObj ().GetComponent <HealthScript> ();
 
 		//Debug.LogError (_ship.transform.childCount);
 
@@ -88,6 +89,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 		if (this == originShldSys) {
 			isOrigin = true;
+            pwrMngr.AddToSysScrList(systemType, sysScr);
 		}
 	}
 
@@ -157,7 +159,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	public void ReceivePowerUpdate (bool _isPowered) {
 		if (isOrigin) {
 			if (isPowered) {
-				SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+				SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
 				_sysScr.UpdatePowerState (false);
 			} else {
 				if (!hScr.IsFullyDamaged) {
@@ -166,7 +168,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 
 					if (pwrMngr.EnoughPower (fullPwrReq)) {
 						//try power up
-						SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+						SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
 						_sysScr.UpdatePowerState (true);
 
 						//pwrMngr.PowerDistribution (systemType, powerReq, this);
@@ -207,7 +209,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 			isPowered = true;
 		}
 
-		systemScr.IsPowered = isPowered;
+		sysScr.IsPowered = isPowered;
 
 
 		/*
@@ -280,7 +282,7 @@ public class ShieldSystemScript : MonoBehaviour, ISystem
 	*/
 
 	private ShieldSystemScript GetOriginShielSystem () {
-		ShieldSystemScript _shldScr = systemScr.GetOriginObj ().GetComponent <ShieldSystemScript> ();
+		ShieldSystemScript _shldScr = sysScr.GetOriginObj ().GetComponent <ShieldSystemScript> ();
 		return _shldScr;
 	}
 

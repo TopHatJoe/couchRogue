@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RoomScript : MonoBehaviour, IPlacable
 {
@@ -92,6 +93,10 @@ public class RoomScript : MonoBehaviour, IPlacable
 	public bool IsFullyDamaged { get { return originObj.GetComponent <RoomScript> ().isFullyDamaged; } }
 	private bool isFullyRepaired = true;
 	public bool IsFullyRepaired { get { return originObj.GetComponent <RoomScript> ().isFullyRepaired; } }
+
+
+    private List<HealthScript> inRoomHScr = new List<HealthScript>();
+
 
 
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
@@ -587,4 +592,33 @@ public class RoomScript : MonoBehaviour, IPlacable
 		Debug.LogError ("hey youve collided with me. room: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
 		tile.PlaceTarget (_gunID, _shipID);
 	}
+
+
+	private void OnTriggerEnter2D(Collider2D _col)
+	{
+        Debug.LogError("ahhhh collisions in the mornin!");
+        //Debug.LogError("roomPos: " + gridPos.X + ", " + gridPos.Y);    
+
+        //CouchCrewScript _couchCrew = _col.GetComponent<CouchCrewScript>();
+        HealthScript _hScr = _col.GetComponent<HealthScript>();
+
+        inRoomHScr.Add(_hScr);
+	}
+
+    private void OnTriggerExit2D(Collider2D _col)
+    {
+        Debug.LogError("getouttahear!");
+
+        //Debug.LogError("ahhhh collisions in the mornin!");
+        //CouchCrewScript _couchCrew = _col.GetComponent<CouchCrewScript>();
+        HealthScript _hScr = _col.GetComponent<HealthScript>();
+
+        inRoomHScr.Remove(_hScr);
+    }
+
+public void HurtPresentHScr (int _amount) {
+    foreach (var _hScr in inRoomHScr) {
+        _hScr.TakeCrewDamage(_amount);
+    }
+}
 }

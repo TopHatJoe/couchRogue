@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponSysScr : MonoBehaviour, ISystem
 {
 	//[SerializeField]
-	private SystemScript systemScr;
+    private SystemScript sysScr;
 	private HealthScript hScr;
 
 	private Point gridPos;
@@ -41,14 +41,14 @@ public class WeaponSysScr : MonoBehaviour, ISystem
 	}
 
 	private void Setup () {
-		systemScr = GetComponent <SystemScript> ();
-		gridPos = systemScr.GridPos;
+		sysScr = GetComponent <SystemScript> ();
+		gridPos = sysScr.GridPos;
 		playerID = gridPos.Z;
 
 		ship = LevelManager.Instance.Ships [playerID].GetComponent <ShipScript> ();
 		pwrMngr = ship.GetComponent <ShipPowerMngr> ();
 
-		hScr = systemScr.GetOriginObj ().GetComponent <HealthScript> ();
+		hScr = sysScr.GetOriginObj ().GetComponent <HealthScript> ();
 
 		//ship.IncreaseEvasionChance (componentCapacity);
 
@@ -57,6 +57,7 @@ public class WeaponSysScr : MonoBehaviour, ISystem
 		weaponSysScr = GetOriginWeaponSys ();
 		if (this == weaponSysScr) {
 			isOrigin = true;
+            pwrMngr.AddToSysScrList(systemType, sysScr);
 		}
 
 		weaponSysScr.fullPwrReq += powerReq;
@@ -96,13 +97,13 @@ public class WeaponSysScr : MonoBehaviour, ISystem
 	public void ReceivePowerUpdate (bool _isPowered) {
 		if (isOrigin) {
 			if (isPowered) {
-				SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+				SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
 				_sysScr.UpdatePowerState (false);
 			} else {
 				if (!hScr.IsFullyDamaged) {
 					if (pwrMngr.EnoughPower (fullPwrReq)) {
 						//try power up
-						SystemScript _sysScr = systemScr.GetOriginObj ().GetComponent <SystemScript> ();
+						SystemScript _sysScr = sysScr.GetOriginObj ().GetComponent <SystemScript> ();
 						_sysScr.UpdatePowerState (true);
 					} else {
 						Debug.LogError ("not enough power");
@@ -132,12 +133,12 @@ public class WeaponSysScr : MonoBehaviour, ISystem
 			isPowered = true;
 		}
 
-		systemScr.IsPowered = isPowered;
+		sysScr.IsPowered = isPowered;
 	}
 
 
 	private WeaponSysScr GetOriginWeaponSys () {
-		WeaponSysScr _weaponSysScr = systemScr.GetOriginObj ().GetComponent <WeaponSysScr> ();
+		WeaponSysScr _weaponSysScr = sysScr.GetOriginObj ().GetComponent <WeaponSysScr> ();
 
 		if (_weaponSysScr == null) {
 			Debug.LogError ("_weaponSys == null!");

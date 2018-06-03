@@ -2008,7 +2008,8 @@ apr 25th 2018;\
 
 \f1\b0 \cf2 -fix pos desync //crew seems left-er than is //editor issue?\
 //spawn ships? //sync ship pos.\
-\strike \strikec2 -fix client altitude issue\strike0\striked0  //y isn\'92t synced for clients?\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -fix client altitude issue\strike0\striked0  //y isn\'92t synced for clients?\
 //-> crew pos is updated from server, where the elevatorCR isn\'92t 	run. thus the pos isn\'92t updated etc...\
 -fix speed issues //what\'92s up with those?\
 //resolution dependent. super weird.\
@@ -2020,6 +2021,43 @@ apr 25th 2018;\
 -update unity\
 -sync projectile pos //or at least speeds!\
 -outsource crew controls //nah fuggid\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 may 29th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 //put couchCrewMovement in coRoutine? -> dont work in update\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 \ul //FUCK VISUAL STUDIO FOR REALS!!!
+\f1\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \ulnone -damage crew //by room collider //don\'92t work, but why?!\
+//works now, but doesn\'92t //okay so, if i do the add on enter 	remove on exit approach, there\'92s moments where crew is hurt twice 	from one projectile if it\'92s in the room.\
+//fix: half the dmg. if crew is about to exit, crew is less hurt?\
+//except if the room is the direct hit. \
+//this\'92ll be more complicated im afraid... \
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 3rd 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -implement fullRoomColliders //room to crew damage communication
+\f0\b \
+
+\f1\b0 -classic
+\f0\b \
+
+\f1\b0 	-classic dmg loops\
+	\strike \strikec2 -reimplement power by button\strike0\striked0  //add systems to lists on mngr\
+	//sysScr isPowered isn\'92t working properly\
+	-fix raycasting //couldn\'92t i just use the fullRoomCollider?\ul \
+\
+\ulnone \
 \
 \
 \

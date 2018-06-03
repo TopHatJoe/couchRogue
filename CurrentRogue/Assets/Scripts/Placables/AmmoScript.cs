@@ -280,7 +280,7 @@ public class AmmoScript : MonoBehaviour
 		HealthScript[] _hScr = LevelManager.Instance.Tiles [_pos].GetHScripts (_dmg, _dmg, _dmg);
 		for (int i = 0; i < _hScr.Length; i++) {
 			if (_hScr [i] != null) {
-				_hScr [i].TakeCrewDamage (_dmg);
+				_hScr [i].TakeAmmoDamage (_dmg);
 			}
 		}
 	}

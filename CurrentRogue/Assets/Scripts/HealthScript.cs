@@ -225,6 +225,15 @@ public class HealthScript : MonoBehaviour
 		RepairProgress (_amount);
 	}
 
+    public void TakeAmmoDamage (int _amount) {
+        RepairProgress(_amount);
+
+        //damage present crew
+        if (isRoom) {
+            gameObject.GetComponent<RoomScript>().HurtPresentHScr(_amount);
+        }
+    }
+
 	private void RepairProgress (int _amount) {
 		repairProgress -= _amount;
 

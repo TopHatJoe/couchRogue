@@ -7,6 +7,41 @@ using UnityEngine.EventSystems;
 
 public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField]
+    private int sysType;
+    private ShipPowerMngr powerMngr;
+
+	private void Start() {
+        powerMngr = LevelManager.Instance.Ships[NetManager.Instance.localPlayerID].GetComponent<ShipPowerMngr>(); //NetManager.Instance.localPlayerID
+	}
+
+
+	//gets btn input
+	public void OnPointerClick(PointerEventData _eventData)
+    {
+        //Debug.Log ("Pre: maxCap: " + maxPowerCapacity + " | currentCap: " + powerCapacity + " | used: " + powerUsage);
+
+        if (_eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log ("clicked!");
+            powerMngr.PowerByBtn(sysType, true);
+            //CheckChunk ();
+        }
+        else if (_eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log ("right clicked!");
+            powerMngr.PowerByBtn(sysType, false);
+            //UncheckChunk ();
+        }
+
+        //Debug.Log ("Post: maxCap: " + maxPowerCapacity + " | currentCap: " + powerCapacity + " | used: " + powerUsage);
+        //Debug.Log ("not clicked!");
+
+    }
+
+
+
+    /*
 	[SerializeField]
 	private int sysType;
 
@@ -104,7 +139,7 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 			
 		}
 	}
-	*/
+	////
 
 
 	//gets btn input
@@ -209,7 +244,7 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 		}
 	}
 
-	*/
+	////
 
 
 	public void GetGunBtns (GunBtnScr _gunBtn) {
@@ -230,7 +265,7 @@ public class PowerBtnScript : MonoBehaviour, IPointerClickHandler
 	public void RemoteShutdown () {
 		UncheckChunk ();
 	}
-	*/
+    ////
 
 	public bool HasCapacity (int _amount) {
 		int _capacity = maxPowerCapacity - (powerUsage + damage + _amount);

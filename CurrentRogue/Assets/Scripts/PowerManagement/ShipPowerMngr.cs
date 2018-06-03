@@ -19,6 +19,9 @@ public class ShipPowerMngr : MonoBehaviour
 	//the amount of power invested
 	private int[] powerArr = new int[4];
 
+    //classic -> power by btn //which systems are up, whuch aren't?
+    private int[] pwrdSystemsCount = new int[4];
+
 	private List <ISystem> iSysList = new List<ISystem> ();
 	public List <ISystem> ISysList { get { return iSysList; } }
 
@@ -27,6 +30,14 @@ public class ShipPowerMngr : MonoBehaviour
 
 	//keeps track of that shit
 	private int wpnPwrUsage;
+
+
+    //lists of all systems on ship //not very elegant really
+    private List<SystemScript> reactorList = new List<SystemScript>();
+    private List<SystemScript> shieldList = new List<SystemScript>();
+    private List<SystemScript> weaponSysList = new List<SystemScript>();
+    private List<SystemScript> engineList = new List<SystemScript>();
+
 
 
 	void Start () {
@@ -46,12 +57,32 @@ public class ShipPowerMngr : MonoBehaviour
 
 		powerPanel.AddBars (_sysType, _amount);
 		//Debug.Log (_sysType + ", " + maxCapacityArr [_sysType]);
+
+        /*
+        if (_sysType == 0) {
+            Debug.Log("reactor added to list");
+            reactorList.Add(_iSys);
+        }
+        */
 	}
+
+    public void AddToSysScrList (int _sysType, SystemScript _sysScr) {
+        if (_sysType == 0) {
+            Debug.Log("reactor added to list");
+            reactorList.Add(_sysScr);
+        } else if (_sysType == 1) {
+            shieldList.Add(_sysScr);
+        } else if (_sysType == 2) {
+            weaponSysList.Add(_sysScr);
+        } else if (_sysType == 3) {
+            engineList.Add(_sysScr);
+        }
+    } 
 
 
 	//system gets powered or unpowered
 	public void PowerDistribution (int _sysType, int _amount, ISystem _iSys) {
-		Debug.LogError ("powerDist");
+		//Debug.LogError ("powerDist");
 
 		//if reactor has enough power to give //do that seperately?
 		//if (powerArr [0] - _amount >= 0) {
@@ -236,4 +267,80 @@ public class ShipPowerMngr : MonoBehaviour
 			Debug.LogError ("sub zero weapon power!");
 		}
 	}
+
+
+
+    public void PowerByBtn (int _sysType, bool _powerUp) {
+        //Debug.Log("systype: " + _sysType);
+        List<SystemScript> _sysList = GetSysScrList(_sysType);
+        Debug.LogError(_sysList.Count);
+
+        //if the player tries to power it up //make it loop trhough all to avoid dmg issues
+        if (_powerUp) {
+            //if (_sysType == 0) {
+            for (int i = 0; i < _sysList.Count; i++) {
+                //SystemScript _sysScr = reactorList[i];
+                //reactorList[pwrdSystemsCount[_sysType]].SyncPowerUpdate(true);
+
+                if (!_sysList [i].HScr.IsFullyDamaged) {
+                    if (!_sysList[i].SysIsPowered ()) {
+                        Debug.LogError(i + ", " + _sysList[i].SysIsPowered ());
+                        _sysList[i].SyncPowerUpdate(true);
+                        break;
+                    }
+                }
+            }
+
+            /*
+            if (pwrdSystemsCount[_sysType] < reactorList.Count) {
+                //Debug.Log("reactor added to list");
+                reactorList[pwrdSystemsCount[_sysType]].SyncPowerUpdate(true);
+                pwrdSystemsCount[_sysType]++;
+
+                //Debug.LogError("pwrdSysCount: " + pwrdSystemsCount[_sysType]);
+            }
+            */
+           // }
+        } else {
+            //if (_sysType == 0) {
+            for (int i = (_sysList.Count -1); i >= 0; i--)
+            {
+                //SystemScript _sysScr = reactorList[i];
+                //reactorList[pwrdSystemsCount[_sysType]].SyncPowerUpdate(true);
+
+                if (_sysList[i].SysIsPowered()) {
+                    _sysList[i].SyncPowerUpdate(false);
+                    break;
+                }
+            }
+
+            /*
+            if (pwrdSystemsCount[_sysType] > 0) {
+               // Debug.Log("reactor added to list");
+                pwrdSystemsCount[_sysType]--;
+                reactorList[pwrdSystemsCount[_sysType]].SyncPowerUpdate(false);
+
+                //Debug.LogError("pwrdSysCount: " + pwrdSystemsCount[_sysType]);
+            }
+            */
+            //}
+        }
+    }
+
+
+    private List <SystemScript> GetSysScrList (int _sysType) {
+        Debug.LogError("sysType: " + _sysType);
+        if (_sysType == 0) {
+            return reactorList;
+        } else if (_sysType == 1) {
+            return shieldList;
+        } else if (_sysType == 2) {
+            return weaponSysList;
+        } else if (_sysType == 3) {
+            return engineList;
+        } else {
+            Debug.LogError("no list!");
+            return null;
+        }
+    }
 }

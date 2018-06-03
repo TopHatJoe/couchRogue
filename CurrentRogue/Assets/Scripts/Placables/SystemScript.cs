@@ -241,10 +241,10 @@ public class SystemScript : MonoBehaviour, IPlacable
 		//update indicator
 		if (isOrigin) {
 			if (_isPowered) { //(!sprStateGreen) { //(_isPowered) { //if (isPowered) {
-				Debug.LogError ("powered up!");
+				//Debug.LogError ("powered up!");
 				pwrIndicatorSpr.color = Color.green;
 			} else {
-				Debug.LogError ("powered down!");
+				//Debug.LogError ("powered down!");
 				pwrIndicatorSpr.color = Color.grey;
 			}
 		}
@@ -281,4 +281,8 @@ public class SystemScript : MonoBehaviour, IPlacable
 	void Nonsh () {
 		float _f = Screen.width;
 	}
+
+    public bool SysIsPowered () {
+        return gameObject.GetComponent<ISystem>().IsPowered();
+    }
 }
