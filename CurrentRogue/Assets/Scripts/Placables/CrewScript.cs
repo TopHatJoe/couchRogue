@@ -45,8 +45,14 @@ public class CrewScript : MonoBehaviour, IPlacable
 	private IEnumerator movementLoop;
 	private IEnumerator repairLoop;
 
+    private IEnumerator dmgLoop;
+    [SerializeField]
+    private bool friend;
+
+
 	//crew has manned a tile. this is only true when its not moving //or fighting
 	private bool isStationed;
+
 
 
 
@@ -129,6 +135,9 @@ public class CrewScript : MonoBehaviour, IPlacable
 			}
 			*/
 		}
+
+        //to avoid null
+        dmgLoop = DmgLoop(0);
 	}
 
 	void Update () {
@@ -395,7 +404,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 					Debug.Log ("not null 2");
 
 					//starts repairLoop
-					//IsStationed (true);
+					
+                    IsStationed (true);
 
 					Debug.Log ("not null 3");
 
@@ -433,6 +443,152 @@ public class CrewScript : MonoBehaviour, IPlacable
 		}
 	}
 
+
+
+    //dmg loops
+    private void DoSomeDamage(int _amount)
+    {
+        Debug.Log ("gonna do some damage!");
+        dmgLoop = DmgLoop(_amount);
+        StartCoroutine(dmgLoop);
+    }
+
+    private void StopSomeDamage()
+    {
+        Debug.Log ("gonna stop doin some damage!");
+
+        StopCoroutine(dmgLoop);
+
+        //isOccupied = false;
+    }
+
+
+    private IEnumerator DmgLoop(int _amount)
+    {
+        //isOccupied = true;
+        TileScript _tile = LevelManager.Instance.Tiles[crewPos];
+
+        //RoomScript _room = LevelManager.Instance.Tiles [crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
+
+        HealthScript[] _hScrArr = _tile.GetHScripts(_amount, _amount, _amount);
+
+        yield return new WaitForSeconds(1f);
+
+        bool _hasSys = false;
+        if (_hScrArr[1] != null)
+        {
+            _hasSys = true;
+        }
+
+        bool _hasSubSys = false;
+        if (_hScrArr[2] != null)
+        {
+            _hasSubSys = true;
+        }
+
+        while (true)
+        {
+            //_tile.TakeCrewDamage (_amount, 0, 0);
+            _hScrArr[0].TakeCrewDamage(_amount);
+            if (_hasSys)
+            {
+                _hScrArr[1].TakeCrewDamage(_amount - 2);
+            }
+            if (_hasSubSys)
+            {
+                _hScrArr[2].TakeCrewDamage(_amount + 2);
+            }
+
+            //Debug.Log ("took " + _amount + " damage!");
+
+
+
+            //this should happen if all obj on that tile are completely destroyed or repaired...
+            if (_amount > 0)
+            {
+                if (_hScrArr[0].IsFullyDamaged)
+                {
+                    if (_hasSys)
+                    {
+                        if (_hScrArr[1].IsFullyDamaged)
+                        {
+                            if (_hasSubSys)
+                            {
+                                if (_hScrArr[2].IsFullyDamaged)
+                                {
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else if (_hasSubSys)
+                    {
+                        if (_hScrArr[2].IsFullyDamaged)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            else if (_amount < 0)
+            {
+                if (_hScrArr[0].IsFullyRepaired)
+                {
+                    if (_hasSys)
+                    {
+                        if (_hScrArr[1].IsFullyRepaired)
+                        {
+                            if (_hasSubSys)
+                            {
+                                if (_hScrArr[2].IsFullyRepaired)
+                                {
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else if (_hasSubSys)
+                    {
+                        if (_hScrArr[2].IsFullyRepaired)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        //Debug.Log ("break!");
+                        break;
+                    }
+                }
+            }
+
+
+
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        //isOccupied = false;
+    }
+
+
+
+
+
+
+
+
 	private void CrewRebirth (Point _crewPos, bool _isFin)
 	{
 		//needs to later be changend so we can differenciate between stationed passing and foe crew -> bool
@@ -463,16 +619,30 @@ public class CrewScript : MonoBehaviour, IPlacable
 	}
 
 
-	/* 21.04.18
+    /* 21.04.18
 	public void UpdateHealth (int _amount) {
 		Debug.Log ("took Damage");
 	}
 	*/
 
-	private void IsStationed (bool _value) {
-		//isStationed = !isStationed;
-		isStationed = _value;
+    private void IsStationed(bool _value)
+    {
+        //isStationed = !isStationed;
+        isStationed = _value;
 
+        if (isStationed) {
+            if (friend) {
+                DoSomeDamage(-10);
+            }
+            else {
+                DoSomeDamage(10);
+            }
+        } else {
+            StopSomeDamage();
+        }
+
+
+        /*
 		//Debug.Log ("stuff");
 		RoomScript _room = transform.parent.parent.GetChild (0).GetChild (0).GetComponent <RoomScript> ().GetRoomOrigin ();
 
@@ -492,6 +662,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 				StopCoroutine (repairLoop);
 			}
 		}
+        */
 	}
 
 

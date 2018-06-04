@@ -236,13 +236,15 @@ public class ShipPowerMngr : MonoBehaviour
 		}
 	}
 
-	public void HandleWeaponPower (int _amount, WeaponScript _weapon) {
+    public void HandleWeaponPower (int _amount, WeaponScript _weapon) {
 		if (_amount < 0) {
 			//remove
 			weaponList.Remove (_weapon);
+            //return (-1);
 		} else { //if (_amount > 0) {
-			//add
-			weaponList.Add (_weapon);
+                 //add
+            weaponList.Add(_weapon);
+            //return (weaponList.Count - 1);
 		}
 
 		/* 

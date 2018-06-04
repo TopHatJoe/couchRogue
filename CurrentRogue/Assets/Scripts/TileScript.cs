@@ -212,96 +212,124 @@ public class TileScript : MonoBehaviour
 						string _objStr = PlacementManager.Instance.objStr;
 
 
-						//Room
-						if (objType == 0) {
-							if (Input.GetMouseButtonDown (0)) {
-								string _objDimStr = GameManager.Instance.ClickedBtn.ObjDim;
-								int[] _objDim = ReadDimensions (_objDimStr);
+                        //Room
+                        if (objType == 0)
+                        {
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                string _objDimStr = GameManager.Instance.ClickedBtn.ObjDim;
+                                int[] _objDim = ReadDimensions(_objDimStr);
 
-								if (TheresRoom (_objDim, 0, 0, 0)) {
-									//PlaceRoom
-									PlaceObj (_objStr);
-								}
-							}
-						}
+                                if (TheresRoom(_objDim, 0, 0, 0))
+                                {
+                                    //PlaceRoom
+                                    PlaceObj(_objStr);
+                                }
+                            }
+                        }
 
 
-					//System
-					else if (objType == 1) {
+                        //System
+                        else if (objType == 1)
+                        {
 
-							if (Input.GetMouseButtonDown (0)) {
-								string _objDimStr = GameManager.Instance.ClickedBtn.ObjDim;
-								char[] _objDimArr = _objDimStr.ToCharArray ();
-								int[] _objDim = new int[_objDimArr.Length];
-								for (int i = 0; i < _objDimArr.Length; i++) {
-									_objDim [i] = int.Parse (_objDimArr [i].ToString ());
-								}
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                string _objDimStr = GameManager.Instance.ClickedBtn.ObjDim;
+                                char[] _objDimArr = _objDimStr.ToCharArray();
+                                int[] _objDim = new int[_objDimArr.Length];
+                                for (int i = 0; i < _objDimArr.Length; i++)
+                                {
+                                    _objDim[i] = int.Parse(_objDimArr[i].ToString());
+                                }
 
-								if (TheresRoom (_objDim, 0, 0, 1)) {
-									//PlaceSystem 
-									PlaceObj (_objStr);
-								}
-							}
-						} 
+                                if (TheresRoom(_objDim, 0, 0, 1))
+                                {
+                                    //PlaceSystem 
+                                    PlaceObj(_objStr);
+                                }
+                            }
+                        }
 
-					//SubSys
-					else if (objType == 2) {
-							if (SubSysPlacable) {
-								if (Input.GetMouseButtonDown (0)) {
-									//PlaceSubSystem
-									PlaceObj (_objStr);
-								}
-							}
-						} 
+                        //SubSys
+                        else if (objType == 2)
+                        {
+                            if (SubSysPlacable)
+                            {
+                                if (Input.GetMouseButtonDown(0))
+                                {
+                                    //PlaceSubSystem
+                                    PlaceObj(_objStr);
+                                }
+                            }
+                        }
 
-					//Accessors
-					else if (objType == 3) {
-							if (SystemPlacable || SubSysPlacable) {
-								if (Input.GetMouseButtonDown (0)) {
-									//PlaceAccessor
-									PlaceObj (_objStr);
-								}
-							}
-						}
+                        //Accessors
+                        else if (objType == 3)
+                        {
+                            if (SystemPlacable || SubSysPlacable)
+                            {
+                                if (Input.GetMouseButtonDown(0))
+                                {
+                                    //PlaceAccessor
+                                    PlaceObj(_objStr);
+                                }
+                            }
+                        }
 
-					//Crew
-					else if (objType == 4) {
-							if (!Manned && !Debugging) {
-								ColorTile (emptyColor);
-							}
+                        //Crew
+                        else if (objType == 4)
+                        {
+                            if (!Manned && !Debugging)
+                            {
+                                ColorTile(emptyColor);
+                            }
 
-							if (Manned && !Debugging) {
-								ColorTile (fullColor);
-							} else if (Input.GetMouseButtonDown (0)) {
-								//PlaceCrew
-								PlaceObj (_objStr);
-							}
-						} 
+                            if (Manned && !Debugging)
+                            {
+                                ColorTile(fullColor);
+                            }
+                            else if (Input.GetMouseButtonDown(0))
+                            {
+                                //PlaceCrew
+                                PlaceObj(_objStr);
+                            }
+                        }
 
-					//DEBUG
+                        //DEBUG
 
-					//Dangers
-					else if (objType == 5) {
-							if (walkable && !Debugging && !OnFire) {
-								ColorTile (emptyColor);
-							}
+                        //Dangers
+                        else if (objType == 5)
+                        {
+                            if (walkable && !Debugging && !OnFire)
+                            {
+                                ColorTile(emptyColor);
+                            }
 
-							if (!walkable && !Debugging && OnFire) {
-								ColorTile (fullColor);
-							} else if (Input.GetMouseButtonDown (0) && !OnFire) {
-								//PlaceDanger ();
-								PlaceObj (_objStr);
-							}
-						}
+                            if (!walkable && !Debugging && OnFire)
+                            {
+                                ColorTile(fullColor);
+                            }
+                            else if (Input.GetMouseButtonDown(0) && !OnFire)
+                            {
+                                //PlaceDanger ();
+                                PlaceObj(_objStr);
+                            }
+                        }
 
-					//END DEBUG
+                        //END DEBUG
 
-					//Targeting
-					else if (objType == 6) {
-							if (Input.GetMouseButtonDown (0))
-					//set target
-								Debug.LogError ("gun finder classic! //is commented out...");
-								//SetTarget (_objStr, 0);
+                        //Targeting
+                        else if (objType == 6)
+                        {
+                            if (Input.GetMouseButtonDown(0)) {
+                                if (walkable) {
+                                    //set target
+                                    Debug.LogError("gun finder classic! //is commented out...");
+                                    //SetTarget (_objStr, 0);
+                                    PlaceTarget(PlacementManager.Instance.GunID, NetManager.Instance.localPlayerID);
+                                }
+                            }
 						}  
 					}
 
@@ -526,6 +554,10 @@ public class TileScript : MonoBehaviour
 
 
 		Point _gunPoint = _ship.WeaponList [_gunID].GridPos;
+
+        if (!CasheScript.Instance.CouchMode) {
+            _gunPoint = PlacementManager.Instance.GunPoint;
+        }
 
 		Vector3 _gunPos = new Vector3 (_gunPoint.X, _gunPoint.Y, _gunPoint.Z);
 

@@ -36,6 +36,9 @@ public class PlacementManager : Singleton <PlacementManager>
 	//public GameObject GunObj;
 	public Point GunPoint;
 
+    public int GunID;
+    public int ShipID;
+
 	/*
 	public void TestID ()
 	{

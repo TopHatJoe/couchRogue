@@ -65,6 +65,9 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 
 	public bool isUsedByCrew;
 
+    private int weaponID;
+    public int WeaponID { get { return weaponID; } }
+
 
 
 	//TMP
@@ -365,7 +368,7 @@ public class WeaponScript : MonoBehaviour, IPlacable //,ISystem
 		isPowered = _value;
 
 		if (isPowered) {
-			pwrMngr.HandleWeaponPower (powerReq,  this);
+            pwrMngr.HandleWeaponPower (powerReq,  this);
 		} else {
 			pwrMngr.HandleWeaponPower (-powerReq, this);
 		}

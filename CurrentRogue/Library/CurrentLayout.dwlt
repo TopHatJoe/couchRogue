@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 6378
+  controlID: 5526
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 6379
+  controlID: 5527
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 6337
+  controlID: 5485
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 6380
+  controlID: 5528
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -304,10 +304,10 @@ MonoBehaviour:
     y: 0
     width: 383
     height: 702
-  m_MinSize: {x: 277, y: 192}
-  m_MaxSize: {x: 4002, y: 8042}
+  m_MinSize: {x: 277, y: 171}
+  m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 6463
+  controlID: 5630
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -465,9 +465,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6476.592, y: 2378.5518, z: 99.40967}
+    m_Target: {x: -2451.1375, y: 412.68753, z: 74.24768}
     speed: 2
-    m_Value: {x: 6476.592, y: 2378.5518, z: 99.40967}
+    m_Value: {x: -2451.1375, y: 412.68753, z: 74.24768}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -499,9 +499,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1654.4387
+    m_Target: 4129.3516
     speed: 2
-    m_Value: 1654.4387
+    m_Value: 4129.3516
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -607,9 +607,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 14b30100
-    m_LastClickedID: 111380
-    m_ExpandedIDs: 1655f6ff06dff6ff16dff6ff2ce3f6ff8e40f7ff129bf7ff4a02f8fff81cf8ff5029fcff9a36fcff8218feff7c9bfeff72f4feff3024ffff5424ffff8e91ffff0692fffff0fbffff000000000c4c00001a5000004c500000c85000004654000086580000025900006e5900007672000090760000c27600003e770000aa7700001ac000002ac3000034c40000e2c40000aa560100b456010036580100c45a0100725b0100ec5c0100167f01004c7f0100aa80010040830100fa830100aea201001aa8010034a8010084ae010018b0010068b30100
+    m_SelectedIDs: 02060000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 866efdffda16ffffe616fffffe16ffff0617ffff1217ffffe01effff9e77ffffb277ffff8e80fffff0fbffff000000004a530000b6580000d05800008e5f0000fa64000014650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -670,20 +670,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs/Systems/Weapons
+    - Assets/Scripts/Placables
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/Systems/Weapons
+  - Assets/Scripts/Placables
   m_LastFoldersGridSize: 16
   m_LastProjectPath: /Users/lyn/Projects/Github/couchRogue/CurrentRogue
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 29}
-    m_SelectedIDs: f02c0000
-    m_LastClickedID: 11504
-    m_ExpandedIDs: 00000000c4290000042a0000ae2c0000362e00006e2e000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 193}
+    m_SelectedIDs: d22c0000
+    m_LastClickedID: 11474
+    m_ExpandedIDs: 00000000c4290000362e00000030000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -711,7 +711,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c4290000042a0000ae2c0000362e00006e2e000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000c4290000362e00000030000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

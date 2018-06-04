@@ -616,9 +616,12 @@ public class RoomScript : MonoBehaviour, IPlacable
         inRoomHScr.Remove(_hScr);
     }
 
-public void HurtPresentHScr (int _amount) {
-    foreach (var _hScr in inRoomHScr) {
-        _hScr.TakeCrewDamage(_amount);
+    public void HurtPresentHScr (int _amount) {
+        Debug.LogError("ouch");
+        /*
+        foreach (var _hScr in inRoomHScr) {
+            _hScr.TakeCrewDamage(_amount);
+        }
+        */
     }
-}
 }

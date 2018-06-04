@@ -67,9 +67,15 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 	{
 
 		if (_eventData.button == PointerEventData.InputButton.Left) {
-			//GunLogic (true);
+            //GunLogic (true);
+            if (weapon.IsPowered) {
+                Target();
+            } else {
+                weapon.IsPowered = true;
+            }
 		} else if (_eventData.button == PointerEventData.InputButton.Right) {
-			//GunLogic (false);
+            //GunLogic (false);
+            weapon.IsPowered = false;
 		}
 
 		//outsource logic to separate function
@@ -117,6 +123,9 @@ public class GunBtnScr : MonoBehaviour, IPointerClickHandler
 	private void Target () {
 		Buttons _btn = gameObject.GetComponent <Buttons> ();
 		GameManager.Instance.PickRoom (_btn);
+
+        PlacementManager.Instance.GunID = weapon.WeaponID;
+
 		_btn.SetPrefab ();
 		//gives the placementMngr the position of the gun
 		PlacementManager.Instance.GunPoint = weapon.GridPos;
