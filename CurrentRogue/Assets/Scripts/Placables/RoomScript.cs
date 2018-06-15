@@ -44,12 +44,15 @@ public class RoomScript : MonoBehaviour, IPlacable
 	private TileScript tile;
 	//the gridPos
 	private Point gridPos;
+    public Point GridPos { get { return gridPos; } }
 
 	//the first obj to be placed, and removed
 	private GameObject originObj;
 	public GameObject OriginObj { get { return originObj; } }
 	//only defined on originObj, the tile, that was clicked to place this room
 	private Point _trueOriginPos;
+
+    private RoomScript originScr;
 
 	[SerializeField]
 	//the dimensions of the obj
@@ -108,7 +111,8 @@ public class RoomScript : MonoBehaviour, IPlacable
 		}
 
 		originObj = _originObj;
-
+        //necessary since placeObj needs to be generic
+        originScr = originObj.GetComponent<RoomScript>();
 
 		if (this.gameObject == originObj) {
 			isOrigin = true;
@@ -472,10 +476,13 @@ public class RoomScript : MonoBehaviour, IPlacable
 		}
 	}
 	*/
+    
 
+    /* 110618
 	public RoomScript GetRoomOrigin () {
 		return originObj.GetComponent <RoomScript> ();
 	}
+    */
 
 	public int Damages (int _amount) {
 		damages += _amount;
@@ -593,7 +600,8 @@ public class RoomScript : MonoBehaviour, IPlacable
 		tile.PlaceTarget (_gunID, _shipID);
 	}
 
-
+    
+    /*
 	private void OnTriggerEnter2D(Collider2D _col)
 	{
         Debug.LogError("ahhhh collisions in the mornin!");
@@ -615,13 +623,82 @@ public class RoomScript : MonoBehaviour, IPlacable
 
         inRoomHScr.Remove(_hScr);
     }
+    */
+
 
     public void HurtPresentHScr (int _amount) {
-        Debug.LogError("ouch");
+        if (isOrigin) {
+            foreach (var _hScr in inRoomHScr) {
+                _hScr.TakeCrewDamage(_amount);
+            }
+        } else {
+            originScr.HurtPresentHScr(_amount);
+        }
+
+        //Debug.LogError("ouch");
         /*
         foreach (var _hScr in inRoomHScr) {
             _hScr.TakeCrewDamage(_amount);
         }
         */
+    }
+
+
+    public void EnterRoom(HealthScript _hScr) {
+        Debug.Log("entered room: " + gridPos.X + ", " + gridPos.Y);
+        originScr.inRoomHScr.Add(_hScr);
+    }
+
+    private void ExitRoom (HealthScript _hScr) {
+        Debug.Log ("exited room: " + gridPos.X + ", " + gridPos.Y);
+        originScr.inRoomHScr.Remove(_hScr);
+    }
+
+    public void ChangeRoom (RoomScript _nextRoom, HealthScript _hScr) {
+        if (originObj == _nextRoom.originObj) {
+            Debug.LogError("same room");
+        } else {
+            ExitRoom(_hScr);
+            _nextRoom.EnterRoom(_hScr);
+        }
+    }
+
+
+
+
+    private void OnMouseOver()
+    {
+        //Debug.Log("oi");
+
+        if (Input.GetButtonUp("Fire1") && CrewSelect.currentlySelected.Count > 0)
+        {
+            foreach (CrewSelect _selected in CrewSelect.currentlySelected)
+            {
+                _selected.MovementOrders(gridPos);
+            }
+
+            LevelManager.Instance.DragSelectRef.gameObject.SetActive(true);
+        }
+
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            if (GameManager.Instance.ClickedBtn != null)
+            {
+                int objType = GameManager.Instance.ClickedBtn.objType;
+                string _objStr = PlacementManager.Instance.objStr;
+
+                if (objType == 6)
+                {
+                    if (Input.GetMouseButtonDown(0)) {
+                        if (tile.Walkable) {
+                            //set target
+                            Debug.LogError("gun finder classic! //is commented out...");
+                            //SetTarget (_objStr, 0);
+                            tile.PlaceTarget(PlacementManager.Instance.GunID, NetManager.Instance.localPlayerID);
+                        }
+                    }
+                } 
+            }
+        }
     }
 }

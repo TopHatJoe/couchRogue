@@ -234,6 +234,7 @@ public class HealthScript : MonoBehaviour
         }
     }
 
+    //affect health in general
 	private void RepairProgress (int _amount) {
 		repairProgress -= _amount;
 

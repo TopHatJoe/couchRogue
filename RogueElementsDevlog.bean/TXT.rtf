@@ -2068,14 +2068,71 @@ apr 25th 2018;\
 	//either crew needs to check regularly, or rooms inform 		local crew about health state...\
 	\strike \strikec2 -implement friend/foe recognition for shipDmgLoops\strike0\striked0 \
 	//just a friend bool as of now...\
-	-fix raycasting\
 	\strike \strikec2 -power weapon by btn\strike0\striked0  //doesn\'92t yet work properly //fixed\
 	//classic still utilizes the gunPOs approach. works fine, 		but it\'92d be great if i could properly assign them their 		weaponID...\
-	//have btns created by ship after weapons where added to get 		weapon id for targeting...?\ul \
-\ulnone -implement fullRoomColliders\
+	//have btns created by ship after weapons where added to get 		weapon id for targeting...?\
 \
 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 10th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 \strike \strikec2 -implement fullRoomColliders\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 -implement fullRoomCol functionality\
+//why do crewOuch by collider tho? //still useful for beams\
+//annoyingly, the crow pos assignment goes out of bounds and 	doesn\'92t seem to be all that reliable...\
+//though it worked once! wtf!?\
+-fix raycasting\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -new outlines\strike0\striked0  //why\'92d i do that istead of the important stuff?\
+//i don\'92t fucking know!\
+-sync ship pos\
+-hurt crew\
 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 11th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 \strike \strikec2 -fix crewPow reassignment\strike0\striked0  //cuz it\'92s fuuuuck\'92d\
+\strike \strikec2 -hurt crew\strike0\striked0  //crewDmg is not yet separated from roomDmg though\
+//let\'92s sort thoughts: reassign crew only to room origin and only 	when leaving or entering rooms //not tiles//-> more efficient?\
+//i\'92d need roomIDs back to make that work i guess. or just 	compare origin objs... //-> let\'92s do that, might not be the most 	efficient way though. 
+\f0\b //have the split-screen un-split on death?
+\f1\b0 \
+//UpdateCrewPos (int _x, int _y) is a thing now... \strike \strikec2 and z as well.\strike0\striked0 \
+//nah, teleportation and shipSkip gets its own function.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 12th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -implement classicCrewOuch\
+-implement win state -> all crew ded\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 14th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 \strike \strikec2 -fix raycasting\strike0\striked0  //although classic targeting sometimes defaults 	to room origin... don\'92t yet know the cause of this...\
+//simply elevate tileCol? //doesn\'92t work for like... no reason.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -fix room removal\strike0\striked0  //let\'92s face it, haven\'92t tested it, but... yeah\
+//just disable full room colliders? //easy fix, but maybe i 	should reorganize placement a little. but that\'92s polishing to be 	honest. works for now...\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 15th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -sync shipPos //i\'92ll do this via netmngr for conveniences sake\
+//-> truly spawn ships in future.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 \page -create network manager in lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0

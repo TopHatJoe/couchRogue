@@ -53,16 +53,26 @@ public class CouchCrewScript : NetworkBehaviour
 
 	private int targetedShipID;
 
+    private HealthScript hScr;
+
 
 
 	void Start () {
 		rb = gameObject.GetComponent <Rigidbody2D> ();
 		col = gameObject.GetComponent <BoxCollider2D> ();
 		netID = gameObject.GetComponent <NetworkIdentity> ();
+        hScr = gameObject.GetComponent<HealthScript>();
 	
 		if (isServer) {
 			//NetworkIdentity.
 			crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
+
+            //necessary for ini, wouldnt otherwise be registrered properly //?
+            //UpdateCrewPos(0, 0); //stupid ^^
+            TileScript _tile = LevelManager.Instance.Tiles[crewPos];
+            RoomScript _room = _tile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+            _room.EnterRoom(hScr);
+
 			SyncCrewPos ();
 
 			netID.AssignClientAuthority (NetManager.Instance.ConnDict [crewPos.Z]);
@@ -97,6 +107,7 @@ public class CouchCrewScript : NetworkBehaviour
 			CrewControls ();
 		}
 
+        //might actually also be if (isLocal)...
 		ReassignCrewPos ();
 
 		/*
@@ -211,14 +222,14 @@ public class CouchCrewScript : NetworkBehaviour
 		//reassigns crewPos
 		if (transform.position.x - previousPos.x > tileDistance) {
 			//moved to the right
-			UpdateCrewPos (2);
+			UpdateCrewPos (2, 0);
 
 			//crewPos.X += 2;
 			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 			//Debug.Log ("crewPos: " + crewPos.X);
 		} else if (transform.position.x - previousPos.x < -tileDistance) {
 			//moved to the left
-			UpdateCrewPos (-2);
+			UpdateCrewPos (-2, 0);
 
 			//crewPos.X -= 2;
 			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
@@ -379,6 +390,8 @@ public class CouchCrewScript : NetworkBehaviour
 		Point _point = elevator.GridPos;
 		Vector3 _pos = LevelManager.Instance.Tiles [_point].transform.position;
 
+        int _hDifference = (_level - _point.Y);
+
 		//Vector3 _direction = _pos - transform.position;
 
 		//Debug.Log (transform.position);
@@ -431,7 +444,10 @@ public class CouchCrewScript : NetworkBehaviour
 		usingElevator = false;
 		rb.MovePosition (transform.position + Vector3.left);
 
-		crewPos = _tile.GridPosition;
+        //crewPos = _tile.GridPosition;
+        UpdateCrewPos(0, _hDifference);
+
+        //UpdateCrewPos(_tile.GridPosition);
 
 		//Debug.LogError ("_tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
 		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
@@ -441,7 +457,12 @@ public class CouchCrewScript : NetworkBehaviour
 		previousPos = _pos;
 	}
 
-
+    /*
+    private void UpdateCrewPos (Point _newPos) {
+        
+        crewPos = _newPos;
+    }
+    */
 
 
 
@@ -460,16 +481,36 @@ public class CouchCrewScript : NetworkBehaviour
 		tileDistance = (_distance + 0.1f);
 	}
 
-	private void UpdateCrewPos (int _amount) {
-		crewPos.X += _amount;
+
+
+
+    private void UpdateCrewPos (int _x, int _y) {
+        TileScript _tile = LevelManager.Instance.Tiles[crewPos];
+        RoomScript _room = _tile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+        //_room.ExitRoom();
+        //Debug.LogError("crewPos: " + crewPos.X + ", " + crewPos.Y);
+    
+		crewPos.X += _x;
+        crewPos.Y += _y;
 		//Vector3 _vect = LevelManager.Instance.Tiles [crewPos].transform.position;
 		//_vect.x -= (tileDistance / 2);
+
+
 
 		//stuff here!
 		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
 
-		previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
-		//previousPos = _vect;
+
+        _tile = LevelManager.Instance.Tiles[crewPos];
+        previousPos = _tile.transform.position;
+
+
+        //_tile = LevelManager.Instance.Tiles[crewPos];
+
+        RoomScript _nextRoom = _tile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+        //_room.EnterRoom();
+        _room.ChangeRoom(_nextRoom, hScr);
+        //previousPos = _vect;
 
 		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y);
 

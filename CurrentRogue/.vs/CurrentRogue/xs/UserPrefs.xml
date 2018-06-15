@@ -1,20 +1,17 @@
 ﻿<Properties StartupConfiguration="{35C58780-924F-3E99-9466-8A0FFDDBA016}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TileScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/PowerManagement/ShipPowerMngr.cs" Line="239" Column="16" />
-      <File FileName="Assets/Scripts/Placables/ReactorScript.cs" Line="60" Column="13" />
-      <File FileName="Assets/Scripts/Placables/SystemScript.cs" Line="286" Column="60" />
-      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="612" Column="3" />
-      <File FileName="Assets/Scripts/Placables/CrewScript.cs" Line="638" Column="30" />
-      <File FileName="Assets/Scripts/Placables/WeaponScript.cs" Line="371" Column="21" />
-      <File FileName="Assets/Scripts/Placables/GunBtnScr.cs" Line="127" Column="59" />
-      <File FileName="Assets/Scripts/Placables/TerminalScr.cs" Line="267" Column="46" />
-      <File FileName="Assets/Scripts/TileScript.cs" Line="559" Column="13" />
-      <File FileName="Assets/Scripts/PlacementManager.cs" Line="40" Column="23" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="50" Column="14" />
-      <File FileName="Assets/Scripts/UI/CouchCursorScr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="620" Column="32" />
+      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="107" Column="3" />
+      <File FileName="Assets/Scripts/Placables/RoomDistributor.cs" Line="13" Column="10" />
+      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="74" Column="29" />
+      <File FileName="Assets/Scripts/TileScript.cs" Line="325" Column="24" />
+      <File FileName="Assets/Scripts/Placables/AmmoScript.cs" Line="283" Column="29" />
+      <File FileName="Assets/Scripts/HealthScript.cs" Line="233" Column="51" />
+      <File FileName="Assets/Scripts/Placables/CrewScript.cs" Line="164" Column="32" />
+      <File FileName="Assets/Scripts/CrewSelect.cs" Line="79" Column="28" />
+      <File FileName="Assets/Scripts/NetManager.cs" Line="156" Column="3" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

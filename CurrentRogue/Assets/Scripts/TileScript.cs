@@ -203,6 +203,8 @@ public class TileScript : MonoBehaviour
 	private void OnMouseOver ()
 	{
 		if (IsTile) {
+            //Debug.Log("oi!  2");
+
 			if (!IsWeaponSlot) {
 
 				//if the pointer is over the btns or ClickedBtn equals null it won't place a room
@@ -334,6 +336,8 @@ public class TileScript : MonoBehaviour
 					}
 
 
+                    //now done by roomScr
+                    /*
 					if (Input.GetButtonUp ("Fire1") && CrewSelect.currentlySelected.Count > 0) {
 						foreach (CrewSelect _selected in CrewSelect.currentlySelected) {
 							_selected.MovementOrders (GridPosition);
@@ -341,6 +345,7 @@ public class TileScript : MonoBehaviour
 
 						LevelManager.Instance.DragSelectRef.gameObject.SetActive (true);
 					}
+                    */
 
 				//Removing Objects  //if in Hangar should be added
 				else if (OnFire && Input.GetMouseButtonDown (1)) {
