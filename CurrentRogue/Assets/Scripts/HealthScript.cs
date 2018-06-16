@@ -63,6 +63,8 @@ public class HealthScript : MonoBehaviour
 	private SystemScript sys;
 	[SerializeField]
 	private bool isSubSys;
+    [SerializeField]
+    private bool isCrew;
 
 	private TileScript tile;
 
@@ -83,7 +85,9 @@ public class HealthScript : MonoBehaviour
 		} else if (isSubSys) {
 			//Debug.LogError ("added subSys");
 			_type = 2;
-		}
+        } else if (isCrew) {
+            _type = 3;
+        }
 
 		if (_type != 1000) {
 			objType = _type;

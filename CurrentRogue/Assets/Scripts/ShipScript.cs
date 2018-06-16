@@ -20,6 +20,14 @@ public class ShipScript : MonoBehaviour
 	//private Vector3 shipCenter;
 
 
+
+
+
+	private void Start()
+	{
+        Debug.LogError("shipPos: " + transform.position.x + ", " + transform.position.y);
+	}
+
 	public void RemoteUpdateEvasionChance (int _eC) {
 		evasionChance = _eC;
 	}

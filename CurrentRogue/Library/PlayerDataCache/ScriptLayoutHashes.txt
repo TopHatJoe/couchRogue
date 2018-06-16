@@ -1,6 +1,6 @@
 OSXStandalone
 PlayerPath?
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Early Builds/classBuild.app
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Early Builds/shipPos.app
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/ServerBrowser(ph).unity
@@ -148,6 +148,7 @@ a37b666468d9aa2cd0c10b490142224d Assembly-CSharp.dll:.ShipPowerMngr
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SquareTileScript
 a450a18209da875cb1047632bd498e23 Assembly-CSharp.dll:.CanvasManager
 e8896434f5cc64ee68bacd1f2134ea7a Assembly-CSharp.dll:.CamSwitch
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RoomDistributor
 a61afca81927820c7822ba2048d5d3fe Assembly-CSharp.dll:.PlayerInfo
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TerminalScr
 67051d500a35b8b6f6278fcd543ff2f2 Assembly-CSharp.dll:.TargetScript
@@ -200,7 +201,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.QuitOnClick
 435182869ac29b4172786d9065b3882c Assembly-CSharp.dll:.ShieldSystemScript
 fa66b1b1bde1dc8ad4a3007ac7b53012 Assembly-CSharp.dll:.TestScr
-edf4f4f79b9fce227bf6a61f19ee5ac6 Assembly-CSharp.dll:.HealthScript
+e55cac29d6dd9ced054fed60e4976b42 Assembly-CSharp.dll:.HealthScript
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.AddByBtn
 0e19727eb59ee45ef680e9470d263136 Assembly-CSharp.dll:.ScreenSetup

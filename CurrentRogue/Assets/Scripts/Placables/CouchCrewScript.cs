@@ -90,16 +90,16 @@ public class CouchCrewScript : NetworkBehaviour
 
 		Debug.Log (tileDistance);
 
-		//_cam = transform.GetChild (0).gameObject.GetComponent <Camera> ();
+        //_cam = transform.GetChild (0).gameObject.GetComponent <Camera> ();
 
-		//StartCoroutine (Test ());
+        //StartCoroutine (Test ());
 
-		//CrewColorAssignment ();
-		//Debug.Log ("crewColour: " + crewColor);
-		//Debug.Log ("crewID: " + couchPlayerID);
+        //CrewColorAssignment ();
+        //Debug.Log ("crewColour: " + crewColor);
+        //Debug.Log ("crewID: " + couchPlayerID);
 
-		//Debug.LogError ("isLocalCrew: " + isLocal);
-
+        //Debug.LogError ("isLocalCrew: " + isLocal);
+        StartCoroutine(CrewPosCheck());
 	}
 
 	void Update () {
@@ -240,7 +240,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 
 	public void CouchCrewSetup (string _controllerID, int _couchPlayerID, int _couchCount) {
-		//Debug.LogError ("crewSetup");
+		Debug.LogError ("crewSetup");
 
 		controllerID = _controllerID;
 		isLocal = true;
@@ -775,4 +775,24 @@ public class CouchCrewScript : NetworkBehaviour
 			StopSomeDamage ();
 		}
 	}
+
+
+
+    private IEnumerator CrewPosCheck () {
+        while (true) {
+            yield return new WaitForSeconds(1f);
+
+            Debug.LogError("crewTransform" + crewPos.Z + ": " + transform.position.x + ", " + transform.position.y);
+            TileScript _tile = LevelManager.Instance.Tiles[crewPos];
+            Debug.LogError("crewTile[" + crewPos.X + "/" + crewPos.Y + "/" + crewPos.Z + "]: " + _tile.transform.position.x + ", " + _tile.transform.position.y);
+            float _difference = (transform.position.x - _tile.transform.position.x);
+            Debug.LogError("difference" + crewPos.Z + ": " + _difference);
+
+            if (_difference < 1 && _difference > -1) {
+                break;
+            } else {
+                LevelManager.Instance.AdjustShipPos(_difference);
+            }
+        }
+    }
 }

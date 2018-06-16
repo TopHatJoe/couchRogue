@@ -139,12 +139,21 @@ public class LevelManager : Singleton<LevelManager>
 		//should place ships and get references
 		StartCoroutine (ArtificialDelayIni ());
 
-		//Debug.Log ("Place");
-		//PlaceAllShips ();
+        //Debug.Log ("Place");
+        //PlaceAllShips ();
 
-		//reference roomContent origins; //way too early!
-		//GetRoomContents ();
+        //reference roomContent origins; //way too early!
+        //GetRoomContents ();
+
+        SyncShipPos();
 	}
+
+    private void SyncShipPos () {
+        for (int i = 0; i < ships.Length; i++)
+        {
+            NetManager.Instance.SyncShipPos(i, ships[i].transform.position);
+        }
+    }
 
 	private void CreateObjDictionary () {
 		/*
@@ -472,8 +481,12 @@ public class LevelManager : Singleton<LevelManager>
 		}
 	}
 
+
+
+
+
 	private IEnumerator ArtificialDelayIni () {
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (5f);
 
 		Debug.LogError ("placement ini");
 
@@ -499,4 +512,14 @@ public class LevelManager : Singleton<LevelManager>
 
 		GetRoomContents ();
 	}
+
+
+    public void AdjustShipPos (float _amount) {
+        foreach (var _ship in ships)
+        {
+            Vector3 _vect = _ship.transform.position;
+            _vect.x += _amount;
+            _ship.transform.position = _vect;
+        }
+    }
 }

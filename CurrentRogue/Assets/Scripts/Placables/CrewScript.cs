@@ -57,6 +57,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
+        //CouchMode = CasheScript.Instance.CouchMode;
+
 		crewPos = _gridPos;
 
 		DepartTile = LevelManager.Instance.Tiles [_gridPos].GetComponent <TileScript> ();
@@ -64,9 +66,11 @@ public class CrewScript : MonoBehaviour, IPlacable
 		//if (this.gameObject == originObj) {
 		saveStr = (objStr + ",4," + crewPos.X.ToString () + "," + crewPos.Y.ToString ());
 		LevelManager.Instance.parameterList.Add (saveStr);
-		//}
+        //}
 
-		transform.SetParent(DepartTile.transform.GetChild (2));
+        //if (!CouchMode) {
+        transform.SetParent(DepartTile.transform.GetChild(2));
+        //}
 
 		DepartTile.Manned = true;
 

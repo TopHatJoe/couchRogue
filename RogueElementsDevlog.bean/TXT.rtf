@@ -2121,8 +2121,7 @@ apr 25th 2018;\
 
 \f1\b0 \cf2 \strike \strikec2 -fix raycasting\strike0\striked0  //although classic targeting sometimes defaults 	to room origin... don\'92t yet know the cause of this...\
 //simply elevate tileCol? //doesn\'92t work for like... no reason.\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix room removal\strike0\striked0  //let\'92s face it, haven\'92t tested it, but... yeah\
+\strike \strikec2 -fix room removal\strike0\striked0  //let\'92s face it, haven\'92t tested it, but... yeah\
 //just disable full room colliders? //easy fix, but maybe i 	should reorganize placement a little. but that\'92s polishing to be 	honest. works for now...\
 \
 \
@@ -2133,8 +2132,26 @@ apr 25th 2018;\
 
 \f1\b0 \cf2 -sync shipPos //i\'92ll do this via netmngr for conveniences sake\
 //-> truly spawn ships in future.\
+\
+\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 \page -create network manager in lobby\
+
+\f0\b \cf2 jun 16th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 //it\'92s not shipPosDesync...\
+//could the issue be that crew always is a child of spawnTile?\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 //doesn\'92t seem to be the case... i\'92ll check crewPos in regular 	intervals to get some idea of what\'92s goin\'92 on..\
+//clients couchCrew parents aren\'92t set properly?\
+//placeObj isn\'92t called on clients \
+-call placeObj on client couchCrew\
+//how? ->dunno\
+//maybe stop assigning parents to couchCrew altogether?\
+\strike \strikec2 -fix xPosDesync
+\f0\b \strike0\striked0  
+\f1\b0 //super ugly fix, but it seems to work...\
+//fix janky movement. //variing speeds and shit. it\'92s distracting\strike \strikec2 \page -create network manager in lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\

@@ -68,7 +68,7 @@ public class ShipPowerMngr : MonoBehaviour
 
     public void AddToSysScrList (int _sysType, SystemScript _sysScr) {
         if (_sysType == 0) {
-            Debug.Log("reactor added to list");
+            //Debug.Log("reactor added to list");
             reactorList.Add(_sysScr);
         } else if (_sysType == 1) {
             shieldList.Add(_sysScr);

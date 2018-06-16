@@ -521,4 +521,18 @@ public class PlayerInfo : NetworkBehaviour
 		
 	}
 	*/
+
+
+    public void SyncShipPos (int _shipID, Vector3 _pos) {
+        if (isServer) {
+            RpcSyncShipPos(_shipID, _pos);
+        }
+    }
+
+    [ClientRpc]
+    private void RpcSyncShipPos (int _shipID, Vector3 _pos) {
+        GameObject _ship = LevelManager.Instance.Ships[_shipID];
+        _ship.transform.position = _pos;
+        Debug.LogError("shipPos" + _shipID + "(Synced): " + _ship.transform.position.x + ", " + _ship.transform.position.y);
+    }
 }

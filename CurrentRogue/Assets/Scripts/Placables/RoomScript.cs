@@ -131,7 +131,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 		//gridPos = _gridPos;
 		gridPos = new Point (_gridPos.X + Mathf.RoundToInt (nextPos.x * 2), _gridPos.Y + Mathf.RoundToInt (nextPos.y), _gridPos.Z);
-		Debug.Log ("gridPos: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
+		//Debug.Log ("gridPos: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
 
 
 		//set tweens walkable
@@ -656,7 +656,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 
     public void ChangeRoom (RoomScript _nextRoom, HealthScript _hScr) {
         if (originObj == _nextRoom.originObj) {
-            Debug.LogError("same room");
+            //Debug.LogError("same room");
         } else {
             ExitRoom(_hScr);
             _nextRoom.EnterRoom(_hScr);
