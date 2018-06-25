@@ -1,20 +1,13 @@
 ﻿<Properties StartupConfiguration="{35C58780-924F-3E99-9466-8A0FFDDBA016}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LevelManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PowerManagement/ShipPowerMngr.cs">
     <Files>
-      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="134" Column="5" />
-      <File FileName="Assets/Scripts/Placables/RoomDistributor.cs" Line="13" Column="10" />
-      <File FileName="Assets/Scripts/Placables/CrewScript.cs" Line="72" Column="9" />
-      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="794" Column="18" />
-      <File FileName="Assets/Scripts/TileScript.cs" Line="1074" Column="5" />
-      <File FileName="Assets/Scripts/Placables/AmmoScript.cs" Line="283" Column="29" />
-      <File FileName="Assets/Scripts/HealthScript.cs" Line="78" Column="1" />
-      <File FileName="Assets/Scripts/PlayerInfo.cs" Line="459" Column="56" />
-      <File FileName="Assets/Scripts/CrewSelect.cs" Line="79" Column="28" />
-      <File FileName="Assets/Scripts/ShipScript.cs" Line="28" Column="23" />
-      <File FileName="Assets/Scripts/LevelManager.cs" Line="489" Column="37" />
-      <File FileName="Assets/Scripts/Placables/ReactorScript.cs" Line="291" Column="3" />
-      <File FileName="Assets/Scripts/PowerManagement/ShipPowerMngr.cs" Line="71" Column="15" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="498" Column="5" />
+      <File FileName="Assets/Scripts/Placables/CrewScript.cs" Line="94" Column="11" />
+      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="472" Column="2" />
+      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="632" Column="1" />
+      <File FileName="Assets/Scripts/TileScript.cs" Line="982" Column="1" />
+      <File FileName="Assets/Scripts/PowerManagement/ShipPowerMngr.cs" Line="289" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

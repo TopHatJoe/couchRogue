@@ -65,7 +65,7 @@ public class CouchCrewScript : NetworkBehaviour
 	
 		if (isServer) {
 			//NetworkIdentity.
-			crewPos = gameObject.GetComponent <CrewScript> ().crewPos;
+			crewPos = gameObject.GetComponent <CrewScript> ().CrewPos;
 
             //necessary for ini, wouldnt otherwise be registrered properly //?
             //UpdateCrewPos(0, 0); //stupid ^^

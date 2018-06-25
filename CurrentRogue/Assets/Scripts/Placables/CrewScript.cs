@@ -17,7 +17,8 @@ public class CrewScript : MonoBehaviour, IPlacable
 	[SerializeField]
 	private int repairSpeed;
 
-	public Point crewPos { get; private set; }
+    private Point crewPos;
+    public Point CrewPos { get { return crewPos; } private set { crewPos = value; } }
 	public int CrewOrigin { get; private set; }
 
 	public Stack <Node> path;
@@ -55,16 +56,25 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 
 
+    private HealthScript hScr;
+    private float tileDistance;
+    private Vector3 previousPos;
+
+
 
 	public void PlaceObj (int _index, Point _gridPos, GameObject _originObj) {
         //CouchMode = CasheScript.Instance.CouchMode;
 
-		crewPos = _gridPos;
-
+		CrewPos = _gridPos;
+        //enterRoom
+        RoomScript _room = LevelManager.Instance.Tiles[_gridPos].transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+        hScr = gameObject.GetComponent<HealthScript>();
+        _room.EnterRoom(hScr);
+ 
 		DepartTile = LevelManager.Instance.Tiles [_gridPos].GetComponent <TileScript> ();
 
 		//if (this.gameObject == originObj) {
-		saveStr = (objStr + ",4," + crewPos.X.ToString () + "," + crewPos.Y.ToString ());
+		saveStr = (objStr + ",4," + CrewPos.X.ToString () + "," + CrewPos.Y.ToString ());
 		LevelManager.Instance.parameterList.Add (saveStr);
         //}
 
@@ -79,9 +89,11 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 		isStationed = true;
 
-		//starts repairLoop
-		//IsStationed (true);
-
+        //starts repairLoop
+        //IsStationed (true);
+        //hScr = gameObject.GetComponent<HealthScript>();
+        previousPos = transform.position;
+        GetTileDistances();
 		//Initialize ();
 
 		GameManager.Instance.Buy ();
@@ -115,22 +127,32 @@ public class CrewScript : MonoBehaviour, IPlacable
 		//crewPos = DepartTile.GridPosition;
 
 		//sets crew alignment //whose crew 's dat?
-		CrewOrigin = crewPos.Z;
+		CrewOrigin = CrewPos.Z;
 
 		//mayhap unnessesary //if obj in hangar and void differ.
 		if (NetManager.Instance != null) {
-			if (NetManager.Instance.localPlayerID == crewPos.Z) {
+			if (NetManager.Instance.localPlayerID == CrewPos.Z) {
 				IsLocalCrew = true;
 			} else {
 				IsLocalCrew = false;
 			}
 
-			player = NetManager.Instance.playerList [crewPos.Z];
+			player = NetManager.Instance.playerList [CrewPos.Z];
 			player.crewList.Add (this);
 			player.SetCrewIndex ();
 
-			if (!CouchMode) {
-				transform.GetChild (0).GetComponent <CrewSelect> ().AddToHash (IsLocalCrew);
+            if (!CouchMode)
+            {
+                transform.GetChild(0).GetComponent<CrewSelect>().AddToHash(IsLocalCrew);
+                /*
+                TileScript _tile = LevelManager.Instance.Tiles[CrewPos];
+                RoomScript _room = _tile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+                if (hScr == null) {
+                    Debug.LogError("hScr == null!");
+                } else { 
+                    _room.EnterRoom(hScr);
+                }
+                */
 			}
 
 			/*
@@ -144,7 +166,12 @@ public class CrewScript : MonoBehaviour, IPlacable
         dmgLoop = DmgLoop(0);
 	}
 
-	void Update () {
+    void Update()
+    {
+        if (!CouchMode) { 
+            //ReassignCrewPos();
+        }
+
 		/*
 		if (CouchMode) {
 			if (Input.GetButton ("J00-V")) {
@@ -155,6 +182,99 @@ public class CrewScript : MonoBehaviour, IPlacable
 		}
 		*/
 	}
+
+    /*
+    private void ReassignCrewPos()
+    {
+        //Debug.LogError ("crewtrans: " + transform.position.x);
+        //Debug.LogError ("crewPrev: " + previousPos.x);
+        //Debug.LogError ("tileDist: " + tileDistance);
+
+        //reassigns crewPos
+        if (transform.position.x - previousPos.x > tileDistance)
+        {
+            //moved to the right
+            UpdateCrewPos(2, 0);
+
+            //crewPos.X += 2;
+            //previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
+            //Debug.Log ("crewPos: " + crewPos.X);
+        }
+        else if (transform.position.x - previousPos.x < -tileDistance)
+        {
+            //moved to the left
+            UpdateCrewPos(-2, 0);
+
+            //crewPos.X -= 2;
+            //previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
+            //Debug.Log ("crewPos: " + crewPos.X);
+        }
+    }
+    */
+
+    //classic edit
+    private void UpdateCrewPos(Point _newPos)
+    {
+        TileScript _newTile = LevelManager.Instance.Tiles[_newPos];
+        Point _nextPos = crewPos;
+
+        //if the point crew has moved to is a tween
+        if (!_newTile.IsTile) {
+            //add the difference to determine movement direction
+            int _direction = (crewPos.X - _newPos.X);
+
+            //Point _nextPos = crewPos;
+            _nextPos.X -= (_direction * 2);
+        }
+
+        //get room references
+        TileScript _prevTile = LevelManager.Instance.Tiles[crewPos];
+        TileScript _nextTile = LevelManager.Instance.Tiles[_nextPos];
+
+        RoomScript _prevRoom = _prevTile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+        RoomScript _nextRoom = _nextTile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+
+        _prevRoom.ChangeRoom(_nextRoom, hScr);
+        crewPos = _nextPos;
+
+        Debug.LogError("updated crewPos: " + crewPos.X + ", " + crewPos.Y);
+
+
+        /*
+        TileScript _prevTile = LevelManager.Instance.Tiles[CrewPos];
+        RoomScript _room = _prevTile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+       
+
+        //_room.ExitRoom();
+        //Debug.LogError("crewPos: " + crewPos.X + ", " + crewPos.Y);
+
+        //crewPos.X += _x;
+        //crewPos.Y += _y;
+
+        //Vector3 _vect = LevelManager.Instance.Tiles [crewPos].transform.position;
+        //_vect.x -= (tileDistance / 2);
+
+
+
+        //stuff here!
+        //Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
+
+
+        TileScript _currTile = LevelManager.Instance.Tiles[_newPos];
+        //previousPos = _tile.transform.position;
+
+
+        //_tile = LevelManager.Instance.Tiles[crewPos];
+
+        RoomScript _nextRoom = _currTile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+        //_room.EnterRoom();
+        _room.ChangeRoom(_nextRoom, hScr);
+        //previousPos = _vect;
+
+        //Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y);
+        */
+    }
+
 
 
 	public void Remove ()
@@ -234,7 +354,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 			//Movement 
 
 			if (reachable) {
-				Movement (crewPos, DestinationTile.GridPosition);
+				Movement (CrewPos, DestinationTile.GridPosition);
 			} else {
 				Debug.Log ("unreachable");
 			}
@@ -247,7 +367,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 	private bool ReachabilityCheck (TileScript _tile)
 	{
 		//only if the new destination is reachable, the path will be altered
-		Stack<Node> _path = AStar.GetPath (crewPos, _tile.GridPosition);
+		Stack<Node> _path = AStar.GetPath (CrewPos, _tile.GridPosition);
 		if (_path != null) {
 
 			//!!!
@@ -299,11 +419,13 @@ public class CrewScript : MonoBehaviour, IPlacable
 		Point _start = VectorToPoint (_startVec);
 		Point _goal = VectorToPoint (_goalVec);
 
-		crewPos = _start;
+        //CrewPos = _start;
+        UpdateCrewPos(_start);
+
 		//DestinationTile = LevelManager.Instance.Tiles [_goal];
 		TileScript _destinationTile = LevelManager.Instance.Tiles [_goal];
 
-		path = AStar.GetPath (crewPos, _destinationTile.GridPosition);
+		path = AStar.GetPath (CrewPos, _destinationTile.GridPosition);
 
 		//checks if path was found
 		if (path != null) {
@@ -315,11 +437,15 @@ public class CrewScript : MonoBehaviour, IPlacable
 			}
 
 			//un-man rooms on departure
-			DepartTile = LevelManager.Instance.Tiles [crewPos];
+			DepartTile = LevelManager.Instance.Tiles [CrewPos];
 			DepartTile.Manned = false;
 
-			crewPos = path.Peek ().GridPosition;
-			destination = path.Pop ().TileTransform;
+            Node _node = path.Pop();
+            UpdateCrewPos(_node.GridPosition);
+            destination = _node.TileTransform;
+
+			//CrewPos = path.Peek ().GridPosition;
+			//destination = path.Pop ().TileTransform;
 
 			if (movementLoop != null) {
 				StopCoroutine (movementLoop);
@@ -360,7 +486,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 		//stops repairLoop
 		IsStationed (false);
 
-		Debug.Log ("not null 0");
+		//Debug.Log ("not null 0");
 
 		while (path.Count > 0) {
 			transform.position = Vector2.MoveTowards (transform.position, destination, speed * Time.deltaTime);
@@ -371,17 +497,18 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 			if (Vector2.Distance (_pos, destination) < 0.005f && path.Count > 0) {
 			//if (transform.position == destination && path.Count > 0) {
-				Node _node = path.Pop ();
-
-				//crewPos = path.Peek ().GridPosition;
-				crewPos = _node.GridPosition;
-				//destination = path.Pop ().TileTransform;
+				
+                Node _node = path.Pop ();
+                //crewPos = path.Peek ().GridPosition;
+                //CrewPos = _node.GridPosition;
+                UpdateCrewPos(_node.GridPosition);
+                //destination = path.Pop ().TileTransform;
 				destination = _node.TileTransform;
 
 
 				//delay movement at doors
 				if (_node.HasDoor) {
-					if (!LevelManager.Instance.Tiles [crewPos].DoorOpen) {
+					if (!LevelManager.Instance.Tiles [CrewPos].DoorOpen) {
 						//later changed to while !doorOpen -> wait
 						//door opens when destroyed
 
@@ -423,14 +550,16 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 					//Debug.Log ("not null 2");
 
-					CrewRebirth (crewPos, true);
+					CrewRebirth (CrewPos, true);
 					//Debug.Log ("final destination");
 					yield break;
 					//if (!LevelManager.Instance.Tiles [crewPos].IsTile) {
 				//} else if (path.Peek ().IsTile) {
 				} else if (!_node.IsTile && path.Peek ().IsTile) {
-					//doesnt work for y movement though
-					crewPos = path.Peek ().GridPosition;
+                    //doesnt work for y movement though
+
+                    //Debug.LogError("removed tween jump");
+                    CrewPos = path.Peek ().GridPosition;
 				} 
 
 				/*
@@ -440,7 +569,7 @@ public class CrewScript : MonoBehaviour, IPlacable
 				*/
 
 				//reassign obj
-				CrewRebirth (crewPos, false);
+				CrewRebirth (CrewPos, false);
 
 				//Debug.Log ("crewPos: " + crewPos.X + ", " + crewPos.Y);
 			}
@@ -470,7 +599,7 @@ public class CrewScript : MonoBehaviour, IPlacable
     private IEnumerator DmgLoop(int _amount)
     {
         //isOccupied = true;
-        TileScript _tile = LevelManager.Instance.Tiles[crewPos];
+        TileScript _tile = LevelManager.Instance.Tiles[CrewPos];
 
         //RoomScript _room = LevelManager.Instance.Tiles [crewPos].transform.GetChild (0).GetChild (0).GetComponent <RoomScript> ();
 
@@ -723,4 +852,20 @@ public class CrewScript : MonoBehaviour, IPlacable
 	public void UpdateHealthState (bool _isFullyDamaged, bool _isFullyRepaired) {
 
 	}
+
+
+
+
+
+    private void GetTileDistances() {
+        //theres probably a more elegant soltion to this... but fuggid!
+        Point _point0 = new Point(0, 0, 0);
+        Point _point1 = new Point(1, 0, 0);
+
+        Vector3 _vect0 = LevelManager.Instance.Tiles[_point0].transform.position;
+        Vector3 _vect1 = LevelManager.Instance.Tiles[_point1].transform.position;
+
+        float _distance = _vect1.x - _vect0.x;
+        tileDistance = (_distance + 0.1f);
+    }
 }

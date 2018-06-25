@@ -647,11 +647,14 @@ public class RoomScript : MonoBehaviour, IPlacable
     public void EnterRoom(HealthScript _hScr) {
         Debug.Log("entered room: " + gridPos.X + ", " + gridPos.Y);
         originScr.inRoomHScr.Add(_hScr);
+
+        Debug.LogError("num of hScr: " + originScr.inRoomHScr.Count);
     }
 
     private void ExitRoom (HealthScript _hScr) {
         Debug.Log ("exited room: " + gridPos.X + ", " + gridPos.Y);
         originScr.inRoomHScr.Remove(_hScr);
+        Debug.LogError("num of hScr: " + originScr.inRoomHScr.Count);
     }
 
     public void ChangeRoom (RoomScript _nextRoom, HealthScript _hScr) {

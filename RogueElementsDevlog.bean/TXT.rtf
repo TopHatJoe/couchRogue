@@ -2141,19 +2141,55 @@ apr 25th 2018;\
 
 \f1\b0 \cf2 //it\'92s not shipPosDesync...\
 //could the issue be that crew always is a child of spawnTile?\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 //doesn\'92t seem to be the case... i\'92ll check crewPos in regular 	intervals to get some idea of what\'92s goin\'92 on..\
+//doesn\'92t seem to be the case... i\'92ll check crewPos in regular 	intervals to get some idea of what\'92s goin\'92 on..\
 //clients couchCrew parents aren\'92t set properly?\
 //placeObj isn\'92t called on clients \
 -call placeObj on client couchCrew\
 //how? ->dunno\
 //maybe stop assigning parents to couchCrew altogether?\
-\strike \strikec2 -fix xPosDesync
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -fix xPosDesync
 \f0\b \strike0\striked0  
 \f1\b0 //super ugly fix, but it seems to work...\
-//fix janky movement. //variing speeds and shit. it\'92s distracting\strike \strikec2 \page -create network manager in lobby\
+//fix janky movement. //variing speeds and shit. it\'92s distracting\
+\
+\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
+
+\f0\b \cf2 jun 23rd 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -implement medBay\
+-implement teleporter\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -implement classicCrewOuch\strike0\striked0  //and classic PosAssignment\
+-redo classic PosAssignment\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 24th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -redo classic PosAssignment //by simply using the nodes?a <- duh?\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 25th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 \strike \strikec2 -redo classic PosAssignment\strike0\striked0  /by nodes/ //whenever crewPos is set\
+//if _tile = tween -> extrapolate direction \
+//prevPos.x = 6; _tilePos.x = 7; => currentPos = 8;\
+//prevPos.x = 6; _tilePos.x = 5; => currentPos = 4;\
+//not super efficient -> performs double checks most of the time\
+-----------------------------------------------------------------\
+//bar colouring is weird -> red-bars won\'92t appear properly\
+//functionality is still fine though...\
+//weird bug: if reactor is destroyed by cannon, another powers up\
+//dunno what caused it... wasn\'92t an issue this time... try build\
+//there\'92s still posAssignment issues... sometimes crew isn\'92t 	properly removed or added... that is annoying as fuck. \
+-> redo move() coroutine... //at least partially...\strike \strikec2 \page -create network manager in lobby\
+\strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -assign unique networkID to every player.\strike0\striked0 \

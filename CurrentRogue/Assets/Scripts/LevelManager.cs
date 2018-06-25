@@ -495,7 +495,7 @@ public class LevelManager : Singleton<LevelManager>
 			if (NetManager.Instance.localPlayerID == 0) {
 				//if (CasheScript.Instance.AutoPlace) {
 					//Debug.LogError ("Placing all ships?");
-					PlaceAllShips ();
+				PlaceAllShips ();
 				//}
 			}
 		} 

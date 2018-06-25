@@ -1,6 +1,6 @@
 OSXStandalone
 PlayerPath?
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Early Builds/shipPos.app
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Early Builds/classicCrewPos.app
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/ServerBrowser(ph).unity
