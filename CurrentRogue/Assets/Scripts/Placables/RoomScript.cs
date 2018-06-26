@@ -389,7 +389,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 
 
-	//gets Contents (except for crew and other movables) of all roomComponents
+	//gets Contents (except for crew and other movables) of all roomComponents //the children should really add themselves...
 	public void GetChildrenIni (int _id) {
 		roomID = _id;
 		//Debug.Log (_id);
@@ -648,12 +648,15 @@ public class RoomScript : MonoBehaviour, IPlacable
         Debug.Log("entered room: " + gridPos.X + ", " + gridPos.Y);
         originScr.inRoomHScr.Add(_hScr);
 
+        ColourRoom(originScr.inRoomHScr.Count);
         Debug.LogError("num of hScr: " + originScr.inRoomHScr.Count);
     }
 
     private void ExitRoom (HealthScript _hScr) {
         Debug.Log ("exited room: " + gridPos.X + ", " + gridPos.Y);
         originScr.inRoomHScr.Remove(_hScr);
+        
+        ColourRoom(originScr.inRoomHScr.Count);
         Debug.LogError("num of hScr: " + originScr.inRoomHScr.Count);
     }
 
@@ -666,6 +669,13 @@ public class RoomScript : MonoBehaviour, IPlacable
         }
     }
 
+    private void ColourRoom (int _num) {
+        if (_num > 0) {
+            originObj.GetComponent<SpriteRenderer>().color = Color.red;
+        } else {
+            originObj.GetComponent<SpriteRenderer>().color = Color.clear;
+        }
+    }
 
 
 

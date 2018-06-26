@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\Placables\GunBtnScr.cs" />
     <Compile Include="Assets\Scripts\Placables\IPlacable.cs" />
     <Compile Include="Assets\Scripts\Placables\ISystem.cs" />
+    <Compile Include="Assets\Scripts\Placables\MedBayScr.cs" />
     <Compile Include="Assets\Scripts\Placables\ReactorScript.cs" />
     <Compile Include="Assets\Scripts\Placables\RoomDistributor.cs" />
     <Compile Include="Assets\Scripts\Placables\RoomScript.cs" />

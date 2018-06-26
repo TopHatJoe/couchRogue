@@ -13,14 +13,14 @@ public class ShipPowerMngr : MonoBehaviour
 	private int shipID;
 
 	//the maximum capacity of the system based on what the ship has installed
-	private int[] maxCapacityArr = new int[4];
+	private int[] maxCapacityArr = new int[5];
 	//the capacity that is available when considering damages
-	private int[] capacityArr = new int[4];
+	private int[] capacityArr = new int[5];
 	//the amount of power invested
-	private int[] powerArr = new int[4];
+	private int[] powerArr = new int[5];
 
     //classic -> power by btn //which systems are up, whuch aren't?
-    private int[] pwrdSystemsCount = new int[4];
+    private int[] pwrdSystemsCount = new int[5];
 
 	private List <ISystem> iSysList = new List<ISystem> ();
 	public List <ISystem> ISysList { get { return iSysList; } }

@@ -69,9 +69,13 @@ public class CouchCrewScript : NetworkBehaviour
 
             //necessary for ini, wouldnt otherwise be registrered properly //?
             //UpdateCrewPos(0, 0); //stupid ^^
+
+            //done in crewScr
+            /*
             TileScript _tile = LevelManager.Instance.Tiles[crewPos];
             RoomScript _room = _tile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
             _room.EnterRoom(hScr);
+            */
 
 			SyncCrewPos ();
 
