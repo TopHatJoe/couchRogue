@@ -225,6 +225,22 @@ public class CrewScript : MonoBehaviour, IPlacable
 
             //Point _nextPos = crewPos;
             _nextPos.X -= (_direction * 2);
+        } else {
+
+            //for elevators //should really always be called if newPos is not horizontally adjacent to crewPos
+            if (_newPos.Y != crewPos.Y) {
+                _nextPos = _newPos;
+            }
+
+            /*
+            //should really always be called if newPos is not horizontally adjacent to crewPos
+            if (_newPos.X == (crewPos.X - 2) || _newPos.X == (crewPos.X + 2)) {
+               
+            } else {
+                _nextPos = _newPos;
+                Debug.LogError("biuo: " + crewPos.X + ", " + _newPos.X);
+            }
+            */
         }
 
         //get room references

@@ -75,7 +75,7 @@ public class HealthScript : MonoBehaviour
 		sprRenderer = gameObject.GetComponent <SpriteRenderer> ();
 		//room = transform.parent.parent.GetChild (0).GetChild (0).GetComponent <RoomScript> ().GetRoomOrigin ();
 
-		tile = transform.parent.parent.GetComponent <TileScript> ();
+		//tile = transform.parent.parent.GetComponent <TileScript> ();
 
 		int _type = 1000;
 		if (isRoom) {
@@ -103,6 +103,9 @@ public class HealthScript : MonoBehaviour
 		if (isSys) {
 			sys = gameObject.GetComponent <SystemScript> ();
 		}
+
+        //now only called if needed...
+        //tile = transform.parent.parent.GetComponent<TileScript>();
 	}
 
 	/*  21.04.18
@@ -286,6 +289,10 @@ public class HealthScript : MonoBehaviour
 
 
 	private void SyncDamageState (bool _isDamaged) {
+        if (tile == null) {
+            tile = transform.parent.parent.GetComponent<TileScript>();
+        }
+
 		//the second bool isnt used as of now   ...i think
 		if (isRoom) {
 			Debug.LogError ("tilePos: " + tile.GridPosition.X + ", " + tile.GridPosition.Y + ", " + tile.GridPosition.Z);

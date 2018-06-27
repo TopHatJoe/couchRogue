@@ -2197,15 +2197,38 @@ apr 25th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 //maybe debug classicPos by colouring occupied rooms?\
-\strike \strikec2 -implement medbay\strike0\striked0 \
-	\strike \strikec2 -healin\'92\strike0\striked0 \
-	\strike \strikec2 -powerin\'92\strike0\striked0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -implement medbay\strike0\striked0 \
 -implement teleporter\
 //couch crew hScr is never properly removed from spawn room\
 //-> might be added twice? -> fixed, it was added twice.\
 //that\'92s what i just said fuckwit! \
 //who you callin a fuckwit pissface?\
 -BUG: DisRummSpecial //i forget. ah in hangar special rooms freak\
+\strike \strikec2 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 \strike0\striked0 jun 27th 2018;\
+
+\f1\b0 //classicHScr assignment seems to work except elevators\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -fix classicCrewElevatorPosAssignment\strike0\striked0  //-> there are no tweens!\
+//is there a way know crews mode of transportation? lets find out\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 -implement teleporter //crew thats just moved though the room is 	also transported. //including foes //?\
+//hScr is reassigned on elevator enter instead of exit //problem?\
+\strike \strikec2 -fix weird origin fetish of pointerClick\strike0\striked0  //caused by fullRoomCol\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jun 28th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -syncCouchCrewPos and CouchHScrAssignment for elevators\
+\
+\
+\
+\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 \page -create network manager in lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0

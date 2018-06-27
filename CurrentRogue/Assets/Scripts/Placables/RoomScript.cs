@@ -131,7 +131,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 
 		//gridPos = _gridPos;
 		gridPos = new Point (_gridPos.X + Mathf.RoundToInt (nextPos.x * 2), _gridPos.Y + Mathf.RoundToInt (nextPos.y), _gridPos.Z);
-		//Debug.Log ("gridPos: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
+		Debug.Log ("gridPos: " + gridPos.X + ", " + gridPos.Y + ", " + gridPos.Z);
 
 
 		//set tweens walkable
@@ -673,7 +673,7 @@ public class RoomScript : MonoBehaviour, IPlacable
         if (_num > 0) {
             originObj.GetComponent<SpriteRenderer>().color = Color.red;
         } else {
-            originObj.GetComponent<SpriteRenderer>().color = Color.clear;
+            originObj.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
@@ -691,6 +691,12 @@ public class RoomScript : MonoBehaviour, IPlacable
             }
 
             LevelManager.Instance.DragSelectRef.gameObject.SetActive(true);
+
+            
+        }
+
+        if (Input.GetButtonUp("Fire1")) {
+            Debug.LogError("Pos: " + GridPos.X + ", " + GridPos.Y + ", " + GridPos.Z);
         }
 
         if (!EventSystem.current.IsPointerOverGameObject())
