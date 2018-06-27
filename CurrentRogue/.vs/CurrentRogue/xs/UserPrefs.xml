@@ -4,7 +4,7 @@
     <Files>
       <File FileName="Assets/Scripts/LevelManager.cs" Line="498" Column="5" />
       <File FileName="Assets/Scripts/Placables/CrewScript.cs" Line="15" Column="16" />
-      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="13" Column="21" />
+      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="461" Column="22" />
       <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="676" Column="13" />
       <File FileName="Assets/Scripts/TileScript.cs" Line="982" Column="1" />
       <File FileName="Assets/Scripts/PowerManagement/ShipPowerMngr.cs" Line="21" Column="1" />

@@ -226,14 +226,14 @@ public class CouchCrewScript : NetworkBehaviour
 		//reassigns crewPos
 		if (transform.position.x - previousPos.x > tileDistance) {
 			//moved to the right
-			UpdateCrewPos (2, 0);
+			UpdatePosByIncrement (2, 0);
 
 			//crewPos.X += 2;
 			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
 			//Debug.Log ("crewPos: " + crewPos.X);
 		} else if (transform.position.x - previousPos.x < -tileDistance) {
 			//moved to the left
-			UpdateCrewPos (-2, 0);
+			UpdatePosByIncrement (-2, 0);
 
 			//crewPos.X -= 2;
 			//previousPos = LevelManager.Instance.Tiles [crewPos].transform.position;
@@ -449,14 +449,16 @@ public class CouchCrewScript : NetworkBehaviour
 		rb.MovePosition (transform.position + Vector3.left);
 
         //crewPos = _tile.GridPosition;
-        UpdateCrewPos(0, _hDifference);
+       
+        //done by syncCrewPos //not
+        UpdatePosByIncrement(0, _hDifference);
 
         //UpdateCrewPos(_tile.GridPosition);
 
 		//Debug.LogError ("_tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
 		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
 
-		SyncCrewPos ();
+        SyncUpdatePos ();
 
 		previousPos = _pos;
 	}
@@ -486,17 +488,25 @@ public class CouchCrewScript : NetworkBehaviour
 	}
 
 
+    private void UpdatePosByIncrement (int _x, int _y) {
+        Point _point = crewPos;
+        _point.X += _x;
+        _point.Y += _y;
 
+        UpdateCrewPos(_point);
+    }
 
-    private void UpdateCrewPos (int _x, int _y) {
+    private void UpdateCrewPos (Point _nextPos) {
         TileScript _tile = LevelManager.Instance.Tiles[crewPos];
         RoomScript _room = _tile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
         //_room.ExitRoom();
         //Debug.LogError("crewPos: " + crewPos.X + ", " + crewPos.Y);
-    
-		crewPos.X += _x;
-        crewPos.Y += _y;
-		//Vector3 _vect = LevelManager.Instance.Tiles [crewPos].transform.position;
+
+        //crewPos.X += _x;
+        //crewPos.Y += _y;
+        crewPos = _nextPos;
+
+        //Vector3 _vect = LevelManager.Instance.Tiles [crewPos].transform.position;
 		//_vect.x -= (tileDistance / 2);
 
 
@@ -731,7 +741,8 @@ public class CouchCrewScript : NetworkBehaviour
 	private void RpcSyncCrewPos (Vector3 _vect) {
 		Point _pos = new Point (Mathf.RoundToInt(_vect.x), Mathf.RoundToInt(_vect.y), Mathf.RoundToInt(_vect.z));
 
-		crewPos = _pos;
+        crewPos = _pos;
+        //UpdateCrewPos(_pos);
 
 		//Debug.LogError ("syncedCrewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z); //"crewPosOnClient");
 
@@ -749,6 +760,33 @@ public class CouchCrewScript : NetworkBehaviour
 		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
 
 	}
+
+
+    //calls UpdateCrewPos //must only be called when using accessors //elevators, stairs, teleporters. all that jazz
+    private void SyncUpdatePos()
+    {
+        Vector3 _vect = new Vector3(crewPos.X, crewPos.Y, crewPos.Z);
+        CmdSyncUpdatePos(_vect);
+    }
+
+    [Command]
+    private void CmdSyncUpdatePos(Vector3 _vect)
+    {
+        RpcSyncUpdatePos(_vect);
+    }
+
+    [ClientRpc]
+    private void RpcSyncUpdatePos(Vector3 _vect)
+    {
+        Point _pos = new Point(Mathf.RoundToInt(_vect.x), Mathf.RoundToInt(_vect.y), Mathf.RoundToInt(_vect.z));
+
+        //crewPos = _pos;
+        UpdateCrewPos(_pos);
+        SetControls();
+    }
+
+
+
 
 	private void SetControls () {
 		if (!controlsSet) {
