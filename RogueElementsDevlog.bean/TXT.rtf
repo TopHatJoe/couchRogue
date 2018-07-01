@@ -2216,15 +2216,31 @@ apr 25th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -fix classicCrewElevatorPosAssignment\strike0\striked0  //-> there are no tweens!\
 //is there a way know crews mode of transportation? lets find out\
--syncCouchCrewPos and CouchHScrAssignment for elevators\
 //hScr is reassigned on elevator enter instead of exit //problem?\
+-syncCouchCrewPos and CouchHScrAssignment for elevators\
+-redo CouchUpdateCrewPos to take nextPos instead of increments\
 \strike \strikec2 -fix weird origin fetish of pointerClick\strike0\striked0  //caused by fullRoomCol\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \
-jun 28th 2018;
+jun 30th 2018;
 \f1\b0 \
 -implement teleporter //crew thats just moved though the room is 	also transported. //including foes //?\
+//design: teleporters have a carry capacity, that is determined 	by teleporter type, and power-level/condition. //should the 	teleporter be destroyed while porting, severe injury or death of 	crew follows. risk of injury or death increases with decrease of 	teleporter condition //hp wise. //!design//\
+\
+\
+
+\f0\b jul 1st 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 -implement teleporter\
+	\strike \strikec2 -implement teleporter system\strike0\striked0  //placable, powerable\
+	-implement teleport targeting\
+	-implement teleport functionality\
+-streamline implementation of new systems //?\
+//currently two references in both battle-void and editor and a 	dict entry are needed...\
+\strike \strikec2 -fix medbay power bug\strike0\striked0 \
+\
 \
 \
 \

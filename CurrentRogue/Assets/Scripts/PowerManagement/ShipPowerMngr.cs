@@ -13,14 +13,14 @@ public class ShipPowerMngr : MonoBehaviour
 	private int shipID;
 
 	//the maximum capacity of the system based on what the ship has installed
-	private int[] maxCapacityArr = new int[5];
+	private int[] maxCapacityArr = new int[6];
 	//the capacity that is available when considering damages
-	private int[] capacityArr = new int[5];
+	private int[] capacityArr = new int[6];
 	//the amount of power invested
-	private int[] powerArr = new int[5];
+	private int[] powerArr = new int[6];
 
     //classic -> power by btn //which systems are up, whuch aren't?
-    private int[] pwrdSystemsCount = new int[5];
+    private int[] pwrdSystemsCount = new int[6];
 
 	private List <ISystem> iSysList = new List<ISystem> ();
 	public List <ISystem> ISysList { get { return iSysList; } }
@@ -37,6 +37,8 @@ public class ShipPowerMngr : MonoBehaviour
     private List<SystemScript> shieldList = new List<SystemScript>();
     private List<SystemScript> weaponSysList = new List<SystemScript>();
     private List<SystemScript> engineList = new List<SystemScript>();
+    private List<SystemScript> medbayList = new List<SystemScript>();
+    private List<SystemScript> teleporterList = new List<SystemScript>();
 
 
 
@@ -76,6 +78,10 @@ public class ShipPowerMngr : MonoBehaviour
             weaponSysList.Add(_sysScr);
         } else if (_sysType == 3) {
             engineList.Add(_sysScr);
+        } else if (_sysType == 4) {
+            medbayList.Add(_sysScr);
+        } else if (_sysType == 5) {
+            teleporterList.Add(_sysScr);
         }
     } 
 
@@ -340,6 +346,10 @@ public class ShipPowerMngr : MonoBehaviour
             return weaponSysList;
         } else if (_sysType == 3) {
             return engineList;
+        } else if (_sysType == 4) {
+            return medbayList;
+        } else if (_sysType == 5) {
+            return teleporterList;
         } else {
             Debug.LogError("no list!");
             return null;

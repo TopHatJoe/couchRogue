@@ -206,6 +206,7 @@ public class LevelManager : Singleton<LevelManager>
 		objDict.Add ("3_Weapon1", systemArray [6]);
 		objDict.Add ("2_Medbay1", systemArray [7]);
 		objDict.Add ("3_Engine1", systemArray [8]);
+        objDict.Add ("3_Teleporter1", systemArray[9]);
 
 		//SUBSYSTEMS
 		objDict.Add ("1_GoobleBox", subSysArray [0]);
