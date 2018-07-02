@@ -720,4 +720,9 @@ public class RoomScript : MonoBehaviour, IPlacable
             }
         }
     }
+
+
+    public List <HealthScript> GetAllHScr () {
+        return originScr.inRoomHScr; 
+    }
 }

@@ -8,6 +8,9 @@ public class TerminalScr : MonoBehaviour
 	private ShipScript targetedShip;
 
 	private WeaponSysScr weaponSysScr;
+    private TeleporterScr teleporterScr;
+
+
 	private WeaponScript currentWeapon;
 	private int currentWeaponID = 0;
 	public int CurrentWeaponID { get { return currentWeaponID; } }
@@ -25,7 +28,11 @@ public class TerminalScr : MonoBehaviour
 	private CouchCrewScript userScr;
 
 	private Point gridPos;
-	public Point GridPos { get { return gridPos; } } 
+	public Point GridPos { get { return gridPos; } }
+
+    private bool isWeaponTerminal = false;
+    public bool IsWeaponTerminal { get { return isWeaponTerminal; } }
+    private bool isTeleporterTerminal = false;
 
 
 
@@ -37,6 +44,22 @@ public class TerminalScr : MonoBehaviour
 		SubSystemScript _subSysScr = gameObject.GetComponent <SubSystemScript> ();
 		gridPos = _subSysScr.GridPos;
 		ship = LevelManager.Instance.Ships [_subSysScr.GridPos.Z].GetComponent <ShipScript> ();	
+
+
+        GameObject _sysObj = transform.parent.parent.GetChild(1).gameObject;
+        if (_sysObj.transform.childCount > 0) {
+            if (_sysObj.transform.GetChild(0).GetComponent<WeaponSysScr>() != null) {
+                weaponSysScr = _sysObj.transform.GetChild(0).GetComponent<WeaponSysScr>();
+                isWeaponTerminal = true;
+            
+            } else if (_sysObj.transform.GetChild(0).GetComponent<TeleporterScr>() != null) {
+                teleporterScr = _sysObj.transform.GetChild(0).GetComponent<TeleporterScr>();
+                isTeleporterTerminal = true;
+           
+            } else {
+                Debug.LogError("/*weaponSysScr*/ someSysScr == null");
+            }
+        }
 	}
 
 
@@ -59,7 +82,7 @@ public class TerminalScr : MonoBehaviour
 		//Camera.main.enabled = true;
 
 		SetCrewCam ();
-		/*
+        /*
 		ship = LevelManager.Instance.Ships[targetedShipID].GetComponent <ShipScript> ();
 		Camera _shipCam = ship.ShipCam;
 		if (_shipCam == null) {
@@ -71,6 +94,8 @@ public class TerminalScr : MonoBehaviour
 		*/
 
 
+
+        /*
 		GameObject _sysObj = transform.parent.parent.GetChild (1).gameObject;
 		if (_sysObj.transform.childCount > 0) {
 			if (_sysObj.transform.GetChild (0).GetComponent <WeaponSysScr> () != null) {
@@ -79,10 +104,10 @@ public class TerminalScr : MonoBehaviour
 				Debug.Log ("weaponSysScr == null");
 			}
 		}
+        */
 
 
-
-		/*
+        /*
 		//should be outsourced to weaponTerminal subScr?
 		if (ship.WeaponList.Count > currentWeaponID) {
 			currentWeapon = ship.WeaponList [currentWeaponID];
@@ -92,22 +117,28 @@ public class TerminalScr : MonoBehaviour
 			currentWeapon.IsPowered = true;
 		}
 		*/
-		GetWeapon ();
-		GiveTerminalReference (_user);
 
-		//when terminal is used -> sys is powered. 
-		//for weaponScr that means, that you may distribute any available weaponPower
-		//players can only do that by using a terminal.
-		//-> there may be weaponSys without terminals, but you can't interface with it, just boost the available power
+        if (isWeaponTerminal)
+        {
+            GetWeapon();
+            GiveTerminalReference(_user);
+
+            //when terminal is used -> sys is powered. 
+            //for weaponScr that means, that you may distribute any available weaponPower
+            //players can only do that by using a terminal.
+            //-> there may be weaponSys without terminals, but you can't interface with it, just boost the available power
 
 
-			//enabe cursor //-> where does it start?
+            //enabe cursor //-> where does it start?
 
-			//while in this view, deactivate couchCrew movement
+            //while in this view, deactivate couchCrew movement
 
-			//o exits the terminal
+            //o exits the terminal
 
-		SwapWeapon (1);
+            SwapWeapon(1);
+        } else if (isTeleporterTerminal) {
+            GiveTerminalReference(_user);
+        }
 	}
 
 	public void StopUsingTerminal () {
@@ -222,6 +253,7 @@ public class TerminalScr : MonoBehaviour
 		}
 	}
 
+    //gives terminal reference to cursor
 	private void GiveTerminalReference (CouchCrewScript _user) {
 		_user.GiveTerminalReference (this);
 	}
@@ -253,17 +285,30 @@ public class TerminalScr : MonoBehaviour
 		}
 	}
 
-	public void PowerWeapon (bool _isPowered) {		
-		//Debug.LogError (currentWeapon.IsPowered);
-
-		if (currentWeapon.IsPowered) {
-			currentWeapon.IsPowered = false;
-		} else {
-			currentWeapon.IsPowered = true;
-		}
+	public void TryPowerWeapon (bool _isPowered) {
+        //Debug.LogError (currentWeapon.IsPowered);
+        if (isWeaponTerminal) {
+            if (currentWeapon.IsPowered) {
+                currentWeapon.IsPowered = false;
+            }
+            else {
+                currentWeapon.IsPowered = true;
+            }
+        }
 
 		//bool _bool = currentWeapon.IsPowered;
 		//currentWeapon.IsPowered = !_bool;
 		//Debug.LogError (currentWeapon.IsPowered);
 	}
+
+
+    public void Teleport (Point _point) {
+        if (isTeleporterTerminal) {
+            Debug.LogError("teleportin to: " + _point.X + ", " + _point.Y);
+            teleporterScr.Teleport(_point);
+       
+        } else {
+            Debug.LogError("i aint portin' nowhere!");
+        }
+    }
 }

@@ -69,11 +69,16 @@ public class CouchCursorScr : MonoBehaviour
 			col = _col;
 
 			if (col != null) {
-				if (Input.GetButtonDown (controllerID + "-r2")) {
-					RoomScript _room = col.GetComponent <RoomScript> ();
-					_room.TargetingPing (terminal.CurrentWeaponID, terminal.GridPos.Z);
-					//TileScript _tile = _room.transform.parent.parent.GetComponent <TileScript> ();
-					//Debug.LogError ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
+                if (Input.GetButtonDown(controllerID + "-r2")) {
+                    RoomScript _room = col.GetComponent<RoomScript>();
+
+                    if (terminal.IsWeaponTerminal) { 
+                        _room.TargetingPing(terminal.CurrentWeaponID, terminal.GridPos.Z);
+                        //TileScript _tile = _room.transform.parent.parent.GetComponent <TileScript> ();
+                        //Debug.LogError ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
+                    } else {
+                        terminal.Teleport(_room.GridPos);
+                    }
 				}
 			} else {
 				Debug.LogError ("col is null!");
@@ -100,6 +105,7 @@ public class CouchCursorScr : MonoBehaviour
 			_col.GetComponent <SpriteRenderer> ().color = Color.green;
 			//_col.GetComponent <ElevatorBtnPanelScr> ().PressButton ();
 		} else {
+            /* seems unnecessary 070218
 			col = _col;
 
 			if (col != null) {
@@ -110,6 +116,7 @@ public class CouchCursorScr : MonoBehaviour
 					//Debug.LogError ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
 				}
 			}
+            */
 		}
 
 		//} else {

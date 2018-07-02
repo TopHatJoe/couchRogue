@@ -35,6 +35,9 @@ public class TeleporterScr : MonoBehaviour, ISystem
     private TeleporterScr originTeleporterScr;
     private bool isOrigin = false;
 
+    private RoomScript room;
+
+
 
     void Start()
     {
@@ -68,6 +71,9 @@ public class TeleporterScr : MonoBehaviour, ISystem
         {
             pwrMngr.AddToSysScrList(systemType, sysScr);
         }
+
+        RoomScript _room = transform.parent.parent.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+        room = _room.GetOriginObj().GetComponent<RoomScript>();
     }
 
 
@@ -190,8 +196,27 @@ public class TeleporterScr : MonoBehaviour, ISystem
         return _telScr;
     }
 
-    public bool IsPowered()
-    {
+    public bool IsPowered() {
         return isPowered;
+    }
+
+    public void Teleport (Point _point) {
+        if (isPowered) {
+            List <HealthScript> _hList = room.GetAllHScr();
+            List<CouchCrewScript> _crewList = new List<CouchCrewScript> ();
+            foreach (var _hScr in _hList) {
+                //_crewList.Add(_hScr.GetComponent<CrewScript>());
+                CouchCrewScript _crew = _hScr.GetComponent<CouchCrewScript>();
+                _crewList.Add(_crew);
+                //_crew.Teleport(_point); might've caused issues?
+            }
+
+            foreach (var _crew in _crewList) {
+                _crew.Teleport(_point);
+            }
+
+        } else {
+            Debug.LogError("porter aint powered!");
+        }
     }
 }

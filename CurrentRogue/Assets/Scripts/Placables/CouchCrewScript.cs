@@ -179,12 +179,7 @@ public class CouchCrewScript : NetworkBehaviour
 			
 			//stop using target
 			if (Input.GetButtonDown (controllerID + "-c")) {
-				terminalScr.StopUsingTerminal ();
-				SetCrewCamValues (null, false, 0);
-
-				targetingCursor.gameObject.SetActive (false);
-				usingTerminal = false;
-				isOccupied = false;
+                StopUsingTerminal();
 			}
 			
 			//swap weapons //temp?
@@ -204,7 +199,9 @@ public class CouchCrewScript : NetworkBehaviour
 			//power weapon up/down
 			if (Input.GetButtonDown (controllerID + "-s")) {
 				//bool doesn't matter currently...
-				terminalScr.PowerWeapon (true);
+
+                //if (isWeaponTerminal) { check is performed within terminal; }
+				terminalScr.TryPowerWeapon (true);
 			}
 
 				//switch ship cameras
@@ -216,6 +213,18 @@ public class CouchCrewScript : NetworkBehaviour
 			}
 		}
 	}
+
+
+    private void StopUsingTerminal () {
+        if (usingTerminal) {
+            terminalScr.StopUsingTerminal();
+            SetCrewCamValues(null, false, 0);
+
+            targetingCursor.gameObject.SetActive(false);
+            usingTerminal = false;
+            isOccupied = false;
+        }
+    }
 
 
 	private void ReassignCrewPos () {
@@ -836,5 +845,21 @@ public class CouchCrewScript : NetworkBehaviour
                 LevelManager.Instance.AdjustShipPos(_difference);
             }
         }
+    }
+
+    public void Teleport (Point _point) {
+        //needs to drop every activity
+        if (isOccupied) {
+            if (usingTerminal) {
+                StopUsingTerminal();
+            } else if (!usingElevator) {
+                CmdSyncLoops(false, 0); 
+            }
+
+        }
+
+        //and then make the jump
+        UpdateCrewPos(_point);
+        transform.position = LevelManager.Instance.Tiles[crewPos].transform.position;
     }
 }
