@@ -76,10 +76,20 @@ public class CouchCursorScr : MonoBehaviour
                         _room.TargetingPing(terminal.CurrentWeaponID, terminal.GridPos.Z);
                         //TileScript _tile = _room.transform.parent.parent.GetComponent <TileScript> ();
                         //Debug.LogError ("tile: " + _tile.GridPosition.X + ", " + _tile.GridPosition.Y + ", " + _tile.GridPosition.Z);
-                    } else {
-                        terminal.Teleport(_room.GridPos);
+                    } else if (terminal.IsTeleporterTerminal) {
+                        terminal.Teleport(_room.GridPos, true);
                     }
 				}
+
+                if (Input.GetButtonDown (controllerID + "-l2")) {
+                    RoomScript _room = col.GetComponent<RoomScript>();
+
+                    if (terminal.IsTeleporterTerminal) {
+                        //no direct teleportation possible with the bool solution...
+                        terminal.Teleport(_room.GridPos, false);
+                    }
+                }
+
 			} else {
 				Debug.LogError ("col is null!");
 			}

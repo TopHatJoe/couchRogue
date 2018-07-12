@@ -68,6 +68,10 @@ public class HealthScript : MonoBehaviour
 
 	private TileScript tile;
 
+    //list of all crew that is targeting this hScr
+    public List<CouchCrewScript> AggressorList = new List<CouchCrewScript>();
+    //public List <CouchCrewScript> AggressorList { get {  } }
+
 
 	private void Start ()
 	{
@@ -333,4 +337,13 @@ public class HealthScript : MonoBehaviour
 			sys.UpdateHealthState (_isFullyDamaged, _isFullyRepaired);
 		}
 	}
+
+    public void InformAggressors () {
+        foreach (var _crew in AggressorList)
+        {
+            _crew.TargetLost();
+        }
+    }
+
+
 }

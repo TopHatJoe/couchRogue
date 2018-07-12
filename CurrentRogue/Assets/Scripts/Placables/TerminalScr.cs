@@ -33,6 +33,7 @@ public class TerminalScr : MonoBehaviour
     private bool isWeaponTerminal = false;
     public bool IsWeaponTerminal { get { return isWeaponTerminal; } }
     private bool isTeleporterTerminal = false;
+    public bool IsTeleporterTerminal { get { return isTeleporterTerminal; } }
 
 
 
@@ -302,10 +303,10 @@ public class TerminalScr : MonoBehaviour
 	}
 
 
-    public void Teleport (Point _point) {
+    public void Teleport (Point _point, bool _from) {
         if (isTeleporterTerminal) {
             Debug.LogError("teleportin to: " + _point.X + ", " + _point.Y);
-            teleporterScr.Teleport(_point);
+            teleporterScr.Teleport(_point, _from);
        
         } else {
             Debug.LogError("i aint portin' nowhere!");

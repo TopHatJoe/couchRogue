@@ -200,18 +200,38 @@ public class TeleporterScr : MonoBehaviour, ISystem
         return isPowered;
     }
 
-    public void Teleport (Point _point) {
+    public void Teleport (Point _point, bool _from) {
         if (isPowered) {
-            List <HealthScript> _hList = room.GetAllHScr();
-            List<CouchCrewScript> _crewList = new List<CouchCrewScript> ();
-            foreach (var _hScr in _hList) {
-                //_crewList.Add(_hScr.GetComponent<CrewScript>());
-                CouchCrewScript _crew = _hScr.GetComponent<CouchCrewScript>();
-                _crewList.Add(_crew);
-                //_crew.Teleport(_point); might've caused issues?
+            List<CouchCrewScript> _crewList = new List<CouchCrewScript>();
+
+            if (_from) { 
+                List<HealthScript> _hList = room.GetAllHScr();
+                //List<CouchCrewScript> _crewList = new List<CouchCrewScript>();
+                foreach (var _hScr in _hList)
+                {
+                    //_crewList.Add(_hScr.GetComponent<CrewScript>());
+                    CouchCrewScript _crew = _hScr.GetComponent<CouchCrewScript>();
+                    _crewList.Add(_crew);
+                    //_crew.Teleport(_point); might've caused issues?
+                }
+            } else {
+                RoomScript _room = LevelManager.Instance.Tiles[_point].transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
+                RoomScript _roomOrig = _room.GetOriginObj().GetComponent<RoomScript>();
+                List<HealthScript> _hList = _room.GetAllHScr();
+                //List<CouchCrewScript> _crewList = new List<CouchCrewScript>();
+                _point = room.GridPos;
+
+                foreach (var _hScr in _hList)
+                {
+                    //_crewList.Add(_hScr.GetComponent<CrewScript>());
+                    CouchCrewScript _crew = _hScr.GetComponent<CouchCrewScript>();
+                    _crewList.Add(_crew);
+                    //_crew.Teleport(_point); might've caused issues?
+                }
             }
 
-            foreach (var _crew in _crewList) {
+            foreach (var _crew in _crewList)
+            {
                 _crew.Teleport(_point);
             }
 

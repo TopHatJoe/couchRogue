@@ -55,6 +55,14 @@ public class CouchCrewScript : NetworkBehaviour
 
     private HealthScript hScr;
 
+    //hScr of targeted crew. may be null
+    private HealthScript targetHScr;
+    private int targetCount = 0;
+    private RoomScript currentRoom;
+
+    [SerializeField]
+    private int dmg;
+
 
 
 	void Start () {
@@ -62,6 +70,9 @@ public class CouchCrewScript : NetworkBehaviour
 		col = gameObject.GetComponent <BoxCollider2D> ();
 		netID = gameObject.GetComponent <NetworkIdentity> ();
         hScr = gameObject.GetComponent<HealthScript>();
+
+        targetHScr = hScr;
+
 	
 		if (isServer) {
 			//NetworkIdentity.
@@ -174,6 +185,28 @@ public class CouchCrewScript : NetworkBehaviour
 				//DoSomeDamage (-10);
 				CmdSyncLoops (true, -10);
 			}
+
+
+            //swap target //TARGET
+            if (Input.GetButtonDown(controllerID + "-l1")) {
+                //check for crew in room
+                SwitchCrewTarget(-1);
+
+                Debug.LogError("-l1");
+            }
+            else if (Input.GetButtonDown(controllerID + "-r1")) {
+                //terminalScr.SwapTargetedShip(1);
+                SwitchCrewTarget(+1);
+
+                Debug.LogError("-r1");
+            }
+
+            if (Input.GetButtonDown(controllerID + "-r2")) {
+                targetHScr.TakeCrewDamage(dmg);
+
+                Debug.LogError("-r2");
+            }
+
 			//exits terminal
 		} else if (usingTerminal) {
 			
@@ -505,6 +538,7 @@ public class CouchCrewScript : NetworkBehaviour
         UpdateCrewPos(_point);
     }
 
+
     private void UpdateCrewPos (Point _nextPos) {
         TileScript _tile = LevelManager.Instance.Tiles[crewPos];
         RoomScript _room = _tile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
@@ -532,10 +566,22 @@ public class CouchCrewScript : NetworkBehaviour
 
         RoomScript _nextRoom = _tile.transform.GetChild(0).GetChild(0).GetComponent<RoomScript>();
         //_room.EnterRoom();
-        _room.ChangeRoom(_nextRoom, hScr);
-        //previousPos = _vect;
 
-		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y);
+        //made change room a bool that returns true if room was changed
+        if (_room.ChangeRoom(_nextRoom, hScr)) {
+            //previousPos = _vect;
+
+            //for closeCmbt
+            currentRoom = _nextRoom.OriginScr;
+
+            //inform all aggressors of departure
+            hScr.InformAggressors();
+
+
+            SwitchCrewTarget(0);
+            //Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y);
+            //Debug.LogError("roomChange!");
+        }
 
 	}
 
@@ -861,5 +907,101 @@ public class CouchCrewScript : NetworkBehaviour
         //and then make the jump
         UpdateCrewPos(_point);
         transform.position = LevelManager.Instance.Tiles[crewPos].transform.position;
+    }
+
+    //executed from hScr if target left room
+    public void TargetLost () {
+        Debug.LogError("target lost!");
+        SwitchCrewTarget(0);
+    }
+
+    private void SwitchCrewTarget (int _amount) {
+        List<HealthScript> _hScrList = currentRoom.GetAllHScr();
+        Debug.Log("hScrCount: " + _hScrList.Count + ", count: " + targetCount);
+
+        if (_hScrList.Count > 0) { 
+            targetCount += _amount;
+
+            if (targetCount < 0) {
+                targetCount = (_hScrList.Count - 1);
+           
+            } else if (targetCount >= _hScrList.Count) {
+                targetCount = 0;
+            }
+
+            /*
+            //add and remove aggressor from target //for room evac
+            targetHScr.AggressorList.Remove(this);
+            targetHScr = _hScrList[targetCount];
+            targetHScr.AggressorList.Add(this);
+            */
+
+
+            if (targetHScr == hScr) {
+               
+                Debug.Log("ye shootin yerself!");
+                //targetHScr = _hScrList[targetCount];
+
+                //targetHScr.AggressorList.Remove(this);
+
+                //commented out for debug!
+                //SwitchCrewTarget(_amount);
+
+            } else {
+                //Debug.Log("ye shootin yerself!");
+                targetHScr.AggressorList.Remove(this);
+                //add and remove aggressor from target //for room evac
+                //targetHScr.AggressorList.Remove(this);
+                //targetHScr = _hScrList[targetCount];
+                //targetHScr.AggressorList.Add(this);
+            }
+
+            targetHScr = _hScrList[targetCount];
+            if (targetHScr == hScr) {
+                
+            } else {
+                targetHScr.AggressorList.Add(this);
+            }
+
+        } else {
+            
+        } 
+
+        /* else {
+            Debug.Log("you're the only one here");
+
+            //debug
+            targetCount += _amount;
+
+            if (targetCount < 0) {
+                targetCount = (_hScrList.Count - 1);
+
+            }
+            else if (targetCount >= _hScrList.Count) {
+                targetCount = 0;
+            }
+
+            //add and remove aggressor from target //for room evac
+            targetHScr.AggressorList.Remove(this);
+            targetHScr = _hScrList[targetCount];
+            targetHScr.AggressorList.Add(this);
+
+
+            if (targetHScr == hScr) {
+                Debug.Log("ye shootin yerself!");
+
+                //commented out for debug!
+                //SwitchCrewTarget(_amount);
+            }
+        }
+
+
+        /*
+        HealthScript[] _hScrArr = new HealthScript[_hScrList.Count];
+        foreach (var _hScr in _hScrList)
+        {
+
+        }
+        */
     }
 }

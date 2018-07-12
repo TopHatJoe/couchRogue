@@ -53,6 +53,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 	private Point _trueOriginPos;
 
     private RoomScript originScr;
+    public RoomScript OriginScr { get { return originScr; } }
 
 	[SerializeField]
 	//the dimensions of the obj
@@ -660,12 +661,14 @@ public class RoomScript : MonoBehaviour, IPlacable
         Debug.LogError("num of hScr: " + originScr.inRoomHScr.Count);
     }
 
-    public void ChangeRoom (RoomScript _nextRoom, HealthScript _hScr) {
+    public bool ChangeRoom (RoomScript _nextRoom, HealthScript _hScr) {
         if (originObj == _nextRoom.originObj) {
             //Debug.LogError("same room");
+            return false;
         } else {
             ExitRoom(_hScr);
             _nextRoom.EnterRoom(_hScr);
+            return true;
         }
     }
 
