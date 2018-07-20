@@ -1070,6 +1070,4 @@ public class TileScript : MonoBehaviour
 
 		return _obj;
 	}
-
-    
 }

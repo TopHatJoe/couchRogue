@@ -5,7 +5,7 @@
 \red88\green109\blue117;\red0\green0\blue0;}
 {\*\expandedcolortbl;;\csgenericrgb\c20000\c20000\c20000;\csgenericrgb\c45490\c43922\c36863;\cssrgb\c25880\c25884\c25879;
 \csgenericrgb\c34510\c42745\c45882;\cssrgb\c0\c0\c0;}
-\paperw12240\paperh15840\margl1011\margr1011\margb1445\margt1011\vieww14000\viewh16000\viewkind1\viewscale189
+\paperw12240\paperh15840\margl1011\margr1011\margb1445\margt1011\vieww14000\viewh16000\viewkind1\viewscale191
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b\fs26 \cf2 \ul \ulc2 Rogue Elements
@@ -35,7 +35,7 @@ coultn find good spot to call SetAllShips ()  function, but at 	least made it pl
 \
 \
 
-\f0\b aug 17th 2017; couldnt figure it out...
+\f0\b aug 17th 2017; couldn\'92t figure it out...
 \f1\b0 \
 \
 \
@@ -57,14 +57,14 @@ coultn find good spot to call SetAllShips ()  function, but at 	least made it pl
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \strike0\striked0 aug 20th 2017; assigning ID && fixes
-\f1\b0 \cf2 \strike \strikec2 \
+\f1\b0 \strike \strikec2 \
 -assign unique networkID to every player.\
 -get localPlayerID in NetManager\
--fix Ship Load from Standalone\cf2 \strike0\striked0  //using consistant datapath\
-& generated new problem -> savedata folder.\cf2 \strike \strikec2 \
--add layout information to .sav file\cf2 \strike0\striked0   //i think\cf2 \strike \strikec2 \
+-fix Ship Load from Standalone\strike0\striked0  //using consistant datapath\
+& generated new problem -> savedata folder.\strike \strikec2 \
+-add layout information to .sav file\strike0\striked0   //i think\strike \strikec2 \
 
-\f0\b \cf2 \strike0\striked0 aug 21st 2017; \
+\f0\b \strike0\striked0 aug 21st 2017; \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 \strike \strikec2 -change scene collectively\
@@ -103,23 +103,23 @@ coultn find good spot to call SetAllShips ()  function, but at 	least made it pl
 \
 
 \f0\b aug 24th 2017; outlining remote ship loading
-\f1\b0 \cf2 \strike \strikec2 \
+\f1\b0 \strike \strikec2 \
 \
 \
 
-\f0\b \cf2 \strike0\striked0 aug 25th 2017; implementing remote ship loading?
+\f0\b \strike0\striked0 aug 25th 2017; implementing remote ship loading?
 \f1\b0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -give NetManager a counter int\
 -flip cams according to localPlayer //done? (need 2B tested)\
--automate listing players and getting ID\cf2 \strike0\striked0  \
-//might want to check for bug later on... //moar tomorrow\cf2 \strike \strikec2 \
+-automate listing players and getting ID\strike0\striked0  \
+//might want to check for bug later on... //moar tomorrow\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \strike0\striked0 aug 26th 2017; trying to implement [syncVar] to int [][,]
-\f1\b0 \cf2 \strike \strikec2 \
+\f1\b0 \strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike0\striked0 //the netManager is no networkBehaviour. but a networkBehaviour 	can be tricky when its a singleton. so i split it in two, the 	manager <singleton>, and the behaviour, for syncing certain 	variables. the manager has a reference to it. (lies on same obj)\cf2 \strike \strikec2 \
+\cf2 \strike0\striked0 //the netManager is no networkBehaviour. but a networkBehaviour 	can be tricky when its a singleton. so i split it in two, the 	manager <singleton>, and the behaviour, for syncing certain 	variables. the manager has a reference to it. (lies on same obj)\strike \strikec2 \
 \pard\tx0\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 //mayhap should just use playerInfo since its a networkBehaviour. 	only problem could be that theres multiple instances in every 	instance of the game...\
 //syncvar doesnt work with arrays, should use syncList instead\strike \strikec2 \uc0\u8232 	\strike0\striked0 //okay, syncvar/list repeatedly updates, whilst i only need to 	sync the information once for initialization. so ill use a 	\ul clientRPC\ulnone  what ever that is...\
@@ -222,13 +222,13 @@ coultn find good spot to call SetAllShips ()  function, but at 	least made it pl
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 //it is by default... so yeah...\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -renew ship templates, so that they save the layout name.\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -renew ship templates, so that they save the layout name.\strike0\striked0 \
 //just re-save with the cashe script in-scene\
 //didnt do it today, but i forgot when i did so... looks 	productive though doesnt it?\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \ul \ulc2 \strike \strikec2 -implement ship selection\strike0\striked0 \
-	\ulnone \strike \strikec2 -ship selection\cf2 \strike0\striked0  //once ship is selected load layout\
-	//if no ship is selected, readyState is fixed to false.\cf2 \ul \ulc2 	\strike \strikec2 	\ulnone -layout selection -> within save file...\cf2 \strike0\striked0 \
+\cf2 \ul \strike \strikec2 -implement ship selection\strike0\striked0 \
+	\ulnone \strike \strikec2 -ship selection\strike0\striked0  //once ship is selected load layout\
+	//if no ship is selected, readyState is fixed to false.\ul 	\strike \strikec2 	\ulnone -layout selection -> within save file...\strike0\striked0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 	-fix ini issue, so shipName is properly assigned\
 \pard\tx0\pardeftab720\partightenfactor0
@@ -278,15 +278,15 @@ coultn find good spot to call SetAllShips ()  function, but at 	least made it pl
 	\strike \strikec2 -implement room hp, and damaging\
 	-implement system hp, and damaging\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 -implement crew hp, and damaging\cf2 \strike0\striked0 \
+\cf2 -implement crew hp, and damaging\strike0\striked0 \
 //add healthPoint script to all damageable objects, reference 	these objs by child.\
 -> for (all childs) \{ if (damageable) \{ damage(21) \} \}\
 -> damage (int dmg) \{ health -= dmg \}\
 \
 -sync dmg/hp\
-\cf2 \strike \strikec2 //mayhap its best if its only synced if another player is 	entering the room, or has scanners of high enough quality to 	improve efficiency \cf2 \strike0\striked0 // <- u stupid?\cf2 \strike \strikec2 \
+\strike \strikec2 //mayhap its best if its only synced if another player is 	entering the room, or has scanners of high enough quality to 	improve efficiency \strike0\striked0 // <- u stupid?\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike0\striked0 //damage has to be synced anyways? the owner of the ship \cf2 \ul \ulc2 needs\cf2 \ulnone  to 	be informed of his ships hp. since he will rarely be the cause of 	dmg it needs to be synced anyways. the dmg value is sent to all 	players. the hp is calculated by each individually.\
+\cf2 \strike0\striked0 //damage has to be synced anyways? the owner of the ship \ul needs\ulnone  to 	be informed of his ships hp. since he will rarely be the cause of 	dmg it needs to be synced anyways. the dmg value is sent to all 	players. the hp is calculated by each individually.\
 //the amount of dmg is currently hardcoded to PlaceTarget ()\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -323,13 +323,13 @@ coultn find good spot to call SetAllShips ()  function, but at 	least made it pl
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 //if empty tile is targeted -> null ref loop\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix nullRefLoop\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -fix nullRefLoop\strike0\striked0 \
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 sep 14th 2017; proper re-movement
-\f1\b0 , //\cf2 \strike \strikec2 and synced doorstates\cf2 \strike0\striked0 ; nope\
+\f1\b0 , //\strike \strikec2 and synced doorstates\strike0\striked0 ; nope\
 //proper re-movement requires the obj type. ill store it in the 	health script. thats probable the easiest way.\
 //or i give each gameObj a specific script, each containing a 	removal function -> later on they\'92ll probably need one anyways...\
 \
@@ -340,8 +340,8 @@ coultn find good spot to call SetAllShips ()  function, but at 	least made it pl
 \cf2 \strike0\striked0 //i == idiot; i was so determined to properly remove rooms that i 	didn\'92t realize it doesn\'92t make any sense... instead of removing 	the obj, it should change its sprite to a more damaged version.\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -create damage sprites\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -add proper dmg visualization\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -create damage sprites\strike0\striked0 \
+\strike \strikec2 -add proper dmg visualization\strike0\striked0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 sep 15th 2017; Doors and other calameties
@@ -351,9 +351,9 @@ coultn find good spot to call SetAllShips ()  function, but at 	least made it pl
 //btw: doors always lie on the rooms origin.\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -create a networked lobby\cf2 \strike0\striked0  //didn\'92t really do that today but eh...\
+\cf2 \strike \strikec2 -create a networked lobby\strike0\striked0  //didn\'92t really do that today but eh...\
 \
-\cf2 \strike \strikec2 -add obj slots on tiles\cf2 \strike0\striked0 \
+\strike \strikec2 -add obj slots on tiles\strike0\striked0 \
 //4 empty objs, room, system, crew, danger so that the obj type 	can be determined by the child index \
 //0 == room; 1 == system; 2 == crew; 3 == danger; 4 == door;\
 //needs a lot of null ref checks though...\
@@ -426,9 +426,9 @@ BUG: transDrag: if the image is mirrored, so is the dragBox\
 \cf2 \ulnone \strike0\striked0 sep 18th 2017; CREW MOVEMENT\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \ul \ulc2 -implement Crew Movement \
+\cf2 \ul -implement Crew Movement \
 	
-\f1\b0 \cf2 \ulnone -fix A-star  //\'ac\'85\'ac\
+\f1\b0 \ulnone -fix A-star  //\'ac\'85\'ac\
 \pard\tx720\tx769\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 			-give each crewScript path\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -467,15 +467,15 @@ BUG: HyperactiveShipMessanger: pathfinder calls PlaceAllShips ()\
 \
 -make crewPos nodes [start]\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -Implement targetPos selection //when crew is selected\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -Implement targetPos selection //when crew is selected\strike0\striked0 \
 //if (crewSelected && Input.mouse (1)) -> setGoal\
 -> make that if (currentlySelected != null && mouseInput)\
 //actually the click check should be done by the tile... ->whiteB\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 sep 20th 2017; 3rd Movement
-\f1\b0 \cf2 \ul \ulc2 \
-order of operations: \cf2 \ulnone 	\
+\f1\b0 \ul \
+order of operations: \ulnone 	\
 	-player selects crew					\
 	-player selects destination\
 	-all selected check \
@@ -493,16 +493,16 @@ BUG: mr McMouse: the upDown workaround works perfectly except 	when using the ma
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -create bug register\
--remove destination on reassignment\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -getPath\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -deselect crew upon death\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -remove destination upon death\
+-remove destination on reassignment\strike0\striked0 \
+\strike \strikec2 -getPath\strike0\striked0 \
+\strike \strikec2 -deselect crew upon death\strike0\striked0 \
+\strike \strikec2 -remove destination upon death\
 -give each crewScript path\
 -implement multi-path finding //when multipath\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \ul -select start & goal\
 \
-\strike0\striked0 //okay, few problems... nothing to worry about:\cf2 \ulnone \
+\strike0\striked0 //okay, few problems... nothing to worry about:\ulnone \
 -the former destination is deleted, before its certain the 	other is reachable. \
 -the path gets returned even though i dont know if there\'92s a way\
 //mayhap generate path before actuelly placing the uiObj.	-> should be easy enough to modify. its cool for now\
@@ -542,7 +542,7 @@ BUG: PimpWalk: crew moves super weirdly!\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f3\i\b \cf2 \ul \ulc2 MOVEMENT FIXED!\
+\f3\i\b \cf2 \ul MOVEMENT FIXED!\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\i0\b0 \cf2 \ulnone //distance needed some wiggleroom! -> couldnt be (pos == dest)\
@@ -552,8 +552,8 @@ BUG: DanceTeddy: if destination is changed mid transit, weird 	shit happens...\
 \cf2 \strike \strikec2 -fix DanceTeddy\
 -include goal in path\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike0\striked0 //could alternatively add goal to stack twice -> will do\cf2 \strike \strikec2 \
--unman rooms upon departure & man rooms upon arrival\cf2 \strike0\striked0 \
+\cf2 \strike0\striked0 //could alternatively add goal to stack twice -> will do\strike \strikec2 \
+-unman rooms upon departure & man rooms upon arrival\strike0\striked0 \
 BUG: YouAintMySupervisor!: crew increases speed when destination 	is reset mid transit...\
 -fix YouAintMySupervisor! //BUG\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -575,7 +575,7 @@ sep 24th 2017; collecting ideas & voting our new gouvernement\
 \f1\b0 \cf2 \strike \strikec2 -create Idea compilation for Rogue Elements\
 -vote\
 -discuss disign n stuff
-\f0\b \cf2 \strike0\striked0 \
+\f0\b \strike0\striked0 \
 \
 \
 sep 25th 2017; Last Movement //for now //hopefully -> nope\
@@ -588,7 +588,7 @@ sep 25th 2017; Last Movement //for now //hopefully -> nope\
 BUG: ButtTargetMy: target positions dont remove properly upon 	arrival\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -fix ButtTargetMy BUG
-\f0\b \cf2 \strike0\striked0 \
+\f0\b \strike0\striked0 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
@@ -596,18 +596,18 @@ BUG: ButtTargetMy: target positions dont remove properly upon 	arrival\
 -based on the playerID crew adds itself to crewList, (on all 	Instances individually.) the movement order simply carries the 	index in form of an int\
 //-> since the placement order should always be the same.\
 \
--add crewList \cf2 \strike \strikec2 crewDict <int, CrewScript>\cf2 \strike0\striked0  to playerInfo\
-//\cf2 \strike \strikec2 make that dict\cf2 \strike0\striked0  nope!
+-add crewList \strike \strikec2 crewDict <int, CrewScript>\strike0\striked0  to playerInfo\
+//\strike \strikec2 make that dict\strike0\striked0  nope!
 \f0\b \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -get crewList index to crew\cf2 \strike0\striked0 \
+\f1\b0 \cf2 \strike \strikec2 -get crewList index to crew\strike0\striked0 \
 //for (i = 0; i < crewList; i++) \{ crewList [i].index = i; \}\
-\cf2 \strike \strikec2 -add crewList to playerInfo\
--find out where to call GetCrewIndex ()\cf2 \strike0\striked0 \
+\strike \strikec2 -add crewList to playerInfo\
+-find out where to call GetCrewIndex ()\strike0\striked0 \
 //is called when crew gets added. not the most elegant solution..\
-\cf2 \strike \strikec2 -fix no path found issue\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -sync general movement\
+\strike \strikec2 -fix no path found issue\strike0\striked0 \
+\strike \strikec2 -sync general movement\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 //clean up
 \f0\b \
@@ -630,15 +630,15 @@ BUG: NeverGiveUp: crew stops all movement when goal is 	unreachable. //thay shou
 
 \f1\b0 \cf2 \strike \strikec2 -fix unreachability issues -> fix NeverGiveUp //BUG\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike0\striked0 //dont interrupt current path if the destination is unreachable\cf2 \strike \strikec2 \
--implement door struggle //waitForSeconds edition\cf2 \strike0\striked0 \
+\cf2 \strike0\striked0 //dont interrupt current path if the destination is unreachable\strike \strikec2 \
+-implement door struggle //waitForSeconds edition\strike0\striked0 \
 //crew fights doors if closed -> give nodes doorstate, reevaluate 	when reaching node. \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -> if (!localCrew || noDoorPower || !localShip)\{ DoorPamPam (); \}\cf2 \strike0\striked0 \
-//not really\cf2 \strike \strikec2 \
--improve crewPos transition.\cf2 \strike0\striked0  \
+\cf2 \strike \strikec2 -> if (!localCrew || noDoorPower || !localShip)\{ DoorPamPam (); \}\strike0\striked0 \
+//not really\strike \strikec2 \
+-improve crewPos transition.\strike0\striked0  \
 -> when reaching tween, set crewPos to next node\
-\cf2 \strike \strikec2 -improve AStars bool acquisition\cf2 \strike0\striked0 \
+\strike \strikec2 -improve AStars bool acquisition\strike0\striked0 \
 //give nodes the booleans of their tileRef\
 \
 \
@@ -647,9 +647,9 @@ BUG: NeverGiveUp: crew stops all movement when goal is 	unreachable. //thay shou
 \f0\b \cf2 sep 29th 2017; Doors\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement doDoorThing bool\cf2 \strike0\striked0  //for Debug purposes\
+\f1\b0 \cf2 \strike \strikec2 -implement doDoorThing bool\strike0\striked0  //for Debug purposes\
 -> can he open doors? \
-\cf2 \strike \strikec2 -open doors for crew\
+\strike \strikec2 -open doors for crew\
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -662,8 +662,8 @@ BUG: NeverGiveUp: crew stops all movement when goal is 	unreachable. //thay shou
 \cf2 \strike0\striked0 //works! //not that that surprises me in any way...\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f0\b \cf2 \ul \ulc2 -rework rooms & placement
-\f1\b0 \cf2 \ulnone \
+\f0\b \cf2 \ul -rework rooms & placement
+\f1\b0 \ulnone \
 //so that a 3by1 room consists of three parts, each situated on 	its tile retrospectively, so that each part can be modified 	individually.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 	-come up with new refSystem\
@@ -686,7 +686,7 @@ BUG: NeverGiveUp: crew stops all movement when goal is 	unreachable. //thay shou
 \f0\b \cf2 oct 4th 2017; Placement Do-over\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 //actually just mapped some functionality\cf2 \strike \strikec2 \
+\f1\b0 \cf2 //actually just mapped some functionality\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \strike0\striked0 oct 5th 2017; Some Actual Work...\
@@ -724,11 +724,11 @@ Order of Operations:\
 \f0\b \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement bool CanHaveDoor\cf2 \strike0\striked0 \
+\f1\b0 \cf2 \strike \strikec2 -implement bool CanHaveDoor\strike0\striked0 \
 //if !CanHaveDoor && roomIsPlacedNextTo -> place wall;\
-\cf2 \strike \strikec2 -create tileComponent versions of Rooms\
--create cross-placable references\cf2 \strike0\striked0  //nonSpecific Script\
-\cf2 \strike \strikec2 -reintroduce DoorPlacement/Removal\cf2 \strike0\striked0 \
+\strike \strikec2 -create tileComponent versions of Rooms\
+-create cross-placable references\strike0\striked0  //nonSpecific Script\
+\strike \strikec2 -reintroduce DoorPlacement/Removal\strike0\striked0 \
 //a few other things: i recreated most of the placement 	functionality within the placable itself, so that the TileScript 	can relax every once in a while. a bonus is, that it is now 	possible to create non-rectangular rooms and systems with great 	ease, decide from within the inspector if a door can be placed on 	the component or not and in which order the components are placed 	and where... \
 //crew and other placables are next, followed by some clean-up\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -736,8 +736,8 @@ Order of Operations:\
 \f0\b \cf2 oct 10th 2017; Adding on ReRef\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -add multi-tile (\cf2 \strike0\striked0 adaptive\cf2 \strike \strikec2 ) systems\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -add sub-system slots\
+\f1\b0 \cf2 \strike \strikec2 -add multi-tile (\strike0\striked0 adaptive\strike \strikec2 ) systems\strike0\striked0 \
+\strike \strikec2 -add sub-system slots\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -implement new placement in crew\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -745,12 +745,12 @@ Order of Operations:\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -re-implement room obstruction check\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -give originObj objDimensions\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -create space check based on dimensionString \
+\cf2 \strike \strikec2 -give originObj objDimensions\strike0\striked0 \
+\strike \strikec2 -create space check based on dimensionString \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 //for removal and placement.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -restructure placement to selfdescribing \cf2 \strike0\striked0 //so that the vector2 	describes the objs own pos relative to the previous one instead 	of the previous one dictating it to the next.\
+\cf2 \strike \strikec2 -restructure placement to selfdescribing \strike0\striked0 //so that the vector2 	describes the objs own pos relative to the previous one instead 	of the previous one dictating it to the next.\
 -implement proper removal <- what did i even mean by that?\
 //quick informal summary: \
 multi-tile systems have been 	implemented, and check for space. 	systems and rooms still need a proper obstruction check, when 	removing. systems have been fitted with subSystemSlots activated 	by bool. still lack functionality though du to lack of actual 	subsystems as of yet...\
@@ -763,9 +763,9 @@ multi-tile systems have been 	implemented, and check for space. 	systems and roo
 \f1\b0 \cf2 to do today:\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 	-redo room removal check\
-	-do system removal check\cf2 \strike0\striked0  //still needs conditions though\cf2 \strike \strikec2 \
+	-do system removal check\strike0\striked0  //still needs conditions though\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike0\striked0 	\cf2 \strike \strikec2 -implement subSystems \cf2 \strike0\striked0 \
+\cf2 \strike0\striked0 	\strike \strikec2 -implement subSystems \strike0\striked0 \
 	//incl. placement removal and new obstruction rules\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 	-redo crew\
@@ -830,9 +830,9 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \f0\b \cf2 oct 15th 2017; System systems\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -create distinguishable system sprites //tmp\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -create shield sprite
-\f0\b \cf2 \strike0\striked0 \
+\f1\b0 \cf2 \strike \strikec2 -create distinguishable system sprites //tmp\strike0\striked0 \
+\strike \strikec2 -create shield sprite
+\f0\b \strike0\striked0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 -implement system functionality\
@@ -849,11 +849,11 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \{ reactorUsage += x; return true; \} else \{ return false; \}\
 -add weapons\
 	-implement weapon slots\
-		\cf2 \strike \strikec2 -create weaponSlotObj\cf2 \strike0\striked0  //-> \cf2 \strike \strikec2 will be\cf2 \strike0\striked0  is tileType\
-		\cf2 \strike \strikec2 -resync targeting\
-		\cf2 \strike0\striked0 -create weaponSprites\
-			\cf2 \strike \strikec2 -small\cf2 \strike0\striked0  //2\cf2 \strike \strikec2 \
-			\cf2 \strike0\striked0 -medium //4\
+		\strike \strikec2 -create weaponSlotObj\strike0\striked0  //-> \strike \strikec2 will be\strike0\striked0  is tileType\
+		\strike \strikec2 -resync targeting\
+		\strike0\striked0 -create weaponSprites\
+			\strike \strikec2 -small\strike0\striked0  //2\strike \strikec2 \
+			\strike0\striked0 -medium //4\
 			-large //6\
 			-epic //66\
 -add shield functionality\
@@ -864,8 +864,8 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \f0\b oct 17th 2017; sprites
 \f1\b0 \
 -create weaponSprites\
-	\cf2 \strike \strikec2 -medium //4\cf2 \strike0\striked0 \
-	\cf2 \strike \strikec2 -large //6\cf2 \strike0\striked0 \
+	\strike \strikec2 -medium //4\strike0\striked0 \
+	\strike \strikec2 -large //6\strike0\striked0 \
 \
 \
 
@@ -875,7 +875,7 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \f1\b0 \cf2 //found out why the projectiles where moving so laggy. \
 -> Debug.Log in every iteration of every obj. -> DUH\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix projectileMovement\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -fix projectileMovement\strike0\striked0 \
 -find out how to properly scale and position the GunBtn\
 \
 \
@@ -889,12 +889,12 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \cf2 \strike0\striked0 //now truly is a btn\
 -fix btn scaling\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -implement actual targeting\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -implement radial bombardement\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -implement actual targeting\strike0\striked0 \
+\strike \strikec2 -implement radial bombardement\strike0\striked0 \
 //coefficient = screen.width //speed = distance*coefficient/time\
 -sync radialBombardement angle\
 -center targeting\
--make shit work\cf2 \strike \strikec2 \
+-make shit work\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \strike0\striked0 oct 21st 2017; list-a-ringding\
@@ -902,7 +902,7 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 
 \f1\b0 \cf2 -sync attack angle\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -center target\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -center target\strike0\striked0 \
 -destroy old target ui when taking aim\
 -damage rooms, systems, subsystems, crew\
 -implement power usage for weapons\
@@ -910,11 +910,11 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 -implement shield functionality\
 -implement teleporter \
 -fix systemPlacement space check \
-\cf2 \strike \strikec2 -privatize gunAccess\cf2 \strike0\striked0  //only the owner of the ship the gun is 	attached to should be able to fire it. duh...\
+\strike \strikec2 -privatize gunAccess\strike0\striked0  //only the owner of the ship the gun is 	attached to should be able to fire it. duh...\
 -fix speed and distance for differing resolutions\
-\cf2 \strike \strikec2 -fix retargeting\cf2 \strike0\striked0 \
+\strike \strikec2 -fix retargeting\strike0\striked0 \
 //when retargeting all shots still in the notAir will disappear. 	their target has been destroyed, thus they dont know where to go\
-\cf2 \strike \strikec2 -get taskList up to date\
+\strike \strikec2 -get taskList up to date\
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -971,7 +971,7 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \f0\b \cf2 oct 31st 2017;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -sync weapon powerstates\cf2 \strike0\striked0  //needs bool, and location\
+\f1\b0 \cf2 \strike \strikec2 -sync weapon powerstates\strike0\striked0  //needs bool, and location\
 -merge syncPowerstate and doorState? //-> also bool, and location\
 -sync weapon charge //bool also? \
 //the coroutine is called local-only, then updating the bool?\
@@ -986,7 +986,7 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \f0\b \cf2 nov 1st 2017;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -explore colliders and coroutines\cf2 \strike0\striked0 \
+\f1\b0 \cf2 \strike \strikec2 -explore colliders and coroutines\strike0\striked0 \
 //basically i just wanted to fill this page...\
 //started work on the sleepless special, encountering old 	problems in a new disguise. finally overcame my fear of colliders 	and actually came to appreciate them. \
 -> learned how to StopCoroutines and attach ui elements to objs.\page \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -994,17 +994,17 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \f0\b \cf2 nov 3rd 2017;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement charge loop\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -sync loop\cf2 \strike0\striked0  //seems synced... needs further testong though.\
-\cf2 \strike \strikec2 -implement preChargeTargeting\cf2 \strike0\striked0 \
+\f1\b0 \cf2 \strike \strikec2 -implement charge loop\strike0\striked0 \
+\strike \strikec2 -sync loop\strike0\striked0  //seems synced... needs further testong though.\
+\strike \strikec2 -implement preChargeTargeting\strike0\striked0 \
 -syncChargeState\
 //tryShoot() whenever the target is set or the weapon was charged\
 -display chargestate //someday\
 //try 2 img, one child of the other, then adjust the with of the 	child according to the percentage charged\
 //shoot should be called in a synced manner?\
 -implement shield\
-	\cf2 \strike \strikec2 -spawn it\
-	-scale it\cf2 \strike0\striked0 \
+	\strike \strikec2 -spawn it\
+	-scale it\strike0\striked0 \
 	-attach and configure collider //weird shit\
 	-create shieldScr2 //one for the obj, one for the system\
 \
@@ -1025,9 +1025,9 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \f0\b \cf2 \strike0\striked0 nov 5th 2017;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement shieldHP and collision	\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -implement ChargeShieldCoroutine\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -fix YouAintMySupervisor!\cf2 \strike0\striked0  //BUG\
+\f1\b0 \cf2 \strike \strikec2 -implement shieldHP and collision	\strike0\striked0 \
+\strike \strikec2 -implement ChargeShieldCoroutine\strike0\striked0 \
+\strike \strikec2 -fix YouAintMySupervisor!\strike0\striked0  //BUG\
 -implement shieldPowerUsage\
 -give weaponSlot bool topGun\
 \
@@ -1040,10 +1040,10 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 \f1\b0 \cf2 -implement powerManagement a la FTL\
 	-UI //powerBars //where to place them, how to access them.\
 	//once the ship was placed, do UI \
-	\cf2 \strike \strikec2 -firePower\
-	-shieldPower\cf2 \strike0\striked0  //kinda//good chance that ill have to change it\cf2 \strike \strikec2 \
-	-sync shieldPower\cf2 \strike0\striked0 \
-	\cf2 \strike \strikec2 -power by UI\
+	\strike \strikec2 -firePower\
+	-shieldPower\strike0\striked0  //kinda//good chance that ill have to change it\strike \strikec2 \
+	-sync shieldPower\strike0\striked0 \
+	\strike \strikec2 -power by UI\
 	-display Reactor Status\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
@@ -1055,9 +1055,9 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 	-visual\
 	-functional\
 -implement evading //once the projectile has reached its 	destination, the owner of the targeted ship calculates the 	chance, syncs the outcome and calls either the hit, or the miss 	function on the projectile. //from the sync\
-	\cf2 \strike \strikec2 -implement evasion chance\cf2 \strike0\striked0 \
-	\cf2 \strike \strikec2 -implement overshooting\
-	\cf2 \strike0\striked0 -sync evasionChance outcome //might be a problem\
+	\strike \strikec2 -implement evasion chance\strike0\striked0 \
+	\strike \strikec2 -implement overshooting\
+	\strike0\striked0 -sync evasionChance outcome //might be a problem\
 -implement engines\
 -implement cockpit\
 \
@@ -1071,7 +1071,7 @@ old ships cant be loaded anymore. the system now serializes 	strings instead of 
 
 \f0\b nov 10th 2017; 
 \f1\b0 \
-BUG iJustDontCare: when redirecting power while shield is loading\cf2 \strike \strikec2 \
+BUG iJustDontCare: when redirecting power while shield is loading\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 //when power is reduced, if (currentPower == power) stopCoroutine\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1088,9 +1088,9 @@ BUG iJustDontCare: when redirecting power while shield is loading\cf2 \strike \s
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 -implement engines //-> ship evasiveness\
-	\cf2 \strike \strikec2 -implement engine Powermanagement\cf2 \strike0\striked0 \
-	\cf2 \strike \strikec2 -implement custom ship evasiveness\
-	-sync engine PowerStates\cf2 \strike0\striked0  //i think...\
+	\strike \strikec2 -implement engine Powermanagement\strike0\striked0 \
+	\strike \strikec2 -implement custom ship evasiveness\
+	-sync engine PowerStates\strike0\striked0  //i think...\
 //no matter how damaged the system, it always needs as much power 	as though it was fully operational...\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1101,7 +1101,7 @@ BUG iJustDontCare: when redirecting power while shield is loading\cf2 \strike \s
 \f0\b \cf2 \strike0\striked0 nov 13th 2017;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -sync probability\cf2 \strike0\striked0 ... //could need some further work\
+\f1\b0 \cf2 \strike \strikec2 -sync probability\strike0\striked0 ... //could need some further work\
 //what if... i just generate int[512] \
 -> with all ints Random.Range (1, 100) and then sync that array 	to all instances of that obj. whenever it shoots _counter++\
 //that way, all players have the same probability value without 	having to constantly sync. //mayhap use stack instead\
@@ -1125,10 +1125,10 @@ or take the last used number and use it as indexer and so on...\
 	-implement crew teleportation\
 	-implement oxygen and \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 	-reimplement objHP\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 	-reimplement objHP\strike0\striked0 \
 	-implement capacityReduction\
-		\cf2 \strike \strikec2 -reactor\
-		\cf2 \strike0\striked0 -weapon\
+		\strike \strikec2 -reactor\
+		\strike0\striked0 -weapon\
 		-shield\
 		-fixDeployedPowerIssue \
 		//if reactorCap = 6; weaponReq = 4; weaponPowered; 			reactorCap -= 4;	\
@@ -1160,11 +1160,11 @@ if (availablePower < 0) \{ repeat; \} \
 //whenever a system is powered, add to poweredSystems[]; \
 whenever a system is depowered, remove from poweredSystems [];\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 //-> implement IPowerable interface\cf2 \strike0\striked0  //not yet necessary\
+\cf2 \strike \strikec2 //-> implement IPowerable interface\strike0\striked0  //not yet necessary\
 -> use powerBtn instead\
 \
 -BUG: if reactors are destroyed, it doesn\'92t matter if its yours. \
-\cf2 \strike \strikec2 -fix whatsYoursIsMine //BUG\
+\strike \strikec2 -fix whatsYoursIsMine //BUG\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 \
 -BUG: displayed available power doesnt always add up\
@@ -1193,16 +1193,16 @@ whenever a system is depowered, remove from poweredSystems [];\
 
 \f1\b0 \cf2 -dmg\
 	-create dmg sprites for systems\
-	\cf2 \strike \strikec2 -implement updateHealth()\cf2 \strike0\striked0  //in IPlacable? //aka damage();\
+	\strike \strikec2 -implement updateHealth()\strike0\striked0  //in IPlacable? //aka damage();\
 	//mayhap not damage but updateHealth? -> can also repair\
 	//or have two different functions...\
-	\cf2 \strike \strikec2 -unify health across entire room and all subRoomObj\cf2 \strike0\striked0  //?\
+	\strike \strikec2 -unify health across entire room and all subRoomObj\strike0\striked0  //?\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 dec 8th 2017; crew behaviour? <- nope\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement placableRepairment\cf2 \strike0\striked0  //although no functionality\
+\f1\b0 \cf2 \strike \strikec2 -implement placableRepairment\strike0\striked0  //although no functionality\
 	-implement roomHealthManagement\
 	-implement systemHealthManagement\
 		-reactor\
@@ -1210,12 +1210,12 @@ whenever a system is depowered, remove from poweredSystems [];\
 		-weapons\
 	-implement subSystemHealthManagement\
 		-elevator\
-			\cf2 \strike \strikec2 -nonFunctional\
-			\cf2 \strike0\striked0 -fix crewBehaviour\
+			\strike \strikec2 -nonFunctional\
+			\strike0\striked0 -fix crewBehaviour\
 		-gooblebox (interface/terminal)\
 	-implement crewHealthManagement\
 -implement repairOrder //-> order in which placables are repaired\
-\cf2 \strike \strikec2 -determine ammoDmg by gun\
+\strike \strikec2 -determine ammoDmg by gun\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -BUG: destroyed Elevators are a oneway ticket. others still 	recognize them. ->when downWards for no reason?\
 -fix elevatedToANewLevel //BUG\
@@ -1239,26 +1239,26 @@ whenever a system is depowered, remove from poweredSystems [];\
 -implement ISystem interface\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 	-shield\
-	\cf2 \strike0\striked0 -reactor\
+	\strike0\striked0 -reactor\
 	-weapon\
 	-engine\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 dec 11 2017; dealin\'92 some proper damage
-\f1\b0 \cf2 \strike \strikec2 \
+\f1\b0 \strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -ISystem\
-	\cf2 \strike \strikec2 -reactor\cf2 \strike0\striked0 \
-	\cf2 \strike \strikec2 -engine\cf2 \strike0\striked0 \
+	\strike \strikec2 -reactor\strike0\striked0 \
+	\strike \strikec2 -engine\strike0\striked0 \
 	-weapon <- might be tricky //there is no weaponSystem yet...\
 //should health be handled by origin exclusively?\
 //exchanged all 2s in engineScr for sysType //-> could cause t?\
 -implement Damage\
-	\cf2 \strike \strikec2 -engine\cf2 \strike0\striked0 \
-		\cf2 \strike \strikec2 -functionality\cf2 \strike0\striked0 \
-		\cf2 \strike \strikec2 -UI\
-	\cf2 \strike0\striked0 -weapon\
+	\strike \strikec2 -engine\strike0\striked0 \
+		\strike \strikec2 -functionality\strike0\striked0 \
+		\strike \strikec2 -UI\
+	\strike0\striked0 -weapon\
 		-functionality\
 		-UI\
 	-shield\
@@ -1276,11 +1276,11 @@ whenever a system is depowered, remove from poweredSystems [];\
 		-action\
 		-animation\
 	-engine\
-		\cf2 \strike \strikec2 -functionality\cf2 \strike0\striked0 \
+		\strike \strikec2 -functionality\strike0\striked0 \
 		//once \'92twas repaired, it cant be damaged again //why?\
 		->fix: isDamaged want updated when repairing...\
-		\cf2 \strike \strikec2 -UI\
-		\cf2 \strike0\striked0 //probably universally implementable\
+		\strike \strikec2 -UI\
+		\strike0\striked0 //probably universally implementable\
 //implement ISysType? -> different damage stages for different 	engine types for instance...\
 //can one by damaged systems, that need repair from the get go 	but are cheaper //basically second hand or black market systems\
 //Devlog Note: some of it was done on dec 14 (the bool && UI)\
@@ -1295,13 +1295,13 @@ whenever a system is depowered, remove from poweredSystems [];\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 //turn is manned into function? \
-IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strike \strikec2 \
-\cf2 \strike0\striked0 -> would work\
+IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\strike \strikec2 \
+\strike0\striked0 -> would work\
 //or put the function on the crew ->that way different crew can 	have different repair speeds etc\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f0\b \cf2 \ul \ulc2 -implement crew behaviour
-\f1\b0 \cf2 \ulnone \
+\f0\b \cf2 \ul -implement crew behaviour
+\f1\b0 \ulnone \
 	-implement repair loop in crew\
 	//each crew has a loop, that just repeatedly updates one 		number by a certain amount. that way if multiple crew repair 		one system it adds instead of two bars being repaired 		separately. //where is that value???\
 	//-> maybe small script: crewHandler on the crew subObj of 		the tile. //that way i just reference the parent for that.\
@@ -1321,16 +1321,16 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 -do tmpvisualRepresentation of system state. //1 fixed//1 dmgd\
-	\cf2 \strike \strikec2 -systems\
+	\strike \strikec2 -systems\
 	-rooms\
 	-elevators\
-	-goobleboxes\cf2 \strike0\striked0 \
+	-goobleboxes\strike0\striked0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix FixShotKillz\cf2 \strike0\striked0  //BUG -> crew dies whatever happens\
-\cf2 \strike \strikec2 -fix FixOriginAlready!\cf2 \strike0\striked0  //BUG \cf2 \strike \strikec2 -> crew only repairs at origin\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -fix FixShotKillz\strike0\striked0  //BUG -> crew dies whatever happens\
+\strike \strikec2 -fix FixOriginAlready!\strike0\striked0  //BUG \strike \strikec2 -> crew only repairs at origin\strike0\striked0 \
 //actually crew only repaired departTile cuz o bad logic!\
-\cf2 \strike \strikec2 -implement repair loop in crew\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -implement combinedEffort\cf2 \strike0\striked0  //multiCrew repairs\
+\strike \strikec2 -implement repair loop in crew\strike0\striked0 \
+\strike \strikec2 -implement combinedEffort\strike0\striked0  //multiCrew repairs\
 //SUMMARY: crew can now repair engines. big whoop!\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
@@ -1341,15 +1341,15 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 -create crewFight sprite //just placeholders\
 -create crewRunning sprite\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix MeToo\cf2 \strike0\striked0  //BUG //-> dmgd engine affects everyone...\
+\cf2 \strike \strikec2 -fix MeToo\strike0\striked0  //BUG //-> dmgd engine affects everyone...\
 //fixed for now, maybe powerManagement should be decentralized 	and managed by the ships //perhaps i should test repair too...\
 //-> that way other players can monitor your power management\
 -weapon keyboard shortcuts\
-	\cf2 \strike \strikec2 -power up\cf2 \strike0\striked0 \
-	\cf2 \strike \strikec2 -power down\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -check if repairs work in mp\cf2 \strike0\striked0  //they do\
+	\strike \strikec2 -power up\strike0\striked0 \
+	\strike \strikec2 -power down\strike0\striked0 \
+\strike \strikec2 -check if repairs work in mp\strike0\striked0  //they do\
 //btw: all the work put into reactor dmg is basically nillified\
-\cf2 \strike \strikec2 -outsource gunBtn logic to separate function \cf2 \strike0\striked0 \
+\strike \strikec2 -outsource gunBtn logic to separate function \strike0\striked0 \
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1357,12 +1357,12 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 \f0\b \cf2 dec 19th 2017; \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -limit repair to max hp\cf2 \strike0\striked0  //i think\
+\f1\b0 \cf2 \strike \strikec2 -limit repair to max hp\strike0\striked0  //i think\
 //->theoretically everything can be repaired to infinity aon...\
 -inform crew when all\'92s repaired //if all\'92s good, crew can chill\
 //when something is damaged or repaired, it informs the room 	origin. the room origin then informs crew.\
 //theres some weird bugs. need to fix dat... //tomorrow!\
-\cf2 \strike \strikec2 	-inform roomOri about num of damages\
+\strike \strikec2 	-inform roomOri about num of damages\
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1372,8 +1372,8 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 
 \f1\b0 \cf2 -introduce isInoperable; //damaged doesn\'92t mean it doesn\'92t work..\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -inform crew when all\'92s repaired\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -inform crew if repairs are needed\
+\cf2 \strike \strikec2 -inform crew when all\'92s repaired\strike0\striked0 \
+\strike \strikec2 -inform crew if repairs are needed\
 -implement repair loop in crew\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -implement transporter //do soon reminder\
@@ -1388,10 +1388,10 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 \f0\b \cf2 dec 21st 2017;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -fix Hangar\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -create second sample ship\cf2 \strike0\striked0 \
+\f1\b0 \cf2 \strike \strikec2 -fix Hangar\strike0\striked0 \
+\strike \strikec2 -create second sample ship\strike0\striked0 \
 \
-\cf2 \strike \strikec2 \
+\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \strike0\striked0 apr 6th 2018; long time no see...\
@@ -1403,8 +1403,8 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 \f0\b \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement mode selection in lobby //couch/classic\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -spawn crew type dependent of game mode\
+\f1\b0 \cf2 \strike \strikec2 -implement mode selection in lobby //couch/classic\strike0\striked0 \
+\strike \strikec2 -spawn crew type dependent of game mode\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -implement simple couch-crew\
 	-movement\
@@ -1414,14 +1414,14 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 	-repair\
 	-demolition\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -make drag-box mode dependent\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -make drag-box mode dependent\strike0\striked0 \
 -reimplement classic movement /make movement mode dependent\
 -implement splitscreen\
 -implement controller support\
 //should i use more colliders? -> probably\
 //3 dimensional ships?! -> stowaways and harder ship navigation\
 -figure out how to spawn couch crew in networked system\
-\cf2 \strike \strikec2 -fix couch-crew scaling issue\cf2 \strike0\striked0 \
+\strike \strikec2 -fix couch-crew scaling issue\strike0\striked0 \
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1432,8 +1432,8 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 \f1\b0 \cf2 -create couch lobby //room to bind the player to a screen portion\
 //where?! -> pre-lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -make main menu controller friendly\cf2 \strike0\striked0  //except it doesnt work for c\
-\cf2 \strike \strikec2 -introduce mode selection panel in main menu\
+\cf2 \strike \strikec2 -make main menu controller friendly\strike0\striked0  //except it doesnt work for c\
+\strike \strikec2 -introduce mode selection panel in main menu\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \strike0\striked0 apr 8th 2018;\
@@ -1442,13 +1442,13 @@ IsManned () \{ isManned = !isManned; if (isManned) \{ repair(); \} \}\cf2 \strik
 \f1\b0 \cf2 -controller to player pos setup\
 	-create Dict <int playerID, string controllerID>\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -\'93dynamic\'94 split-screen\cf2 \strike0\striked0  //a player joins, the screen is split\
+\cf2 \strike \strikec2 -\'93dynamic\'94 split-screen\strike0\striked0  //a player joins, the screen is split\
 //let me gather myself...\
 a crew member is now assigned to a controller. \
 ->what if theres not enough crew members on the selected ship?\
-\cf2 \strike \strikec2 -Have casheScr save the playerID and controllerID\cf2 \strike0\striked0 \
+\strike \strikec2 -Have casheScr save the playerID and controllerID\strike0\striked0 \
 //casheScr then listens for crew spawns and assigns the controls 	to them in spawn order\
-\cf2 \strike \strikec2 -assign controllers to crew\
+\strike \strikec2 -assign controllers to crew\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -implement couch friendly doors\
 -couch systems\
@@ -1461,11 +1461,11 @@ a crew member is now assigned to a controller. \
 
 \f1\b0 \cf2 //added collider to fullspace\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -block fullSpace\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -block emptySpace\cf2 \strike0\striked0  //had to privately rename Walkable to walkable\
-\cf2 \strike \strikec2 -implement couch friendly doors\cf2 \strike0\striked0  //kinda\
+\cf2 \strike \strikec2 -block fullSpace\strike0\striked0 \
+\strike \strikec2 -block emptySpace\strike0\striked0  //had to privately rename Walkable to walkable\
+\strike \strikec2 -implement couch friendly doors\strike0\striked0  //kinda\
 -make doors ask for keys //made door colliders trigger.\
-\cf2 \strike \strikec2 -bring back a star\cf2 \strike0\striked0  //seems to work...\
+\strike \strikec2 -bring back a star\strike0\striked0  //seems to work...\
 -implement elevators\
 -implement passable crew //player can walk past another\
 \
@@ -1488,8 +1488,8 @@ a crew member is now assigned to a controller. \
 //the interactibles will do the collision detection for now\
 -> no IInteractible interface\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -create canvasManager\cf2 \strike0\striked0  //for splitscreen UI\cf2 \strike \strikec2 \
--create elevator menu\cf2 \strike0\striked0  //sketch\cf2 \strike \strikec2 \
+\cf2 \strike \strikec2 -create canvasManager\strike0\striked0  //for splitscreen UI\strike \strikec2 \
+-create elevator menu\strike0\striked0  //sketch\strike \strikec2 \
 -create couchCursor\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1508,9 +1508,9 @@ a crew member is now assigned to a controller. \
 \f0\b \cf2 \strike0\striked0 apr 13th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -fix elevator movement\cf2 \strike0\striked0  //its working, but ignoring the rb\
-\cf2 \strike \strikec2 -limit selectable levels\cf2 \strike0\striked0  //elevator panel\
-\cf2 \strike \strikec2 -fix multiCC issue\cf2 \strike0\striked0  //spawning more than one, fucks placement\cf2 \strike \strikec2 \
+\f1\b0 \cf2 \strike \strikec2 -fix elevator movement\strike0\striked0  //its working, but ignoring the rb\
+\strike \strikec2 -limit selectable levels\strike0\striked0  //elevator panel\
+\strike \strikec2 -fix multiCC issue\strike0\striked0  //spawning more than one, fucks placement\strike \strikec2 \
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1525,7 +1525,7 @@ a crew member is now assigned to a controller. \
 
 \f1\b0 -implement couch aiming\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -BUG: crewDestination wont disappear in damaged rooms...\cf2 \strike0\striked0  //fixed\
+\cf2 \strike \strikec2 -BUG: crewDestination wont disappear in damaged rooms...\strike0\striked0  //fixed\
 //destination tile is weird when room took damage...\
 //repairing defect 201217 doesn\'92t have this bug. -> couchMode\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1533,16 +1533,16 @@ a crew member is now assigned to a controller. \
 \f0\b \cf2 //it\'92s IsStationed (); 
 \f1\b0 //repairLoop... //ill just redo repairs.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -implement localCouchDamage\cf2 \strike0\striked0  //when square is pressed, do damage.\
-\cf2 \strike \strikec2 -implement localCouchRepair\
+\cf2 \strike \strikec2 -implement localCouchDamage\strike0\striked0  //when square is pressed, do damage.\
+\strike \strikec2 -implement localCouchRepair\
 -tell them when to stop\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 //but doesn\'92t have any effect yet... -> no dmg sprite and nothin\'92\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -give rooms repair bar\cf2 \strike0\striked0  \
-\cf2 \strike \strikec2 -sync repair bar for all room modules\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -give rooms repair bar\strike0\striked0  \
+\strike \strikec2 -sync repair bar for all room modules\strike0\striked0 \
 //all rooms share one repair bar //for now anyways...\
-\cf2 \strike \strikec2 -update couchCrewPos\
+\strike \strikec2 -update couchCrewPos\
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1552,11 +1552,11 @@ a crew member is now assigned to a controller. \
 
 \f1\b0 \cf2 -give damage an actual effect \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -change roomSprites onDmg ()\cf2 \strike0\striked0  //should redo that thing as well\
+\cf2 \strike \strikec2 -change roomSprites onDmg ()\strike0\striked0  //should redo that thing as well\
 //-> it just changes the origin spr to a broader one...\
 //-> outsource damage to hpScr?\
 \
-\cf2 \strike \strikec2 \
+\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1592,11 +1592,11 @@ can be called separately by crew.\
 \f0\b \cf2 apr 20th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -give crew references to all originHScr\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -give systems hp bar\
+\f1\b0 \cf2 \strike \strikec2 -give crew references to all originHScr\strike0\striked0 \
+\strike \strikec2 -give systems hp bar\
 -give subSys hp bar\
--implement new Dmg system\cf2 \strike0\striked0  //except it doesn\'92t do shit\
-\cf2 \strike \strikec2 -adapt sprites to damage\cf2 \strike0\striked0  //on all elements\
+-implement new Dmg system\strike0\striked0  //except it doesn\'92t do shit\
+\strike \strikec2 -adapt sprites to damage\strike0\striked0  //on all elements\
 -do proper subSysSlot check when placing systems\
 //if you place an elevator first, the system may not be placed in 	a way that the elevator now lies on a system tile without a 	subSys slot...\
 \
@@ -1610,8 +1610,8 @@ can be called separately by crew.\
 -overhaul PowerManagement //sure?\
 	-ISystem\
 	-proper damage\
-		\cf2 \strike \strikec2 -engines\
-		\cf2 \strike0\striked0 -shields\
+		\strike \strikec2 -engines\
+		\strike0\striked0 -shields\
 		-weapons\
 	-new powerManager //non singleton -> most def!\
 	-ISubSystem?\
@@ -1623,16 +1623,16 @@ can be called separately by crew.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 -overhaul powerManagement //<-yes, do that! its worth it!		//is it though...?\
-	-shields //shields now determine how many hp the shield has.\cf2 \strike \strikec2 \
-	\cf2 \strike0\striked0 //for now, hp is in the hundreds and not as seen in FTL\
+	-shields //shields now determine how many hp the shield has.\strike \strikec2 \
+	\strike0\striked0 //for now, hp is in the hundreds and not as seen in FTL\
 	//how to do shield alpha? //shields need recover timer\
 //in cM systems are powered manually -> movement must be fun\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -implement couchCrew powerUp\cf2 \strike0\striked0  //of systems\
+\cf2 \strike \strikec2 -implement couchCrew powerUp\strike0\striked0  //of systems\
 //idea: have systems be turned on by literal switch? lectricChair\
 -implement damage UI\
 -BUG: when repaired, one powerBar is immediately powered...\
-\cf2 \strike \strikec2 -BUG: you can power down a damaged system...\cf2 \strike0\striked0  //fixed\
+\strike \strikec2 -BUG: you can power down a damaged system...\strike0\striked0  //fixed\
 //ill fixit some other day...\
 \
 \
@@ -1688,9 +1688,9 @@ apr 25th 2018;\
 \f0\b \cf2 \strike0\striked0 apr 29th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -fix reactors and power-management\cf2 \strike0\striked0  //i think i did anyways...\cf2 \strike \strikec2 \
--fix damaging\cf2 \strike0\striked0  //doesn\'92t power down properly\
-\cf2 \strike \strikec2 -fix reactor damaging\
+\f1\b0 \cf2 \strike \strikec2 -fix reactors and power-management\strike0\striked0  //i think i did anyways...\strike \strikec2 \
+-fix damaging\strike0\striked0  //doesn\'92t power down properly\
+\strike \strikec2 -fix reactor damaging\
 -implement proper system-shutdown\
 \
 \
@@ -1699,12 +1699,12 @@ apr 25th 2018;\
 \f0\b \cf2 \strike0\striked0 may 1st 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement engine functionality\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -implement shield functionality\cf2 \strike0\striked0  //can\'92t be hit though...\
+\f1\b0 \cf2 \strike \strikec2 -implement engine functionality\strike0\striked0 \
+\strike \strikec2 -implement shield functionality\strike0\striked0  //can\'92t be hit though...\
 //well it can be hit, it just doesn\'92t respond and guns don\'92t work\
 //shields work similarly to the way they did in FTL. but the 	shields strength is determined by the system.  \
 -> a system that requires 3 power could boost the shield by any 	amount really... //max shield is 8. any excess is bolster in case 	a system is destroyed. that may change though.\
--implement weaponsSystem damaging\cf2 \strike \strikec2 \
+-implement weaponsSystem damaging\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -implement weaponsSystem powerManagement\
 -implement weaponsSystem functionality\
@@ -1719,12 +1719,12 @@ apr 25th 2018;\
 \f1\b0 \
 -implement weaponsSystem damaging\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 	-systemPower\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 	-systemPower\strike0\striked0 \
 	-weaponPower //weapons don\'92t automatically power down yet.\
-	//or power at all for that matter... ^^\cf2 \strike \strikec2 \
+	//or power at all for that matter... ^^\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -implement weaponsSystem powerManagement\
-	\cf2 \strike \strikec2 -systemPower\cf2 \strike0\striked0 \
+	\strike \strikec2 -systemPower\strike0\striked0 \
 	-weaponPower //weaponSys acts like reactor for weapons.\
 \
 \
@@ -1738,8 +1738,8 @@ apr 25th 2018;\
 \cf2 \strike0\striked0 -implement terminal functionality\
 //are terminals systemType specific or can they be applied to 	anything and their functionality is then determined by the system 	they\'92ve been place on?\
 	-weaponsTerminal\
-		\cf2 \strike \strikec2 -terminal interaction logic for couchCrew\cf2 \strike0\striked0 \
-		\cf2 \strike \strikec2 -camSwitch to fullShipCam\cf2 \strike0\striked0  //currently fullscreen only\
+		\strike \strikec2 -terminal interaction logic for couchCrew\strike0\striked0 \
+		\strike \strikec2 -camSwitch to fullShipCam\strike0\striked0  //currently fullscreen only\
 		-cursor for aiming\
 		-placing targets by controller\
 		-loading weapons\
@@ -1754,16 +1754,16 @@ apr 25th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 -\cf4 weaponsTerminal\cf2 \
-	\cf2 \strike \strikec2 -cursor for aiming\
-\cf2 \strike0\striked0 	//cursor collision is detected by room\
+	\strike \strikec2 -cursor for aiming\
+\strike0\striked0 	//cursor collision is detected by room\
 	//couchTarget placement works differently from Classic\
-	\cf2 \strike \strikec2 -placing targets by controller\cf2 \strike0\striked0  \
+	\strike \strikec2 -placing targets by controller\strike0\striked0  \
 //out-commented tileScr.GetGun\
 //weaponSlot has and needs box collider for seemingly no reason.\
 ->fix it! \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix roomCol\cf2 \strike0\striked0  //roomCol needs to be deactivated in hangar\
-\cf2 \strike \strikec2 -implement 3mode structure\cf2 \strike0\striked0  //hangar, classic, couch\
+\cf2 \strike \strikec2 -fix roomCol\strike0\striked0  //roomCol needs to be deactivated in hangar\
+\strike \strikec2 -implement 3mode structure\strike0\striked0  //hangar, classic, couch\
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
@@ -1771,23 +1771,23 @@ apr 25th 2018;\
 \pard\pardeftab720\partightenfactor0
 
 \f1\b0 \cf5 	\cf4 //when terminal is used -> sys is powered. \uc0\u8232 	//for weaponScr that means, that you may distribute any available 	weaponPower //but cant aim without a terminal\u8232 	//players can only do that by using a terminal.\u8232 	//-> there may be weaponSys without terminals, but you can't 		interface with it, just boost the available power\
-	\cf4 \strike \strikec4 -firing weapons \cf4 \strike0\striked0 //though without random acc, with just one gun, 		just one player, etc. 
-\f0\b \cf4 //but damaging works!
-\f1\b0 \cf4 \
+	\strike \strikec4 -firing weapons \strike0\striked0 //though without random acc, with just one gun, 		just one player, etc. 
+\f0\b //but damaging works!
+\f1\b0 \
 	-implement terminal kick //kick user from terminal if system or 		terminal is destroyed or unpowered\
 \
 	\
 	
-\f0\b \cf4 may 10th 2018;\
+\f0\b may 10th 2018;\
 	
-\f1\b0 \cf4 -implement couch mp weapon usage\
-		\cf4 \strike \strikec4 -implement splitscreen shipScreen\cf4 \strike0\striked0 //spawn an instance of cam? \
+\f1\b0 -implement couch mp weapon usage\
+		\strike \strikec4 -implement splitscreen shipScreen\strike0\striked0 //spawn an instance of cam? \
 		//relocate cam -> size and position copied from shipCam?\
 		-> save standardCamValues\
 		//no can do -> pos is relative to player -> 2 cams\
 		//all couchPlayers have 2 cams, a crewCam and a ship cam 			that becomes the child of the monitored ship	-> spawned by c\
-		\cf4 \strike \strikec4 -implement weapon selection\
-		\cf4 \strike0\striked0 -weapon charge feels hinky //whenever the gun is changed, it 		recharges, but is still fireable if the gun was previously 			charged. when i tried to fix the issue, the guns stopped 			working after a few shots fired...\
+		\strike \strikec4 -implement weapon selection\
+		\strike0\striked0 -weapon charge feels hinky //whenever the gun is changed, it 		recharges, but is still fireable if the gun was previously 			charged. when i tried to fix the issue, the guns stopped 			working after a few shots fired...\
 		//but switching weapons isn\'92t supposed to power the weapons 		in the first place, so it\'92s just a not yet coded issue...\
 	-reimplement online mp \
 		~or~\
@@ -1807,16 +1807,15 @@ apr 25th 2018;\
 \
 \
 	
-\f0\b \cf4 may 11th 2018;\
-\pard\pardeftab720\partightenfactor0
+\f0\b may 11th 2018;\
 
-\f1\b0 \cf4 	-uncollide couchCursor and weaponSlot\
+\f1\b0 	-uncollide couchCursor and weaponSlot\
 	-fix weird inbetween collision issue \
 	//if the cursor is very between tiles, the collision won\'92t work.\cf6 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 -implement weapon powerManagement\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -stop charge coroutine properly\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -stop charge coroutine properly\strike0\striked0 \
 //weapon charge behavior makes no damn sense. -> rewrite
 \f0\b \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1826,8 +1825,8 @@ apr 25th 2018;\
 -> same issue as i have with the couchCursor? collider issue?\
 //could be some collider obstructing the tile...\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -give active weapon colour coded outline\cf2 \strike0\striked0  //may be removed\
-\cf2 \strike \strikec2 -multiuser weapon management\cf2 \strike0\striked0  //if someone uses the weapon, it 	can\'92t be used by somebody else? or is can multiple people use the 	same weapon?\
+\cf2 \strike \strikec2 -give active weapon colour coded outline\strike0\striked0  //may be removed\
+\strike \strikec2 -multiuser weapon management\strike0\striked0  //if someone uses the weapon, it 	can\'92t be used by somebody else? or is can multiple people use the 	same weapon?\
 //already targeted rooms should still be targetable\
 //missed shots should also remove their target obj.\
 \
@@ -1837,8 +1836,8 @@ apr 25th 2018;\
 \f0\b \cf2 may 15th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement mp powerDisplay\cf2 \strike0\striked0 \
--implement synced powerManagement\cf2 \strike \strikec2 \
+\f1\b0 \cf2 \strike \strikec2 -implement mp powerDisplay\strike0\striked0 \
+-implement synced powerManagement\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -spawn couchCrew\
 -implement couchTargeting ship switch \
@@ -1850,11 +1849,11 @@ apr 25th 2018;\
 \f0\b \cf2 may 16th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -fix resolution\cf2 \strike0\striked0  //no more var! just fixed ^^\
+\f1\b0 \cf2 \strike \strikec2 -fix resolution\strike0\striked0  //no more var! just fixed ^^\
 //alter cam to fit ship, instead of altering ship to fit cam...\
 //make cam a child of displayField?\
 -spawn couchCrew\
-\cf2 \strike \strikec2 	-spawn hostCouchCrew\
+\strike \strikec2 	-spawn hostCouchCrew\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 	-spawn clientCouchCrew\
 	//client can\'92t spawn!?\
@@ -1868,8 +1867,8 @@ apr 25th 2018;\
 \f0\b \cf2 may 17th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 -spawn couchCrew\cf2 \strike \strikec2 \
-\cf2 \strike0\striked0 	-spawn clientCouchCrew\
+\f1\b0 \cf2 -spawn couchCrew\strike \strikec2 \
+\strike0\striked0 	-spawn clientCouchCrew\
 	//client can\'92t spawn!? //-> it would seem that it isn\'92t 		possible to send obj from clients to servers?\
 	//it\'92s the only explanation i could come up with...\
 	//good news is, server side spawned obj work fine and are 		synced properly... they are controlled only by the local 		players etc...\
@@ -1878,7 +1877,7 @@ apr 25th 2018;\
 	//could sync those though... is it worth it though?\
 	-> it might be since you might want to know the size of the 		team you\'92re up against? but then, the way it looks now, you 		would anyways... \
 	//seems to work... but the controller assignment is too fast 		for this spawning method... i\'92ll have to send the string `		with it //place crew last?\
-	\cf2 \strike \strikec2 -fix slowNetSync issue\cf2 \strike0\striked0 \
+	\strike \strikec2 -fix slowNetSync issue\strike0\striked0 \
 	//rigidbody sync is not the way to go it seems...\
 	
 \f0\b //crewPos isn\'92t set!
@@ -1899,9 +1898,9 @@ apr 25th 2018;\
 \f0\b may 18th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -fix build to unity placement\cf2 \strike0\striked0  //just extended artificialDelay ()\
-\cf2 \strike \strikec2 -fix client crewPos update\cf2 \strike0\striked0  //if (isServer) \{ SyncPos (); \}\
-\cf2 \strike \strikec2 -fix authority issue\
+\f1\b0 \cf2 \strike \strikec2 -fix build to unity placement\strike0\striked0  //just extended artificialDelay ()\
+\strike \strikec2 -fix client crewPos update\strike0\striked0  //if (isServer) \{ SyncPos (); \}\
+\strike \strikec2 -fix authority issue\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -fix editor/build posDesync issue\
 -sync dmg, rpr loop //all crew actions for that matter\
@@ -1913,7 +1912,7 @@ apr 25th 2018;\
 \f1\b0 \cf2 -implement classic/couch compatibility //taking and syncing modes\
 //how to sync damage and power...\
 -sync dmg, rpr loop \
-	\cf2 \strike \strikec2 -sync damageStates\cf2 \strike0\striked0  //isn\'92t too helpful though, should be 		handled through health sync. //no states\
+	\strike \strikec2 -sync damageStates\strike0\striked0  //isn\'92t too helpful though, should be 		handled through health sync. //no states\
 	-> every other way would probably lead to bugs...\
 	//all obj could sync every now and then, if its not fully 		damaged or repaired.\
 //not by couchCrew though, but rather by GridPos //oldschool\
@@ -1925,8 +1924,8 @@ apr 25th 2018;\
 //health updates: increase/decrease by amount.\
 //but sync current hp every now and then...?\
 //-create tile.hScrDict <int, HScr> //for easy health referencing\
--> i did that already\cf2 \strike \strikec2 \
-\cf2 \strike0\striked0 //022 room ain\'92t workin\'92...\
+-> i did that already\strike \strikec2 \
+\strike0\striked0 //022 room ain\'92t workin\'92...\
 -visual power reference \
 //so you can tell by looking wether a system is powered or not...\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -1937,26 +1936,26 @@ apr 25th 2018;\
 \f0\b \cf2 \strike0\striked0 may 20th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -visualize powerState\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -give crew healthBar\cf2 \strike0\striked0 \
-\cf2 \strike \strikec2 -sync hp loops\cf2 \strike0\striked0  //dunno how reliable \'92tis though\
+\f1\b0 \cf2 \strike \strikec2 -visualize powerState\strike0\striked0 \
+\strike \strikec2 -give crew healthBar\strike0\striked0 \
+\strike \strikec2 -sync hp loops\strike0\striked0  //dunno how reliable \'92tis though\
 //022 problem probably is, that there\'92s no room segment on the 	tile that was clicked to place the room? //it definitely has 	something to do with pos, since it works if you stand on it\'92s 	origin...\
-\cf2 \strike \strikec2 -fix problem022\
+\strike \strikec2 -fix problem022\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -implement tragetedShip switch\
 -properly power weapons\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \ul \ulc2 -sync weapons\cf2 \ulnone  //to stark time dilatation?\
+\cf2 \ul -sync weapons\ulnone  //to stark time dilatation?\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix height desync\cf2 \strike0\striked0  //crew height is baaaad\
+\cf2 \strike \strikec2 -fix height desync\strike0\striked0  //crew height is baaaad\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 may 21st 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -implement targeted ship switch\cf2 \strike0\striked0 \
-	\cf2 \strike \strikec2 -cam switch\cf2 \strike0\striked0  //no cam inversion though...\
-	\cf2 \strike \strikec2 -cursor thing\cf2 \strike0\striked0  //so it moves with the cam.\
+\f1\b0 \cf2 \strike \strikec2 -implement targeted ship switch\strike0\striked0 \
+	\strike \strikec2 -cam switch\strike0\striked0  //no cam inversion though...\
+	\strike \strikec2 -cursor thing\strike0\striked0  //so it moves with the cam.\
 	//haha terminal controls targeted enemy weapons -> fixed\
 	//enemy ship can be targeted, yet breaks weapons...\
 //weapon time discrepancy needs to be addressed!\
@@ -1967,7 +1966,7 @@ apr 25th 2018;\
 \f0\b couch
 \f1\b0  crew to crew combat\
 -implement teleporter\
-\cf2 \strike \strikec2 -reimplement shield collision\cf2 \strike0\striked0  \
+\strike \strikec2 -reimplement shield collision\strike0\striked0  \
 //should probably be synced by server //might be a problem though\
 //note to self: try to spawn full ship some time...\
 \
@@ -1979,9 +1978,9 @@ apr 25th 2018;\
 
 \f1\b0 \cf2 //the cursor targeting does its thing, but not great...\
 -implement proper weapon power\
-	\cf2 \strike \strikec2 -limit power-able weapons by available power\
-	\cf2 \strike0\striked0 //d-pad for weapon switching //will do that shit tomorrow...\cf2 \strike \strikec2 \
-\cf2 \strike0\striked0 	-power weapons\
+	\strike \strikec2 -limit power-able weapons by available power\
+	\strike0\striked0 //d-pad for weapon switching //will do that shit tomorrow...\strike \strikec2 \
+\strike0\striked0 	-power weapons\
 	-unpower weapons \
 \
 \
@@ -1992,14 +1991,14 @@ apr 25th 2018;\
 
 \f1\b0 \cf2 //yeah yeah, i was sick alright?\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -implement proper weapon power\cf2 \strike0\striked0  //unpowers twice. //sync takes too \
-	\cf2 \strike \strikec2 -weaponSys dmg weapon powerdown\cf2 \strike0\striked0  //when a weapon sys is 		powered down or damaged, it needs to check if there\'92s still 		enough power available to power the powered weapons.\
+\cf2 \strike \strikec2 -implement proper weapon power\strike0\striked0  //unpowers twice. //sync takes too \
+	\strike \strikec2 -weaponSys dmg weapon powerdown\strike0\striked0  //when a weapon sys is 		powered down or damaged, it needs to check if there\'92s still 		enough power available to power the powered weapons.\
 	//neednt be synced! cuz wSys.power is synced! but not which!\
-\cf2 \strike \strikec2 -set up controller\cf2 \strike0\striked0  //if random weapon is shutdown, sync is needed\
+\strike \strikec2 -set up controller\strike0\striked0  //if random weapon is shutdown, sync is needed\
 	-setup d-pad //not possible in standard unity it seems...
-\f0\b \cf2 \strike \strikec2 \
+\f0\b \strike \strikec2 \
 
-\f1\b0 	-setup shoulder buttons\cf2 \strike0\striked0  //huge gridPos desync issue! -> fix!\cf2 \strike \strikec2 \
+\f1\b0 	-setup shoulder buttons\strike0\striked0  //huge gridPos desync issue! -> fix!\strike \strikec2 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 //funny bug: weapons can\'92t unpower unless theres enough power to 	power the weapon up... easy fix though.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -2010,11 +2009,11 @@ apr 25th 2018;\
 \f1\b0 \cf2 -fix pos desync //crew seems left-er than is //editor issue?\
 //spawn ships? //sync ship pos.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix client altitude issue\cf2 \strike0\striked0  //y isn\'92t synced for clients?\
+\cf2 \strike \strikec2 -fix client altitude issue\strike0\striked0  //y isn\'92t synced for clients?\
 //-> crew pos is updated from server, where the elevatorCR isn\'92t 	run. thus the pos isn\'92t updated etc...\
 -fix speed issues //what\'92s up with those?\
 //resolution dependent. super weird.\
-\cf2 \strike \strikec2 -fix reactor tell\cf2 \strike0\striked0  //won\'92t go grey no mo\
+\strike \strikec2 -fix reactor tell\strike0\striked0  //won\'92t go grey no mo\
 //ships wont place from build  ...again \
 //unity restart fixes the issue though...\
 -spawn ships //for positions sake...\
@@ -2032,7 +2031,7 @@ apr 25th 2018;\
 \f1\b0 \cf2 //put couchCrewMovement in coRoutine? -> dont work in update\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f0\b \cf2 \ul \ulc2 //FUCK VISUAL STUDIO FOR REALS!!!
+\f0\b \cf2 \ul //FUCK VISUAL STUDIO FOR REALS!!!
 \f1\b0 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \ulnone -damage crew //by room collider //don\'92t work, but why?!\
@@ -2054,9 +2053,9 @@ apr 25th 2018;\
 \f0\b \
 
 \f1\b0 	-classic dmg loops\
-	\cf2 \strike \strikec2 -reimplement power by button\cf2 \strike0\striked0  //add systems to lists on mngr\
+	\strike \strikec2 -reimplement power by button\strike0\striked0  //add systems to lists on mngr\
 	//sysScr isPowered isn\'92t working properly\
-	-fix raycasting //couldn\'92t i just use the fullRoomCollider?\cf2 \ul \ulc2 \
+	-fix raycasting //couldn\'92t i just use the fullRoomCollider?\ul \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \ulnone jun 4th 2018;\
@@ -2065,11 +2064,11 @@ apr 25th 2018;\
 \f1\b0 \cf2 -classic
 \f0\b \
 
-\f1\b0 	\cf2 \strike \strikec2 -classic dmg loop\cf2 \strike0\striked0  //just based on arrival state though\
+\f1\b0 	\strike \strikec2 -classic dmg loop\strike0\striked0  //just based on arrival state though\
 	//either crew needs to check regularly, or rooms inform 		local crew about health state...\
-	\cf2 \strike \strikec2 -implement friend/foe recognition for shipDmgLoops\cf2 \strike0\striked0 \
+	\strike \strikec2 -implement friend/foe recognition for shipDmgLoops\strike0\striked0 \
 	//just a friend bool as of now...\
-	\cf2 \strike \strikec2 -power weapon by btn\cf2 \strike0\striked0  //doesn\'92t yet work properly //fixed\
+	\strike \strikec2 -power weapon by btn\strike0\striked0  //doesn\'92t yet work properly //fixed\
 	//classic still utilizes the gunPOs approach. works fine, 		but it\'92d be great if i could properly assign them their 		weaponID...\
 	//have btns created by ship after weapons where added to get 		weapon id for targeting...?\
 \
@@ -2087,7 +2086,7 @@ apr 25th 2018;\
 //though it worked once! wtf!?\
 -fix raycasting\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -new outlines\cf2 \strike0\striked0  //why\'92d i do that istead of the important stuff?\
+\cf2 \strike \strikec2 -new outlines\strike0\striked0  //why\'92d i do that istead of the important stuff?\
 //i don\'92t fucking know!\
 -sync ship pos\
 -hurt crew\
@@ -2098,13 +2097,13 @@ apr 25th 2018;\
 \f0\b \cf2 jun 11th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -fix crewPow reassignment\cf2 \strike0\striked0  //cuz it\'92s fuuuuck\'92d\
-\cf2 \strike \strikec2 -hurt crew\cf2 \strike0\striked0  //crewDmg is not yet separated from roomDmg though\
+\f1\b0 \cf2 \strike \strikec2 -fix crewPow reassignment\strike0\striked0  //cuz it\'92s fuuuuck\'92d\
+\strike \strikec2 -hurt crew\strike0\striked0  //crewDmg is not yet separated from roomDmg though\
 //let\'92s sort thoughts: reassign crew only to room origin and only 	when leaving or entering rooms //not tiles//-> more efficient?\
 //i\'92d need roomIDs back to make that work i guess. or just 	compare origin objs... //-> let\'92s do that, might not be the most 	efficient way though. 
 \f0\b //have the split-screen un-split on death?
 \f1\b0 \
-//UpdateCrewPos (int _x, int _y) is a thing now... \cf2 \strike \strikec2 and z as well.\cf2 \strike0\striked0 \
+//UpdateCrewPos (int _x, int _y) is a thing now... \strike \strikec2 and z as well.\strike0\striked0 \
 //nah, teleportation and shipSkip gets its own function.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
@@ -2120,9 +2119,9 @@ apr 25th 2018;\
 \f0\b \cf2 jun 14th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -fix raycasting\cf2 \strike0\striked0  //although classic targeting sometimes defaults 	to room origin... don\'92t yet know the cause of this...\
+\f1\b0 \cf2 \strike \strikec2 -fix raycasting\strike0\striked0  //although classic targeting sometimes defaults 	to room origin... don\'92t yet know the cause of this...\
 //simply elevate tileCol? //doesn\'92t work for like... no reason.\
-\cf2 \strike \strikec2 -fix room removal\cf2 \strike0\striked0  //let\'92s face it, haven\'92t tested it, but... yeah\
+\strike \strikec2 -fix room removal\strike0\striked0  //let\'92s face it, haven\'92t tested it, but... yeah\
 //just disable full room colliders? //easy fix, but maybe i 	should reorganize placement a little. but that\'92s polishing to be 	honest. works for now...\
 \
 \
@@ -2150,7 +2149,7 @@ apr 25th 2018;\
 //maybe stop assigning parents to couchCrew altogether?\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -fix xPosDesync
-\f0\b \cf2 \strike0\striked0  
+\f0\b \strike0\striked0  
 \f1\b0 //super ugly fix, but it seems to work...\
 //fix janky movement. //variing speeds and shit. it\'92s distracting\
 \
@@ -2163,7 +2162,7 @@ apr 25th 2018;\
 \f1\b0 \cf2 -implement medBay\
 -implement teleporter\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -implement classicCrewOuch\cf2 \strike0\striked0  //and classic PosAssignment\
+\cf2 \strike \strikec2 -implement classicCrewOuch\strike0\striked0  //and classic PosAssignment\
 -redo classic PosAssignment\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
@@ -2178,7 +2177,7 @@ apr 25th 2018;\
 \f0\b \cf2 jun 25th 2018;\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
-\f1\b0 \cf2 \strike \strikec2 -redo classic PosAssignment\cf2 \strike0\striked0  /by nodes/ //whenever crewPos is set\
+\f1\b0 \cf2 \strike \strikec2 -redo classic PosAssignment\strike0\striked0  /by nodes/ //whenever crewPos is set\
 //if _tile = tween -> extrapolate direction \
 //prevPos.x = 6; _tilePos.x = 7; => currentPos = 8;\
 //prevPos.x = 6; _tilePos.x = 5; => currentPos = 4;\
@@ -2199,14 +2198,14 @@ apr 25th 2018;\
 
 \f1\b0 \cf2 //maybe debug classicPos by colouring occupied rooms?\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -implement medbay\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -implement medbay\strike0\striked0 \
 -implement teleporter\
 //couch crew hScr is never properly removed from spawn room\
 //-> might be added twice? -> fixed, it was added twice.\
 //that\'92s what i just said fuckwit! \
 //who you callin a fuckwit pissface?\
 -BUG: DisRummSpecial //i forget. ah in hangar special rooms freak\
-\cf2 \strike \strikec2 \
+\strike \strikec2 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
@@ -2215,12 +2214,12 @@ apr 25th 2018;\
 
 \f1\b0 \cf2 //classicHScr assignment seems to work except elevators\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -fix classicCrewElevatorPosAssignment\cf2 \strike0\striked0  //-> there are no tweens!\
+\cf2 \strike \strikec2 -fix classicCrewElevatorPosAssignment\strike0\striked0  //-> there are no tweens!\
 //is there a way know crews mode of transportation? lets find out\
 //hScr is reassigned on elevator enter instead of exit //problem?\
 -syncCouchCrewPos and CouchHScrAssignment for elevators\
 -redo CouchUpdateCrewPos to take nextPos instead of increments\
-\cf2 \strike \strikec2 -fix weird origin fetish of pointerClick\cf2 \strike0\striked0  //caused by fullRoomCol\
+\strike \strikec2 -fix weird origin fetish of pointerClick\strike0\striked0  //caused by fullRoomCol\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 \
@@ -2235,7 +2234,7 @@ jun 30th 2018;
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 -implement teleporter\
-	\cf2 \strike \strikec2 -implement teleporter system\cf2 \strike0\striked0  //placable, powerable\
+	\strike \strikec2 -implement teleporter system\strike0\striked0  //placable, powerable\
 	-implement teleport targeting\
 	-implement teleport functionality\
 -streamline implementation of new systems //?\
@@ -2252,14 +2251,14 @@ jun 30th 2018;
 \f1\b0 \cf2 -implement teleporter\
 	-implement teleport targeting\
 		-classic\
-		\cf2 \strike \strikec2 -couch\cf2 \strike0\striked0 \
-			\cf2 \strike \strikec2 -terminal\cf2 \strike0\striked0 \
+		\strike \strikec2 -couch\strike0\striked0 \
+			\strike \strikec2 -terminal\strike0\striked0 \
 	-implement teleport functionality\
 		-classic\
 			-to\
 			-from	\
 		-couch\
-			\cf2 \strike \strikec2 -to\cf2 \strike0\striked0 \
+			\strike \strikec2 -to\strike0\striked0 \
 			-from\
 		-syncTeleportation\
 //new strat: teleporter with external terminal, and airlock\
@@ -2271,8 +2270,8 @@ jun 30th 2018;
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f1\b0 \cf2 -implement couchTeleport functionality\
-	\cf2 \strike \strikec2 -to\cf2 \strike0\striked0 \
-	\cf2 \strike \strikec2 -from\cf2 \strike0\striked0 \
+	\strike \strikec2 -to\strike0\striked0 \
+	\strike \strikec2 -from\strike0\striked0 \
 	-crew dispersement //un-clump teleported crew 
 \f0\b \
 
@@ -2280,7 +2279,7 @@ jun 30th 2018;
 //skip friendlies?\
 -implement hand to hand combat\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 	-self harm\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 	-self harm\strike0\striked0 \
 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -2294,7 +2293,7 @@ jun 30th 2018;
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 
 \f0\b \cf2 	
-\f1\b0 \cf2 \strike0\striked0 -auto-unselect crew that left the room\
+\f1\b0 \strike0\striked0 -auto-unselect crew that left the room\
 	//how though? give hScr a list of attackers, that are 		informed onLeave ()? //or check whenever anyone leaves the 		room? -> hScr has Check () called by room whenever the list 		is set.\
 	-visual representation of selection //targeting crew only?\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
@@ -2315,16 +2314,55 @@ jun 30th 2018;
 -implement multi-ship in single-player //necessary for ai anyways\
 -look into PARSEC! //awesome stuff that might render my 	networking efforts useless...\
 -look into REWIRED! //controller software for unity. it is 	handled differently and will require some changes. the sooner, 	the better...\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jul 14th 2018;
+\f1\b0 \
 -implement classicTeleport\
--implement classicMedbay //? -> might already work\
+	-implement teleportBtns //in and out\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -implement classicMedbay\strike0\striked0  //? -> might already work //yup\
 -implement classicCloseCombat //utilizing readTheRoom () //get it\
+//give room bool containsFoe \
+//if (room.containsFoe) \{ if (!localTile.cF) \{ fList[random] \} \}\
+-implement ai\
+-implement \'93fun stuff\'94 \
+	-fire that spreads\
+	-different weapon types\
+	-system variations\
+	-terminal minigames //? //terminal cancer... fuck... fuck.\
+	-oxygen!\
+	-sucking!!! //yay!!\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 jul 20th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 //classicCrew auto use teleporter if (noPathFound)? \
+-implement fullCouchSupport!\
+	-selectable number of players\
+	-support 8 players \
+	-selectable number of ships\
+	-implement player to ship assignment \
+	-support multiple screens\
+	//and yes... ai as well...\
+//issues:	-all\'92s geared towards networkedMP //->tons of rewriters\
+//ideas:	-make repair/movement speeds dependent of crewNum?\
+//btw: why did i wait so long to implement this? -> some things 	would\'92ve been so much easier to test actually.\
+\
+//go check ship- && crewPlacement functions...\
+	\
+\
+\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 \page -create network manager in lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 -assign unique networkID to every player.\cf2 \strike0\striked0 \
+\cf2 \strike \strikec2 -assign unique networkID to every player.\strike0\striked0 \
 //ID = int ranging from 0 to the amount of players - 1\
 & ID needs to stay in existance\
 -get localPlayerID in NetManager\
@@ -2332,11 +2370,11 @@ jun 30th 2018;
 -add layout information to .sav files\
 \
 \
--> tasklist:	\cf2 \strike \strikec2 -load ships from script\
-			-fix shipLoad\cf2 \strike0\striked0 \
-			\cf2 \strike \strikec2 -find way to time ship placement\cf2 \strike0\striked0 \
+-> tasklist:	\strike \strikec2 -load ships from script\
+			-fix shipLoad\strike0\striked0 \
+			\strike \strikec2 -find way to time ship placement\strike0\striked0 \
 			-create a networked lobby\
-			-assign IDs to Players\cf2 \strike \strikec2 \
-			\cf2 \strike0\striked0 -load non-local ships\
+			-assign IDs to Players\strike \strikec2 \
+			\strike0\striked0 -load non-local ships\
 			-animate crew\
 			-finish this list}{\*\beandata789c9d935d6f82301486aff157748db752d876b12d8851c1c4cc2099b86497153a65e32ba5cef1ef57444aeb66b68c1bda73fabe4f7b4e6b8d3ed3047c105ac6793684a66e4040b2308fe26c3b84eb6036b88323bb675d39cb69f0e2bba048e292017f3d59cca7000e101a17454210720207f88bf92a00dc0321d78300ee182b1e103a1c0e3aae57e9619ed60b4be4d3bc2094550b6e36e0023d6211e498c65dd90e8f4671c8ec9e66bd93caee631aee62bec242f594474b46f9666d6ff5482a128d45fa146f75f9e68d84ac14324c29ae07c2a09fed934492692d573b3984092e855e4e37f9e9acbf9e3b5d5eb3e28c912da1f6ad85dae1518854636fa5f39fec2cf6a6502e603aceb5ca5140a8f36ca16715f93ff7e64fdc2eda567ce28ebd27f6ead6f78d778ef1e866cf48f9dcf4dfdba71ba591d2490dd334ee0df5c03ff68b5c3a9fb8360e57711aa6958c92572c8f8552b2dfead9d0329c1289f70b4354a4736bbc585e887b2a8a56cf2704670e665830cece7cde24513053ad540756ded6e9e109b6501bf52759b43a0b1d5facddfb02aa1d4161}
