@@ -1,20 +1,9 @@
 ﻿<Properties StartupConfiguration="{35C58780-924F-3E99-9466-8A0FFDDBA016}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TileScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlacementManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Placables/CouchCrewScript.cs" Line="581" Column="33" />
-      <File FileName="Assets/Scripts/Placables/RoomScript.cs" Line="671" Column="25" />
-      <File FileName="Assets/Scripts/Placables/TerminalScr.cs" Line="63" Column="10" />
-      <File FileName="Assets/Scripts/UI/CouchCursorScr.cs" Line="85" Column="71" />
-      <File FileName="Assets/Scripts/Placables/TeleporterScr.cs" Line="222" Column="39" />
-      <File FileName="Assets/Scripts/Placables/MedBayScr.cs" Line="179" Column="22" />
-      <File FileName="Assets/Scripts/HealthScript.cs" Line="348" Column="1" />
-      <File FileName="Assets/Scripts/Placables/CrewScript.cs" Line="54" Column="29" />
-      <File FileName="Assets/Scripts/Placables/AccessorScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/AmmoScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Placables/TeleporterBtnScr.cs" Line="11" Column="42" />
       <File FileName="Assets/Scripts/ShipScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/TileScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlacementManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
