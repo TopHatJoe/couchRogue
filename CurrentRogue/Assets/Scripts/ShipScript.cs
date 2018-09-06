@@ -17,9 +17,10 @@ public class ShipScript : MonoBehaviour
 	private List <WeaponScript> weaponList = new List <WeaponScript> ();
 	public List <WeaponScript> WeaponList { get { return weaponList; } }
 
-	//private Vector3 shipCenter;
+    //private Vector3 shipCenter;
 
-
+    private int ownerID;
+    public int OwnerID { get { return ownerID; } set { ownerID = value; } }
 
 
 
@@ -45,7 +46,7 @@ public class ShipScript : MonoBehaviour
 		//int _int = shield.Power;
 	}
 
-	public void AddWeaponToList (WeaponScript _weapon) {
-		weaponList.Add (_weapon);
-	}
+    public void AddWeaponToList(WeaponScript _weapon) {
+        weaponList.Add(_weapon);
+    }
 }

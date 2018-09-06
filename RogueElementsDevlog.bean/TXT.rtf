@@ -2443,8 +2443,20 @@ jul 25th 2018;\
 //client loads shipInfo, passes to server, server distributes by 	PlaceShip (name, type, str, owner);\
 -multi-ship \strike \strikec2 \
 	-implement shipInfo distributionSystem\
-	\strike0\striked0 //maybe just spawn lobbyShipInfo?\strike \strikec2 \page -create network manager in lobby\
-\strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
+	\strike0\striked0 //maybe just spawn lobbyShipInfo?\
+	-clean-up //remove all *retired* placement/loadShip ()\
+		-fix bugs\
+			\strike \strikec2 -powerBar issue\
+			\strike0\striked0 -crew control \
+	-SpawnShips ()\
+	-Implement RpcPlaceShips ()\
+		\strike \strikec2 -local\strike0\striked0 \
+		-networked //is fuuucked... there\'92s just tons of bugs.\
+//i will neglect the networked aspects of the game for the time 	being... //what happens in classic?\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 \page -create network manager in lobby\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -assign unique networkID to every player.\strike0\striked0 \

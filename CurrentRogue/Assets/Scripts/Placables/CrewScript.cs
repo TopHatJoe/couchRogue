@@ -131,7 +131,10 @@ public class CrewScript : MonoBehaviour, IPlacable
 
 		//mayhap unnessesary //if obj in hangar and void differ.
 		if (NetManager.Instance != null) {
-			if (NetManager.Instance.localPlayerID == CrewPos.Z) {
+            //if (NetManager.Instance.localPlayerID == CrewPos.Z) {
+            ShipScript _ship = LevelManager.Instance.Ships[crewPos.Z].GetComponent<ShipScript>();
+
+            if (NetManager.Instance.localPlayerID == _ship.OwnerID) {
 				IsLocalCrew = true;
 			} else {
 				IsLocalCrew = false;

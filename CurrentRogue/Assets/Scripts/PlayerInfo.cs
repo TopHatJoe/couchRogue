@@ -554,4 +554,21 @@ public class PlayerInfo : NetworkBehaviour
 
         CasheScript.Instance.ShipList.Add(_shipInfo);
     }
+
+
+    public void PlaceShips () {
+        List<ShipInfo> _shipList = CasheScript.Instance.ShipList;
+        int _count = 0;
+
+        foreach (var _ship in _shipList) {
+            //Player.Instance.PlaceShip(_ship.Str, _count);
+            RpcPlaceShips(_ship.Str, _count, _ship.OwnerID);
+            _count++;
+        }
+    }
+
+    [ClientRpc]
+    private void RpcPlaceShips (string _shipStr, int _z, int _ownerID) {
+        Player.Instance.PlaceShip(_shipStr, _z, _ownerID);
+    }
 }

@@ -522,8 +522,12 @@ public class CouchCrewScript : NetworkBehaviour
 		Point _point0 = new Point (0, 0, 0);
 		Point _point1 = new Point (1, 0, 0);
 
+        Debug.Log("oi 11");
+
 		Vector3 _vect0 = LevelManager.Instance.Tiles [_point0].transform.position;
 		Vector3 _vect1 = LevelManager.Instance.Tiles [_point1].transform.position;
+
+        Debug.Log("oi 111");
 
 		float _distance = _vect1.x - _vect0.x;
 		tileDistance = (_distance + 0.1f);

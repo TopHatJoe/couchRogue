@@ -256,11 +256,11 @@ public class LevelManager : Singleton<LevelManager>
 
 	private void SetShipsActive ()
 	{
-		numOfShips = 1;
+		//numOfShips = 1;
 
-		if (NetManager.Instance != null) {
-			numOfShips = NetManager.Instance.playerList.Count;
-		}
+		//if (NetManager.Instance != null) {
+        numOfShips = CasheScript.Instance.ShipList.Count; //NetManager.Instance.playerList.Count;
+		//}
 
 		for (int i = 0; i < numOfShips; i++) {
 			ships [i].SetActive (true);
@@ -315,7 +315,8 @@ public class LevelManager : Singleton<LevelManager>
 			gridStart = gridFields [z].transform.position;
 
 			if (NetManager.Instance != null) {
-				mapData = ReadLevelText (NetManager.Instance.playerList[z].ShipType);
+                //mapData = ReadLevelText(NetManager.Instance.playerList[z].ShipType);
+                mapData = ReadLevelText (CasheScript.Instance.ShipList [z].Type);
 			}
 				
 			for (int y = 0; y < mapY; y++) 
@@ -425,9 +426,9 @@ public class LevelManager : Singleton<LevelManager>
 		hover.transform.localScale = roomSize;
 	}
 
-	private string[] ReadLevelText (string shipType)
+    private string[] ReadLevelText (string _shipType)
 	{
-		TextAsset bindData = Resources.Load (shipType) as TextAsset;
+		TextAsset bindData = Resources.Load (_shipType) as TextAsset;
 
 		string data = bindData.text.Replace (Environment.NewLine, string.Empty);
 
@@ -466,12 +467,24 @@ public class LevelManager : Singleton<LevelManager>
 		}
 	}
 
+
+
+
+
 	public void PlaceAllShips ()
 	{
-		NetManager.Instance.LoadShips ();
-		//Debug.Log ("set");
+        //NetManager.Instance.LoadShips ();
+
+        NetManager.Instance.playerList[0].PlaceShips();
+
+
+        //Debug.Log ("set");
 		//NetManager.Instance.SetCrewIndex ();
 	}
+
+
+
+
 
 
 	private void GetRoomContents () {
@@ -481,9 +494,6 @@ public class LevelManager : Singleton<LevelManager>
 			roomList [i].GetChildrenIni (i);
 		}
 	}
-
-
-
 
 
 	private IEnumerator ArtificialDelayIni () {

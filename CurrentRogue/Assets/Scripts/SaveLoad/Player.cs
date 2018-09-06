@@ -77,10 +77,13 @@ public class Player : Singleton <Player>
 
 	//actually places the ship
 	//public void PlacementLoop (int[,] loadedStats, int playerID)
-	public void PlaceShip (string _shipStr, int _playerID)
-	{
-		string[] _strArr = _shipStr.Split ('-');
+    public void PlaceShip (string _shipStr, int _z, int _ownerID) {
 
+        ShipScript _ship = LevelManager.Instance.Ships[_z].GetComponent<ShipScript>();
+        _ship.OwnerID = _ownerID;
+
+
+        string[] _strArr = _shipStr.Split ('-');
 
 
 		for (int i = 0; i < _strArr.Length; i++) {
@@ -91,7 +94,7 @@ public class Player : Singleton <Player>
 			int _x = int.Parse (_strArrTwo [2]);
 			int _y = int.Parse (_strArrTwo [3]);
 
-			Point _point = new Point (_x, _y, _playerID);
+			Point _point = new Point (_x, _y, _z);
 
 			PlaceObject (_name, _type, _point);
 		}
@@ -281,7 +284,7 @@ public class Player : Singleton <Player>
 		string _shipString = LoadShip (loadFileName);
 
 		Debug.LogError (_shipString);
-		PlaceShip (_shipString, 0);
+		PlaceShip (_shipString, 0, 0);
 	}
 
 	//MADNESS

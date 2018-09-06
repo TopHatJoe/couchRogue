@@ -72,8 +72,10 @@ public class TerminalScr : MonoBehaviour
 		isUsed = true;
 
 		shipArr = LevelManager.Instance.Ships;
-		numOfShips = NetManager.Instance.NumOfPlayers;
-		//Debug.LogError ("numOfShips: " + numOfShips);
+
+        //numOfShips = NetManager.Instance.NumOfPlayers;
+        numOfShips = CasheScript.Instance.ShipList.Count;
+        //Debug.LogError ("numOfShips: " + numOfShips);
 
 		userColor = _user.CrewColor;
 		//gun terminal behaviour

@@ -342,7 +342,7 @@ public class NetManager : Singleton <NetManager>
 		for (int i = 0; i < NumOfPlayers; i++) {
 			//Player.Instance.PlacementLoop (ship0 , i);
 			//Player.Instance.PlacementLoop (shipDict["ship" + i] , i);
-			Player.Instance.PlaceShip (shipStrings [i], i);
+            Player.Instance.PlaceShip (shipStrings [i], i, i);
 
 			/*
 			//EVEN MOR STUPID BRUTE SHIT
