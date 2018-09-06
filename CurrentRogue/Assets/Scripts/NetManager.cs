@@ -435,11 +435,15 @@ public class NetManager : Singleton <NetManager>
 		playerList [localPlayerID].SpawnCouchCrew (_posVect, _objStr);
 	}
 
-	
-	public void OnPlayerConnected (NetworkPlayer _player) {
+    /*//stupid 2018.3 unity!
+x   public void OnPlayerConnected (NetworkPlayer _player) {
 		Debug.Log ("playerIP: " + _player.ipAddress);
 	}
-
+   
+    public void OnPlayerConnected(NetworkIdentity _player) {
+        Debug.Log("playerIP: " + _player.ipAddress);
+    }
+    */
 
     public void SyncWeaponPower (Point _pos, bool _value) {
 		Vector3 _vect = PointToVector (_pos);
@@ -455,14 +459,18 @@ public class NetManager : Singleton <NetManager>
     }
 
 
-	/*
+    public void SendShipInfo (string _name, string _type, string _shipStr) {
+        playerList[localPlayerID].SendShipInfo(_name, _type, _shipStr, localPlayerID);
+    }
+
+    /*
 	public void AddToConnDict (int _playerID, NetworkConnection _conn) {
 		connDict.Add (_playerID, _conn);
 		Debug.LogError ("Conn: " + _playerID + ", " + _conn);
 	}
 	*/
-	
-	/*
+
+    /*
 	public void SetCrewIndex () {
 		Debug.Log ("crew");
 
@@ -472,5 +480,5 @@ public class NetManager : Singleton <NetManager>
 	}
 	*/
 
-	//public void SyncMovement ()
+    //public void SyncMovement ()
 }

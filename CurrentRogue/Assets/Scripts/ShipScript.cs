@@ -23,8 +23,7 @@ public class ShipScript : MonoBehaviour
 
 
 
-	private void Start()
-	{
+	private void Start() {
         Debug.LogError("shipPos: " + transform.position.x + ", " + transform.position.y);
 	}
 

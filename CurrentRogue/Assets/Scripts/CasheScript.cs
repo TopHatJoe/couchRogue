@@ -35,6 +35,19 @@ public class CasheScript : Singleton<CasheScript>
 	private int assignedCrewCount = 0;
 
 
+    private int numOfLocalShips;
+
+
+
+    //mulitship stuff
+
+    //used by server only (?) //List <ownerID, shipString> //both are passed /where to?/ by PlaceShip (int, string)
+    //private Dictionary <int, string> shipList = new Dictionary<int, string>();
+    //public Dictionary <int, string> ShipList { get { return shipList; } set { shipList = value; } }
+
+    private List<ShipInfo> shipList = new List<ShipInfo>();
+    public List<ShipInfo> ShipList { get { return shipList; } set { shipList = value; } }
+
 
 	void Start ()
 	{
@@ -44,12 +57,14 @@ public class CasheScript : Singleton<CasheScript>
 
 
 	//debug reasons
+    /*
 	void Update ()
 	{
 		if (Input.GetKeyDown (KeyCode.T)) {
 			Debug.Log (shipType);
 		}
 	}
+	*/
 
 
 	public void SwitchMode (bool _mode) {

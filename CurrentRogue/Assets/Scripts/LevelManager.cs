@@ -273,18 +273,18 @@ public class LevelManager : Singleton<LevelManager>
 
 
 		//string tmpString = "standard";
-		string tmpString = "triton";
+        string _typeStr = "triton";
 
 
 
 		//probably debug only //needs FIXIN! //nope
 
 		if (CasheScript.Instance != null) {
-			tmpString = CasheScript.Instance.ShipType;
+			_typeStr = CasheScript.Instance.ShipType;
 		}
 
 	
-		string[] mapData = ReadLevelText (tmpString);
+		string[] mapData = ReadLevelText (_typeStr);
 		//string[] mapData = ReadLevelText ("standard");
 
 

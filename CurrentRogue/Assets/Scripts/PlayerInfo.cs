@@ -129,6 +129,11 @@ public class PlayerInfo : NetworkBehaviour
 		}
 	}
 
+    //debug?
+    private void CreateShipInfo (string _shipName) {
+        
+    }
+
 
 	[Command]
 	private void CmdSyncShipType (string _shipType)
@@ -534,5 +539,19 @@ public class PlayerInfo : NetworkBehaviour
         GameObject _ship = LevelManager.Instance.Ships[_shipID];
         _ship.transform.position = _pos;
         Debug.LogError("shipPos" + _shipID + "(Synced): " + _ship.transform.position.x + ", " + _ship.transform.position.y);
+    }
+
+
+
+    public void SendShipInfo (string _name, string _type, string _shipStr, int _ownerID) {
+        CmdSendShipInfo(_name, _type, _shipStr, _ownerID);
+    }
+
+    [Command]
+    private void CmdSendShipInfo (string _name, string _type, string _shipStr, int _ownerID) {
+        ShipInfo _shipInfo = new ShipInfo();
+        _shipInfo.SetShipInfo(_name, _type, _shipStr, _ownerID);
+
+        CasheScript.Instance.ShipList.Add(_shipInfo);
     }
 }

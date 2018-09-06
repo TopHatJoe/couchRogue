@@ -43,7 +43,6 @@
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.PerformanceReportingModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.Physics2DModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.PhysicsModule.dll
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.Purchasing.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.ScreenCaptureModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.SharedInternalsModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.SpatialTracking.dll
@@ -61,7 +60,6 @@
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.TimelineModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.TLSModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.UI.dll
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.UIAutomation.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.UIElementsModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.UIModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.UmbraModule.dll
@@ -76,7 +74,6 @@
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.VehiclesModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.VideoModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.VRModule.dll
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.WebModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.WindModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.XRModule.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityScript.dll
@@ -210,8 +207,6 @@
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.VehiclesModule.xml
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.VideoModule.dll.mdb
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.VideoModule.xml
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.WebModule.dll.mdb
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.WebModule.xml
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.WindModule.dll.mdb
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.WindModule.xml
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.XRModule.dll.mdb
@@ -223,8 +218,6 @@
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.Networking.xml
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.Timeline.dll.mdb
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.Timeline.xml
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.UIAutomation.dll.mdb
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.UIAutomation.xml
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.GoogleAudioSpatializer.dll.mdb
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.GoogleAudioSpatializer.xml
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.HoloLens.dll.mdb
@@ -232,7 +225,6 @@
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.SpatialTracking.dll.mdb
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.SpatialTracking.xml
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.Analytics.dll.mdb
-/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.Purchasing.dll.mdb
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.StandardEvents.dll.mdb
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/Unity.IvyParser.dll.mdb
@@ -240,3 +232,19 @@
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/obj/Debug/Assembly-CSharp.dll
 /Users/lyn/Projects/Github/couchRogue/CurrentRogue/obj/Debug/Assembly-CSharp.pdb
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/Unity.TextMeshPro.dll
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/Unity.TextMeshPro.Editor.dll
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.FileSystemHttpModule.dll
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.LocalizationModule.dll
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.ProfilerModule.dll
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.StreamingModule.dll
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/Unity.TextMeshPro.Editor.dll.mdb
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/Unity.TextMeshPro.dll.mdb
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.FileSystemHttpModule.dll.mdb
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.FileSystemHttpModule.xml
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.LocalizationModule.dll.mdb
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.LocalizationModule.xml
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.ProfilerModule.dll.mdb
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.ProfilerModule.xml
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.StreamingModule.dll.mdb
+/Users/lyn/Projects/Github/couchRogue/CurrentRogue/Temp/bin/Debug/UnityEngine.StreamingModule.xml
