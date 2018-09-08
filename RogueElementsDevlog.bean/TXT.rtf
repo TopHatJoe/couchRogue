@@ -2454,7 +2454,18 @@ jul 25th 2018;\
 		-networked //is fuuucked... there\'92s just tons of bugs.\
 //i will neglect the networked aspects of the game for the time 	being... //what happens in classic?\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike \strikec2 \page -create network manager in lobby\
+
+\f0\b \cf2 sep 8th 2018;
+\f1\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -fix hangar\strike0\striked0  //as far as i can tell anyways... \
+	\strike \strikec2 -shipTypePlacement\strike0\striked0  //numOfShips was set to 0...\
+	\strike \strikec2 -fix room placement\strike0\striked0  //removing a room, and placing another \
+	-> ArgumentException: an element with the same key already 		exists in the dictionary <int, HealthScript> \
+	//i added roomHScr to tile.HDict, but never removed it... \
+-implement crew to ship assignment \
+//local crew can select a ship to serve on\
+-removable ships //in lobby\strike \strikec2 \page -create network manager in lobby\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\

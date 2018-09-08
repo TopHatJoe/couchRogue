@@ -20,6 +20,7 @@ public class CasheScript : Singleton<CasheScript>
 
 	private bool couchMode;
 	public bool CouchMode { get { return couchMode; } }
+    //hangar/classic/couch
 	private int gameMode;
 	public int GameMode { get { return gameMode; } }
 

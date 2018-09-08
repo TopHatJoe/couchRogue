@@ -149,9 +149,10 @@ public class LevelManager : Singleton<LevelManager>
 	}
 
     private void SyncShipPos () {
-        for (int i = 0; i < ships.Length; i++)
-        {
-            NetManager.Instance.SyncShipPos(i, ships[i].transform.position);
+        if (CasheScript.Instance.GameMode != 0) {
+            for (int i = 0; i < ships.Length; i++) {
+                NetManager.Instance.SyncShipPos(i, ships[i].transform.position);
+            }
         }
     }
 
@@ -246,9 +247,9 @@ public class LevelManager : Singleton<LevelManager>
 	private void CreateLevel ()
 	{
 		CreateRoomGrid ();
-		//Debug.Log ("roomdrid created");
+		Debug.Log ("roomdrid created");
 		CreateSquareGrid ();
-		//Debug.Log ("squaregrid created");
+		Debug.Log ("squaregrid created");
 		SetCams ();
 
 		CorrectCam ();
@@ -261,6 +262,11 @@ public class LevelManager : Singleton<LevelManager>
 		//if (NetManager.Instance != null) {
         numOfShips = CasheScript.Instance.ShipList.Count; //NetManager.Instance.playerList.Count;
 		//}
+
+        if (CasheScript.Instance.GameMode == 0) {
+            //if in hangar
+            numOfShips = 1;
+        }
 
 		for (int i = 0; i < numOfShips; i++) {
 			ships [i].SetActive (true);
@@ -282,7 +288,7 @@ public class LevelManager : Singleton<LevelManager>
 		if (CasheScript.Instance != null) {
 			_typeStr = CasheScript.Instance.ShipType;
 		}
-
+        //Debug.Log("shipType: " + _typeStr);
 	
 		string[] mapData = ReadLevelText (_typeStr);
 		//string[] mapData = ReadLevelText ("standard");
@@ -309,7 +315,7 @@ public class LevelManager : Singleton<LevelManager>
 
 		AdjustObjectScale ();
 
-	
+        //Debug.Log("numOfShips: " + numOfShips);
 		for (int z = 0; z < numOfShips; z++) {
 
 			gridStart = gridFields [z].transform.position;
@@ -475,8 +481,9 @@ public class LevelManager : Singleton<LevelManager>
 	{
         //NetManager.Instance.LoadShips ();
 
-        NetManager.Instance.playerList[0].PlaceShips();
-
+        if (CasheScript.Instance.GameMode != 0) {
+            NetManager.Instance.playerList[0].PlaceShips();
+        }
 
         //Debug.Log ("set");
 		//NetManager.Instance.SetCrewIndex ();
@@ -508,8 +515,13 @@ public class LevelManager : Singleton<LevelManager>
 					//Debug.LogError ("Placing all ships?");
 				PlaceAllShips ();
 				//}
-			}
-		} 
+            } else {
+                Debug.LogError("localPlayerID != 0");
+            }
+        } else {
+            //Debug.LogError("netMngr == null");
+            PlaceAllShips();
+        }
 
 		/*
 		else {

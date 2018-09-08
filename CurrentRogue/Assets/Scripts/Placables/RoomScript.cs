@@ -147,6 +147,7 @@ public class RoomScript : MonoBehaviour, IPlacable
 		hScr = gameObject.GetComponent <HealthScript> ();
 		//transform.parent.parent.GetComponent <TileScript> ();
 
+        //this causes roomPlacement hickups! -> not properly removed!
 		tile.HScrDict.Add (0, hScr);
 
 
@@ -281,6 +282,9 @@ public class RoomScript : MonoBehaviour, IPlacable
 			if (isRightBorder) {
 				RemoveDoor (gridPos, false);
 			}
+
+            //should fix roomPlacement hickups //it did!
+            tile.HScrDict.Remove(0);
 
 			UndoBool ();
 
