@@ -83,6 +83,8 @@
     <Compile Include="Assets\Scripts\Menu\ControllerMappingTemp.cs" />
     <Compile Include="Assets\Scripts\Menu\ControllerMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\CouchSetupMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu\CouchShipAssignmentScr.cs" />
+    <Compile Include="Assets\Scripts\Menu\CrewShipSelectorScr.cs" />
     <Compile Include="Assets\Scripts\Menu\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\Menu\LoadShipGrid.cs" />
     <Compile Include="Assets\Scripts\Menu\ModeSelect.cs" />

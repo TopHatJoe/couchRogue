@@ -2464,10 +2464,30 @@ jul 25th 2018;\
 	-> ArgumentException: an element with the same key already 		exists in the dictionary <int, HealthScript> \
 	//i added roomHScr to tile.HDict, but never removed it... \
 -implement crew to ship assignment \
-//local crew can select a ship to serve on\
--removable ships //in lobby\strike \strikec2 \page -create network manager in lobby\
+//local crew can select a ship to serve on //how?\
+->place crew not by couchCount, but by shipCrewCount. then assign 	by index? wait... that won\'92t work because there can\'92t be multiple 	items with the same key... hmm. \
+//will do that tomorrow...\
+-removable ships //in lobby\
+\
+\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
-\cf2 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
+
+\f0\b \cf2 sep 9th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 //Tapones de Punta -> remember that name!\
+-implement crew2ShipAssignment //just a storage problem really\
+//maybe just have a couchPlayerObj storing the selected ship, 	then adding itself to the ship.CrewList and destroying itself?\
+	\strike \strikec2 -menu part\
+	-solve storage problem\
+\strike0\striked0 	//just save controllerID in added string, then split by ship\
+	crewString = J01-J03-J04; split \'91-\'92; add(ctrlStr[i]);\
+	//-> nested list\
+	-placeCrew on proper ship\
+	//this might prove tricky if i want to retain some networked 		functionality... //who may place whom where? \
+	//too much for today i\'92m afraid... but that gives me a clear 		goal for tomorrow, so that\'92s good.. right?\
+	\strike \strikec2 \page -create network manager in lobby\
+\strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
 \cf2 \strike \strikec2 -assign unique networkID to every player.\strike0\striked0 \

@@ -849,7 +849,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 	private void SetControls () {
 		if (!controlsSet) {
-			if (crewPos.Z == NetManager.Instance.localPlayerID) {
+			if (crewPos.Z == NetManager.Instance.localPlayerID) { //problem!
 				isLocal = true;
 
 				//couchCrewSetup is called by this as well...

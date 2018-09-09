@@ -31,6 +31,7 @@ public class CasheScript : Singleton<CasheScript>
 	public int CasheCount { get; private set; }
 
 	private Dictionary <int, string> ctrlDict = new Dictionary <int, string> ();
+    public Dictionary <int, string> CtrlDict { get { return ctrlDict; } }
 
 	//because reasons //net sync too slow...
 	private int assignedCrewCount = 0;
@@ -39,6 +40,8 @@ public class CasheScript : Singleton<CasheScript>
     private int numOfLocalShips;
 
 
+    private List<List<string>> crewAssignments;
+    public List<List<string>> CrewAssignments { get { return CrewAssignments; } }
 
     //mulitship stuff
 
@@ -128,4 +131,15 @@ public class CasheScript : Singleton<CasheScript>
 			gameMode = 0;
 		}
 	}	
+
+    public void GetCrewAssignments (List <List <string>> _value) {
+        crewAssignments = _value;
+
+        /* DEBUG
+        for (int i = 0; i < _value[0].Count; i++)
+        {
+            Debug.Log("het! ctrlID: " + _value[0][i]);
+        }
+        */
+    }
 }

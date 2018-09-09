@@ -842,7 +842,7 @@ public class TileScript : MonoBehaviour
 
 				if (CasheScript.Instance.CouchMode) {
 					if (GridPosition.Z == NetManager.Instance.localPlayerID) {
-						//could quite possibly become a problem when implementing shipHopping...
+						//could quite possibly become a problem when implementing shipHopping... //no duh sherlock...
 
 						//Debug.LogError ("pos: " + GridPosition.Z + ", netID: " + NetManager.Instance.localPlayerID);
 						if (CasheScript.Instance.CouchCrewFits ()) {
