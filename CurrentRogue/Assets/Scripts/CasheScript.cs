@@ -43,6 +43,9 @@ public class CasheScript : Singleton<CasheScript>
     private List<List<string>> crewAssignments;
     public List<List<string>> CrewAssignments { get { return CrewAssignments; } }
 
+    private int lastShip = -1;
+    private int crewOnThisShipCounter = 0;
+
     //mulitship stuff
 
     //used by server only (?) //List <ownerID, shipString> //both are passed /where to?/ by PlaceShip (int, string)
@@ -94,7 +97,20 @@ public class CasheScript : Singleton<CasheScript>
 
 
 	//assign crew controls here?
-	public bool CouchCrewFits () {
+	public bool CouchCrewFits (int _shipID) {
+        if (lastShip != _shipID) {
+            crewOnThisShipCounter = 0;
+            lastShip = _shipID;
+        }
+
+        if (crewAssignments[_shipID].Count > crewOnThisShipCounter) {
+            crewOnThisShipCounter++;
+            return true;
+        } else {
+            return false;
+        }
+
+        /*
 		if (couchCrewCount < couchPlayerCount) {
 			couchCrewCount++;
 			Debug.Log ("couchCount: " + couchCrewCount);
@@ -103,14 +119,23 @@ public class CasheScript : Singleton<CasheScript>
 		} else {
 			return false;
 		}
+        */
 	}
 
-	public void AssignController (CouchCrewScript _couchCrew) {
+	public void AssignController (CouchCrewScript _couchCrew, int _shipID) {
 		//crew placement os too fast for network sync 
 		//-> count needs to be increased twice, once for placement, once for controller 
 
 		assignedCrewCount++;
-		_couchCrew.CouchCrewSetup (ctrlDict [assignedCrewCount - 1], assignedCrewCount, couchPlayerCount);
+        string _ctrlID = crewAssignments[_shipID][0];
+        Debug.Log("ass-ignment: " + _ctrlID);
+
+        _couchCrew.CouchCrewSetup(_ctrlID, assignedCrewCount, couchPlayerCount);
+        //_couchCrew.CouchCrewSetup (ctrlDict [assignedCrewCount - 1], assignedCrewCount, couchPlayerCount);
+
+        //Debug.LogError("pre");
+        crewAssignments[_shipID].Remove(_ctrlID);
+        //Debug.LogError("post");
 
 		//_couchCrew.CouchCrewSetup (ctrlDict [couchCrewCount - 1], couchCrewCount, couchPlayerCount);
 	}

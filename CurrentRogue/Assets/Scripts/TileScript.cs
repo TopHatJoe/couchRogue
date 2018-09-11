@@ -841,47 +841,34 @@ public class TileScript : MonoBehaviour
 			} else {
 
 				if (CasheScript.Instance.CouchMode) {
-					if (GridPosition.Z == NetManager.Instance.localPlayerID) {
+					//not any more because of local multiship
+                    //if (GridPosition.Z == NetManager.Instance.localPlayerID) {
 						//could quite possibly become a problem when implementing shipHopping... //no duh sherlock...
 
 						//Debug.LogError ("pos: " + GridPosition.Z + ", netID: " + NetManager.Instance.localPlayerID);
-						if (CasheScript.Instance.CouchCrewFits ()) {
-							//CC -> couch coop
-							_objStr = _objStr + "CC";
 
-							//PlaceObj (_objStr);
+                    //enough players to justify crew spawn //gridPos.Z only if it corresponds to shipID
+                    if (CasheScript.Instance.CouchCrewFits (GridPosition.Z)) {
+						//CC -> couch coop
+						_objStr = _objStr + "CC";
 
-							//whats group!?
-							//GameObject _obj = (GameObject)Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
-
-							//NetManager.Instance.SpawnCrew (LevelManager.Instance.ObjDict [_objStr]);
-
-							/*
-							GameObject _obj = (GameObject) Instantiate (LevelManager.Instance.ObjDict [_objStr], transform.position, Quaternion.identity);
-							IPlacable _placable = _obj.GetComponent <IPlacable> ();
-							_placable.PlaceObj (0, this.GridPosition, _obj);
-
-							CasheScript.Instance.AssignController (_obj.GetComponent <CouchCrewScript> ());
-							*/
-
-							//maybe not the best place for this
-							if (Camera.main != null) {
-								Camera.main.gameObject.SetActive (false);
-							}
-
-
-							NetManager.Instance.SpawnCrewCmd (GridPosition, _objStr);
+						//maybe not the best place for this
+						if (Camera.main != null) {
+							Camera.main.gameObject.SetActive (false);
 						}
-					} else {
-						Debug.Log ("not enough couch companions for full crew");
+
+
+						NetManager.Instance.SpawnCrewCmd (GridPosition, _objStr);
 					}
 				} else {
-
-					//PlaceCrew ();
-					PlaceObj (_objStr);
-
-					//modal issue 00; fix? -> add postfix depending on mode.
+					Debug.Log ("not enough couch companions for full crew");
 				}
+				//} else {
+					
+                    
+                    //PlaceObj (_objStr);
+
+				//}
 			}
 		} 
 

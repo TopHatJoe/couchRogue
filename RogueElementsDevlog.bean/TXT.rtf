@@ -2485,8 +2485,32 @@ jul 25th 2018;\
 	//-> nested list\
 	-placeCrew on proper ship\
 	//this might prove tricky if i want to retain some networked 		functionality... //who may place whom where? \
-	//too much for today i\'92m afraid... but that gives me a clear 		goal for tomorrow, so that\'92s good.. right?\
-	\strike \strikec2 \page -create network manager in lobby\
+	//too much for today i\'92m afraid... but that gives me a clear 		goal for \strike \strikec2 tomorrow\strike0\striked0  09/11, so that\'92s good.. right?\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f0\b \cf2 \
+\
+\
+\
+\
+\
+sep 11th 2018;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 //i should probably have gotten rewired before attempting to 	implement localMultiShip stuff... yeah. //i\'92ll fix the authority 	problem later since it isn\'92t one as long as theres but one client\
+//instead of all instances of crew checking for ctrlID, have it 	called via rpc by server and then checked by clients if they\'92re 	the right one... //i could also just call the function on the 	proper client right away i presume, but i have no idea how. \
+//BTW: interestingly, 8 lines seem to be my maximum of acceptable 	empty lines at the end of a page... fun, right? i\'92ll come up with 	a filler for those... ^^\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \
+BUG: YDatSpazz? -> crew has assignment issues if crewPos.z != 0;\
+\strike \strikec2 -fix YDatSpazz\strike0\striked0  //i\'92ll just go through all references to crewPos.z\
+//that should teach em... //seems fixed, though i don\'92t know why.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0
+\cf2 \strike \strikec2 -implement crew2ShipAssignment\strikec2 \
+	\strikec2 -placeCrew on proper ship\strikec2 \page -create network manager in lobby\
 \strike0\striked0 -create a \'93readying matrix\'94 <- that aint no matrix son...\
 //if all players set themselves ready, the game starts.\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural\partightenfactor0

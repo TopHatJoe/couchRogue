@@ -90,7 +90,9 @@ public class CouchCrewScript : NetworkBehaviour
 
 			SyncCrewPos ();
 
-			netID.AssignClientAuthority (NetManager.Instance.ConnDict [crewPos.Z]);
+            //nope!! authority is no longer dictated by gridPos! how to access dat shit tho?!
+            Debug.LogError("needs netFix!");
+			netID.AssignClientAuthority (NetManager.Instance.ConnDict [0]);
 		}
 
 
@@ -286,7 +288,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 
 	public void CouchCrewSetup (string _controllerID, int _couchPlayerID, int _couchCount) {
-		Debug.LogError ("crewSetup");
+        Debug.LogError ("crewSetup: " + _couchPlayerID + "," + _couchCount);
 
 		controllerID = _controllerID;
 		isLocal = true;
@@ -559,7 +561,7 @@ public class CouchCrewScript : NetworkBehaviour
 
 
 		//stuff here!
-		//Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
+		Debug.LogError ("crewPos: " + crewPos.X + ", " + crewPos.Y + ", " + crewPos.Z);
 
 
         _tile = LevelManager.Instance.Tiles[crewPos];
@@ -849,13 +851,15 @@ public class CouchCrewScript : NetworkBehaviour
 
 	private void SetControls () {
 		if (!controlsSet) {
-			if (crewPos.Z == NetManager.Instance.localPlayerID) { //problem!
+            //THIS RENDERS MULTIPLAYER IMPOSSIBLE FOR NOW!!!
+
+			//if (crewPos.Z == NetManager.Instance.localPlayerID) { //problem! 
 				isLocal = true;
 
 				//couchCrewSetup is called by this as well...
-				CasheScript.Instance.AssignController (this);
+                CasheScript.Instance.AssignController (this, crewPos.Z);
 				controlsSet = true;
-			}
+			//}
 		}
 	}
 
